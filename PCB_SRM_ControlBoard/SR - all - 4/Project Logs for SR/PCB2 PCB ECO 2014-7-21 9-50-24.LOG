@@ -1,0 +1,7 @@
+Added Component: Designator=LED6(0805D)
+Added Component: Designator=P18(HDR1X2)
+Added Pin To Net: NetName=+5V_C Pin=LED6-A
+Added Pin To Net: NetName=NetLED6_K Pin=LED6-K
+Added Pin To Net: NetName=NetP18_1 Pin=P18-1
+Added Pin To Net: NetName=3.3V Pin=P18-2
+Added Member To Class: ClassName=POWER Member=Component LED6 LED

@@ -1,0 +1,16 @@
+Removed Pin From Net: NetName=NetP18_1 Pin=P18-1
+Removed Pin From Net: NetName=3.3V Pin=P18-2
+Change Component Footprint: Designator=C112 Old Footprint=电解电容47uf New Footprint=7343
+Change Component Footprint: Designator=C113 Old Footprint=电解电容47uf New Footprint=7343
+Added Component: Designator=LED4(0805D)
+Added Component: Designator=P18(HDR1X2)
+Added Component: Designator=R137(1206)
+Added Pin To Net: NetName=3.3V Pin=LED4-A
+Added Pin To Net: NetName=NetP18_1 Pin=P18-1
+Added Pin To Net: NetName=3.3V Pin=P18-2
+Added Pin To Net: NetName=GND Pin=R137-1
+Added Pin To Net: NetName=NetLED4_K Pin=LED4-K
+Added Pin To Net: NetName=NetLED4_K Pin=R137-2
+Added Net: Name=NetLED4_K
+Added Member To Class: ClassName=POWER Member=Component LED4 LED
+Added Member To Class: ClassName=POWER Member=Component R137 Res2

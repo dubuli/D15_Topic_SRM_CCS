@@ -1,0 +1,95 @@
+Protel Design System Design Rule Check
+PCB File : C:\Users\Lenovo\Desktop\ѧУ\drive\PCB2.PcbDoc
+Date     : 2014/10/11
+Time     : 19:21:16
+
+Processing Rule : Short-Circuit Constraint (Allowed=No) (All),(All)
+Rule Violations :0
+
+Processing Rule : Un-Routed Net Constraint ( (All) )
+   Violation between Un-Routed Net Constraint: Net +15V_C Between Track on layer Top Layer (23800.866,9595.984mil) And Track on layer Top Layer (23980,6780mil)
+   Violation between Un-Routed Net Constraint: Net +15V_C Between Pad C90-1 (23889.882,13125mil) And Track on layer Top Layer (24025,10100mil)
+   Violation between Un-Routed Net Constraint: Net -15V_C Between Track on layer Top Layer (23070,9880mil) And Pad C80-1 (23630,7555mil)
+   Violation between Un-Routed Net Constraint: Net -15V_C Between Track on layer Top Layer (23248.858,13733.858mil) And Pad C82-2 (23809.882,10925mil)
+   Violation between Un-Routed Net Constraint: Net GND_C Between Track on layer Top Layer (23970,10875.118mil) And Pad C90-2 (24000.118,13125mil)
+   Violation between Un-Routed Net Constraint: Net GND_C Between Pad C80-2 (23495,7555mil) And Pad C81-2 (23955.118,9640mil)
+Rule Violations :6
+
+Processing Rule : Clearance Constraint (Gap=20mil) (All),(All)
+   Violation between Track (9710mil,10155mil)(10670mil,10150mil)  Top Layer and 
+                     Pad CON1-7(9740mil,10105mil)  Multi-Layer
+   Violation between Track (9710mil,10155mil)(10670mil,10150mil)  Top Layer and 
+                     Pad CON1-9(9740mil,10205mil)  Multi-Layer
+   Violation between Track (9700mil,10355mil)(10720mil,10355mil)  Top Layer and 
+                     Pad CON1-11(9740mil,10305mil)  Multi-Layer
+   Violation between Track (9690mil,10355mil)(9850mil,10360mil)  Bottom Layer and 
+                     Pad CON1-11(9740mil,10305mil)  Multi-Layer
+   Violation between Track (9700mil,10355mil)(10720mil,10355mil)  Top Layer and 
+                     Pad CON1-13(9740mil,10405mil)  Multi-Layer
+   Violation between Track (9690mil,10355mil)(9850mil,10360mil)  Bottom Layer and 
+                     Pad CON1-13(9740mil,10405mil)  Multi-Layer
+   Violation between Track (9694.969mil,10554.969mil)(9840mil,10555mil)  Top Layer and 
+                     Pad CON1-15(9740mil,10505mil)  Multi-Layer
+   Violation between Track (9694.969mil,10554.969mil)(9840mil,10555mil)  Top Layer and 
+                     Pad CON1-17(9740mil,10605mil)  Multi-Layer
+   Violation between Track (9695mil,10655mil)(11595mil,10655mil)  Top Layer and 
+                     Pad CON1-17(9740mil,10605mil)  Multi-Layer
+   Violation between Track (9695mil,10655mil)(11595mil,10655mil)  Top Layer and 
+                     Pad CON1-19(9740mil,10705mil)  Multi-Layer
+   Violation between Track (9695mil,10755mil)(10115mil,10755mil)  Bottom Layer and 
+                     Pad CON1-19(9740mil,10705mil)  Multi-Layer
+   Violation between Track (9695mil,10755mil)(10115mil,10755mil)  Bottom Layer and 
+                     Pad CON1-21(9740mil,10805mil)  Multi-Layer
+   Violation between Track (9700mil,10855mil)(10035mil,10850mil)  Bottom Layer and 
+                     Pad CON1-21(9740mil,10805mil)  Multi-Layer
+   Violation between Track (9700mil,10955mil)(9866.799mil,10951.799mil)  Top Layer and 
+                     Pad CON1-23(9740mil,10905mil)  Multi-Layer
+   Violation between Track (9700mil,10855mil)(10035mil,10850mil)  Bottom Layer and 
+                     Pad CON1-23(9740mil,10905mil)  Multi-Layer
+   Violation between Track (9695mil,11055mil)(9810.031mil,11055.031mil)  Top Layer and 
+                     Pad CON1-25(9740mil,11005mil)  Multi-Layer
+   Violation between Track (9700mil,10955mil)(9866.799mil,10951.799mil)  Top Layer and 
+                     Pad CON1-25(9740mil,11005mil)  Multi-Layer
+   Violation between Track (9695mil,11055mil)(9810.031mil,11055.031mil)  Top Layer and 
+                     Pad CON1-27(9740mil,11105mil)  Multi-Layer
+   Violation between Track (9740mil,10805mil)(9740mil,10905mil)  Top Layer and 
+                     Track (9700mil,10955mil)(9866.799mil,10951.799mil)  Top Layer
+Rule Violations :19
+
+Processing Rule : Power Plane Connect Rule(Direct Connect )(Expansion=20mil) (Conductor Width=10mil) (Air Gap=10mil) (Entries=4) (All)
+Rule Violations :0
+
+Processing Rule : Width Constraint (Min=10mil) (Max=300mil) (Preferred=50mil) (All)
+Rule Violations :0
+
+Processing Rule : Height Constraint (Min=0mil) (Max=1000mil) (Prefered=500mil) (All)
+Rule Violations :0
+
+Processing Rule : Hole Size Constraint (Min=1mil) (Max=100mil) (All)
+   Violation between Hole Size Constraint (137.795mil > 100mil) : Via (9645.669mil,16535.433mil) Top Layer to Bottom Layer
+   Violation between Hole Size Constraint (137.795mil > 100mil) : Via (9645.669mil,5708.661mil) Top Layer to Bottom Layer
+   Violation between Hole Size Constraint (137.795mil > 100mil) : Via (24015.748mil,16535.433mil) Top Layer to Bottom Layer
+   Violation between Hole Size Constraint (137.795mil > 100mil) : Via (24015.748mil,5708.661mil) Top Layer to Bottom Layer
+Rule Violations :4
+
+Processing Rule : Hole To Hole Clearance (Gap=10mil) (Disabled)(All),(All)
+Rule Violations :0
+
+Processing Rule : Minimum Solder Mask Sliver (Gap=10mil) (Disabled)(All),(All)
+Rule Violations :0
+
+Processing Rule : Silk To Solder Mask (Clearance=10mil) (Disabled)(IsPad),(All)
+Rule Violations :0
+
+Processing Rule : Silk to Silk (Clearance=10mil) (Disabled)(All),(All)
+Rule Violations :0
+
+Processing Rule : Net Antennae (Tolerance=0mil) (All)
+Rule Violations :0
+
+Processing Rule : Un-Connected Pin Constraint ( (Disabled)(All) )
+Rule Violations :0
+
+
+Violations Detected : 29
+Time Elapsed        : 00:00:07

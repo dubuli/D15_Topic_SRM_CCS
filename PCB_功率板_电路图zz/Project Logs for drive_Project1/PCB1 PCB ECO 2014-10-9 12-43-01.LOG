@@ -1,0 +1,96 @@
+Removed Pin From Net: NetName=NetC4_2 Pin=P3-1
+Removed Pin From Net: NetName=NetC21_2 Pin=P4-1
+Removed Pin From Net: NetName=NetC35_2 Pin=P5-1
+Added Component: Designator=C77(1206)
+Added Component: Designator=C78(1206)
+Added Component: Designator=C79(1206)
+Added Component: Designator=C80(1206)
+Added Component: Designator=C81(1206)
+Added Component: Designator=C82(1206)
+Added Component: Designator=C83(1206)
+Added Component: Designator=C86(1206)
+Added Component: Designator=C87(1206)
+Added Component: Designator=C88(1206)
+Added Component: Designator=C89(1206)
+Added Component: Designator=C90(1206)
+Added Component: Designator=P6(PHENOX-3)
+Added Component: Designator=P7(PHENOX-3)
+Added Component: Designator=P8(PHENOX-3)
+Added Component: Designator=U17(电流传感器1)
+Added Component: Designator=U18(电流传感器1)
+Added Component: Designator=U19(电流传感器1)
+Added Pin To Net: NetName=NetC4_2 Pin=U17-1
+Added Pin To Net: NetName=NetC21_2 Pin=U18-1
+Added Pin To Net: NetName=NetC35_2 Pin=U19-1
+Added Pin To Net: NetName=+15V_C Pin=C77-1
+Added Pin To Net: NetName=+15V_C Pin=C79-2
+Added Pin To Net: NetName=+15V_C Pin=C81-1
+Added Pin To Net: NetName=+15V_C Pin=C83-2
+Added Pin To Net: NetName=+15V_C Pin=C87-2
+Added Pin To Net: NetName=+15V_C Pin=C90-1
+Added Pin To Net: NetName=+15V_C Pin=P6-1
+Added Pin To Net: NetName=+15V_C Pin=P7-1
+Added Pin To Net: NetName=+15V_C Pin=P8-1
+Added Pin To Net: NetName=+15V_C Pin=U17-A
+Added Pin To Net: NetName=+15V_C Pin=U18-A
+Added Pin To Net: NetName=+15V_C Pin=U19-A
+Added Net: Name=+15V_C
+Added Pin To Net: NetName=-15V_C Pin=C78-2
+Added Pin To Net: NetName=-15V_C Pin=C80-1
+Added Pin To Net: NetName=-15V_C Pin=C82-2
+Added Pin To Net: NetName=-15V_C Pin=C86-2
+Added Pin To Net: NetName=-15V_C Pin=C88-1
+Added Pin To Net: NetName=-15V_C Pin=C89-1
+Added Pin To Net: NetName=-15V_C Pin=P6-3
+Added Pin To Net: NetName=-15V_C Pin=P7-3
+Added Pin To Net: NetName=-15V_C Pin=P8-3
+Added Pin To Net: NetName=-15V_C Pin=U17-C
+Added Pin To Net: NetName=-15V_C Pin=U18-C
+Added Pin To Net: NetName=-15V_C Pin=U19-C
+Added Net: Name=-15V_C
+Added Pin To Net: NetName=A_CURRENT Pin=P6-2
+Added Net: Name=A_CURRENT
+Added Pin To Net: NetName=B_CURRENT Pin=P7-2
+Added Net: Name=B_CURRENT
+Added Pin To Net: NetName=C_CURRENT Pin=P8-2
+Added Net: Name=C_CURRENT
+Added Pin To Net: NetName=GND_C Pin=C77-2
+Added Pin To Net: NetName=GND_C Pin=C78-1
+Added Pin To Net: NetName=GND_C Pin=C79-1
+Added Pin To Net: NetName=GND_C Pin=C80-2
+Added Pin To Net: NetName=GND_C Pin=C81-2
+Added Pin To Net: NetName=GND_C Pin=C82-1
+Added Pin To Net: NetName=GND_C Pin=C83-1
+Added Pin To Net: NetName=GND_C Pin=C86-1
+Added Pin To Net: NetName=GND_C Pin=C87-1
+Added Pin To Net: NetName=GND_C Pin=C88-2
+Added Pin To Net: NetName=GND_C Pin=C89-2
+Added Pin To Net: NetName=GND_C Pin=C90-2
+Added Net: Name=GND_C
+Added Pin To Net: NetName=NetP3_1 Pin=P3-1
+Added Pin To Net: NetName=NetP3_1 Pin=U17-5
+Added Net: Name=NetP3_1
+Added Pin To Net: NetName=NetP4_1 Pin=P4-1
+Added Pin To Net: NetName=NetP4_1 Pin=U18-5
+Added Net: Name=NetP4_1
+Added Pin To Net: NetName=NetP5_1 Pin=P5-1
+Added Pin To Net: NetName=NetP5_1 Pin=U19-5
+Added Net: Name=NetP5_1
+Added Member To Class: ClassName=main1 Member=Component C77 Cap Pol1
+Added Member To Class: ClassName=main1 Member=Component C78 Cap Pol1
+Added Member To Class: ClassName=main1 Member=Component C79 Cap
+Added Member To Class: ClassName=main1 Member=Component C80 Cap
+Added Member To Class: ClassName=main1 Member=Component C81 Cap Pol1
+Added Member To Class: ClassName=main1 Member=Component C82 Cap Pol1
+Added Member To Class: ClassName=main1 Member=Component C83 Cap
+Added Member To Class: ClassName=main1 Member=Component C86 Cap Pol1
+Added Member To Class: ClassName=main1 Member=Component C87 Cap
+Added Member To Class: ClassName=main1 Member=Component C88 Cap
+Added Member To Class: ClassName=main1 Member=Component C89 Cap
+Added Member To Class: ClassName=main1 Member=Component C90 Cap Pol1
+Added Member To Class: ClassName=main1 Member=Component P6 SEN_A
+Added Member To Class: ClassName=main1 Member=Component P7 SEN_B
+Added Member To Class: ClassName=main1 Member=Component P8 SEN_C
+Added Member To Class: ClassName=main1 Member=Component U17 电流传感器1
+Added Member To Class: ClassName=main1 Member=Component U18 电流传感器1
+Added Member To Class: ClassName=main1 Member=Component U19 电流传感器1

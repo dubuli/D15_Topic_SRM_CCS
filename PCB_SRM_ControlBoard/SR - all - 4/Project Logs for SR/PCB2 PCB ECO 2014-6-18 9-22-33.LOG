@@ -1,0 +1,10 @@
+Change Component Designator: OldDesignator=PS1 NewDesignator=DCDC1
+Change Component Designator: OldDesignator=PS2 NewDesignator=DCDC2
+Change Component Designator: OldDesignator=PS3 NewDesignator=DCDC3
+Change Component Designator: OldDesignator=PS5 NewDesignator=DCDC4
+Change Net Name : Old Net Name=NetL7_1 New Net Name=NetDCDC1_6
+Change Net Name : Old Net Name=NetL9_1 New Net Name=NetDCDC1_4
+Change Net Name : Old Net Name=NetL10_1 New Net Name=NetDCDC2_6
+Change Net Name : Old Net Name=NetL11_1 New Net Name=NetDCDC2_4
+Change Net Name : Old Net Name=NetL12_1 New Net Name=NetDCDC3_14
+Change Net Name : Old Net Name=NetL15_1 New Net Name=NetDCDC4_6

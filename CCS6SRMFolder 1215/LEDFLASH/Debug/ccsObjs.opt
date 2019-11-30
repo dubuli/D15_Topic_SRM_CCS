@@ -1,0 +1,1 @@
+"./DSP281x_CodeStartBranch.obj" "./DSP281x_DefaultIsr.obj" "./DSP281x_GlobalVariableDefs.obj" "./DSP281x_MemCopy.obj" "./DSP281x_PieCtrl.obj" "./DSP281x_PieVect.obj" "./DSP281x_SysCtrl.obj" "./main.obj" "../Flash_Link.cmd" "../rts2800_ml.lib" -l"G:/CCS6SRMFolder/LEDFLASH/rts2800_ml.lib" 

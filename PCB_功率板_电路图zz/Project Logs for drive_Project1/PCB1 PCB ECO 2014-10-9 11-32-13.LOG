@@ -1,0 +1,18 @@
+Removed Pin From Net: NetName=NetD28_2 Pin=P3-2
+Removed Pin From Net: NetName=NetC21_2 Pin=P3-3
+Removed Pin From Net: NetName=NetD35_2 Pin=P4-1
+Removed Pin From Net: NetName=NetC35_2 Pin=P4-2
+Removed Pin From Net: NetName=NetD41_2 Pin=P4-3
+Change Component Footprint: Designator=P2 Old Footprint=PHENOX-3 New Footprint=端子9.5mm-3
+Change Component Footprint: Designator=P3 Old Footprint=PHENOX-3 New Footprint=端子9.5mm-3
+Change Component Footprint: Designator=P4 Old Footprint=PHENOX-3 New Footprint=端子9.5mm-3
+Added Component: Designator=P5(端子9.5mm-3)
+Added Pin To Net: NetName=NetD28_2 Pin=P3-3
+Added Pin To Net: NetName=NetC21_2 Pin=P4-1
+Added Pin To Net: NetName=NetD35_2 Pin=P4-3
+Added Pin To Net: NetName=NetC35_2 Pin=P5-1
+Added Pin To Net: NetName=NetD41_2 Pin=P5-3
+Added Member To Class: ClassName=main1 Member=Component P2 Header 3
+Added Member To Class: ClassName=main1 Member=Component P3 Header 3
+Added Member To Class: ClassName=main1 Member=Component P4 Header 3
+Added Member To Class: ClassName=main1 Member=Component P5 Header 3

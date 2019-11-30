@@ -1,0 +1,33 @@
+Removed Pin From Net: NetName=NetP18_1 Pin=P18-1
+Removed Pin From Net: NetName=3.3V Pin=P18-2
+Change Component Footprint: Designator=C90 Old Footprint=电解电容47uf New Footprint=7343
+Change Component Footprint: Designator=C93 Old Footprint=电解电容47uf New Footprint=7343
+Added Component: Designator=C166(7343)
+Added Component: Designator=C167(7343)
+Added Component: Designator=LED2(0805D)
+Added Component: Designator=LED3(0805D)
+Added Component: Designator=P18(HDR1X2)
+Added Component: Designator=R135(1206)
+Added Component: Designator=R136(1206)
+Added Pin To Net: NetName=+15V_C Pin=C166-1
+Added Pin To Net: NetName=GND Pin=C166-2
+Added Pin To Net: NetName=GND Pin=C167-1
+Added Pin To Net: NetName=-15V_C Pin=C167-2
+Added Pin To Net: NetName=+15V_C Pin=LED2-A
+Added Pin To Net: NetName=+15V_A Pin=LED3-A
+Added Pin To Net: NetName=NetP18_1 Pin=P18-1
+Added Pin To Net: NetName=3.3V Pin=P18-2
+Added Pin To Net: NetName=GND Pin=R135-1
+Added Pin To Net: NetName=GND_A Pin=R136-1
+Added Pin To Net: NetName=NetLED2_K Pin=LED2-K
+Added Pin To Net: NetName=NetLED2_K Pin=R135-2
+Added Net: Name=NetLED2_K
+Added Pin To Net: NetName=NetLED3_K Pin=LED3-K
+Added Pin To Net: NetName=NetLED3_K Pin=R136-2
+Added Net: Name=NetLED3_K
+Added Member To Class: ClassName=POWER Member=Component C166 Cap Pol1
+Added Member To Class: ClassName=POWER Member=Component C167 Cap Pol1
+Added Member To Class: ClassName=POWER Member=Component LED2 LED
+Added Member To Class: ClassName=POWER Member=Component LED3 LED
+Added Member To Class: ClassName=POWER Member=Component R135 Res2
+Added Member To Class: ClassName=POWER Member=Component R136 Res2

@@ -1,0 +1,30 @@
+--------------------------  CCSSRM2812f.pjt - Debug  --------------------------
+[CCSSRM2812f.c] "C:\Program Files (x86)\CCStudio_v3.3PLA\C2000\cgtools\bin\cl2000" -g -pdsw225 -fr"F:/CCSSRM2812Tst/CCSSRM2812f5b/Debug" -d"_DEBUG" -d"LARGE_MODEL" -ml -v28 -@"../Debug.lkf" "CCSSRM2812f.c"
+
+[Cotherfiles.c] "C:\Program Files (x86)\CCStudio_v3.3PLA\C2000\cgtools\bin\cl2000" -g -pdsw225 -fr"F:/CCSSRM2812Tst/CCSSRM2812f5b/Debug" -d"_DEBUG" -d"LARGE_MODEL" -ml -v28 -@"../Debug.lkf" "Cotherfiles.c"
+
+[DSP28_Adc.c] "C:\Program Files (x86)\CCStudio_v3.3PLA\C2000\cgtools\bin\cl2000" -g -pdsw225 -fr"F:/CCSSRM2812Tst/CCSSRM2812f5b/Debug" -d"_DEBUG" -d"LARGE_MODEL" -ml -v28 -@"../Debug.lkf" "DSP28_Adc.c"
+
+[DSP28_CpuTimers.c] "C:\Program Files (x86)\CCStudio_v3.3PLA\C2000\cgtools\bin\cl2000" -g -pdsw225 -fr"F:/CCSSRM2812Tst/CCSSRM2812f5b/Debug" -d"_DEBUG" -d"LARGE_MODEL" -ml -v28 -@"../Debug.lkf" "DSP28_CpuTimers.c"
+
+[DSP28_DefaultIsr.c] "C:\Program Files (x86)\CCStudio_v3.3PLA\C2000\cgtools\bin\cl2000" -g -pdsw225 -fr"F:/CCSSRM2812Tst/CCSSRM2812f5b/Debug" -d"_DEBUG" -d"LARGE_MODEL" -ml -v28 -@"../Debug.lkf" "DSP28_DefaultIsr.c"
+
+[DSP28_Ev.c] "C:\Program Files (x86)\CCStudio_v3.3PLA\C2000\cgtools\bin\cl2000" -g -pdsw225 -fr"F:/CCSSRM2812Tst/CCSSRM2812f5b/Debug" -d"_DEBUG" -d"LARGE_MODEL" -ml -v28 -@"../Debug.lkf" "DSP28_Ev.c"
+
+[DSP28_GlobalVariableDefs.c] "C:\Program Files (x86)\CCStudio_v3.3PLA\C2000\cgtools\bin\cl2000" -g -pdsw225 -fr"F:/CCSSRM2812Tst/CCSSRM2812f5b/Debug" -d"_DEBUG" -d"LARGE_MODEL" -ml -v28 -@"../Debug.lkf" "DSP28_GlobalVariableDefs.c"
+
+[DSP28_Gpio.c] "C:\Program Files (x86)\CCStudio_v3.3PLA\C2000\cgtools\bin\cl2000" -g -pdsw225 -fr"F:/CCSSRM2812Tst/CCSSRM2812f5b/Debug" -d"_DEBUG" -d"LARGE_MODEL" -ml -v28 -@"../Debug.lkf" "DSP28_Gpio.c"
+
+[DSP28_PieCtrl.c] "C:\Program Files (x86)\CCStudio_v3.3PLA\C2000\cgtools\bin\cl2000" -g -pdsw225 -fr"F:/CCSSRM2812Tst/CCSSRM2812f5b/Debug" -d"_DEBUG" -d"LARGE_MODEL" -ml -v28 -@"../Debug.lkf" "DSP28_PieCtrl.c"
+
+[DSP28_PieVect.c] "C:\Program Files (x86)\CCStudio_v3.3PLA\C2000\cgtools\bin\cl2000" -g -pdsw225 -fr"F:/CCSSRM2812Tst/CCSSRM2812f5b/Debug" -d"_DEBUG" -d"LARGE_MODEL" -ml -v28 -@"../Debug.lkf" "DSP28_PieVect.c"
+
+[DSP28_SysCtrl.c] "C:\Program Files (x86)\CCStudio_v3.3PLA\C2000\cgtools\bin\cl2000" -g -pdsw225 -fr"F:/CCSSRM2812Tst/CCSSRM2812f5b/Debug" -d"_DEBUG" -d"LARGE_MODEL" -ml -v28 -@"../Debug.lkf" "DSP28_SysCtrl.c"
+
+[DSP28_Xintf.c] "C:\Program Files (x86)\CCStudio_v3.3PLA\C2000\cgtools\bin\cl2000" -g -pdsw225 -fr"F:/CCSSRM2812Tst/CCSSRM2812f5b/Debug" -d"_DEBUG" -d"LARGE_MODEL" -ml -v28 -@"../Debug.lkf" "DSP28_Xintf.c"
+
+[Linking...] "C:\Program Files (x86)\CCStudio_v3.3PLA\C2000\cgtools\bin\cl2000" -@"Debug.lkf"
+<Linking>
+
+Build Complete,
+  0 Errors, 0 Warnings, 0 Remarks.

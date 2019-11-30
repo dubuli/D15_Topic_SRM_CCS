@@ -1,0 +1,8 @@
+Removed Pin From Net: NetName=NetP18_1 Pin=P18-1
+Removed Pin From Net: NetName=3.3V Pin=P18-2
+Added Component: Designator=P18(HDR1X2)
+Added Pin To Net: NetName=NetP18_1 Pin=P18-1
+Added Pin To Net: NetName=3.3V Pin=P18-2
+Added Pin To Net: NetName=NetU53_2 Pin=U53-2
+Added Pin To Net: NetName=NetU53_2 Pin=U53-3
+Added Net: Name=NetU53_2

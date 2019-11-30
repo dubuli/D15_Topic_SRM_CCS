@@ -1,0 +1,14 @@
+Altium Designer System: Library Component Rule Check
+PCB File : PcbLib1
+Date     : 2014/6/25
+Time     : 21:04:21
+
+
+Name                Warnings
+------------------------------------------------------------------
+reset                    Duplicate Pad Name On Pads Pad Free-2(4.064mm,0mm)  Multi-Layer And Pad Free-2(4.064mm,7.1374mm)  Multi-Layer
+reset                    Duplicate Pad Name On Pads Pad Free-1(0mm,0.0254mm)  Multi-Layer And Pad Free-1(0mm,7.1374mm)  Multi-Layer
+
+B3F4050                  Duplicate Pad Name On Pads Pad Free-2(7mm,2mm)  Multi-Layer And Pad Free-2(7mm,-10.4968mm)  Multi-Layer
+B3F4050                  Duplicate Pad Name On Pads Pad Free-1(2mm,2mm)  Multi-Layer And Pad Free-1(2mm,-10.5mm)  Multi-Layer
+

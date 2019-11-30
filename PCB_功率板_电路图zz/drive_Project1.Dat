@@ -1,0 +1,26 @@
+Field=Comment~String~Comment~100|Field=Description~String~Description~100|Field=Designator~String~Designator~100|Field=Footprint~String~Footprint~100|Field=LibRef~String~LibRef~100|Field=Quantity~Integer~Quantity~100|ReportField=Currency~<none>|ReportField=ProductionQuantity~1|ReportField=ProjectFileName~drive_Project1.PrjPCB|ReportField=ProjectFullPath~C:\Users\Lenovo\Desktop\学校\drive\drive_Project1.PrjPCB|ReportField=Title~Bill of Materials For Project [drive_Project1.PrjPCB] (No PCB Document Selected)|ReportField=TotalQuantity~193|ReportField=ReportTime~20:40:23|ReportField=ReportDate~2014/9/29|ReportField=ReportDateTime~2014/9/29 20:40:23|ReportField=OutputName~Bill of Materials|ReportField=OutputType~BOM_PartType|ReportField=GeneratorName~BOM|ReportField=GeneratorDescription~Bill of Materials|ReportField=VariantName~None|ReportField=Address1~|ReportField=Address2~|ReportField=Address3~|ReportField=Address4~|ReportField=ApprovedBy~|ReportField=Author~|ReportField=CheckedBy~|ReportField=CompanyName~|ReportField=CurrentDate~2014/9/29|ReportField=CurrentTime~20:39:59|ReportField=Date~|ReportField=DocumentFullPathAndName~C:\Users\Lenovo\Desktop\学校\drive\driveII.SchDoc|ReportField=DocumentName~driveII.SchDoc|ReportField=DocumentNumber~|ReportField=DrawnBy~|ReportField=Engineer~|ReportField=ImagePath~|ReportField=ModifiedDate~2014/9/29|ReportField=Organization~|ReportField=ProjectName~drive_Project1.PrjPCB|ReportField=Revision~|ReportField=Rule~|ReportField=SheetNumber~|ReportField=SheetTotal~|ReportField=Time~|ReportField=Title~|ReportField=DataSourceFileName~drive_Project1.PrjPCB|ReportField=DataSourceFullPath~C:\Users\Lenovo\Desktop\学校\drive\drive_Project1.PrjPCB
+Cap|Capacitor|C1, C3, C8, C14, C15, C16, C19, C25, C27, C31, C34, C39, C40, C43, C48, C49, C55, C56, C62, C67, C85|1206|Cap|21
+Cap Pol1|Polarized Capacitor (Radial)|C2, C4, C11, C20, C21, C22, C26, C28, C29, C32, C35, C36, C41, C44, C45, C50, C51, C52, C57, C58, C59, C84|电解电容1000uF|Cap Pol1|22
+Cap Pol1|Polarized Capacitor (Radial)|C6, C7, C9, C10, C17, C18, C42|电解电容470uf|Cap Pol1|7
+预留|预留, Capacitor, 预留, Capacitor, 预留, Capacitor, 预留, Capacitor, 预留, Capacitor, 预留, Capacitor, 预留, Capacitor, Resistor, Resistor, Resistor, Resistor, Resistor, Resistor, Resistor|C12, C13, C23, C24, C30, C33, C37, C38, C46, C47, C53, C54, C60, C61, R7, R16, R24, R29, R37, R44, R51|1206|Cap, Cap, Cap, Cap, Cap, Cap, Cap, Cap, Cap, Cap, Cap, Cap, Cap, Cap, Res2, Res2, Res2, Res2, Res2, Res2, Res2|21
+Cap Pol1|Polarized Capacitor (Radial)|C66|7343|Cap Pol1|1
+Header 18X2|Header, 18-Pin, Dual row|CON1|HDR2X18|Header 18X2|1
+FR107|High Conductance Fast Diode|D1, D2, D9, D10, D13, D14, D19, D20, D27, D28, D34, D35, D40, D41|DIODE-0.4|Diode 1N4148|14
+1.5KE18CA|TVS 18V|D3, D11, D17, D22, D29, D36, D42|AXIAL0.4|D-SMBJ5.0CA|7
+1N4751|Zener Diode 30V|D4, D12, D18, D23, D30, D37, D43|DIODE0.4|ZENER1|7
+Diode 1N4007|High Conductance Fast Diode|D5, D8|DIODE0.4|Diode 1N4148|2
+Diode 1N4007|High Conductance Fast Diode|D6, D15, D21, D25, D32, D38, D44|DIODE-0.4|Diode 1N4148|7
+LED||D7, D16, D24, D26, D33, D39, D45|0805D|DIODE1|7
+Fuse 1　4A|Fuse|F1, F2, F3, F4, F5, F6, F7, F8|1206|Fuse 1|8
+Header 3|Header, 3-Pin|P1, P2, P3, P4, P5, P6, P7, P8|PHENOX-3|Header 3|8
+5R|Resistor|R1, R10, R15, R19, R31, R39, R46|AXIAL0.6|Res2|7
+10K|Resistor|R2|AXIAL0.4|Res2|1
+Res2|Resistor|R3, R9|AXIAL0.4|Res2|2
+100R|Resistor|R4|AXIAL-0.6|Res2|1
+Res2|Resistor|R5, R6, R8, R13, R14, R17, R21, R22, R25, R27, R28, R30, R35, R36, R38, R42, R43, R45, R49, R50, R52|1206|Res2|21
+10K or更大？33k？|Resistor|R11, R18, R23, R32, R40, R47|AXIAL0.4|Res2|6
+Res2|Resistor|R12, R20, R26, R33, R41, R48|AXIAL-0.6|Res2|6
+QP12W05KS-37||U1, U5, U6, U8, U11, U13, U15|QP12W05KS37|QP12W05KS-37|7
+L7815CV|Positive Voltage Regulator|U2|TO220ABN|L7815CV|1
+TLP550||U3, U7, U9, U10, U12, U14, U16|DIP8|HCPL4053|7
+L7805CV|Positive Voltage Regulator|U4|TO220ABN|L7815CV|1

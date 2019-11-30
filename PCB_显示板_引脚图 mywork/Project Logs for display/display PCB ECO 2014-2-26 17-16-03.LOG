@@ -1,0 +1,7 @@
+Added Component: Designator=R9(0805)
+Added Pin To Net: NetName=+5V Pin=R9-1
+Added Pin To Net: NetName=NetR9_2 Pin=R9-2
+Added Pin To Net: NetName=NetR9_2 Pin=S10-1
+Added Pin To Net: NetName=NetR9_2 Pin=S10-1
+Added Net: Name=NetR9_2
+Added Member To Class: ClassName=icm+cpld Member=Component R9 10k

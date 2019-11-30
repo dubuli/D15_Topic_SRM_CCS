@@ -1,0 +1,29 @@
+------------------------------  LED.pjt - Debug  ------------------------------
+[DSP281x_CodeStartBranch.asm] "C:\CCStudio_v3.3PLA\C2000\cgtools\bin\cl2000" -g -pdr -pdsw225 -fr"E:/CCSSRM2812Tst/CCSSRM2812f5testposition2b/Debug" -i"C:/LED" -d"_DEBUG" -d"LARGE_MODEL" -ml -mt -v28 -@"Debug.lkf" "DSP281x_CodeStartBranch.asm"
+
+[DSP281x_DefaultIsr.c] "C:\CCStudio_v3.3PLA\C2000\cgtools\bin\cl2000" -g -pdr -pdsw225 -fr"E:/CCSSRM2812Tst/CCSSRM2812f5testposition2b/Debug" -i"C:/LED" -d"_DEBUG" -d"LARGE_MODEL" -ml -mt -v28 -@"Debug.lkf" "DSP281x_DefaultIsr.c"
+
+[DSP281x_GlobalVariableDefs.c] "C:\CCStudio_v3.3PLA\C2000\cgtools\bin\cl2000" -g -pdr -pdsw225 -fr"E:/CCSSRM2812Tst/CCSSRM2812f5testposition2b/Debug" -i"C:/LED" -d"_DEBUG" -d"LARGE_MODEL" -ml -mt -v28 -@"Debug.lkf" "DSP281x_GlobalVariableDefs.c"
+
+[DSP281x_MemCopy.c] "C:\CCStudio_v3.3PLA\C2000\cgtools\bin\cl2000" -g -pdr -pdsw225 -fr"E:/CCSSRM2812Tst/CCSSRM2812f5testposition2b/Debug" -i"C:/LED" -d"_DEBUG" -d"LARGE_MODEL" -ml -mt -v28 -@"Debug.lkf" "DSP281x_MemCopy.c"
+
+[DSP281x_PieCtrl.c] "C:\CCStudio_v3.3PLA\C2000\cgtools\bin\cl2000" -g -pdr -pdsw225 -fr"E:/CCSSRM2812Tst/CCSSRM2812f5testposition2b/Debug" -i"C:/LED" -d"_DEBUG" -d"LARGE_MODEL" -ml -mt -v28 -@"Debug.lkf" "DSP281x_PieCtrl.c"
+
+[DSP281x_PieVect.c] "C:\CCStudio_v3.3PLA\C2000\cgtools\bin\cl2000" -g -pdr -pdsw225 -fr"E:/CCSSRM2812Tst/CCSSRM2812f5testposition2b/Debug" -i"C:/LED" -d"_DEBUG" -d"LARGE_MODEL" -ml -mt -v28 -@"Debug.lkf" "DSP281x_PieVect.c"
+
+[DSP281x_SysCtrl.c] "C:\CCStudio_v3.3PLA\C2000\cgtools\bin\cl2000" -g -pdr -pdsw225 -fr"E:/CCSSRM2812Tst/CCSSRM2812f5testposition2b/Debug" -i"C:/LED" -d"_DEBUG" -d"LARGE_MODEL" -ml -mt -v28 -@"Debug.lkf" "DSP281x_SysCtrl.c"
+
+[main.c] "C:\CCStudio_v3.3PLA\C2000\cgtools\bin\cl2000" -g -pdr -pdsw225 -fr"E:/CCSSRM2812Tst/CCSSRM2812f5testposition2b/Debug" -i"C:/LED" -d"_DEBUG" -d"LARGE_MODEL" -ml -mt -v28 -@"Debug.lkf" "main.c"
+"main.c", line 314: remark: controlling expression is constant
+"main.c", line 336: warning: variable "delta_count" was declared but never referenced
+"main.c", line 337: warning: variable "edge_time1" was set but never used
+"main.c", line 381: warning: variable "delta_count" was declared but never referenced
+"main.c", line 382: warning: variable "edge_time1" was set but never used
+"main.c", line 424: warning: variable "delta_count" was declared but never referenced
+"main.c", line 425: warning: variable "edge_time1" was set but never used
+
+[Linking...] "C:\CCStudio_v3.3PLA\C2000\cgtools\bin\cl2000" -@"Debug.lkf"
+<Linking>
+
+Build Complete,
+  0 Errors, 6 Warnings, 1 Remarks.

@@ -1,0 +1,13 @@
+Change Component Footprint: Designator=S2 Old Footprint=DPST-4 New Footprint=B3F4050
+Change Component Footprint: Designator=S3 Old Footprint=DPST-4 New Footprint=B3F4050
+Change Component Footprint: Designator=S4 Old Footprint=DPST-4 New Footprint=B3F4050
+Change Component Footprint: Designator=S5 Old Footprint=DPST-4 New Footprint=B3F4050
+Change Component Footprint: Designator=S6 Old Footprint=DPST-4 New Footprint=B3F4050
+Change Component Footprint: Designator=S7 Old Footprint=DPST-4 New Footprint=B3F4050
+Change Component Footprint: Designator=S8 Old Footprint=DPST-4 New Footprint=B3F4050
+Change Component Footprint: Designator=S9 Old Footprint=DPST-4 New Footprint=B3F4050
+Change Component Footprint: Designator=S10 Old Footprint=DPST-4 New Footprint=B3F4050
+Added Component: Designator=L1(0805)
+Added Pin To Net: NetName=+5V Pin=L1-1
+Added Pin To Net: NetName=NetL1_2 Pin=L1-2
+Added Member To Class: ClassName=icm+cpld Member=Component L1 ferrite bead

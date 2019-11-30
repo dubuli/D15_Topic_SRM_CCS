@@ -1,0 +1,3 @@
+Added Pin To Net: NetName=B_CURRENT Pin=U18-0
+Added Pin To Net: NetName=C_CURRENT Pin=U19-0
+Change Net Name : Old Net Name=NetP6_2 New Net Name=A_CURRENT

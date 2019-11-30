@@ -1,0 +1,5 @@
+Removed Pin From Net: NetName=PB_OC_UP Pin=CON5-10
+Added Pin To Net: NetName=PB_OC_UP Pin=CON5-8
+Added Pin To Net: NetName=NetCON5_10 Pin=CON5-10
+Added Pin To Net: NetName=NetCON5_10 Pin=U29-6
+Added Net: Name=NetCON5_10

@@ -1,0 +1,10 @@
+Output: Cadnetix Netlist
+Type  : CadnetixNetlist
+From  : Project [SR.PrjPcb]
+   Generated File[DIDO.NET]
+
+
+Files Generated   : 1
+Documents Printed : 0
+
+Finished Output Generation At 14:23:55 On 2014/2/9

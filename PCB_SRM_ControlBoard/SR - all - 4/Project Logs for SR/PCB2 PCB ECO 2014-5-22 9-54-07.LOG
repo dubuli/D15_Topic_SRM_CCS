@@ -1,0 +1,5 @@
+Added Component: Designator=VT1(SOT23)
+Added Pin To Net: NetName=NetD17_2 Pin=VT1-1
+Added Pin To Net: NetName=NetD16_1 Pin=VT1-2
+Added Pin To Net: NetName=+24V_EX Pin=VT1-3
+Added Member To Class: ClassName=DIDO Member=Component VT1 S9051

@@ -1,0 +1,37 @@
+; Code Composer Project File, Version 2.0 (do not modify or remove this line)
+
+[Project Settings]
+ProjectDir="C:\Spi01\"
+ProjectType=Executable
+CPUFamily=TMS320C28XX
+Tool="Compiler"
+Tool="CustomBuilder"
+Tool="DspBiosBuilder"
+Tool="Linker"
+Config="Debug"
+Config="Release"
+
+[Source Files]
+Source="DSP28_DefaultIsr.c"
+Source="DSP28_GlobalVariableDefs.c"
+Source="DSP28_Gpio.c"
+Source="DSP28_InitPeripherals.c"
+Source="DSP28_PieCtrl.c"
+Source="DSP28_PieVect.c"
+Source="DSP28_Spi.c"
+Source="DSP28_SysCtrl.c"
+Source="main.c"
+Source="SRAM.CMD"
+
+["Compiler" Settings: "Debug"]
+Options=-g -pdsw225 -fr"$(Proj_dir)\Debug" -d"_DEBUG" -d"LARGE_MODEL" -ml -v28
+
+["Compiler" Settings: "Release"]
+Options=-pdsw225 -o3 -fr"$(Proj_dir)\Release" -d"LARGE_MODEL" -ml -v28
+
+["Linker" Settings: "Debug"]
+Options=-c -m".\Debug\Spi01.map" -o".\Debug\Spi01.out" -w -x
+
+["Linker" Settings: "Release"]
+Options=-c -m".\Release\Spi01.map" -o".\Release\Spi01.out" -w -x
+

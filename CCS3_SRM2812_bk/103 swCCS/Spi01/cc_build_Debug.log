@@ -1,0 +1,62 @@
+-----------------------------  Spi01.pjt - Debug  -----------------------------
+[DSP28_DefaultIsr.c] "C:\CCStudio_v3.3\C2000\cgtools\bin\cl2000" -g -pdsw225 -fr"C:/Spi01/Debug" -d"_DEBUG" -d"LARGE_MODEL" -ml -v28 -@"Debug.lkf" "DSP28_DefaultIsr.c"
+
+[DSP28_GlobalVariableDefs.c] "C:\CCStudio_v3.3\C2000\cgtools\bin\cl2000" -g -pdsw225 -fr"C:/Spi01/Debug" -d"_DEBUG" -d"LARGE_MODEL" -ml -v28 -@"Debug.lkf" "DSP28_GlobalVariableDefs.c"
+
+[DSP28_Gpio.c] "C:\CCStudio_v3.3\C2000\cgtools\bin\cl2000" -g -pdsw225 -fr"C:/Spi01/Debug" -d"_DEBUG" -d"LARGE_MODEL" -ml -v28 -@"Debug.lkf" "DSP28_Gpio.c"
+
+[DSP28_InitPeripherals.c] "C:\CCStudio_v3.3\C2000\cgtools\bin\cl2000" -g -pdsw225 -fr"C:/Spi01/Debug" -d"_DEBUG" -d"LARGE_MODEL" -ml -v28 -@"Debug.lkf" "DSP28_InitPeripherals.c"
+
+[DSP28_PieCtrl.c] "C:\CCStudio_v3.3\C2000\cgtools\bin\cl2000" -g -pdsw225 -fr"C:/Spi01/Debug" -d"_DEBUG" -d"LARGE_MODEL" -ml -v28 -@"Debug.lkf" "DSP28_PieCtrl.c"
+
+[DSP28_PieVect.c] "C:\CCStudio_v3.3\C2000\cgtools\bin\cl2000" -g -pdsw225 -fr"C:/Spi01/Debug" -d"_DEBUG" -d"LARGE_MODEL" -ml -v28 -@"Debug.lkf" "DSP28_PieVect.c"
+
+[DSP28_Spi.c] "C:\CCStudio_v3.3\C2000\cgtools\bin\cl2000" -g -pdsw225 -fr"C:/Spi01/Debug" -d"_DEBUG" -d"LARGE_MODEL" -ml -v28 -@"Debug.lkf" "DSP28_Spi.c"
+
+[DSP28_SysCtrl.c] "C:\CCStudio_v3.3\C2000\cgtools\bin\cl2000" -g -pdsw225 -fr"C:/Spi01/Debug" -d"_DEBUG" -d"LARGE_MODEL" -ml -v28 -@"Debug.lkf" "DSP28_SysCtrl.c"
+
+[main.c] "C:\CCStudio_v3.3\C2000\cgtools\bin\cl2000" -g -pdsw225 -fr"C:/Spi01/Debug" -d"_DEBUG" -d"LARGE_MODEL" -ml -v28 -@"Debug.lkf" "main.c"
+
+Warning: The project has no cmd file while the Text Linker is selected
+[Linking...] "C:\CCStudio_v3.3\C2000\cgtools\bin\cl2000" -@"Debug.lkf"
+<Linking>
+>> warning: creating output section FlashRegsFile without SECTIONS specification
+>> warning: creating output section CsmPwlFile without SECTIONS specification
+>> warning: creating output section CpuTimer2RegsFile without SECTIONS
+            specification
+>> warning: creating output section CpuTimer0RegsFile without SECTIONS
+            specification
+>> warning: creating output section CpuTimer1RegsFile without SECTIONS
+            specification
+>> warning: creating output section ScibRegsFile without SECTIONS specification
+>> warning: creating output section SciaRegsFile without SECTIONS specification
+>> warning: creating output section CsmRegsFile without SECTIONS specification
+>> warning: creating output section SpiaRegsFile without SECTIONS specification
+>> warning: creating output section XIntruptRegsFile without SECTIONS
+            specification
+>> warning: creating output section PieCtrlRegsFile without SECTIONS
+            specification
+>> warning: creating output section AdcRegsFile without SECTIONS specification
+>> warning: creating output section SysCtrlRegsFile without SECTIONS
+            specification
+>> warning: creating output section XintfRegsFile without SECTIONS specification
+>> warning: creating output section GpioDataRegsFile without SECTIONS
+            specification
+>> warning: creating output section GpioMuxRegsFile without SECTIONS
+            specification
+>> warning: creating output section McbspaRegsFile without SECTIONS
+            specification
+>> warning: creating output section EvaRegsFile without SECTIONS specification
+>> warning: creating output section EvbRegsFile without SECTIONS specification
+>> warning: creating output section ECanaRegsFile without SECTIONS specification
+>> warning: creating output section DevEmuRegsFile without SECTIONS
+            specification
+>> warning: creating output section PieVectTable without SECTIONS specification
+>> warning: creating output section ECanaMboxesFile without SECTIONS
+            specification
+>> warning: creating output section .econst without SECTIONS specification
+>> warning: creating output section .ebss without SECTIONS specification
+>> warning: entry point symbol _c_int00 undefined
+
+Build Complete,
+  0 Errors, 27 Warnings, 0 Remarks.

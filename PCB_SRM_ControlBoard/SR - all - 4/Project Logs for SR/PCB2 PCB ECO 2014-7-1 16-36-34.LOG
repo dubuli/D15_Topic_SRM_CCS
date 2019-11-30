@@ -1,0 +1,26 @@
+Change Component Footprint: Designator=C107 Old Footprint=7343 New Footprint=3528C
+Change Component Footprint: Designator=C109 Old Footprint=7343 New Footprint=3528C
+Change Component Footprint: Designator=C151 Old Footprint=7343 New Footprint=3528C
+Change Component Footprint: Designator=C152 Old Footprint=7343 New Footprint=3528C
+Change Component Footprint: Designator=P6 Old Footprint=HDR1X2 New Footprint=2SIP2
+Change Component Footprint: Designator=P5 Old Footprint=HDR1X8 New Footprint=SIP8
+Change Component Footprint: Designator=U10 Old Footprint=SOP254P1230X400-8N New Footprint=SOP254P1230X400-8N-2
+Change Component Footprint: Designator=U11 Old Footprint=SOP254P1230X400-8N New Footprint=SOP254P1230X400-8N-2
+Added Component: Designator=C159(7343)
+Added Component: Designator=C160(7343)
+Added Component: Designator=C161(1206)
+Added Pin To Net: NetName=+24V Pin=C159-1
+Added Pin To Net: NetName=DGND Pin=C159-2
+Added Pin To Net: NetName=+12V_P Pin=C160-1
+Added Pin To Net: NetName=GND_P Pin=C160-2
+Added Pin To Net: NetName=GND_P Pin=C161-1
+Added Pin To Net: NetName=+12V_P Pin=C161-2
+Added Member To Class: ClassName=POWER Member=Component C159 Cap Pol1
+Added Member To Class: ClassName=DIDO Member=Component C160 Cap Pol1
+Added Member To Class: ClassName=DIDO Member=Component C161 Cap
+Added Room: Name=AIAO
+Added Room: Name=DIDO
+Added Room: Name=DRIVE
+Added Room: Name=dsp
+Added Room: Name=PERIPHERAL
+Added Room: Name=POWER

@@ -1,0 +1,14 @@
+Removed Pin From Net: NetName=NetP18_1 Pin=P18-1
+Removed Pin From Net: NetName=3.3V Pin=P18-2
+Added Component: Designator=LED1(0805D)
+Added Component: Designator=P18(HDR1X2)
+Added Component: Designator=R134(1206)
+Added Pin To Net: NetName=+24V Pin=LED1-A
+Added Pin To Net: NetName=NetP18_1 Pin=P18-1
+Added Pin To Net: NetName=3.3V Pin=P18-2
+Added Pin To Net: NetName=DGND Pin=R134-1
+Added Pin To Net: NetName=NetLED1_K Pin=LED1-K
+Added Pin To Net: NetName=NetLED1_K Pin=R134-2
+Added Net: Name=NetLED1_K
+Added Member To Class: ClassName=POWER Member=Component LED1 LED
+Added Member To Class: ClassName=POWER Member=Component R134 Res2

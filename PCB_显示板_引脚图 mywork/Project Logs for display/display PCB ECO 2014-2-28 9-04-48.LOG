@@ -1,0 +1,8 @@
+Removed Pin From Net: NetName=FORWARD Pin=U2-27
+Added Pin To Net: NetName=FORWARD Pin=U2-6
+Change Net Name : Old Net Name=BACKWARD New Net Name=MOVR
+Change Net Name : Old Net Name=DOWN New Net Name=SET
+Change Net Name : Old Net Name=MOVR New Net Name=NetS2_1
+Change Net Name : Old Net Name=SET New Net Name=DOWN
+Change Net Name : Old Net Name=STOP New Net Name=UP
+Change Net Name : Old Net Name=UP New Net Name=STOP

@@ -1,0 +1,22 @@
+-------------------------  Step_Motor_EV.pjt - Debug  -------------------------
+[DSP281x_CodeStartBranch.asm] "C:\Program Files (x86)\CCStudio_v3.3PLA\C2000\cgtools\bin\cl2000" -g -pdsw225 -fr"F:/test/Step_Motor_EV_Run/Debug" -d"_DEBUG" -d"LARGE_MODEL" -ml -v28 -@"Debug.lkf" "DSP281x_CodeStartBranch.asm"
+
+[DSP281x_DefaultIsr.c] "C:\Program Files (x86)\CCStudio_v3.3PLA\C2000\cgtools\bin\cl2000" -g -pdsw225 -fr"F:/test/Step_Motor_EV_Run/Debug" -d"_DEBUG" -d"LARGE_MODEL" -ml -v28 -@"Debug.lkf" "DSP281x_DefaultIsr.c"
+
+[DSP281x_GlobalVariableDefs.c] "C:\Program Files (x86)\CCStudio_v3.3PLA\C2000\cgtools\bin\cl2000" -g -pdsw225 -fr"F:/test/Step_Motor_EV_Run/Debug" -d"_DEBUG" -d"LARGE_MODEL" -ml -v28 -@"Debug.lkf" "DSP281x_GlobalVariableDefs.c"
+
+[DSP281x_MemCopy.c] "C:\Program Files (x86)\CCStudio_v3.3PLA\C2000\cgtools\bin\cl2000" -g -pdsw225 -fr"F:/test/Step_Motor_EV_Run/Debug" -d"_DEBUG" -d"LARGE_MODEL" -ml -v28 -@"Debug.lkf" "DSP281x_MemCopy.c"
+
+[DSP281x_PieCtrl.c] "C:\Program Files (x86)\CCStudio_v3.3PLA\C2000\cgtools\bin\cl2000" -g -pdsw225 -fr"F:/test/Step_Motor_EV_Run/Debug" -d"_DEBUG" -d"LARGE_MODEL" -ml -v28 -@"Debug.lkf" "DSP281x_PieCtrl.c"
+
+[DSP281x_PieVect.c] "C:\Program Files (x86)\CCStudio_v3.3PLA\C2000\cgtools\bin\cl2000" -g -pdsw225 -fr"F:/test/Step_Motor_EV_Run/Debug" -d"_DEBUG" -d"LARGE_MODEL" -ml -v28 -@"Debug.lkf" "DSP281x_PieVect.c"
+
+[DSP281x_SysCtrl.c] "C:\Program Files (x86)\CCStudio_v3.3PLA\C2000\cgtools\bin\cl2000" -g -pdsw225 -fr"F:/test/Step_Motor_EV_Run/Debug" -d"_DEBUG" -d"LARGE_MODEL" -ml -v28 -@"Debug.lkf" "DSP281x_SysCtrl.c"
+
+[main.c] "C:\Program Files (x86)\CCStudio_v3.3PLA\C2000\cgtools\bin\cl2000" -g -pdsw225 -fr"F:/test/Step_Motor_EV_Run/Debug" -d"_DEBUG" -d"LARGE_MODEL" -ml -v28 -@"Debug.lkf" "main.c"
+
+[Linking...] "C:\Program Files (x86)\CCStudio_v3.3PLA\C2000\cgtools\bin\cl2000" -@"Debug.lkf"
+<Linking>
+
+Build Complete,
+  0 Errors, 0 Warnings, 0 Remarks.

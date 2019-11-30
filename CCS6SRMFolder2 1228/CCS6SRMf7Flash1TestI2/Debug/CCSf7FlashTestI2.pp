@@ -1,0 +1,47 @@
+# FIXED
+
+CCSf7FlashTestI2.obj: ../CCSf7FlashTestI2.c
+CCSf7FlashTestI2.obj: D:/SRM_CCS/CCS6SRMFolder2\ 1228/CCS6SRMf7Flash1TestI2/lib/DSP281x_Device.h
+CCSf7FlashTestI2.obj: D:/SRM_CCS/CCS6SRMFolder2\ 1228/CCS6SRMf7Flash1TestI2/lib/DSP281x_SysCtrl.h
+CCSf7FlashTestI2.obj: D:/SRM_CCS/CCS6SRMFolder2\ 1228/CCS6SRMf7Flash1TestI2/lib/DSP281x_DevEmu.h
+CCSf7FlashTestI2.obj: D:/SRM_CCS/CCS6SRMFolder2\ 1228/CCS6SRMf7Flash1TestI2/lib/DSP281x_Xintf.h
+CCSf7FlashTestI2.obj: D:/SRM_CCS/CCS6SRMFolder2\ 1228/CCS6SRMf7Flash1TestI2/lib/DSP281x_CpuTimers.h
+CCSf7FlashTestI2.obj: D:/SRM_CCS/CCS6SRMFolder2\ 1228/CCS6SRMf7Flash1TestI2/lib/DSP281x_PieCtrl.h
+CCSf7FlashTestI2.obj: D:/SRM_CCS/CCS6SRMFolder2\ 1228/CCS6SRMf7Flash1TestI2/lib/DSP281x_PieVect.h
+CCSf7FlashTestI2.obj: D:/SRM_CCS/CCS6SRMFolder2\ 1228/CCS6SRMf7Flash1TestI2/lib/DSP281x_Spi.h
+CCSf7FlashTestI2.obj: D:/SRM_CCS/CCS6SRMFolder2\ 1228/CCS6SRMf7Flash1TestI2/lib/DSP281x_Sci.h
+CCSf7FlashTestI2.obj: D:/SRM_CCS/CCS6SRMFolder2\ 1228/CCS6SRMf7Flash1TestI2/lib/DSP281x_Mcbsp.h
+CCSf7FlashTestI2.obj: D:/SRM_CCS/CCS6SRMFolder2\ 1228/CCS6SRMf7Flash1TestI2/lib/DSP281x_ECan.h
+CCSf7FlashTestI2.obj: D:/SRM_CCS/CCS6SRMFolder2\ 1228/CCS6SRMf7Flash1TestI2/lib/DSP281x_Gpio.h
+CCSf7FlashTestI2.obj: D:/SRM_CCS/CCS6SRMFolder2\ 1228/CCS6SRMf7Flash1TestI2/lib/DSP281x_Ev.h
+CCSf7FlashTestI2.obj: D:/SRM_CCS/CCS6SRMFolder2\ 1228/CCS6SRMf7Flash1TestI2/lib/DSP281x_Adc.h
+CCSf7FlashTestI2.obj: D:/SRM_CCS/CCS6SRMFolder2\ 1228/CCS6SRMf7Flash1TestI2/lib/DSP281x_XIntrupt.h
+CCSf7FlashTestI2.obj: D:/SRM_CCS/CCS6SRMFolder2\ 1228/CCS6SRMf7Flash1TestI2/lib/srm.h
+CCSf7FlashTestI2.obj: D:/SRM_CCS/CCS6SRMFolder2\ 1228/CCS6SRMf7Flash1TestI2/lib/constant.h
+CCSf7FlashTestI2.obj: D:/SRM_CCS/CCS6SRMFolder2\ 1228/CCS6SRMf7Flash1TestI2/lib/typedefs.h
+CCSf7FlashTestI2.obj: D:/SRM_CCS/CCS6SRMFolder2\ 1228/CCS6SRMf7Flash1TestI2/lib/System.h
+CCSf7FlashTestI2.obj: D:/SRM_CCS/CCS6SRMFolder2\ 1228/CCS6SRMf7Flash1TestI2/lib/DSP281x_GlobalPrototypes.h
+CCSf7FlashTestI2.obj: D:/SRM_CCS/CCS6SRMFolder2\ 1228/CCS6SRMf7Flash1TestI2/lib/DSP281x_DefaultISR.h
+
+../CCSf7FlashTestI2.c: 
+D:/SRM_CCS/CCS6SRMFolder2\ 1228/CCS6SRMf7Flash1TestI2/lib/DSP281x_Device.h: 
+D:/SRM_CCS/CCS6SRMFolder2\ 1228/CCS6SRMf7Flash1TestI2/lib/DSP281x_SysCtrl.h: 
+D:/SRM_CCS/CCS6SRMFolder2\ 1228/CCS6SRMf7Flash1TestI2/lib/DSP281x_DevEmu.h: 
+D:/SRM_CCS/CCS6SRMFolder2\ 1228/CCS6SRMf7Flash1TestI2/lib/DSP281x_Xintf.h: 
+D:/SRM_CCS/CCS6SRMFolder2\ 1228/CCS6SRMf7Flash1TestI2/lib/DSP281x_CpuTimers.h: 
+D:/SRM_CCS/CCS6SRMFolder2\ 1228/CCS6SRMf7Flash1TestI2/lib/DSP281x_PieCtrl.h: 
+D:/SRM_CCS/CCS6SRMFolder2\ 1228/CCS6SRMf7Flash1TestI2/lib/DSP281x_PieVect.h: 
+D:/SRM_CCS/CCS6SRMFolder2\ 1228/CCS6SRMf7Flash1TestI2/lib/DSP281x_Spi.h: 
+D:/SRM_CCS/CCS6SRMFolder2\ 1228/CCS6SRMf7Flash1TestI2/lib/DSP281x_Sci.h: 
+D:/SRM_CCS/CCS6SRMFolder2\ 1228/CCS6SRMf7Flash1TestI2/lib/DSP281x_Mcbsp.h: 
+D:/SRM_CCS/CCS6SRMFolder2\ 1228/CCS6SRMf7Flash1TestI2/lib/DSP281x_ECan.h: 
+D:/SRM_CCS/CCS6SRMFolder2\ 1228/CCS6SRMf7Flash1TestI2/lib/DSP281x_Gpio.h: 
+D:/SRM_CCS/CCS6SRMFolder2\ 1228/CCS6SRMf7Flash1TestI2/lib/DSP281x_Ev.h: 
+D:/SRM_CCS/CCS6SRMFolder2\ 1228/CCS6SRMf7Flash1TestI2/lib/DSP281x_Adc.h: 
+D:/SRM_CCS/CCS6SRMFolder2\ 1228/CCS6SRMf7Flash1TestI2/lib/DSP281x_XIntrupt.h: 
+D:/SRM_CCS/CCS6SRMFolder2\ 1228/CCS6SRMf7Flash1TestI2/lib/srm.h: 
+D:/SRM_CCS/CCS6SRMFolder2\ 1228/CCS6SRMf7Flash1TestI2/lib/constant.h: 
+D:/SRM_CCS/CCS6SRMFolder2\ 1228/CCS6SRMf7Flash1TestI2/lib/typedefs.h: 
+D:/SRM_CCS/CCS6SRMFolder2\ 1228/CCS6SRMf7Flash1TestI2/lib/System.h: 
+D:/SRM_CCS/CCS6SRMFolder2\ 1228/CCS6SRMf7Flash1TestI2/lib/DSP281x_GlobalPrototypes.h: 
+D:/SRM_CCS/CCS6SRMFolder2\ 1228/CCS6SRMf7Flash1TestI2/lib/DSP281x_DefaultISR.h: 

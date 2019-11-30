@@ -1,0 +1,81 @@
+Protel Design System Design Rule Check
+PCB File : C:\Users\Lenovo\Desktop\ѧУ\drive\PCB1.PcbDoc
+Date     : 2014/10/11
+Time     : 9:23:56
+
+Processing Rule : Un-Connected Pin Constraint ( (Disabled)(All) )
+Rule Violations :0
+
+Processing Rule : Net Antennae (Tolerance=0mil) (All)
+Rule Violations :0
+
+Processing Rule : Silk to Silk (Clearance=10mil) (Disabled)(All),(All)
+Rule Violations :0
+
+Processing Rule : Silk To Solder Mask (Clearance=10mil) (Disabled)(IsPad),(All)
+Rule Violations :0
+
+Processing Rule : Minimum Solder Mask Sliver (Gap=10mil) (Disabled)(All),(All)
+Rule Violations :0
+
+Processing Rule : Hole To Hole Clearance (Gap=10mil) (Disabled)(All),(All)
+Rule Violations :0
+
+Processing Rule : Hole Size Constraint (Min=1mil) (Max=100mil) (All)
+   Violation between Hole Size Constraint (137.795mil > 100mil) : Via (25590.551mil,3937.008mil) Top Layer to Bottom Layer
+   Violation between Hole Size Constraint (137.795mil > 100mil) : Via (25590.551mil,17322.835mil) Top Layer to Bottom Layer
+   Violation between Hole Size Constraint (137.795mil > 100mil) : Via (9448.819mil,3937.008mil) Top Layer to Bottom Layer
+   Violation between Hole Size Constraint (137.795mil > 100mil) : Via (9448.819mil,17322.835mil) Top Layer to Bottom Layer
+Rule Violations :4
+
+Processing Rule : Height Constraint (Min=0mil) (Max=1000mil) (Prefered=500mil) (All)
+Rule Violations :0
+
+Processing Rule : Width Constraint (Min=15mil) (Max=300mil) (Preferred=50mil) (All)
+Rule Violations :0
+
+Processing Rule : Power Plane Connect Rule(Direct Connect )(Expansion=20mil) (Conductor Width=10mil) (Air Gap=10mil) (Entries=4) (All)
+Rule Violations :0
+
+Processing Rule : Clearance Constraint (Gap=20mil) (All),(All)
+   Violation between Track (9597.972mil,10552.972mil)(9707.972mil,10552.972mil)  Top Layer and 
+                     Pad CON1-21(9645mil,10600mil)  Multi-Layer
+   Violation between Track (9597.972mil,10552.972mil)(9707.972mil,10552.972mil)  Top Layer and 
+                     Pad CON1-19(9645mil,10500mil)  Multi-Layer
+   Violation between Track (9595mil,10350mil)(10990mil,10350mil)  Top Layer and 
+                     Pad CON1-17(9645mil,10400mil)  Multi-Layer
+   Violation between Track (9585mil,10345mil)(9645mil,10350mil)  Bottom Layer and 
+                     Pad CON1-17(9645mil,10400mil)  Multi-Layer
+   Violation between Track (9645mil,10350mil)(9690mil,10355mil)  Bottom Layer and 
+                     Pad CON1-17(9645mil,10400mil)  Multi-Layer
+   Violation between Track (9595mil,10350mil)(10990mil,10350mil)  Top Layer and 
+                     Pad CON1-15(9645mil,10300mil)  Multi-Layer
+   Violation between Track (9585mil,10345mil)(9645mil,10350mil)  Bottom Layer and 
+                     Pad CON1-15(9645mil,10300mil)  Multi-Layer
+   Violation between Track (9645mil,10350mil)(9690mil,10355mil)  Bottom Layer and 
+                     Pad CON1-15(9645mil,10300mil)  Multi-Layer
+   Violation between Track (9592.028mil,10147.028mil)(10597.028mil,10147.028mil)  Bottom Layer and 
+                     Pad CON1-13(9645mil,10200mil)  Multi-Layer
+   Violation between Track (9592.028mil,10147.028mil)(10597.028mil,10147.028mil)  Bottom Layer and 
+                     Pad CON1-11(9645mil,10100mil)  Multi-Layer
+   Violation between Track (9595mil,9850mil)(9725mil,9850mil)  Top Layer and 
+                     Pad CON1-7(9645mil,9900mil)  Multi-Layer
+   Violation between Track (9595mil,9850mil)(9725mil,9850mil)  Top Layer and 
+                     Pad CON1-5(9645mil,9800mil)  Multi-Layer
+Rule Violations :12
+
+Processing Rule : Un-Routed Net Constraint ( (All) )
+   Violation between Un-Routed Net Constraint: Net GND_C Between Pad C80-2 (25120,5605mil) And Pad C81-2 (25500.118,7925mil)
+   Violation between Un-Routed Net Constraint: Net GND_C Between Pad C82-1 (25485.118,9210mil) And Pad C90-2 (25580.118,12350mil)
+   Violation between Un-Routed Net Constraint: Net -15V_C Between Track on layer Top Layer (24895.984,8340.984mil) And Pad C80-1 (25255,5605mil)
+   Violation between Un-Routed Net Constraint: Net -15V_C Between Pad C82-2 (25374.882,9210mil) And Track on layer Top Layer (25580.001,13400mil)
+   Violation between Un-Routed Net Constraint: Net +15V_C Between Pad C81-1 (25389.882,7925mil) And Pad P6-1 (25605,4830mil)
+   Violation between Un-Routed Net Constraint: Net +15V_C Between Pad C90-1 (25469.882,12350mil) And Track on layer Top Layer (25590,8385mil)
+Rule Violations :6
+
+Processing Rule : Short-Circuit Constraint (Allowed=No) (All),(All)
+Rule Violations :0
+
+
+Violations Detected : 22
+Time Elapsed        : 00:00:01

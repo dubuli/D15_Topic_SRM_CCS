@@ -1,0 +1,637 @@
+//////////////////////////////////////////////////////////////////////////////////
+// Company: 
+// Engineer: 
+// 
+// Create Date:    11:27:25 12/03/2013 
+// Design Name: 
+// Module Name:    display 
+// Project Name: 
+// Target Devices: 
+// Tool versions: 
+// Description: 
+//
+// Dependencies: 
+//
+// Revision: 
+// Revision 0.01 - File Created
+// Additional Comments: 1us
+//
+//////////////////////////////////////////////////////////////////////////////////
+module display(
+    input BACKWARD,
+    input STOP,
+    input SET,
+    input reset,
+    input ENTER,
+    input UP,
+    input DOWN,
+    input MOVR,
+    input MOVL,
+    input FORWARD,
+    input clk,//1Mhz  
+    input SCLK,
+    input CS,  
+    input SI,
+    output reg so,
+    output reg txd,    
+    output reg rxd,
+	 output reg ID7,
+	 output reg ID6,
+	 output reg ID5,
+	 output reg ID4,
+	 output reg ID3,
+	 output reg ID2,
+	 output reg ID1,
+	 output reg ID0,
+	 output reg write,
+	 output reg mode
+
+	 
+  );
+
+
+  reg [8:0] para;  //??????
+  reg [7:0] ID,DIG1,DIG2,DIG3,DIG4,DIG5;
+  reg [5:0] cnt; //100011=35 max  
+
+
+parameter  D0=9'b0;         //0  no key
+parameter  D1=9'b1;  //UP
+parameter  D2=9'b10;  //DOWN
+parameter  D3=9'b100;  //LEFT
+parameter  D4=9'b1000;  //RIGHT 
+parameter  D5=9'b10000;  //FORWARD
+parameter  D6=9'b100000;   //BACKWARD
+parameter  D7=9'b1000000; //SET
+parameter  D8=9'b10000000;  //ENTER
+parameter  D9=9'b100000000;  //STOP
+parameter  display0=8'b01111011 ; //reset display
+parameter  displayD=8'b10000000 ; //dou hao
+parameter  displayT=8'b01001010 ; //T
+parameter  displayE=8'b01001111 ; //E
+parameter  displayS=8'b01010111 ; //S
+parameter  control=8'b11010000 ; //control word !!notice!!!maybe wrong
+parameter  DIGIT0=8'b01111011 ; // NUMBER 0
+parameter  DIGIT1=8'b00110000 ; // NUMBER 1
+parameter  DIGIT2=8'b01101101 ; // NUMBER 2
+parameter  DIGIT3=8'b01110101 ; // NUMBER 3
+parameter  DIGIT4=8'b00110110 ; // NUMBER 4
+parameter  DIGIT5=8'b01010111 ; // NUMBER 5
+parameter  DIGIT6=8'b01110000 ; // NUMBER 6
+parameter  DIGIT7=8'b01110000 ; // NUMBER 7
+parameter  DIGIT8=8'b01111111 ; // NUMBER 8
+parameter  DIGIT9=8'b01110111 ; // NUMBER 9
+
+
+
+
+//assign txd=0;
+//assign rxd=1;//test
+//key data read
+always @ (posedge clk) begin
+ if (reset)      //fuwei
+  begin
+  para<=0;
+   end
+else begin
+    para[0]<=UP;  //
+	 para[1]<=DOWN;
+	 para[2]<=MOVL;
+	 para[3]<=MOVR;	 
+	 para[4]<=FORWARD;
+	 para[5]<=BACKWARD;
+	 para[6]<=SET;	 
+	 para[7]<=ENTER;
+	 para[8]<=STOP;
+  end
+ end
+//display start
+always @ (negedge clk) begin
+  if (reset)
+  begin
+  txd<=0;
+  rxd<=0;
+  DIG5<=8'b01111011 ; 
+  DIG4<=8'b01111011 ; 
+  DIG3<=8'b01111011 ; 
+  DIG2<=8'b01111011 ; 
+  DIG1<=8'b01111011 ; 
+  end
+  else if (para==D0) begin
+  txd<=0;
+  rxd<=0;
+  DIG5<=8'b01111011 ; 
+  DIG4<=8'b01111011 ; 
+  DIG3<=8'b01111011 ; 
+  DIG2<=8'b01111011 ; 
+  DIG1<=8'b01111011 ; 
+  end
+  else begin
+  txd<=1;
+  rxd<=1;
+  DIG5<=8'b10000000 ; 
+  DIG4<=8'b01001010 ; 
+  DIG3<=8'b01001111 ; 
+  DIG2<=8'b01010111 ; 
+  DIG1<=8'b01001010 ; 
+  end
+end
+//
+
+
+ 
+   
+//The Display is always working.
+
+ always @ (posedge clk) begin
+    if (reset) begin
+	 cnt<=0;  //control 
+	 mode<=1;
+	 write<=1;
+	 ID<=control;
+	 ID0<=ID[0] ;
+	 ID1<=ID[1];
+	 ID2<=ID[2];
+	 ID3<=ID[3];
+	 ID4<=ID[4] ;
+	 ID5<=ID[5] ;
+	 ID6<=ID[6] ;
+	 ID7<=ID[7] ;	 
+	 end
+   else if (cnt==0) begin
+	 cnt<=cnt+1;////control 
+	 mode<=1;
+	 write<=1;
+	 ID<=control;
+	 ID0<=ID[0] ;
+	 ID1<=ID[1];
+	 ID2<=ID[2];
+	 ID3<=ID[3];
+	 ID4<=ID[4] ;
+	 ID5<=ID[5] ;
+	 ID6<=ID[6] ;
+	 ID7<=ID[7] ;
+	 end
+	 else if (cnt==6'b000001) begin
+	 cnt<=cnt+1;////control
+	 mode<=1;
+	 write<=0;
+	 ID<=control;
+	 ID0<=ID[0] ;
+	 ID1<=ID[1];
+	 ID2<=ID[2];
+	 ID3<=ID[3];
+	 ID4<=ID[4] ;
+	 ID5<=ID[5] ;
+	 ID6<=ID[6] ;
+	 ID7<=ID[7] ;	 
+	 end
+	 else if (cnt==6'b000010) begin
+	 cnt<=cnt+1;////control
+	 mode<=1;
+	 write<=1;
+	 ID<=control;
+	 ID0<=ID[0] ;
+	 ID1<=ID[1];
+	 ID2<=ID[2];
+	 ID3<=ID[3];
+	 ID4<=ID[4] ;
+	 ID5<=ID[5] ;
+	 ID6<=ID[6] ;
+	 ID7<=ID[7] ; 
+	 end	 
+	 else if (cnt==6'b000011) begin
+	 cnt<=cnt+1;//3
+	 mode<=0;
+	 write<=1;//begin Dig1
+	 ID0<=DIG1[0] ;
+	 ID1<=DIG1[1];
+	 ID2<=DIG1[2];
+	 ID3<=DIG1[3];
+	 ID4<=DIG1[4] ;
+	 ID5<=DIG1[5] ;
+	 ID6<=DIG1[6] ;
+	 ID7<=DIG1[7] ; 
+	 end		 
+	 else if (cnt==6'b000100) begin
+	 cnt<=cnt+1; //4Dig1
+	 mode<=0;
+	 write<=0;
+	 ID0<=DIG1[0] ;
+	 ID1<=DIG1[1];
+	 ID2<=DIG1[2];
+	 ID3<=DIG1[3];
+	 ID4<=DIG1[4] ;
+	 ID5<=DIG1[5] ;
+	 ID6<=DIG1[6] ;
+	 ID7<=DIG1[7] ; 	 
+	 end		 
+	 else if (cnt==6'b000101) begin
+	 cnt<=cnt+1;//5Dig1
+	 mode<=0;
+	 write<=0;
+	 ID0<=DIG1[0] ;
+	 ID1<=DIG1[1];
+	 ID2<=DIG1[2];
+	 ID3<=DIG1[3];
+	 ID4<=DIG1[4] ;
+	 ID5<=DIG1[5] ;
+	 ID6<=DIG1[6] ;
+	 ID7<=DIG1[7] ; 	 
+	 end		 
+	 else if (cnt==6'b000110) begin
+	 cnt<=cnt+1;//6Dig1
+	 mode<=0;
+	 write<=1;
+	 ID0<=DIG1[0] ;
+	 ID1<=DIG1[1];
+	 ID2<=DIG1[2];
+	 ID3<=DIG1[3];
+	 ID4<=DIG1[4] ;
+	 ID5<=DIG1[5] ;
+	 ID6<=DIG1[6] ;
+	 ID7<=DIG1[7] ; 
+	 end			 
+	 else if (cnt==6'b000111) begin
+	 cnt<=cnt+1;//7Dig2
+	 mode<=0;
+	 write<=1;
+	 ID0<=DIG2[0] ;
+	 ID1<=DIG2[1];
+	 ID2<=DIG2[2];
+	 ID3<=DIG2[3];
+	 ID4<=DIG2[4] ;
+	 ID5<=DIG2[5] ;
+	 ID6<=DIG2[6] ;
+	 ID7<=DIG2[7] ; 
+	 end		 
+	 else if (cnt==6'b001000) begin
+	 cnt<=cnt+1;//8Dig2
+	 mode<=0;
+	 write<=0;
+	 ID0<=DIG2[0] ;
+	 ID1<=DIG2[1];
+	 ID2<=DIG2[2];
+	 ID3<=DIG2[3];
+	 ID4<=DIG2[4] ;
+	 ID5<=DIG2[5] ;
+	 ID6<=DIG2[6] ;
+	 ID7<=DIG2[7] ; 
+	 end		 
+	 else if (cnt==6'b001001) begin
+	 cnt<=cnt+1;//9Dig2
+	 mode<=0;
+	 write<=0;
+	 ID0<=DIG2[0] ;
+	 ID1<=DIG2[1];
+	 ID2<=DIG2[2];
+	 ID3<=DIG2[3];
+	 ID4<=DIG2[4] ;
+	 ID5<=DIG2[5] ;
+	 ID6<=DIG2[6] ;
+	 ID7<=DIG2[7] ; 	 
+	 end	 
+	 else if (cnt==6'b001010) begin
+	 cnt<=cnt+1;//10 Dig2
+	 mode<=0;
+	 write<=1;
+	 ID0<=DIG2[0] ;
+	 ID1<=DIG2[1];
+	 ID2<=DIG2[2];
+	 ID3<=DIG2[3];
+	 ID4<=DIG2[4] ;
+	 ID5<=DIG2[5] ;
+	 ID6<=DIG2[6] ;
+	 ID7<=DIG2[7] ; 	 
+	 end	 	 
+	 else if (cnt==6'b001011) begin
+	 cnt<=cnt+1;//11 Dig3
+	 mode<=0;
+	 write<=1;
+	 ID0<=DIG3[0] ;
+	 ID1<=DIG3[1];
+	 ID2<=DIG3[2];
+	 ID3<=DIG3[3];
+	 ID4<=DIG3[4] ;
+	 ID5<=DIG3[5] ;
+	 ID6<=DIG3[6] ;
+	 ID7<=DIG3[7] ;  
+	 end		 
+	 else if (cnt==6'b001100) begin
+	 cnt<=cnt+1;//12 Dig3
+	 mode<=0;
+	 write<=0;
+	 ID0<=DIG3[0] ;
+	 ID1<=DIG3[1];
+	 ID2<=DIG3[2];
+	 ID3<=DIG3[3];
+	 ID4<=DIG3[4] ;
+	 ID5<=DIG3[5] ;
+	 ID6<=DIG3[6] ;
+	 ID7<=DIG3[7] ; 	 
+	 end		 
+	 else if (cnt==6'b001101) begin
+	 cnt<=cnt+1;//13 Dig3
+	 mode<=0;
+	 write<=0;
+	 ID0<=DIG3[0] ;
+	 ID1<=DIG3[1];
+	 ID2<=DIG3[2];
+	 ID3<=DIG3[3];
+	 ID4<=DIG3[4] ;
+	 ID5<=DIG3[5] ;
+	 ID6<=DIG3[6] ;
+	 ID7<=DIG3[7] ;  
+	 end		 
+	 else if (cnt==6'b001110) begin
+	 cnt<=cnt+1;//14 Dig3
+	 mode<=0;
+	 write<=1;
+	 ID0<=DIG3[0] ;
+	 ID1<=DIG3[1];
+	 ID2<=DIG3[2];
+	 ID3<=DIG3[3];
+	 ID4<=DIG3[4] ;
+	 ID5<=DIG3[5] ;
+	 ID6<=DIG3[6] ;
+	 ID7<=DIG3[7] ; 
+	 end			 
+	 else if (cnt==6'b001111) begin
+	 cnt<=cnt+1;//15 Dig4
+	 mode<=0;
+	 write<=1;
+	 ID0<=DIG4[0] ;
+	 ID1<=DIG4[1];
+	 ID2<=DIG4[2];
+	 ID3<=DIG4[3];
+	 ID4<=DIG4[4] ;
+	 ID5<=DIG4[5] ;
+	 ID6<=DIG4[6] ;
+	 ID7<=DIG4[7] ;  
+	 end		 
+	 else if (cnt==6'b010000) begin
+	 cnt<=cnt+1;//16 Dig4
+	 mode<=0;
+	 write<=0;
+	 ID0<=DIG4[0] ;
+	 ID1<=DIG4[1];
+	 ID2<=DIG4[2];
+	 ID3<=DIG4[3];
+	 ID4<=DIG4[4] ;
+	 ID5<=DIG4[5] ;
+	 ID6<=DIG4[6] ;
+	 ID7<=DIG4[7] ; 	 
+	 end		 
+	 else if (cnt==6'b010001) begin
+	 cnt<=cnt+1;//17
+	 mode<=0;
+	 write<=0;
+	 ID0<=DIG4[0] ;
+	 ID1<=DIG4[1];
+	 ID2<=DIG4[2];
+	 ID3<=DIG4[3];
+	 ID4<=DIG4[4] ;
+	 ID5<=DIG4[5] ;
+	 ID6<=DIG4[6] ;
+	 ID7<=DIG4[7] ;  
+	 end		 
+	 else if (cnt==6'b010010) begin
+	 cnt<=cnt+1;//18 Dig4
+	 mode<=0;
+	 write<=1;
+	 ID0<=DIG4[0] ;
+	 ID1<=DIG4[1];
+	 ID2<=DIG4[2];
+	 ID3<=DIG4[3];
+	 ID4<=DIG4[4] ;
+	 ID5<=DIG4[5] ;
+	 ID6<=DIG4[6] ;
+	 ID7<=DIG4[7] ;  
+	 end		 
+	 else if (cnt==6'b010011) begin
+	 cnt<=cnt+1;//19 Dig5
+	 mode<=0;
+	 write<=1;
+	 ID0<=DIG5[0] ;
+	 ID1<=DIG5[1];
+	 ID2<=DIG5[2];
+	 ID3<=DIG5[3];
+	 ID4<=DIG5[4] ;
+	 ID5<=DIG5[5] ;
+	 ID6<=DIG5[6] ;
+	 ID7<=DIG5[7] ;  
+	 end		 
+	 else if (cnt==6'b010100) begin
+	 cnt<=cnt+1;//20 Dig5
+	 mode<=0;
+	 write<=0;
+	 ID0<=DIG5[0] ;
+	 ID1<=DIG5[1];
+	 ID2<=DIG5[2];
+	 ID3<=DIG5[3];
+	 ID4<=DIG5[4] ;
+	 ID5<=DIG5[5] ;
+	 ID6<=DIG5[6] ;
+	 ID7<=DIG5[7] ; 	 
+	 end
+	 else if (cnt==6'b010101) begin
+	 cnt<=cnt+1;//21 Dig5
+	 mode<=0;
+	 write<=0;
+	 ID0<=DIG5[0] ;
+	 ID1<=DIG5[1];
+	 ID2<=DIG5[2];
+	 ID3<=DIG5[3];
+	 ID4<=DIG5[4] ;
+	 ID5<=DIG5[5] ;
+	 ID6<=DIG5[6] ;
+	 ID7<=DIG5[7] ; 	 
+	 end
+	 else if (cnt==6'b010110) begin
+	 cnt<=cnt+1;//22 Dig5
+	 mode<=0;
+	 write<=1;
+	 ID0<=DIG5[0] ;
+	 ID1<=DIG5[1];
+	 ID2<=DIG5[2];
+	 ID3<=DIG5[3];
+	 ID4<=DIG5[4] ;
+	 ID5<=DIG5[5] ;
+	 ID6<=DIG5[6] ;
+	 ID7<=DIG5[7] ; 	 
+	 end
+	 else if (cnt==6'b010111) begin
+	 cnt<=cnt+1;//23 Dig6
+	 mode<=0;
+	 write<=1;
+	 ID0<= 1; //begin
+	 ID1<= 1;
+	 ID2<= 1;
+	 ID3<= 1;
+	 ID4<= 1;
+	 ID5<= 1;
+	 ID6<= 1;
+	 ID7<= 1;	 
+	 end
+	 else if (cnt==6'b011000) begin
+	 cnt<=cnt+1;//24
+	 mode<=0;
+	 write<=0;
+	 ID0<=1 ; //begin Dig6
+	 ID1<= 1;
+	 ID2<= 1;
+	 ID3<= 1;
+	 ID4<= 1;
+	 ID5<= 1;
+	 ID6<= 1;
+	 ID7<=1 ;	 
+	 end
+	 else if (cnt==6'b011001) begin
+	 cnt<=cnt+1;//25
+	 mode<=0;
+	 write<=0;
+	 ID0<= 1; //begin Dig6
+	 ID1<= 1;
+	 ID2<= 1;
+	 ID3<= 1;
+	 ID4<= 1;
+	 ID5<= 1;
+	 ID6<= 1;
+	 ID7<= 1;	 
+	 end
+	 else if (cnt==6'b011010) begin
+	 cnt<=cnt+1;//26
+	 mode<=0;
+	 write<=1;
+	 ID0<= 1; //begin Dig6
+	 ID1<= 1;
+	 ID2<= 1;
+	 ID3<= 1;
+	 ID4<= 1;
+	 ID5<= 1;
+	 ID6<= 1;
+	 ID7<= 1;	 
+	 end
+	 else if (cnt==6'b011011) begin
+	 cnt<=cnt+1;//27
+	 mode<=0;
+	 write<=1;
+	 ID0<= 0; //begin Dig7
+	 ID1<=0 ;
+	 ID2<= 0;
+	 ID3<= 0;
+	 ID4<= 0;
+	 ID5<= 0;
+	 ID6<= 0;
+	 ID7<= 0;	 
+	 end
+	 else if (cnt==6'b011100) begin
+	 cnt<=cnt+1;//28
+	 mode<=0;
+	 write<=0;
+	 ID0<= 0; //begin Dig7
+	 ID1<= 0;
+	 ID2<= 0;
+	 ID3<=0 ;
+	 ID4<= 0;
+	 ID5<= 0;
+	 ID6<=0 ;
+	 ID7<= 0;	 
+	 end
+	 else if (cnt==6'b011101) begin
+	 cnt<=cnt+1;//29
+	 mode<=0;
+	 write<=0;
+	 ID0<=0 ; //begin Dig7
+	 ID1<= 0;
+	 ID2<= 0;
+	 ID3<= 0;
+	 ID4<= 0;
+	 ID5<= 0;
+	 ID6<= 0;
+	 ID7<= 0;	 
+	 end
+	 else if (cnt==6'b011110) begin
+	 cnt<=cnt+1;//30
+	 mode<=0;
+	 write<=1;
+	 ID0<= 0; //begin Dig7
+	 ID1<= 0;
+	 ID2<= 0;
+	 ID3<= 0;
+	 ID4<= 0;
+	 ID5<= 0;
+	 ID6<= 0;
+	 ID7<= 0;	 
+	 end
+	 else if (cnt==6'b011111) begin
+	 cnt<=cnt+1;//31
+	 mode<=0;
+	 write<=1;
+	 ID0<= 0; //begin Dig8
+	 ID1<= 0;
+	 ID2<= 0;
+	 ID3<= 0;
+	 ID4<= 0;
+	 ID5<= 0;
+	 ID6<= 0;
+	 ID7<= 0;	 
+	 end
+	 else if (cnt==6'b100000) begin
+	 cnt<=cnt+1;//32
+	 mode<=0;
+	 write<=0;
+	 ID0<= 0; //begin Dig8
+	 ID1<= 0;
+	 ID2<= 0;
+	 ID3<= 0;
+	 ID4<= 0;
+	 ID5<= 0;
+	 ID6<= 0;
+	 ID7<= 0;	 
+	 end
+	 else if (cnt==6'b100001) begin
+	 cnt<=cnt+1;//33
+	 mode<=0;
+	 write<=0;
+	 ID0<= 0; //begin Dig8
+	 ID1<= 0;
+	 ID2<= 0;
+	 ID3<= 0;
+	 ID4<= 0;
+	 ID5<= 0;
+	 ID6<= 0;
+	 ID7<= 0;	 
+	 end
+	 else if (cnt==6'b100010) begin
+	 cnt<=cnt+1;//34
+	 mode<=0;
+	 write<=1;
+	 ID0<= 0; //begin Dig8
+	 ID1<= 0;
+	 ID2<= 0;
+	 ID3<= 0;
+	 ID4<= 0;
+	 ID5<= 0;
+	 ID6<= 0;
+	 ID7<= 0;	 
+	 end
+//	 else if (cnt==6'b100011) begin
+    else begin
+	 cnt<=0;//35
+	 mode<=0;
+	 write<=1;
+	 ID0<= 0; //dig8 the last
+	 ID1<= 0;
+	 ID2<= 0;
+	 ID3<= 0;
+	 ID4<= 0;
+	 ID5<= 0;
+	 ID6<= 0;
+	 ID7<= 0;	 
+	 end
+ end
+
+
+endmodule
+

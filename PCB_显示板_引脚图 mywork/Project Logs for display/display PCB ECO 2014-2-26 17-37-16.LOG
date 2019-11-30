@@ -1,0 +1,7 @@
+Change Component Footprint: Designator=C3 Old Footprint=7343 New Footprint=C1206
+Change Component Footprint: Designator=C4 Old Footprint=7343 New Footprint=C1206
+Change Component Footprint: Designator=C5 Old Footprint=7343 New Footprint=C1206
+Change Component Footprint: Designator=C6 Old Footprint=7343 New Footprint=C1206
+Change Component Comment : Designator=C3 Old Comment=22uF New Comment=10uF
+Change Component Comment : Designator=C5 Old Comment=22uF New Comment=10uF
+Change Component Comment : Designator=C6 Old Comment=22uF New Comment=10uF

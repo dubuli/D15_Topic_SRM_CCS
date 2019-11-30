@@ -1,0 +1,7 @@
+Added Pin To Net: NetName=PA_OC_UP Pin=CON5-6
+Added Pin To Net: NetName=PB_OC_UP Pin=CON5-10
+Added Pin To Net: NetName=PC_OC_UP Pin=CON5-14
+Added Pin To Net: NetName=PA_OC_DOWN Pin=CON5-18
+Added Pin To Net: NetName=PB_OC_DOWN Pin=CON5-22
+Added Pin To Net: NetName=PC_OC_DOWN Pin=CON5-26
+Added Pin To Net: NetName=BRAKE_OC Pin=CON5-30

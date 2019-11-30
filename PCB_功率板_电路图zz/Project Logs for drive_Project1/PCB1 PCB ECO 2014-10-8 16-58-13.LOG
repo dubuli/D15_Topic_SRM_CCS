@@ -1,0 +1,24 @@
+Removed Pin From Net: NetName=NetC44_2 Pin=C66-1
+Removed Pin From Net: NetName=NetC44_2 Pin=C67-1
+Removed Pin From Net: NetName=NetC63_2 Pin=C67-2
+Removed Member From Class: ClassName=main1 Member=C66
+Removed Member From Class: ClassName=main1 Member=C67
+Change Component DesignItemId : Designator=C66 Old DesignItemId=Cap New DesignItemId=Cap Pol1
+Change Component Footprint: Designator=C67 Old Footprint=无感电容15*6 New Footprint=1206
+Change Component Footprint: Designator=C66 Old Footprint=无感电容15*6 New Footprint=7343
+Change Component Comment : Designator=C66 Old Comment=Cap New Comment=Cap Pol1
+Added Component: Designator=C75(无感电容15*6)
+Added Component: Designator=C76(无感电容15*6)
+Added Pin To Net: NetName=+5V Pin=C66-1
+Added Pin To Net: NetName=GND Pin=C66-2
+Added Pin To Net: NetName=GND Pin=C67-1
+Added Pin To Net: NetName=+5V Pin=C67-2
+Added Pin To Net: NetName=NetC44_2 Pin=C75-1
+Added Pin To Net: NetName=NetC44_2 Pin=C76-1
+Added Pin To Net: NetName=NetC63_2 Pin=C76-2
+Added Pin To Net: NetName=NetC75_2 Pin=C75-2
+Added Pin To Net: NetName=NetC75_2 Pin=D47-2
+Added Pin To Net: NetName=NetC75_2 Pin=R54-1
+Added Net: Name=NetC75_2
+Added Member To Class: ClassName=main1 Member=Component C75 Cap
+Added Member To Class: ClassName=main1 Member=Component C76 Cap

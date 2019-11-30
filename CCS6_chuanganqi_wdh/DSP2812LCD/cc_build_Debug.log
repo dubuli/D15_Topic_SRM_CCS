@@ -1,0 +1,40 @@
+---------------------------  DSP2812LCD.pjt - Debug  ---------------------------
+[DSP2812LCD.c] "D:\CCStudio_v3.3\C2000\cgtools\bin\cl2000" -g -q -fr"G:/test/DSP/TOP2812/TOP2812_CODE/EX16_LCD1602/Debug" -d"_DEBUG" -d"LARGE_MODEL" -ml -v28 -@"Debug.lkf" "DSP2812LCD.c"
+
+[DSP28_Adc.c] "D:\CCStudio_v3.3\C2000\cgtools\bin\cl2000" -g -q -fr"G:/test/DSP/TOP2812/TOP2812_CODE/EX16_LCD1602/Debug" -d"_DEBUG" -d"LARGE_MODEL" -ml -v28 -@"Debug.lkf" "DSP28_Adc.c"
+
+[DSP28_CpuTimers.c] "D:\CCStudio_v3.3\C2000\cgtools\bin\cl2000" -g -q -fr"G:/test/DSP/TOP2812/TOP2812_CODE/EX16_LCD1602/Debug" -d"_DEBUG" -d"LARGE_MODEL" -ml -v28 -@"Debug.lkf" "DSP28_CpuTimers.c"
+
+[DSP28_DefaultIsr.c] "D:\CCStudio_v3.3\C2000\cgtools\bin\cl2000" -g -q -fr"G:/test/DSP/TOP2812/TOP2812_CODE/EX16_LCD1602/Debug" -d"_DEBUG" -d"LARGE_MODEL" -ml -v28 -@"Debug.lkf" "DSP28_DefaultIsr.c"
+
+[DSP28_ECan.c] "D:\CCStudio_v3.3\C2000\cgtools\bin\cl2000" -g -q -fr"G:/test/DSP/TOP2812/TOP2812_CODE/EX16_LCD1602/Debug" -d"_DEBUG" -d"LARGE_MODEL" -ml -v28 -@"Debug.lkf" "DSP28_ECan.c"
+
+[DSP28_Ev.c] "D:\CCStudio_v3.3\C2000\cgtools\bin\cl2000" -g -q -fr"G:/test/DSP/TOP2812/TOP2812_CODE/EX16_LCD1602/Debug" -d"_DEBUG" -d"LARGE_MODEL" -ml -v28 -@"Debug.lkf" "DSP28_Ev.c"
+
+[DSP28_GlobalVariableDefs.c] "D:\CCStudio_v3.3\C2000\cgtools\bin\cl2000" -g -q -fr"G:/test/DSP/TOP2812/TOP2812_CODE/EX16_LCD1602/Debug" -d"_DEBUG" -d"LARGE_MODEL" -ml -v28 -@"Debug.lkf" "DSP28_GlobalVariableDefs.c"
+
+[DSP28_Gpio.c] "D:\CCStudio_v3.3\C2000\cgtools\bin\cl2000" -g -q -fr"G:/test/DSP/TOP2812/TOP2812_CODE/EX16_LCD1602/Debug" -d"_DEBUG" -d"LARGE_MODEL" -ml -v28 -@"Debug.lkf" "DSP28_Gpio.c"
+
+[DSP28_InitPeripherals.c] "D:\CCStudio_v3.3\C2000\cgtools\bin\cl2000" -g -q -fr"G:/test/DSP/TOP2812/TOP2812_CODE/EX16_LCD1602/Debug" -d"_DEBUG" -d"LARGE_MODEL" -ml -v28 -@"Debug.lkf" "DSP28_InitPeripherals.c"
+
+[DSP28_Mcbsp.c] "D:\CCStudio_v3.3\C2000\cgtools\bin\cl2000" -g -q -fr"G:/test/DSP/TOP2812/TOP2812_CODE/EX16_LCD1602/Debug" -d"_DEBUG" -d"LARGE_MODEL" -ml -v28 -@"Debug.lkf" "DSP28_Mcbsp.c"
+
+[DSP28_PieCtrl.c] "D:\CCStudio_v3.3\C2000\cgtools\bin\cl2000" -g -q -fr"G:/test/DSP/TOP2812/TOP2812_CODE/EX16_LCD1602/Debug" -d"_DEBUG" -d"LARGE_MODEL" -ml -v28 -@"Debug.lkf" "DSP28_PieCtrl.c"
+
+[DSP28_PieVect.c] "D:\CCStudio_v3.3\C2000\cgtools\bin\cl2000" -g -q -fr"G:/test/DSP/TOP2812/TOP2812_CODE/EX16_LCD1602/Debug" -d"_DEBUG" -d"LARGE_MODEL" -ml -v28 -@"Debug.lkf" "DSP28_PieVect.c"
+
+[DSP28_Sci.c] "D:\CCStudio_v3.3\C2000\cgtools\bin\cl2000" -g -q -fr"G:/test/DSP/TOP2812/TOP2812_CODE/EX16_LCD1602/Debug" -d"_DEBUG" -d"LARGE_MODEL" -ml -v28 -@"Debug.lkf" "DSP28_Sci.c"
+
+[DSP28_Spi.c] "D:\CCStudio_v3.3\C2000\cgtools\bin\cl2000" -g -q -fr"G:/test/DSP/TOP2812/TOP2812_CODE/EX16_LCD1602/Debug" -d"_DEBUG" -d"LARGE_MODEL" -ml -v28 -@"Debug.lkf" "DSP28_Spi.c"
+
+[DSP28_SysCtrl.c] "D:\CCStudio_v3.3\C2000\cgtools\bin\cl2000" -g -q -fr"G:/test/DSP/TOP2812/TOP2812_CODE/EX16_LCD1602/Debug" -d"_DEBUG" -d"LARGE_MODEL" -ml -v28 -@"Debug.lkf" "DSP28_SysCtrl.c"
+
+[DSP28_Xintf.c] "D:\CCStudio_v3.3\C2000\cgtools\bin\cl2000" -g -q -fr"G:/test/DSP/TOP2812/TOP2812_CODE/EX16_LCD1602/Debug" -d"_DEBUG" -d"LARGE_MODEL" -ml -v28 -@"Debug.lkf" "DSP28_Xintf.c"
+
+[DSP28_XIntrupt.c] "D:\CCStudio_v3.3\C2000\cgtools\bin\cl2000" -g -q -fr"G:/test/DSP/TOP2812/TOP2812_CODE/EX16_LCD1602/Debug" -d"_DEBUG" -d"LARGE_MODEL" -ml -v28 -@"Debug.lkf" "DSP28_XIntrupt.c"
+
+[Linking...] "D:\CCStudio_v3.3\C2000\cgtools\bin\cl2000" -@"Debug.lkf"
+<Linking>
+
+Build Complete,
+  0 Errors, 0 Warnings, 0 Remarks.

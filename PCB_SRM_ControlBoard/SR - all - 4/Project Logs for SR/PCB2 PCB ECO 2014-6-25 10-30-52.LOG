@@ -1,0 +1,7 @@
+Change Component Footprint: Designator=TVS1 Old Footprint=SMA New Footprint=TVS-SMA
+Change Component Footprint: Designator=TVS2 Old Footprint=SMA New Footprint=TVS-SMA
+Change Component Footprint: Designator=TVS3 Old Footprint=SMA New Footprint=TVS-SMA
+Change Component Footprint: Designator=TVS4 Old Footprint=SMA New Footprint=TVS-SMA
+Change Component Footprint: Designator=TVS5 Old Footprint=SMA New Footprint=TVS-SMA
+Change Component Footprint: Designator=TVS6 Old Footprint=SMA New Footprint=TVS-SMA
+Change Component Designator: OldDesignator=VT3 NewDesignator=VT2

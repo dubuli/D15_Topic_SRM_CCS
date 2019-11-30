@@ -1,0 +1,27 @@
+Added Pin To Net: NetName=Netled1_AT Pin=led1-AT
+Added Pin To Net: NetName=Netled1_AT Pin=led1-AT
+Added Pin To Net: NetName=Netled1_AT Pin=U1-15
+Added Net: Name=Netled1_AT
+Added Pin To Net: NetName=Netled1_DP Pin=led1-DP
+Added Pin To Net: NetName=Netled1_DP Pin=led2-DP
+Added Pin To Net: NetName=Netled1_DP Pin=led3-DP
+Added Pin To Net: NetName=Netled1_DP Pin=led4-DP
+Added Pin To Net: NetName=Netled1_DP Pin=led5-DP
+Added Pin To Net: NetName=Netled1_DP Pin=U1-4
+Added Net: Name=Netled1_DP
+Added Pin To Net: NetName=Netled2_AT Pin=led2-AT
+Added Pin To Net: NetName=Netled2_AT Pin=led2-AT
+Added Pin To Net: NetName=Netled2_AT Pin=U1-16
+Added Net: Name=Netled2_AT
+Added Pin To Net: NetName=Netled3_AT Pin=led3-AT
+Added Pin To Net: NetName=Netled3_AT Pin=led3-AT
+Added Pin To Net: NetName=Netled3_AT Pin=U1-23
+Added Net: Name=Netled3_AT
+Added Pin To Net: NetName=Netled4_AT Pin=led4-AT
+Added Pin To Net: NetName=Netled4_AT Pin=led4-AT
+Added Pin To Net: NetName=Netled4_AT Pin=U1-20
+Added Net: Name=Netled4_AT
+Added Pin To Net: NetName=Netled5_AT Pin=led5-AT
+Added Pin To Net: NetName=Netled5_AT Pin=led5-AT
+Added Pin To Net: NetName=Netled5_AT Pin=U1-17
+Added Net: Name=Netled5_AT

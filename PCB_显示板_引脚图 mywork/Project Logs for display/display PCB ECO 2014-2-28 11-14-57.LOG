@@ -1,0 +1,102 @@
+Removed Pin From Net: NetName=+5V Pin=RP1-1
+Removed Pin From Net: NetName=CS Pin=RP1-2
+Removed Pin From Net: NetName=SI Pin=RP1-3
+Removed Pin From Net: NetName=SCLK Pin=RP1-4
+Removed Pin From Net: NetName=+5V Pin=RP2-1
+Removed Pin From Net: NetName=+5V Pin=RP3-1
+Removed Pin From Net: NetName=SO Pin=U2-2
+Removed Pin From Net: NetName=NetC15_2 Pin=U4-2
+Removed Pin From Net: NetName=CS Pin=U4-3
+Removed Pin From Net: NetName=NetC16_2 Pin=U4-4
+Removed Pin From Net: NetName=SI Pin=U4-5
+Removed Pin From Net: NetName=NetC17_2 Pin=U4-6
+Removed Pin From Net: NetName=SCLK Pin=U4-7
+Removed Pin From Net: NetName=SO Pin=U4-14
+Removed Member From Class: ClassName=icm+cpld Member=RP1
+Removed Member From Class: ClassName=icm+cpld Member=RP1
+Removed Member From Class: ClassName=icm+cpld Member=RP2
+Removed Member From Class: ClassName=icm+cpld Member=RP2
+Removed Member From Class: ClassName=icm+cpld Member=RP3
+Removed Member From Class: ClassName=icm+cpld Member=RP3
+Added Component: Designator=R10(0805)
+Added Component: Designator=R11(0805)
+Added Component: Designator=R12(0805)
+Added Component: Designator=R13(0805)
+Added Component: Designator=R14(0805)
+Added Component: Designator=R15(0805)
+Added Component: Designator=R16(0805)
+Added Component: Designator=R17(0805)
+Added Component: Designator=R18(0805)
+Added Component: Designator=R19(0805)
+Added Component: Designator=R20(0805)
+Added Component: Designator=R21(0805)
+Added Pin To Net: NetName=NetC15_2 Pin=R10-1
+Added Pin To Net: NetName=+5V Pin=R10-2
+Added Pin To Net: NetName=NetC16_2 Pin=R11-1
+Added Pin To Net: NetName=+5V Pin=R11-2
+Added Pin To Net: NetName=NetC17_2 Pin=R12-1
+Added Pin To Net: NetName=+5V Pin=R12-2
+Added Pin To Net: NetName=+5V Pin=R13-2
+Added Pin To Net: NetName=+5V Pin=R14-2
+Added Pin To Net: NetName=+5V Pin=R15-2
+Added Pin To Net: NetName=+5V Pin=R16-2
+Added Pin To Net: NetName=+5V Pin=R17-2
+Added Pin To Net: NetName=+5V Pin=R18-2
+Added Pin To Net: NetName=+5V Pin=R19-2
+Added Pin To Net: NetName=+5V Pin=R20-2
+Added Pin To Net: NetName=+5V Pin=R21-2
+Added Pin To Net: NetName=CS Pin=U4-2
+Added Pin To Net: NetName=NetC15_2 Pin=U4-3
+Added Pin To Net: NetName=SI Pin=U4-4
+Added Pin To Net: NetName=NetC16_2 Pin=U4-5
+Added Pin To Net: NetName=SCLK Pin=U4-6
+Added Pin To Net: NetName=NetC17_2 Pin=U4-7
+Added Pin To Net: NetName=SO Pin=U4-15
+Added Pin To Net: NetName=NetR13_1 Pin=R13-1
+Added Pin To Net: NetName=NetR13_1 Pin=S4-2
+Added Pin To Net: NetName=NetR13_1 Pin=S4-2
+Added Net: Name=NetR13_1
+Added Pin To Net: NetName=NetR14_1 Pin=R14-1
+Added Pin To Net: NetName=NetR14_1 Pin=S9-2
+Added Pin To Net: NetName=NetR14_1 Pin=S9-2
+Added Net: Name=NetR14_1
+Added Pin To Net: NetName=NetR15_1 Pin=R15-1
+Added Pin To Net: NetName=NetR15_1 Pin=S2-2
+Added Pin To Net: NetName=NetR15_1 Pin=S2-2
+Added Net: Name=NetR15_1
+Added Pin To Net: NetName=NetR16_1 Pin=R16-1
+Added Pin To Net: NetName=NetR16_1 Pin=S3-2
+Added Pin To Net: NetName=NetR16_1 Pin=S3-2
+Added Net: Name=NetR16_1
+Added Pin To Net: NetName=NetR17_1 Pin=R17-1
+Added Pin To Net: NetName=NetR17_1 Pin=S5-2
+Added Pin To Net: NetName=NetR17_1 Pin=S5-2
+Added Net: Name=NetR17_1
+Added Pin To Net: NetName=NetR18_1 Pin=R18-1
+Added Pin To Net: NetName=NetR18_1 Pin=S6-2
+Added Pin To Net: NetName=NetR18_1 Pin=S6-2
+Added Net: Name=NetR18_1
+Added Pin To Net: NetName=NetR19_1 Pin=R19-1
+Added Pin To Net: NetName=NetR19_1 Pin=S7-2
+Added Pin To Net: NetName=NetR19_1 Pin=S7-2
+Added Net: Name=NetR19_1
+Added Pin To Net: NetName=NetR20_1 Pin=R20-1
+Added Pin To Net: NetName=NetR20_1 Pin=S8-2
+Added Pin To Net: NetName=NetR20_1 Pin=S8-2
+Added Net: Name=NetR20_1
+Added Pin To Net: NetName=SO_CPLD Pin=R21-1
+Added Pin To Net: NetName=SO_CPLD Pin=U2-2
+Added Pin To Net: NetName=SO_CPLD Pin=U4-14
+Added Net: Name=SO_CPLD
+Added Member To Class: ClassName=icm+cpld Member=Component R10 10K(beiyong)
+Added Member To Class: ClassName=icm+cpld Member=Component R11 10K
+Added Member To Class: ClassName=icm+cpld Member=Component R12 10K
+Added Member To Class: ClassName=icm+cpld Member=Component R13 10K
+Added Member To Class: ClassName=icm+cpld Member=Component R14 10K
+Added Member To Class: ClassName=icm+cpld Member=Component R15 10K
+Added Member To Class: ClassName=icm+cpld Member=Component R16 10K
+Added Member To Class: ClassName=icm+cpld Member=Component R17 10K
+Added Member To Class: ClassName=icm+cpld Member=Component R18 10K
+Added Member To Class: ClassName=icm+cpld Member=Component R19 10K
+Added Member To Class: ClassName=icm+cpld Member=Component R20 10K
+Added Member To Class: ClassName=icm+cpld Member=Component R21 10K(beiyong)

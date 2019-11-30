@@ -1,0 +1,19 @@
+Change Component Footprint: Designator=C81 Old Footprint=7343 New Footprint=电解电容470uf
+Change Component Footprint: Designator=C82 Old Footprint=7343 New Footprint=电解电容470uf
+Change Component Footprint: Designator=C87 Old Footprint=7343 New Footprint=电解电容470uf
+Change Component Footprint: Designator=C89 Old Footprint=7343 New Footprint=电解电容470uf
+Change Component Footprint: Designator=C90 Old Footprint=7343 New Footprint=电解电容470uf
+Change Component Footprint: Designator=C93 Old Footprint=7343 New Footprint=电解电容470uf
+Change Component Footprint: Designator=C94 Old Footprint=7343 New Footprint=电解电容470uf
+Change Component Footprint: Designator=C112 Old Footprint=7343 New Footprint=电解电容470uf
+Change Component Footprint: Designator=C113 Old Footprint=7343 New Footprint=电解电容470uf
+Change Component Footprint: Designator=C84 Old Footprint=7343 New Footprint=电解电容1000uF
+Change Component Footprint: Designator=F1 Old Footprint=PIN-W2/E2.8 New Footprint=1206
+Added Component: Designator=C157(电解电容470uf)
+Added Component: Designator=C158(RAD-0.3)
+Added Pin To Net: NetName=+24V Pin=C157-1
+Added Pin To Net: NetName=DGND Pin=C157-2
+Added Pin To Net: NetName=+24V Pin=C158-1
+Added Pin To Net: NetName=DGND Pin=C158-2
+Added Member To Class: ClassName=POWER Member=Component C157 Cap Pol1
+Added Member To Class: ClassName=POWER Member=Component C158 Cap

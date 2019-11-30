@@ -1,0 +1,151 @@
+Removed Pin From Net: NetName=+5V Pin=C66-1
+Removed Pin From Net: NetName=GND Pin=C66-2
+Removed Pin From Net: NetName=GND Pin=C67-1
+Removed Pin From Net: NetName=+5V Pin=C67-2
+Change Component DesignItemId : Designator=C66 Old DesignItemId=Cap Pol1 New DesignItemId=Cap
+Change Component Footprint: Designator=C67 Old Footprint=1206 New Footprint=无感电容15*6
+Change Component Footprint: Designator=C66 Old Footprint=7343 New Footprint=无感电容15*6
+Change Component Comment : Designator=C66 Old Comment=Cap Pol1 New Comment=Cap
+Added Component: Designator=C63(无感电容15*6)
+Added Component: Designator=C64(无感电容15*6)
+Added Component: Designator=C65(无感电容15*6)
+Added Component: Designator=C66(7343)
+Added Component: Designator=C67(1206)
+Added Component: Designator=C68(无感电容15*6)
+Added Component: Designator=C69(无感电容15*6)
+Added Component: Designator=C70(无感电容15*6)
+Added Component: Designator=C71(无感电容15*6)
+Added Component: Designator=C72(无感电容15*6)
+Added Component: Designator=C73(无感电容15*6)
+Added Component: Designator=C74(无感电容15*6)
+Added Component: Designator=D46(TO-220_SANRE)
+Added Component: Designator=D47(TO-220_SANRE)
+Added Component: Designator=D48(TO-220_SANRE)
+Added Component: Designator=D49(TO-220_SANRE)
+Added Component: Designator=D50(TO-220_SANRE)
+Added Component: Designator=D51(TO-220_SANRE)
+Added Component: Designator=DD1(TO247dio)
+Added Component: Designator=DD2(TO247dio)
+Added Component: Designator=DD3(TO247dio)
+Added Component: Designator=DD4(TO247dio)
+Added Component: Designator=DD5(TO247dio)
+Added Component: Designator=DD6(TO247dio)
+Added Component: Designator=P9(PHENOX-3)
+Added Component: Designator=P10(PHENOX-3)
+Added Component: Designator=P11(PHENOX-3)
+Added Component: Designator=Q1(TO247)
+Added Component: Designator=Q2(TO247)
+Added Component: Designator=Q3(TO247)
+Added Component: Designator=Q4(TO247)
+Added Component: Designator=Q5(TO247)
+Added Component: Designator=Q6(TO247)
+Added Component: Designator=R53(水泥电阻22*9.5)
+Added Component: Designator=R54(水泥电阻22*9.5)
+Added Component: Designator=R55(水泥电阻22*9.5)
+Added Component: Designator=R56(水泥电阻22*9.5)
+Added Component: Designator=R57(水泥电阻22*9.5)
+Added Component: Designator=R58(水泥电阻22*9.5)
+Added Pin To Net: NetName=NetC44_2 Pin=C51-2
+Added Pin To Net: NetName=NetC44_2 Pin=C52-1
+Added Pin To Net: NetName=NetC44_2 Pin=C58-2
+Added Pin To Net: NetName=NetC44_2 Pin=C59-1
+Added Pin To Net: NetName=NetC44_2 Pin=C63-1
+Added Pin To Net: NetName=NetC44_2 Pin=C64-1
+Added Pin To Net: NetName=NetC44_2 Pin=C65-1
+Added Pin To Net: NetName=+5V Pin=C66-1
+Added Pin To Net: NetName=NetC44_2 Pin=C66-1
+Added Pin To Net: NetName=GND Pin=C66-2
+Added Pin To Net: NetName=GND Pin=C67-1
+Added Pin To Net: NetName=NetC44_2 Pin=C67-1
+Added Pin To Net: NetName=+5V Pin=C67-2
+Added Pin To Net: NetName=NetC44_2 Pin=C68-1
+Added Pin To Net: NetName=NetC44_2 Pin=C69-1
+Added Pin To Net: NetName=NetC44_2 Pin=C70-1
+Added Pin To Net: NetName=NetC44_2 Pin=C71-1
+Added Pin To Net: NetName=NetC44_2 Pin=C72-1
+Added Pin To Net: NetName=NetC44_2 Pin=C73-1
+Added Pin To Net: NetName=NetC44_2 Pin=C74-1
+Added Pin To Net: NetName=NetC44_2 Pin=D36-1
+Added Pin To Net: NetName=NetC44_2 Pin=D42-1
+Added Pin To Net: NetName=NetC44_2 Pin=P7-3
+Added Pin To Net: NetName=NetC44_2 Pin=P8-3
+Added Pin To Net: NetName=NetC44_2 Pin=P9-3
+Added Pin To Net: NetName=NetC4_2 Pin=P10-1
+Added Pin To Net: NetName=NetD28_2 Pin=P10-2
+Added Pin To Net: NetName=NetC21_2 Pin=P10-3
+Added Pin To Net: NetName=NetD35_2 Pin=P11-1
+Added Pin To Net: NetName=NetC35_2 Pin=P11-2
+Added Pin To Net: NetName=NetD41_2 Pin=P11-3
+Added Pin To Net: NetName=NetD3_2 Pin=Q1-1
+Added Pin To Net: NetName=NetC4_2 Pin=Q1-3
+Added Pin To Net: NetName=NetD11_2 Pin=Q2-1
+Added Pin To Net: NetName=NetC21_2 Pin=Q2-3
+Added Pin To Net: NetName=NetD22_2 Pin=Q3-1
+Added Pin To Net: NetName=NetC35_2 Pin=Q3-3
+Added Pin To Net: NetName=NetD29_2 Pin=Q4-1
+Added Pin To Net: NetName=NetD28_2 Pin=Q4-2
+Added Pin To Net: NetName=NetC44_2 Pin=Q4-3
+Added Pin To Net: NetName=NetD36_2 Pin=Q5-1
+Added Pin To Net: NetName=NetD35_2 Pin=Q5-2
+Added Pin To Net: NetName=NetC44_2 Pin=Q5-3
+Added Pin To Net: NetName=NetD42_2 Pin=Q6-1
+Added Pin To Net: NetName=NetD41_2 Pin=Q6-2
+Added Pin To Net: NetName=NetC44_2 Pin=Q6-3
+Added Pin To Net: NetName=NetC44_2 Pin=R40-1
+Added Pin To Net: NetName=NetC44_2 Pin=R47-1
+Added Pin To Net: NetName=NetC44_2 Pin=U13-9
+Added Pin To Net: NetName=NetC44_2 Pin=U15-9
+Added Pin To Net: NetName=NetC63_2 Pin=C63-2
+Added Pin To Net: NetName=NetC63_2 Pin=C65-2
+Added Pin To Net: NetName=NetC63_2 Pin=C67-2
+Added Pin To Net: NetName=NetC63_2 Pin=C69-2
+Added Pin To Net: NetName=NetC63_2 Pin=C71-2
+Added Pin To Net: NetName=NetC63_2 Pin=C73-2
+Added Pin To Net: NetName=NetC63_2 Pin=D2-2
+Added Pin To Net: NetName=NetC63_2 Pin=D10-2
+Added Pin To Net: NetName=NetC63_2 Pin=D20-2
+Added Pin To Net: NetName=NetC63_2 Pin=D46-1
+Added Pin To Net: NetName=NetC63_2 Pin=D47-1
+Added Pin To Net: NetName=NetC63_2 Pin=D48-1
+Added Pin To Net: NetName=NetC63_2 Pin=D49-1
+Added Pin To Net: NetName=NetC63_2 Pin=D50-1
+Added Pin To Net: NetName=NetC63_2 Pin=D51-1
+Added Pin To Net: NetName=NetC63_2 Pin=P2-1
+Added Pin To Net: NetName=NetC63_2 Pin=P3-1
+Added Pin To Net: NetName=NetC63_2 Pin=P4-1
+Added Pin To Net: NetName=NetC63_2 Pin=P9-1
+Added Pin To Net: NetName=NetC63_2 Pin=Q1-2
+Added Pin To Net: NetName=NetC63_2 Pin=Q2-2
+Added Pin To Net: NetName=NetC63_2 Pin=Q3-2
+Added Pin To Net: NetName=NetC63_2 Pin=R53-2
+Added Pin To Net: NetName=NetC63_2 Pin=R54-2
+Added Pin To Net: NetName=NetC63_2 Pin=R55-2
+Added Pin To Net: NetName=NetC63_2 Pin=R56-2
+Added Pin To Net: NetName=NetC63_2 Pin=R57-2
+Added Pin To Net: NetName=NetC63_2 Pin=R58-2
+Added Net: Name=NetC63_2
+Added Pin To Net: NetName=NetC64_2 Pin=C64-2
+Added Pin To Net: NetName=NetC64_2 Pin=D46-2
+Added Pin To Net: NetName=NetC64_2 Pin=R53-1
+Added Net: Name=NetC64_2
+Added Pin To Net: NetName=NetC66_2 Pin=C66-2
+Added Pin To Net: NetName=NetC66_2 Pin=D47-2
+Added Pin To Net: NetName=NetC66_2 Pin=R54-1
+Added Net: Name=NetC66_2
+Added Pin To Net: NetName=NetC68_2 Pin=C68-2
+Added Pin To Net: NetName=NetC68_2 Pin=D48-2
+Added Pin To Net: NetName=NetC68_2 Pin=R55-1
+Added Net: Name=NetC68_2
+Added Pin To Net: NetName=NetC70_2 Pin=C70-2
+Added Pin To Net: NetName=NetC70_2 Pin=D49-2
+Added Pin To Net: NetName=NetC70_2 Pin=R56-1
+Added Net: Name=NetC70_2
+Added Pin To Net: NetName=NetC72_2 Pin=C72-2
+Added Pin To Net: NetName=NetC72_2 Pin=D50-2
+Added Pin To Net: NetName=NetC72_2 Pin=R57-1
+Added Net: Name=NetC72_2
+Added Pin To Net: NetName=NetC74_2 Pin=C74-2
+Added Pin To Net: NetName=NetC74_2 Pin=D51-2
+Added Pin To Net: NetName=NetC74_2 Pin=R58-1
+Added Net: Name=NetC74_2
+Added Class: Name=main1

@@ -1,0 +1,304 @@
+Removed Pin From Net: NetName=+5V_C Pin=+5V_C-A
+Removed Pin From Net: NetName=GND Pin=C3-2
+Removed Pin From Net: NetName=+24V Pin=C4-1
+Removed Pin From Net: NetName=DGND Pin=C4-2
+Removed Pin From Net: NetName=DGND Pin=C6-1
+Removed Pin From Net: NetName=+24V Pin=C6-2
+Removed Pin From Net: NetName=DGND Pin=C7-1
+Removed Pin From Net: NetName=CURRENT_SEN_C Pin=C7-2
+Removed Pin From Net: NetName=GND Pin=C10-2
+Removed Pin From Net: NetName=+24V Pin=C11-1
+Removed Pin From Net: NetName=DGND Pin=C11-2
+Removed Pin From Net: NetName=DGND Pin=C12-1
+Removed Pin From Net: NetName=+24V Pin=C12-2
+Removed Pin From Net: NetName=DGND Pin=C13-1
+Removed Pin From Net: NetName=CURRENT_SEN_B Pin=C13-2
+Removed Pin From Net: NetName=+24V Pin=C17-1
+Removed Pin From Net: NetName=DGND Pin=C17-2
+Removed Pin From Net: NetName=DGND Pin=C18-1
+Removed Pin From Net: NetName=+24V Pin=C18-2
+Removed Pin From Net: NetName=DGND Pin=C20-1
+Removed Pin From Net: NetName=CURRENT_SEN_A Pin=C20-2
+Removed Pin From Net: NetName=GND_C Pin=C68-2
+Removed Pin From Net: NetName=GND_C Pin=C69-1
+Removed Pin From Net: NetName=GND_C Pin=C70-1
+Removed Pin From Net: NetName=+5V_C Pin=C70-2
+Removed Pin From Net: NetName=GND_C Pin=C75-1
+Removed Pin From Net: NetName=GND_C Pin=C79-1
+Removed Pin From Net: NetName=GND Pin=C88-1
+Removed Pin From Net: NetName=GND Pin=C90-2
+Removed Pin From Net: NetName=GND Pin=C92-2
+Removed Pin From Net: NetName=GND Pin=C93-1
+Removed Pin From Net: NetName=+5V_C Pin=C95-1
+Removed Pin From Net: NetName=+5V_C Pin=C99-2
+Removed Pin From Net: NetName=+24V Pin=C159-1
+Removed Pin From Net: NetName=DGND Pin=C159-2
+Removed Pin From Net: NetName=+5V_C Pin=C163-1
+Removed Pin From Net: NetName=GND Pin=DCDC2-5
+Removed Pin From Net: NetName=+5V_C Pin=L4-1
+Removed Pin From Net: NetName=+5V_C Pin=L12-2
+Removed Pin From Net: NetName=+24V Pin=P2-1
+Removed Pin From Net: NetName=DGND Pin=P2-3
+Removed Pin From Net: NetName=+24V Pin=P3-1
+Removed Pin From Net: NetName=DGND Pin=P3-3
+Removed Pin From Net: NetName=+24V Pin=P4-1
+Removed Pin From Net: NetName=DGND Pin=P4-3
+Removed Pin From Net: NetName=GND_C Pin=P10-1
+Removed Pin From Net: NetName=NetP18_1 Pin=P18-1
+Removed Pin From Net: NetName=3.3V Pin=P18-2
+Removed Pin From Net: NetName=CURRENT_SEN_C Pin=R2-2
+Removed Pin From Net: NetName=DGND Pin=R5-1
+Removed Pin From Net: NetName=CURRENT_SEN_B Pin=R9-2
+Removed Pin From Net: NetName=DGND Pin=R10-1
+Removed Pin From Net: NetName=CURRENT_SEN_A Pin=R15-2
+Removed Pin From Net: NetName=DGND Pin=R18-1
+Removed Pin From Net: NetName=GND_C Pin=R108-2
+Removed Pin From Net: NetName=GND_C Pin=R116-2
+Removed Pin From Net: NetName=GND_C Pin=R122-1
+Removed Pin From Net: NetName=GND Pin=R122-2
+Removed Pin From Net: NetName=GND Pin=R135-1
+Removed Pin From Net: NetName=GND_A Pin=R136-1
+Removed Pin From Net: NetName=GND_C Pin=TVS1-2
+Removed Pin From Net: NetName=GND_C Pin=TVS2-1
+Removed Pin From Net: NetName=GND_C Pin=TVS3-1
+Removed Pin From Net: NetName=GND_C Pin=TVS6-2
+Removed Pin From Net: NetName=GND Pin=U4-3
+Removed Pin From Net: NetName=GND Pin=U4-5
+Removed Pin From Net: NetName=GND Pin=U10-5
+Removed Pin From Net: NetName=GND Pin=U11-5
+Removed Pin From Net: NetName=GND_C Pin=U38-5
+Removed Pin From Net: NetName=GND_C Pin=U39-6
+Removed Pin From Net: NetName=GND_C Pin=U39-7
+Removed Pin From Net: NetName=GND_C Pin=U39-8
+Removed Pin From Net: NetName=GND_C Pin=U39-9
+Removed Pin From Net: NetName=GND_C Pin=U39-10
+Removed Pin From Net: NetName=GND_C Pin=U39-19
+Removed Pin From Net: NetName=GND_C Pin=U41-5
+Removed Pin From Net: NetName=GND_C Pin=U42-5
+Removed Pin From Net: NetName=GND Pin=U43-5
+Removed Pin From Net: NetName=GND Pin=U45-5
+Removed Pin From Net: NetName=GND_C Pin=U47-2
+Removed Pin From Net: NetName=GND_C Pin=U48-5
+Removed Pin From Net: NetName=GND Pin=U50-5
+Removed Pin From Net: NetName=GND_C Pin=U51-5
+Removed Pin From Net: NetName=GND_C Pin=U52-5
+Removed Member From Class: ClassName=AIAO Member=R122
+Change Component Footprint: Designator=C107 Old Footprint=3528C New Footprint=1206
+Change Component Footprint: Designator=C109 Old Footprint=3528C New Footprint=1206
+Change Component Footprint: Designator=C151 Old Footprint=3528C New Footprint=1206
+Change Component Footprint: Designator=C152 Old Footprint=3528C New Footprint=1206
+Change Component Footprint: Designator=C4 Old Footprint=7343 New Footprint=1206
+Change Component Footprint: Designator=C11 Old Footprint=7343 New Footprint=1206
+Change Component Footprint: Designator=C17 Old Footprint=7343 New Footprint=1206
+Change Component Footprint: Designator=C116 Old Footprint=7343 New Footprint=1206
+Change Component Footprint: Designator=DCDC4 Old Footprint=NPSIP7A New Footprint=NPSIP7A_B2412s2
+Change Component Comment : Designator=DCDC3 Old Comment=WRB2405ZP-3WR2 New Comment=VRB2405ZP-6WR2
+Added Component: Designator=C29(1206)
+Added Component: Designator=C31(1206)
+Added Component: Designator=C34(1206)
+Added Component: Designator=C37(1206)
+Added Component: Designator=C41(1206)
+Added Component: Designator=C42(1206)
+Added Component: Designator=C43(1206)
+Added Component: Designator=C96(1206)
+Added Component: Designator=C97(1206)
+Added Component: Designator=C100(1206)
+Added Component: Designator=C101(1206)
+Added Component: Designator=C164(7343)
+Added Component: Designator=C165(1206)
+Added Component: Designator=D36(SMA)
+Added Component: Designator=D37(SMA)
+Added Component: Designator=D38(SMA)
+Added Component: Designator=D39(SMA)
+Added Component: Designator=D40(SMA)
+Added Component: Designator=D41(SMA)
+Added Component: Designator=DCDC5(B0505)
+Added Component: Designator=L16(2012)
+Added Component: Designator=LED7(0805D)
+Added Component: Designator=P18(HDR1X2)
+Added Component: Designator=R140(1206)
+Added Component: Designator=U8(SO-8)
+Added Component: Designator=U53(SO-8)
+Added Pin To Net: NetName=GND_C Pin=C3-2
+Added Pin To Net: NetName=+15V_C Pin=C4-1
+Added Pin To Net: NetName=GND_C Pin=C4-2
+Added Pin To Net: NetName=GND_C Pin=C6-1
+Added Pin To Net: NetName=+15V_C Pin=C6-2
+Added Pin To Net: NetName=GND_C Pin=C7-1
+Added Pin To Net: NetName=GND_C Pin=C10-2
+Added Pin To Net: NetName=+15V_C Pin=C11-1
+Added Pin To Net: NetName=GND_C Pin=C11-2
+Added Pin To Net: NetName=GND_C Pin=C12-1
+Added Pin To Net: NetName=+15V_C Pin=C12-2
+Added Pin To Net: NetName=GND_C Pin=C13-1
+Added Pin To Net: NetName=+15V_C Pin=C17-1
+Added Pin To Net: NetName=GND_C Pin=C17-2
+Added Pin To Net: NetName=GND_C Pin=C18-1
+Added Pin To Net: NetName=+15V_C Pin=C18-2
+Added Pin To Net: NetName=GND_C Pin=C20-1
+Added Pin To Net: NetName=GND_C Pin=C29-1
+Added Pin To Net: NetName=+15V_C Pin=C29-2
+Added Pin To Net: NetName=GND_C Pin=C31-1
+Added Pin To Net: NetName=-15V_C Pin=C31-2
+Added Pin To Net: NetName=-15V_C Pin=C34-1
+Added Pin To Net: NetName=GND_C Pin=C34-2
+Added Pin To Net: NetName=GND_C Pin=C37-1
+Added Pin To Net: NetName=-15V_C Pin=C37-2
+Added Pin To Net: NetName=GND_C Pin=C41-1
+Added Pin To Net: NetName=+15V_C Pin=C41-2
+Added Pin To Net: NetName=GND_C Pin=C42-1
+Added Pin To Net: NetName=-15V_C Pin=C42-2
+Added Pin To Net: NetName=GND_C Pin=C43-1
+Added Pin To Net: NetName=+24V Pin=C60-1
+Added Pin To Net: NetName=DGND Pin=C60-2
+Added Pin To Net: NetName=DGND Pin=C61-1
+Added Pin To Net: NetName=+24V Pin=C61-2
+Added Pin To Net: NetName=GND_C Pin=C88-1
+Added Pin To Net: NetName=GND_C Pin=C90-2
+Added Pin To Net: NetName=GND_C Pin=C92-2
+Added Pin To Net: NetName=GND_C Pin=C93-1
+Added Pin To Net: NetName=GND_C Pin=C96-1
+Added Pin To Net: NetName=-15V_C Pin=C96-2
+Added Pin To Net: NetName=GND_C Pin=C97-1
+Added Pin To Net: NetName=-15V_C Pin=C97-2
+Added Pin To Net: NetName=-15V_C Pin=C100-1
+Added Pin To Net: NetName=GND_C Pin=C100-2
+Added Pin To Net: NetName=-15V_C Pin=C101-1
+Added Pin To Net: NetName=GND_C Pin=C101-2
+Added Pin To Net: NetName=GND_C Pin=C159-2
+Added Pin To Net: NetName=+5V_C Pin=C164-1
+Added Pin To Net: NetName=+5V_C Pin=C165-2
+Added Pin To Net: NetName=DGND Pin=D17-1
+Added Pin To Net: NetName=CURRENT_SEN_C Pin=D36-1
+Added Pin To Net: NetName=3.3V Pin=D36-2
+Added Pin To Net: NetName=GND_C Pin=D37-1
+Added Pin To Net: NetName=CURRENT_SEN_C Pin=D37-2
+Added Pin To Net: NetName=CURRENT_SEN_B Pin=D38-1
+Added Pin To Net: NetName=3.3V Pin=D38-2
+Added Pin To Net: NetName=GND_C Pin=D39-1
+Added Pin To Net: NetName=CURRENT_SEN_B Pin=D39-2
+Added Pin To Net: NetName=CURRENT_SEN_A Pin=D40-1
+Added Pin To Net: NetName=3.3V Pin=D40-2
+Added Pin To Net: NetName=GND_C Pin=D41-1
+Added Pin To Net: NetName=CURRENT_SEN_A Pin=D41-2
+Added Pin To Net: NetName=GND_C Pin=DCDC2-5
+Added Pin To Net: NetName=GND_C Pin=DCDC5-1
+Added Pin To Net: NetName=DGND Pin=K1-1
+Added Pin To Net: NetName=+5V_C Pin=L16-2
+Added Pin To Net: NetName=+5V_C Pin=LED7-A
+Added Pin To Net: NetName=+15V_C Pin=P2-1
+Added Pin To Net: NetName=-15V_C Pin=P2-3
+Added Pin To Net: NetName=+15V_C Pin=P3-1
+Added Pin To Net: NetName=-15V_C Pin=P3-3
+Added Pin To Net: NetName=+15V_C Pin=P4-1
+Added Pin To Net: NetName=-15V_C Pin=P4-3
+Added Pin To Net: NetName=NetP18_1 Pin=P18-1
+Added Pin To Net: NetName=3.3V Pin=P18-2
+Added Pin To Net: NetName=GND_C Pin=R5-1
+Added Pin To Net: NetName=GND_C Pin=R10-1
+Added Pin To Net: NetName=GND_C Pin=R18-1
+Added Pin To Net: NetName=-15V_C Pin=R135-1
+Added Pin To Net: NetName=-15V_A Pin=R136-1
+Added Pin To Net: NetName=GND_C Pin=U4-3
+Added Pin To Net: NetName=GND_C Pin=U4-5
+Added Pin To Net: NetName=CURRENT_SEN_C Pin=U8-1
+Added Pin To Net: NetName=CURRENT_SEN_C Pin=U8-2
+Added Pin To Net: NetName=-15V_C Pin=U8-4
+Added Pin To Net: NetName=CURRENT_SEN_B Pin=U8-6
+Added Pin To Net: NetName=CURRENT_SEN_B Pin=U8-7
+Added Pin To Net: NetName=+15V_C Pin=U8-8
+Added Pin To Net: NetName=GND_C Pin=U10-5
+Added Pin To Net: NetName=GND_C Pin=U11-5
+Added Pin To Net: NetName=DGND Pin=U21-3
+Added Pin To Net: NetName=GND_C Pin=U43-5
+Added Pin To Net: NetName=GND_C Pin=U45-5
+Added Pin To Net: NetName=GND_C Pin=U50-5
+Added Pin To Net: NetName=-15V_C Pin=U53-4
+Added Pin To Net: NetName=CURRENT_SEN_A Pin=U53-6
+Added Pin To Net: NetName=CURRENT_SEN_A Pin=U53-7
+Added Pin To Net: NetName=+15V_C Pin=U53-8
+Added Pin To Net: NetName=+24V Pin=VT1-3
+Change Net Name : Old Net Name=+5V_C New Net Name=+5V_COM
+Added Pin To Net: NetName=+5V_C Pin=C43-2
+Added Pin To Net: NetName=+5V_C Pin=C70-2
+Added Pin To Net: NetName=+5V_C Pin=C95-1
+Added Pin To Net: NetName=+5V_C Pin=C99-2
+Added Pin To Net: NetName=+5V_C Pin=C159-1
+Added Pin To Net: NetName=+5V_C Pin=C163-1
+Added Pin To Net: NetName=+5V_C Pin=DCDC5-2
+Added Pin To Net: NetName=+5V_C Pin=L4-1
+Added Pin To Net: NetName=+5V_C Pin=L12-2
+Added Net: Name=+5V_C
+Added Pin To Net: NetName=GND_COM Pin=C68-2
+Added Pin To Net: NetName=GND_COM Pin=C69-1
+Added Pin To Net: NetName=GND_COM Pin=C70-1
+Added Pin To Net: NetName=GND_COM Pin=C75-1
+Added Pin To Net: NetName=GND_COM Pin=C79-1
+Added Pin To Net: NetName=GND_COM Pin=C164-2
+Added Pin To Net: NetName=GND_COM Pin=C165-1
+Added Pin To Net: NetName=GND_COM Pin=DCDC5-3
+Added Pin To Net: NetName=GND_COM Pin=P10-1
+Added Pin To Net: NetName=GND_COM Pin=R108-2
+Added Pin To Net: NetName=GND_COM Pin=R116-2
+Added Pin To Net: NetName=GND_COM Pin=R140-1
+Added Pin To Net: NetName=GND_COM Pin=TVS1-2
+Added Pin To Net: NetName=GND_COM Pin=TVS2-1
+Added Pin To Net: NetName=GND_COM Pin=TVS3-1
+Added Pin To Net: NetName=GND_COM Pin=TVS6-2
+Added Pin To Net: NetName=GND_COM Pin=U38-5
+Added Pin To Net: NetName=GND_COM Pin=U39-6
+Added Pin To Net: NetName=GND_COM Pin=U39-7
+Added Pin To Net: NetName=GND_COM Pin=U39-8
+Added Pin To Net: NetName=GND_COM Pin=U39-9
+Added Pin To Net: NetName=GND_COM Pin=U39-10
+Added Pin To Net: NetName=GND_COM Pin=U39-19
+Added Pin To Net: NetName=GND_COM Pin=U41-5
+Added Pin To Net: NetName=GND_COM Pin=U42-5
+Added Pin To Net: NetName=GND_COM Pin=U47-2
+Added Pin To Net: NetName=GND_COM Pin=U48-5
+Added Pin To Net: NetName=GND_COM Pin=U51-5
+Added Pin To Net: NetName=GND_COM Pin=U52-5
+Added Net: Name=GND_COM
+Added Pin To Net: NetName=NetC7_2 Pin=C7-2
+Added Pin To Net: NetName=NetC7_2 Pin=R2-2
+Added Pin To Net: NetName=NetC7_2 Pin=U8-3
+Added Net: Name=NetC7_2
+Added Pin To Net: NetName=NetC13_2 Pin=C13-2
+Added Pin To Net: NetName=NetC13_2 Pin=R9-2
+Added Pin To Net: NetName=NetC13_2 Pin=U8-5
+Added Net: Name=NetC13_2
+Added Pin To Net: NetName=NetC20_2 Pin=C20-2
+Added Pin To Net: NetName=NetC20_2 Pin=R15-2
+Added Pin To Net: NetName=NetC20_2 Pin=U53-5
+Added Net: Name=NetC20_2
+Added Pin To Net: NetName=NetDCDC5_4 Pin=DCDC5-4
+Added Pin To Net: NetName=NetDCDC5_4 Pin=L16-1
+Added Net: Name=NetDCDC5_4
+Added Pin To Net: NetName=NetLED7_K Pin=LED7-K
+Added Pin To Net: NetName=NetLED7_K Pin=R140-2
+Added Net: Name=NetLED7_K
+Added Member To Class: ClassName=AIAO Member=Component C29 Cap
+Added Member To Class: ClassName=AIAO Member=Component C31 Cap Pol1
+Added Member To Class: ClassName=AIAO Member=Component C34 Cap
+Added Member To Class: ClassName=AIAO Member=Component C37 Cap
+Added Member To Class: ClassName=AIAO Member=Component C41 Cap
+Added Member To Class: ClassName=AIAO Member=Component C42 Cap
+Added Member To Class: ClassName=POWER Member=Component C43 Cap
+Added Member To Class: ClassName=AIAO Member=Component C96 Cap Pol1
+Added Member To Class: ClassName=AIAO Member=Component C97 Cap Pol1
+Added Member To Class: ClassName=AIAO Member=Component C100 Cap
+Added Member To Class: ClassName=AIAO Member=Component C101 Cap
+Added Member To Class: ClassName=POWER Member=Component C164 Cap Pol1
+Added Member To Class: ClassName=POWER Member=Component C165 Cap
+Added Member To Class: ClassName=AIAO Member=Component D36 LL4148
+Added Member To Class: ClassName=AIAO Member=Component D37 LL4148
+Added Member To Class: ClassName=AIAO Member=Component D38 LL4148
+Added Member To Class: ClassName=AIAO Member=Component D39 LL4148
+Added Member To Class: ClassName=AIAO Member=Component D40 LL4148
+Added Member To Class: ClassName=AIAO Member=Component D41 LL4148
+Added Member To Class: ClassName=POWER Member=Component DCDC5 B0505S_1W
+Added Member To Class: ClassName=POWER Member=Component L16 BLM21PG221SN
+Added Member To Class: ClassName=POWER Member=Component LED7 LED
+Added Member To Class: ClassName=POWER Member=Component R140 Res2
+Added Member To Class: ClassName=AIAO Member=Component U8 TL032
+Added Member To Class: ClassName=AIAO Member=Component U53 TL032

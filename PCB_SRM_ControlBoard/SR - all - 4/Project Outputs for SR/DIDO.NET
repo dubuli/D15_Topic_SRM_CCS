@@ -1,0 +1,190 @@
+PARTS LIST
+
+Cap Pol1          7343            C49
+Cap               1206            C50
+Cap Pol1          7343            C51
+Cap               1206            C52
+Cap               1206            C53
+Cap               1206            C54
+Cap               1206            C55
+Cap               1206            C56
+Cap               1206            C59
+Cap               1206            C60
+Cap               1206            C61
+Cap               1206            C62
+Cap               1206            C63
+Cap               1206            C64
+DI                SIP10           CON7
+POSITION          SIP5            CON8
+Diode 1N4148      DIO7.1-3.9x1.9  D8
+Diode 1N4007      DIO10.46-5.3x2.8D11
+Diode 1N4007      SMA             D15
+Diode 1N4007      SMA             D16
+Diode 1N4007      SMA             D17
+Diode 1N4007      SMA             D18
+1N4148            SOD-80/MLL34    D21
+Diode 1N4148      SOD-80/MLL34    D22
+1N4148            SOD-80/MLL34    D23
+Diode 1N4148      SOD-80/MLL34    D24
+1N4148            SOD-80/MLL34    D25
+Diode 1N4148      SOD-80/MLL34    D26
+G6B-1114p-24v     DIP-P4          K1
+BLM21PG221SN      2012            L1
+DO                HDR1X6          P?
+Res2              1206            R34
+Res2              AXIAL-0.4       R38
+Res2              1206            R41
+Res2              1206            R42
+Res2              1206            R43
+Res2              1206            R44
+Res2              1206            R47
+Res2              1206            R48
+Res2              1206            R49
+Res2              1206            R50
+Res2              1206            R51
+Res2              1206            R52
+Res2              1206            R53
+Res2              1206            R54
+Res2              1206            R59
+Res2              1206            R60
+Res2              1206            R61
+Res2              1206            R62
+Res2              1206            R63
+Res2              1206            R64
+Res2              1206            R65
+Res2              1206            R66
+Res2              1206            R67
+HEL-5D221K                        RV1
+TLP521-1          DIP4            U14
+TLP521-1          DIP4            U15
+TLP521-1          DIP4            U16
+TLP521-1          DIP4            U18
+TLP521-1          DIP4            U19
+TLP521-1          DIP4            U20
+TLP521-1          DIP4            U21
+6N136             DIP-8N          U24
+6N136             DIP-8N          U25
+6N136             DIP-8N          U26
+S9051                             VT2
+EOS
+NET LIST
+
+NODENAME +12V_POS         $
+    CON8       5  D21        2  D23        2  D25        2  U24        2  U25        2  U26        2
+NODENAME +24V_EX          $
+    C49        1  C50        2  VT2        3  VT2        3  VT2        3
+NODENAME +24V_F           $
+    C51        1  C52        2  L1         2  R41        1  R42        1  R43        1  R44        1
+NODENAME 3.3V             $
+    R34        1  R34        1  R34        1  R47        2  R49        2  R51        2  R53        2  R62        2  R63        2  R64        2  U24        8  U25        8  U26        8
+NODENAME DSP_DO1          $
+    U14        2  U15        2  U16        2
+NODENAME GND              $
+    C53        1  C54        1  C55        1  C56        1  C62        1  C63        1  C64        1  U18        3  U19        3  U20        3  U21        3  U24        5  U25        5  U26        5
+NODENAME GND_EX           $
+    C49        2  C50        1  D11        1  D11        1  D11        1  K1         1  K1         1  K1         1  U14        3  U15        3  U16        3
+NODENAME GND_F            $
+    C51        2  C52        1  CON7       1  CON7       3  CON7       5  CON7       7  CON7       9
+NODENAME GND_POS          $
+    C59        1  C60        1  C61        1  CON8       1  D22        1  D24        1  D26        1
+NODENAME NetC53-2         $
+    C53        2  R48        2
+NODENAME NetC54-2         $
+    C54        2  R50        2
+NODENAME NetC55-2         $
+    C55        2  R52        2
+NODENAME NetC56-2         $
+    C56        2  R54        2
+NODENAME NetC59-2         $
+    C59        2  D21        1  D22        2  R59        2  U24        3
+NODENAME NetC60-2         $
+    C60        2  D23        1  D24        2  R60        2  U25        3
+NODENAME NetC61-2         $
+    C61        2  D25        1  D26        2  R61        2  U26        3
+NODENAME NetCON7-2        $
+    CON7       2  D15        1  U18        2
+NODENAME NetCON7-4        $
+    CON7       4  D16        1  U19        2
+NODENAME NetCON7-6        $
+    CON7       6  D17        1  U20        2
+NODENAME NetCON7-8        $
+    CON7       8  D18        1  U21        2
+NODENAME NetCON7-10       $
+    CON7      10  L1         1
+NODENAME NetCON8-2        $
+    CON8       2  R61        1
+NODENAME NetCON8-3        $
+    CON8       3  R60        1
+NODENAME NetCON8-4        $
+    CON8       4  R59        1
+NODENAME NetD8-1          $
+    D8         1  VT2        2
+NODENAME NetD8-1          $
+    D8         1  VT2        2
+NODENAME NetD8-1          $
+    D8         1  VT2        2
+NODENAME NetD8-2          $
+    D8         2  R38        2
+NODENAME NetD8-2          $
+    D8         2  R38        2
+NODENAME NetD8-2          $
+    D8         2  R38        2
+NODENAME NetD11-2         $
+    D11        2  K1         6  VT2        1
+NODENAME NetD11-2         $
+    D11        2  K1         6  VT2        1
+NODENAME NetD11-2         $
+    D11        2  K1         6  VT2        1
+NODENAME NetD15-2         $
+    D15        2  R41        2  U18        1
+NODENAME NetD16-2         $
+    D16        2  R42        2  U19        1
+NODENAME NetD17-2         $
+    D17        2  R43        2  U20        1
+NODENAME NetD18-2         $
+    D18        2  R44        2  U21        1
+NODENAME NetK1-3          $
+    K1         3  P?         1  RV1        2
+NODENAME NetK1-3          $
+    K1         3  P?         5  RV1        2
+NODENAME NetK1-3          $
+    K1         3  P?         3  RV1        2
+NODENAME NetK1-4          $
+    K1         4  P?         2  RV1        1
+NODENAME NetK1-4          $
+    K1         4  P?         6  RV1        1
+NODENAME NetK1-4          $
+    K1         4  P?         4  RV1        1
+NODENAME NetR34-2         $
+    R34        2  U16        1
+NODENAME NetR34-2         $
+    R34        2  U14        1
+NODENAME NetR34-2         $
+    R34        2  U15        1
+NODENAME NetR38-1         $
+    R38        1  U16        4
+NODENAME NetR38-1         $
+    R38        1  U14        4
+NODENAME NetR38-1         $
+    R38        1  U15        4
+NODENAME NetR47-1         $
+    R47        1  R48        1  U18        4
+NODENAME NetR49-1         $
+    R49        1  R50        1  U19        4
+NODENAME NetR51-1         $
+    R51        1  R52        1  U20        4
+NODENAME NetR53-1         $
+    R53        1  R54        1  U21        4
+NODENAME NetR62-1         $
+    R62        1  R65        1  U24        6
+NODENAME NetR63-1         $
+    R63        1  R66        1  U25        6
+NODENAME NetR64-1         $
+    R64        1  R67        1  U26        6
+NODENAME POS_A            $
+    C62        2  R65        2
+NODENAME POS_B            $
+    C63        2  R66        2
+NODENAME POS_C            $
+    C64        2  R67        2
+EOS

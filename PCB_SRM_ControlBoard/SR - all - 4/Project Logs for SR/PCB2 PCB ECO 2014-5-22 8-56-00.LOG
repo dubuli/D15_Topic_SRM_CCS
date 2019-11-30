@@ -1,0 +1,4 @@
+Change Component Footprint: Designator=K1 Old Footprint=DIP-P4 New Footprint=SPST-NO
+Change Component Footprint: Designator=K3 Old Footprint=DIP-P4 New Footprint=SPST-NO
+Added Pin To Net: NetName=NetD17_2 Pin=K1-6
+Added Pin To Net: NetName=NetD31_2 Pin=K3-6

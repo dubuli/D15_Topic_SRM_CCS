@@ -1,0 +1,35 @@
+Removed Pin From Net: NetName=GND_DRIVE Pin=CON5-2
+Removed Pin From Net: NetName=GND_DRIVE Pin=CON5-8
+Removed Pin From Net: NetName=GND_DRIVE Pin=CON5-12
+Removed Pin From Net: NetName=GND_DRIVE Pin=CON5-16
+Removed Pin From Net: NetName=GND_DRIVE Pin=CON5-20
+Removed Pin From Net: NetName=GND_DRIVE Pin=CON5-24
+Removed Pin From Net: NetName=GND_DRIVE Pin=CON5-28
+Added Pin To Net: NetName=GND_DRIVE Pin=CON5-3
+Added Pin To Net: NetName=GND_DRIVE Pin=CON5-7
+Added Pin To Net: NetName=GND_DRIVE Pin=CON5-11
+Added Pin To Net: NetName=GND_DRIVE Pin=CON5-15
+Added Pin To Net: NetName=GND_DRIVE Pin=CON5-19
+Added Pin To Net: NetName=GND_DRIVE Pin=CON5-23
+Added Pin To Net: NetName=GND_DRIVE Pin=CON5-27
+Added Pin To Net: NetName=NetCON5_2 Pin=CON5-2
+Added Pin To Net: NetName=NetCON5_2 Pin=U28-6
+Added Net: Name=NetCON5_2
+Added Pin To Net: NetName=NetCON5_8 Pin=CON5-8
+Added Pin To Net: NetName=NetCON5_8 Pin=U29-6
+Added Net: Name=NetCON5_8
+Added Pin To Net: NetName=NetCON5_12 Pin=CON5-12
+Added Pin To Net: NetName=NetCON5_12 Pin=U26-6
+Added Net: Name=NetCON5_12
+Added Pin To Net: NetName=NetCON5_16 Pin=CON5-16
+Added Pin To Net: NetName=NetCON5_16 Pin=U27-6
+Added Net: Name=NetCON5_16
+Added Pin To Net: NetName=NetCON5_20 Pin=CON5-20
+Added Pin To Net: NetName=NetCON5_20 Pin=U24-6
+Added Net: Name=NetCON5_20
+Added Pin To Net: NetName=NetCON5_24 Pin=CON5-24
+Added Pin To Net: NetName=NetCON5_24 Pin=U25-6
+Added Net: Name=NetCON5_24
+Added Pin To Net: NetName=NetCON5_28 Pin=CON5-28
+Added Pin To Net: NetName=NetCON5_28 Pin=U30-6
+Added Net: Name=NetCON5_28

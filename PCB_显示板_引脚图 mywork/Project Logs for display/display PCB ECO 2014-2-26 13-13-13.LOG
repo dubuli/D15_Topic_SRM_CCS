@@ -1,0 +1,43 @@
+Change Component Footprint: Designator=U4 Old Footprint=DIP16 New Footprint=L16_N
+Change Component Footprint: Designator=led1 Old Footprint=F-10 New Footprint=LEDsum
+Change Component Footprint: Designator=led2 Old Footprint=F-10 New Footprint=LEDsum
+Change Component Footprint: Designator=led3 Old Footprint=F-10 New Footprint=LEDsum
+Change Component Footprint: Designator=led4 Old Footprint=F-10 New Footprint=LEDsum
+Change Component Footprint: Designator=led5 Old Footprint=F-10 New Footprint=LEDsum
+Change Component Comment : Designator=U4 Old Comment=cd4049 New Comment=cd4049UBD
+Change Component Comment : Designator=D1 Old Comment=Diode 1N4148 New Comment=LL4148
+Added Pin To Net: NetName=Netled1_a Pin=led1-a
+Added Pin To Net: NetName=Netled1_b Pin=led1-b
+Added Pin To Net: NetName=Netled1_c Pin=led1-c
+Added Pin To Net: NetName=Netled1_d Pin=led1-d
+Added Pin To Net: NetName=Netled1_e Pin=led1-e
+Added Pin To Net: NetName=Netled1_f Pin=led1-f
+Added Pin To Net: NetName=Netled1_g Pin=led1-g
+Added Pin To Net: NetName=Netled1_a Pin=led2-a
+Added Pin To Net: NetName=Netled1_b Pin=led2-b
+Added Pin To Net: NetName=Netled1_c Pin=led2-c
+Added Pin To Net: NetName=Netled1_d Pin=led2-d
+Added Pin To Net: NetName=Netled1_e Pin=led2-e
+Added Pin To Net: NetName=Netled1_f Pin=led2-f
+Added Pin To Net: NetName=Netled1_g Pin=led2-g
+Added Pin To Net: NetName=Netled1_a Pin=led3-a
+Added Pin To Net: NetName=Netled1_b Pin=led3-b
+Added Pin To Net: NetName=Netled1_c Pin=led3-c
+Added Pin To Net: NetName=Netled1_d Pin=led3-d
+Added Pin To Net: NetName=Netled1_e Pin=led3-e
+Added Pin To Net: NetName=Netled1_f Pin=led3-f
+Added Pin To Net: NetName=Netled1_g Pin=led3-g
+Added Pin To Net: NetName=Netled1_a Pin=led4-a
+Added Pin To Net: NetName=Netled1_b Pin=led4-b
+Added Pin To Net: NetName=Netled1_c Pin=led4-c
+Added Pin To Net: NetName=Netled1_d Pin=led4-d
+Added Pin To Net: NetName=Netled1_e Pin=led4-e
+Added Pin To Net: NetName=Netled1_f Pin=led4-f
+Added Pin To Net: NetName=Netled1_g Pin=led4-g
+Added Pin To Net: NetName=Netled1_a Pin=led5-a
+Added Pin To Net: NetName=Netled1_b Pin=led5-b
+Added Pin To Net: NetName=Netled1_c Pin=led5-c
+Added Pin To Net: NetName=Netled1_d Pin=led5-d
+Added Pin To Net: NetName=Netled1_e Pin=led5-e
+Added Pin To Net: NetName=Netled1_f Pin=led5-f
+Added Pin To Net: NetName=Netled1_g Pin=led5-g

@@ -1,0 +1,3 @@
+Change Component Footprint: Designator=U3 Old Footprint=SO16_M New Footprint=SOIC16_N
+Change Component Comment : Designator=U1 Old Comment=ICM7218 New Comment=ICM7228AIBIZ
+Change Component Comment : Designator=U3 Old Comment=MAX232 New Comment=MAX232ESE

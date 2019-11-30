@@ -1,0 +1,8 @@
+Added Component: Designator=P9(PHENOX-3)
+Added Component: Designator=P10(PHENOX-3)
+Added Pin To Net: NetName=+15V Pin=P9-1
+Added Pin To Net: NetName=GND Pin=P9-3
+Added Pin To Net: NetName=+5V Pin=P10-1
+Added Pin To Net: NetName=GND Pin=P10-3
+Added Member To Class: ClassName=driveII Member=Component P9 
+Added Member To Class: ClassName=driveII Member=Component P10 

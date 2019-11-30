@@ -1,0 +1,12 @@
+Change Component Designator: OldDesignator=3.3V NewDesignator=LED4
+Change Component Designator: OldDesignator=12V_P NewDesignator=LED5
+Change Component Designator: OldDesignator=15V_A NewDesignator=LED3
+Change Component Designator: OldDesignator=15V_C NewDesignator=LED2
+Change Component Designator: OldDesignator=24V_IN NewDesignator=LED1
+Added Component: Designator=P18(HDR1X2)
+Added Room: Name=AIAO
+Added Room: Name=DIDO
+Added Room: Name=DRIVE
+Added Room: Name=dsp
+Added Room: Name=PERIPHERAL
+Added Room: Name=POWER

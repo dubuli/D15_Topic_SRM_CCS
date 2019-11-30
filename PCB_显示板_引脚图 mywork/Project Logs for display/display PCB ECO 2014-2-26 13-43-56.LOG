@@ -1,0 +1,16 @@
+Removed Pin From Net: NetName=+5V Pin=S1-2
+Removed Pin From Net: NetName=+5V Pin=S1-2
+Removed Pin From Net: NetName=FORWARD Pin=S9-1
+Removed Pin From Net: NetName=MOVL Pin=S10-2
+Change Component Comment : Designator=R4 Old Comment=300R New Comment=10k
+Added Component: Designator=R8(0805)
+Added Pin To Net: NetName=+5V Pin=R8-2
+Added Pin To Net: NetName=MOVL Pin=S9-1
+Added Pin To Net: NetName=MOVL Pin=S9-1
+Added Pin To Net: NetName=FORWARD Pin=S10-2
+Added Pin To Net: NetName=FORWARD Pin=S10-2
+Added Pin To Net: NetName=NetR8_1 Pin=R8-1
+Added Pin To Net: NetName=NetR8_1 Pin=S1-2
+Added Pin To Net: NetName=NetR8_1 Pin=S1-2
+Added Net: Name=NetR8_1
+Added Member To Class: ClassName=icm+cpld Member=Component R8 1k

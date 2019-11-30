@@ -1,0 +1,15 @@
+--silicon_version=28 
+-g 
+--define="_DEBUG" --define="LARGE_MODEL" 
+--diag_warning=225 
+--issue_remarks 
+--large_memory_model 
+--unified_memory 
+--obj_directory="F:/kuaipan/ALsrm/CCS/sLED2/Debug" 
+-z 
+-m"F:/kuaipan/ALsrm/CCS/sLED2/Debug/LED.map" 
+--warn_sections 
+-i"D:/Program Files (x86)/Texas Instruments/ccsv4/tools/compiler/c2000/lib" -i"D:/Program Files (x86)/Texas Instruments/ccsv4/tools/compiler/c2000/include" -i"F:/kuaipan/ALsrm/CCS/sLED2/LED" -i"F:/kuaipan/ALsrm/CCS/sLED2" 
+--reread_libs 
+--rom_model 
+"F:/kuaipan/ALsrm/CCS/sLED2/RAM_Link.cmd" "F:/kuaipan/ALsrm/CCS/sLED2/Debug/main.obj" "F:/kuaipan/ALsrm/CCS/sLED2/Debug/DSP281x_SysCtrl.obj" "F:/kuaipan/ALsrm/CCS/sLED2/Debug/DSP281x_PieVect.obj" "F:/kuaipan/ALsrm/CCS/sLED2/Debug/DSP281x_PieCtrl.obj" "F:/kuaipan/ALsrm/CCS/sLED2/Debug/DSP281x_MemCopy.obj" "F:/kuaipan/ALsrm/CCS/sLED2/Debug/DSP281x_GlobalVariableDefs.obj" "F:/kuaipan/ALsrm/CCS/sLED2/Debug/DSP281x_DefaultIsr.obj" "F:/kuaipan/ALsrm/CCS/sLED2/Debug/DSP281x_CodeStartBranch.obj" "F:/kuaipan/ALsrm/CCS/sLED2/rts2800_ml.lib" 

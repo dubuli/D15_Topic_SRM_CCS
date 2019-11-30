@@ -1,0 +1,23 @@
+Removed Pin From Net: NetName=STOP Pin=S3-1
+Removed Pin From Net: NetName=SET Pin=S4-1
+Removed Pin From Net: NetName=DOWN Pin=S6-1
+Removed Pin From Net: NetName=UP Pin=S7-1
+Removed Pin From Net: NetName=MOVR Pin=S8-1
+Removed Pin From Net: NetName=ENTER Pin=U2-12
+Removed Pin From Net: NetName=DOWN Pin=U2-13
+Removed Pin From Net: NetName=UP Pin=U2-14
+Removed Pin From Net: NetName=MOVR Pin=U2-15
+Added Pin To Net: NetName=MOVR Pin=S2-1
+Added Pin To Net: NetName=MOVR Pin=S2-1
+Added Pin To Net: NetName=UP Pin=S3-1
+Added Pin To Net: NetName=UP Pin=S3-1
+Added Pin To Net: NetName=DOWN Pin=S4-1
+Added Pin To Net: NetName=DOWN Pin=S4-1
+Added Pin To Net: NetName=SET Pin=S6-1
+Added Pin To Net: NetName=SET Pin=S6-1
+Added Pin To Net: NetName=STOP Pin=S7-1
+Added Pin To Net: NetName=STOP Pin=S7-1
+Added Pin To Net: NetName=BACKWARD Pin=S8-1
+Added Pin To Net: NetName=BACKWARD Pin=S8-1
+Added Pin To Net: NetName=BACKWARD Pin=U2-8
+Added Net: Name=BACKWARD

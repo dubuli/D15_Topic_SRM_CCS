@@ -1,0 +1,12 @@
+Removed Pin From Net: NetName=SI Pin=U2-2
+Removed Pin From Net: NetName=SCLK Pin=U2-3
+Removed Pin From Net: NetName=CS Pin=U2-5
+Removed Pin From Net: NetName=SO Pin=U2-6
+Removed Pin From Net: NetName=TXD Pin=U2-43
+Removed Pin From Net: NetName=RXD Pin=U2-44
+Added Pin To Net: NetName=SO Pin=U2-2
+Added Pin To Net: NetName=TXD Pin=U2-3
+Added Pin To Net: NetName=RXD Pin=U2-5
+Added Pin To Net: NetName=SCLK Pin=U2-42
+Added Pin To Net: NetName=SI Pin=U2-43
+Added Pin To Net: NetName=CS Pin=U2-44

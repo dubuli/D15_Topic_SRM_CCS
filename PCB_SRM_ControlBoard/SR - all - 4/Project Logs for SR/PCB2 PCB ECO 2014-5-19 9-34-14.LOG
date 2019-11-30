@@ -1,0 +1,4 @@
+Removed Pin From Net: NetName=+5V Pin=CON5-31
+Removed Pin From Net: NetName=GND_DRIVE Pin=CON5-32
+Added Pin To Net: NetName=GND_DRIVE Pin=CON5-31
+Added Pin To Net: NetName=+5V Pin=CON5-32
