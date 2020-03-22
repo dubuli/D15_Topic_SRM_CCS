@@ -1,0 +1,11 @@
+兰亭星落 个人QQ：1549894223 Ansoft Maxwell/Simplorer技术指导群QQ：98867771
+本群提供Ansoft Maxwell/Simplorer电磁与控制无偿指导，群共享有免费教学视频资料。
+另承接电磁项目，价格可详细协商。店铺地址http://shop112719872.taobao.com（^_^植入广告）
+
+1、有两个名字为RMxprt_sim的文件，绿色的是RMxprt的文件，黄色的是simplorer文件，是用来做RMxprt和simplorer的联合仿真用的。在联合仿真时，把他们放在一起，首先打开黄色的simplorer文件，把里面的RMxprt电机元件删掉（由于路径变了，所以要删掉重新导入一次），按照视频里面讲的导入子电路的方法，导入本文件夹下的绿色RMxprt_sim文件。
+
+2、有两个名字为maxwell_sim的文件，绿色的是maxwell的文件，黄色的是simplorer文件，是用来做maxwell和simplorer的联合仿真用的。在联合仿真时，把他们放在一起，首先打开黄色的simplorer文件，把里面的maxwell电机元件删掉，按照视频里面讲的导入子电路的方法，导入本文件夹下的绿色maxwell_sim文件。
+
+3、有两个名字为svpwm_1和svpwm_2的文件，它们功能是一样的（形式有一点不同而已），就是实现svpwm空间矢量调制的电路，可以直接复制到你自己的电路里面使用。
+
+
