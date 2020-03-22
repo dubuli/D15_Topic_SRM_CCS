@@ -1,0 +1,4 @@
+所有模型在matlab R2010b下运行的：
+srm_dtc.mdl:利用matlab自有的srm模型建的直接转矩控制,用simulink模块建算法。
+sfun_dtc_asr.mdl:在上一个基础上，用s函数d_sfunc_dtc.m实现主要的算法，并在函数中实现速度闭环。
+dtc_measure.mdl:在上一个基础上，用srm模型输出的电流与电压直接计算磁链等,计算s函数d_sfunc_measure.m。
