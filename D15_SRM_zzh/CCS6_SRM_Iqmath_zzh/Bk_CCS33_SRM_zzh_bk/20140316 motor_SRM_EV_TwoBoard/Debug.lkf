@@ -1,0 +1,6 @@
+-z -c -m"./Debug/SRM_Debug.map" -o"./Debug/SRM_Debug.out" -w -x -i"C:/CCStudio_v3.3/C2000/xdais/lib" -i"C:/CCStudio_v3.3/bios_5_31_02/packages/ti/bios/lib" -i"C:/CCStudio_v3.3/bios_5_31_02/packages/ti/rtdx/lib/c2000" -i"C:/CCStudio_v3.3/C2000/cgtools/lib"
+"C:\CCStudio_v3.3\MyProjects\20140316 motor_SRM_EV_TwoBoard\Debug\SRM_double_EV.obj"
+"C:\CCStudio_v3.3\MyProjects\20140316 motor_SRM_EV_TwoBoard\Debug\START.obj"
+"C:\CCStudio_v3.3\MyProjects\20140316 motor_SRM_EV_TwoBoard\IQmath.lib"
+"C:\CCStudio_v3.3\MyProjects\20140316 motor_SRM_EV_TwoBoard\rts2800_ml.lib"
+"C:\CCStudio_v3.3\MyProjects\20140316 motor_SRM_EV_TwoBoard\DSP2812_IQ.CMD.CMD"

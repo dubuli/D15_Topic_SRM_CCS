@@ -1,0 +1,10 @@
+-------------------------  SRM_double_EV.pjt - Debug  -------------------------
+[SRM_double_EV.C] "C:\CCStudio_v3.3\C2000\cgtools\bin\cl2000" -g -fr"C:/CCStudio_v3.3/MyProjects/ceshicurrent_20131108_SRM_v3.1_TwoBoard/Debug" -d"_DEBUG" -d"LARGE_MODEL" -ml -v28 -@"Debug.lkf" "SRM_double_EV.C"
+
+[START.C] "C:\CCStudio_v3.3\C2000\cgtools\bin\cl2000" -g -fr"C:/CCStudio_v3.3/MyProjects/ceshicurrent_20131108_SRM_v3.1_TwoBoard/Debug" -d"_DEBUG" -d"LARGE_MODEL" -ml -v28 -@"Debug.lkf" "START.C"
+
+[Linking...] "C:\CCStudio_v3.3\C2000\cgtools\bin\cl2000" -@"Debug.lkf"
+<Linking>
+
+Build Complete,
+  0 Errors, 0 Warnings, 0 Remarks.

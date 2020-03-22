@@ -1,0 +1,1 @@
+"./SRM_double_EV.obj" "./START.obj" "../DSP2812_IQ.CMD" "../IQmath.lib" "../rts2800_ml.lib" -l"D:/CCS6_SRM_zzh/SRM_v3.1_TwoBoard2b/IQmath.lib" 

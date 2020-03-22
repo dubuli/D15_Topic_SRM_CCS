@@ -1,0 +1,83 @@
+* 129;dianya45zhanbo2.ckt
+* Project: F:/SRM_zzh/ansoft/waizhuanzifadianzhanbo.amcp
+* Design: dianya45zhanbo2
+
+*BeginParamDef
+*EndParamDef
+
+
+*begin toplevel circuit
+.PARAM Kle=1
+W_183 net_36 net_43 VIC WModelP OFF
+LWindingA net_3 net_27 1 Winding
+LWindingB net_4 net_28 1 Winding
+LWindingC net_5 net_29 1 Winding
+RA net_6 net_3 0.103ohm
+RB net_7 net_4 0.103ohm
+RC net_8 net_5 0.103ohm
+LA net_9 net_6 8.033e-005H 
+LB net_10 net_7 8.033e-005H 
+LC net_11 net_8 8.033e-005H 
+VIA net_41 net_9 DC 0 
+.PRINT TRAN PROBE VIA(t) I(VIA)
+VIB net_42 net_10 DC 0 
+.PRINT TRAN PROBE VIB(t) I(VIB)
+VIC net_43 net_11 DC 0 
+.PRINT TRAN PROBE VIC(t) I(VIC)
+V14 net_15 0 PULSE (-1 1V 7 0 0 7.5 22.5) TYPE=POS
+V15 net_16 0 PULSE (-1 1V 22 0 0 7.5 22.5) TYPE=POS
+V16 net_17 0 PULSE (-1 1V 14.5 0 0 7.5 22.5) TYPE=POS
+R17 net_15 net_18 100ohm
+R18 net_16 net_18 100ohm
+R19 net_17 net_18 100ohm
+IVc1 net_15 0 DC 0 
+.PRINT TRAN PROBE IVc1(t) V(IVc1)
+IVc2 net_16 0 DC 0 
+.PRINT TRAN PROBE IVc2(t) V(IVc2)
+IVc3 net_17 0 DC 0 
+.PRINT TRAN PROBE IVc3(t) V(IVc3)
+V24 net_53 0 200V
+D25 0 net_41 DModel1 
+D26 net_27 net_54 DModel1 
+D27 0 net_42 DModel1 
+D28 net_28 net_54 DModel1 
+D29 0 net_43 DModel1 
+D30 net_29 net_54 DModel1 
+D31 net_54 net_30 DModel1 
+D32 net_27 net_31 DModel1 
+D33 net_54 net_32 DModel1 
+D34 net_28 net_33 DModel1 
+D35 net_54 net_34 DModel1 
+D36 net_29 net_35 DModel1 
+S_37 net_30 net_24 IVc1 POS SModel1 OFF
+S_38 net_31 net_38 IVc1 POS SModel1 OFF
+S_39 net_32 net_23 IVc2 POS SModel1 OFF
+S_40 net_33 net_39 IVc2 POS SModel1 OFF
+S_41 net_34 net_36 IVc3 POS SModel1 OFF
+S_42 net_35 net_40 IVc3 POS SModel1 OFF
+.MODEL DModel1 D (IS=1e-014A RS=0.0163498ohm N=1 EG=1.11V XTI=3 BV=1e+030V IBV=0.001A TNOM=27)
+.MODEL SModel1 SW (Ron=0.001ohm Roff=1000000ohm Von=0V Voff=0V)
+C45 net_56 0 500uF 
+C46 net_55 0 1000uF IC=200V
+R47 0 net_37 90ohm
+IVoltmeter58 net_54 0 DC 0 
+.PRINT TRAN PROBE IVoltmeter58(t) V(IVoltmeter58)
+D98 net_53 net_54 DModel1 
+VIbus net_54 net_37 DC 0 
+.PRINT TRAN PROBE VIbus(t) I(VIbus)
+VIc1 net_54 net_55 DC 0 
+.PRINT TRAN PROBE VIc1(t) I(VIc1)
+VIc2 net_54 net_56 DC 0 
+.PRINT TRAN PROBE VIc2(t) I(VIc2)
+.MODEL WModelN CSW (Ron=0.001ohm Roff=1000000ohm Ion=-10.5A Ioff=-12A)
+IVoltmeter163 net_54 net_24 DC 0 
+.PRINT TRAN PROBE IVoltmeter163(t) V(IVoltmeter163)
+W_165 net_38 0 VIA WModelP OFF
+.MODEL WModelP CSW (Ron=1000000ohm Roff=0.001ohm Ion=42A Ioff=38A)
+W_170 net_39 0 VIB WModelP OFF
+W_173 net_40 0 VIC WModelP OFF
+W_176 net_24 net_41 VIA WModelP OFF
+W_179 net_23 net_42 VIB WModelP OFF
+
+*end toplevel circuit
+.end

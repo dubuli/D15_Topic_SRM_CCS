@@ -1,0 +1,32 @@
+; Code Composer Project File, Version 2.0 (do not modify or remove this line)
+
+[Project Settings]
+ProjectDir="C:\CCStudio_v3.3\MyProjects\20140316 motor_SRM_EV_TwoBoard\"
+ProjectType=Executable
+CPUFamily=TMS320C28XX
+Tool="Compiler"
+Tool="CustomBuilder"
+Tool="DspBiosBuilder"
+Tool="Linker"
+Config="Debug"
+Config="Release"
+
+[Source Files]
+Source="IQmath.lib"
+Source="rts2800_ml.lib"
+Source="SRM_double_EV.C"
+Source="START.C"
+Source="DSP2812_IQ.CMD.CMD"
+
+["Compiler" Settings: "Debug"]
+Options=-g -fr"$(Proj_dir)\Debug" -d"_DEBUG" -d"LARGE_MODEL" -ml -v28
+
+["Compiler" Settings: "Release"]
+Options=-o3 -fr"$(Proj_dir)\Release" -d"LARGE_MODEL" -ml -v28
+
+["Linker" Settings: "Debug"]
+Options=-c -m".\Debug\SRM_Debug.map" -o".\Debug\SRM_Debug.out" -w -x
+
+["Linker" Settings: "Release"]
+Options=-c -m".\Release\SRM_Debug.map" -o".\Release\SRM_Debug.out" -w -x
+
