@@ -1,0 +1,2741 @@
+$begin 'AnsoftProject'
+	Created='Thu Dec 25 22:40:40 2014'
+	FileOwnedByWorkbench=false
+	Product='MaxCir'
+	NextUniqueID=0
+	MoveBackwards=false
+	$begin 'Desktop'
+		Version(2014, 0)
+		InfrastructureVersion(1, 0)
+	$end 'Desktop'
+	$begin 'MaxCirEnvironment'
+		Version(1, 0)
+	$end 'MaxCirEnvironment'
+	$begin 'SchematicEnvironment'
+		Version(1, 0)
+	$end 'SchematicEnvironment'
+	ReadVersion=1
+	$begin 'DesignMgrEnvironment'
+		CompInstCounter=53
+		GPortCounter=0
+		NetCounter=42
+		Alias('Ieee;Simplorer Elements\\Ieee', 'Std;Simplorer Elements\\Std', 'Basic_VHDLAMS;Simplorer Elements\\Basic Elements VHDLAMS\\Basic Elements VHDLAMS', 'Digital_Elements;Simplorer Elements\\Digital Elements\\Digital Elements', 'Transformations;Simplorer Elements\\Tools\\Transformations\\Transformations', 'HEV_VHDLAMS;Simplorer Elements\\HEV VHDLAMS\\HEV VHDLAMS', 'automotive_vda;Simplorer Elements\\VDALibs VHDLAMS\\automotive_vda', 'example_boardnet;Simplorer Elements\\VDALibs VHDLAMS\\example_boardnet', 'example_ecar;Simplorer Elements\\VDALibs VHDLAMS\\example_ecar', 'fundamentals_vda;Simplorer Elements\\VDALibs VHDLAMS\\fundamentals_vda', 'hybrid_emc_vda;Simplorer Elements\\VDALibs VHDLAMS\\hybrid_emc_vda', 'megma;Simplorer Elements\\VDALibs VHDLAMS\\megma', 'modelica_rotational;Simplorer Elements\\VDALibs VHDLAMS\\modelica_rotational', 'modelica_thermal;Simplorer Elements\\VDALibs VHDLAMS\\modelica_thermal', 'modelica_translational;Simplorer Elements\\VDALibs VHDLAMS\\modelica_translational', 'spice2vhd;Simplorer Elements\\VDALibs VHDLAMS\\spice2vhd', 'spice2vhd_devices;Simplorer Elements\\VDALibs VHDLAMS\\spice2vhd_devices')
+	$end 'DesignMgrEnvironment'
+	$begin 'ProjectDatasets'
+		NextUniqueID=0
+		MoveBackwards=false
+		DatasetType='ProjectDatasetType'
+		$begin 'DatasetDefinitions'
+		$end 'DatasetDefinitions'
+	$end 'ProjectDatasets'
+	$begin 'Definitions'
+		$begin 'Folders'
+			Definitions(1104, 10000, 1, 1, 0, false, false)
+			Scripts(1104, 9501, 33500, 3, 1, false, false)
+			Symbols(1104, 9001, 10, 103, 1, false, false)
+			Components(1104, 9000, 8, 102, 1, false, false)
+		$end 'Folders'
+		$begin 'Materials'
+		$end 'Materials'
+		$begin 'Scripts'
+		$end 'Scripts'
+		$begin 'Symbols'
+			$begin 'ammeter'
+				ModTime=1128977886
+				Library='Maxwell Circuit Elements\\MaxCir'
+				ModSinceLib=false
+				LibLocation='SysLibrary'
+				HighestLevel=0
+				Normalize=true
+				InitialLevels(0, 1)
+				$begin 'PinDef'
+					Pin('n2', 0, -0.00508, 0, 'N', 0, 0, false, 0, true, '', false, false, 'n2', true)
+				$end 'PinDef'
+				$begin 'PinDef'
+					Pin('n1', 0, 0.00508, 0, 'N', 0, 0, false, 0, true, '', false, false, 'n1', true)
+				$end 'PinDef'
+				$begin 'Graphics'
+					Circle(0, 0, 0, 0, 0, 0.00254, 0)
+					Line(0, 1, 12566272, 0, -0.00508, 0, -0.00254, End=0, Join=0, LineStyle=0, BeginObj=0, EndObj=0)
+					Line(0, 1, 12566272, 0, 0.00508, 0, 0.00254, End=0, Join=0, LineStyle=0, BeginObj=0, EndObj=0)
+					Line(0, 1, 12566272, -0.000762, 0.004064, -0.000762, 0.003048, -0.000254, 0.003556, -0.000254, 0.003556, -0.000254, 0.003556, End=0, Join=0, LineStyle=0, BeginObj=0, EndObj=0)
+					Line(0, 1, 12566272, -0.000762, 0.003048, -0.00127, 0.003556, End=0, Join=0, LineStyle=0, BeginObj=0, EndObj=0)
+					Line(0.0003, 1, 12566272, -0.0006, 0, 0.0006, 0, End=0, Join=0, LineStyle=0, BeginObj=0, EndObj=0)
+					Line(0.0003, 1, 12566272, -0.001, -0.001, 0, 0.0015, End=0, Join=0, LineStyle=0, BeginObj=0, EndObj=0)
+					Line(0.0003, 1, 12566272, 0.001, -0.001, 0, 0.0015, End=0, Join=0, LineStyle=0, BeginObj=0, EndObj=0)
+				$end 'Graphics'
+				$begin 'PropDisplayMap'
+					LabelID(5, 5, 0, Text(0.003556, -0.00156281, 0, 1, 5, false, 'Arial', 0, 'LabelID=***', false, false, ExtentRect(0, 0, 0, 0, 0.00752475000001588, -0.000680865555552028, 0.00793750000003175, 0.00176388888889594, 0, 0, 0), DisplayRect(0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0)))
+				$end 'PropDisplayMap'
+			$end 'ammeter'
+			$begin 'diode'
+				ModTime=1105540578
+				Library='Maxwell Circuit Elements\\MaxCir'
+				ModSinceLib=false
+				LibLocation='SysLibrary'
+				HighestLevel=0
+				Normalize=true
+				InitialLevels(0, 1)
+				$begin 'PinDef'
+					Pin('n1', -0.00508, 0, 4.69282e-006, 'N', 0, 0, false, 0, true, '', false, false, 'n1', true)
+				$end 'PinDef'
+				$begin 'PinDef'
+					Pin('n2', 0.00508, 0, 3.14159, 'N', 0, 0, false, 0, true, '', false, false, 'n2', true)
+				$end 'PinDef'
+				$begin 'Graphics'
+					Line(0, 1, 12566272, -0.001778, 0.002032, -0.001778, -0.002032, End=0, Join=0, LineStyle=0, BeginObj=0, EndObj=0)
+					Line(0, 1, 12566272, 0.001778, 0.002032, 0.001778, -0.002032, End=0, Join=0, LineStyle=0, BeginObj=0, EndObj=0)
+					Line(0, 1, 12566272, -0.001778, 0.002032, 0.001778, 3.46945e-018, End=0, Join=0, LineStyle=0, BeginObj=0, EndObj=0)
+					Line(0, 1, 12566272, -0.001778, -0.002032, 0.001778, 3.46945e-018, End=0, Join=0, LineStyle=0, BeginObj=0, EndObj=0)
+					Line(0, 1, 12566272, -0.00508, 0, -0.001778, 0, End=0, Join=0, LineStyle=0, BeginObj=0, EndObj=0)
+					Line(0, 1, 12566272, 0.00508, 0, 0.001778, 0, End=0, Join=0, LineStyle=0, BeginObj=0, EndObj=0)
+				$end 'Graphics'
+				$begin 'PropDisplayMap'
+					LabelID(4, 5, 0, Text(-1.38778e-017, -0.00461081, 0, 4, 5, false, 'Arial', 0, '***', false, false, ExtentRect(0, 0, 0, 0, -1.38778e-017, -0.00372886555555203, 0.00176388888889594, 0.00176388888889594, 0, 0, 0), DisplayRect(0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0)))
+				$end 'PropDisplayMap'
+			$end 'diode'
+			$begin 'diode_model'
+				ModTime=1105477340
+				Library='Maxwell Circuit Elements\\MaxCir'
+				ModSinceLib=false
+				LibLocation='SysLibrary'
+				HighestLevel=0
+				Normalize=true
+				InitialLevels(0, 1)
+				$begin 'Graphics'
+					Text(-0.00127, 0.00127, 0, 0, 7, false, 'Arial', 12566272, 'Model', false, false, ExtentRect(0, 0, 12566272, 0, 0.00114754914042006, 0.000118786123609494, 0.00483509828084012, 0.00230242775278101, 12566272, 0, 0), DisplayRect(0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0))
+					Rect(0, 0, 12566272, 0, -0.000381, -1.0842e-019, 0.01143, 0.006096, 12566272, 0, 0)
+					Polygon(0, 1, 12566272, -0.004826, 0.00127, -0.00254, 2.1684e-019, -0.004826, -0.00127, -0.004826, 0.00127, BorderCol=12566272, End=0, Join=0)
+					Line(0, 1, 12566272, -0.00254, 0.00127, -0.00254, -0.00127, End=0, Join=0, LineStyle=0, BeginObj=0, EndObj=0)
+					Line(0, 1, 12566272, -0.005588, 0, -0.004826, 0, End=0, Join=0, LineStyle=0, BeginObj=0, EndObj=0)
+					Line(0, 1, 12566272, -0.001778, 0, -0.00254, 0, End=0, Join=0, LineStyle=0, BeginObj=0, EndObj=0)
+				$end 'Graphics'
+				$begin 'PropDisplayMap'
+					DeviceName(2, 3, 0, Text(-0.000381, -0.00613481, 0, 5, 5, false, 'Arial', 0, '[DeviceName]', false, false, ExtentRect(0, 0, 0, 0, -0.000381, -0.00525286555555203, 0.0097013888889277, 0.00176388888889594, 0, 0, 0), DisplayRect(0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0)))
+				$end 'PropDisplayMap'
+			$end 'diode_model'
+			$begin 'indv'
+				ModTime=1105540351
+				Library='Maxwell Circuit Elements\\MaxCir'
+				ModSinceLib=false
+				LibLocation='SysLibrary'
+				HighestLevel=0
+				Normalize=true
+				InitialLevels(0, 1)
+				$begin 'PinDef'
+					Pin('n1', -0.00508, 0, 0, 'N', 0, 0, false, 0, true, '', false, false, 'n1', true)
+				$end 'PinDef'
+				$begin 'PinDef'
+					Pin('n2', 0.00508, 0, 3.14159, 'N', 0, 0, false, 0, true, '', false, false, 'n2', true)
+				$end 'PinDef'
+				$begin 'Graphics'
+					Arc(0, 1, 12566272, -6.93889e-018, 3.46945e-018, 0.00125687, 6.27976, 3.14498, 12566272, 0, 0)
+					Arc(0, 1, 12566272, -0.00254, 3.46945e-018, 0.00127034, 6.2798, 3.14502, 12566272, 0, 0)
+					Arc(0, 1, 12566272, 0.00254, 3.46945e-018, 0.00127277, 6.27981, 3.14494, 12566272, 0, 0)
+					Line(0, 1, 12566272, -0.00508, 0, -0.00381, 0, End=0, Join=0, LineStyle=0, BeginObj=0, EndObj=0)
+					Line(0, 1, 12566272, 0.00381, 0, 0.00508, 0, End=0, Join=0, LineStyle=0, BeginObj=0, EndObj=0)
+					Circle(0, 1, 12566272, -0.004572, 0.001016, 0.000254, 12566272)
+				$end 'Graphics'
+				$begin 'PropDisplayMap'
+					L(2, 5, 0, Text(0, -0.00353131, 0, 4, 5, false, 'Arial', 0, '[L]', false, false, ExtentRect(0, 0, 0, 0, 0, -0.00264936555555203, 0.00166589506173506, 0.00176388888889594, 0, 0, 0), DisplayRect(0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0)))
+					LabelID(4, 5, 0, Text(1.6263e-019, -0.00562958, 0, 4, 5, false, 'Arial', 0, '***', false, false, ExtentRect(0, 0, 0, 0, 1.6263e-019, -0.00474763555555203, 0.00176388888889594, 0.00176388888889594, 0, 0, 0), DisplayRect(0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0)))
+				$end 'PropDisplayMap'
+			$end 'indv'
+			$begin 'resv'
+				ModTime=1105540504
+				Library='Maxwell Circuit Elements\\MaxCir'
+				ModSinceLib=false
+				LibLocation='SysLibrary'
+				HighestLevel=0
+				Normalize=true
+				InitialLevels(0, 1)
+				$begin 'PinDef'
+					Pin('n1', -0.00508, 0, 0, 'N', 0, 0, false, 0, true, '', false, false, 'n1', true)
+				$end 'PinDef'
+				$begin 'PinDef'
+					Pin('n2', 0.00508, 0, 3.14159, 'N', 0, 0, false, 0, true, '', false, false, 'n2', true)
+				$end 'PinDef'
+				$begin 'Graphics'
+					Line(0, 1, 12566272, -0.003048, 0, -0.00254, 0.001016, -0.001524, -0.001016, -0.000508, 0.001016, 0.000508, -0.001016, 0.001524, 0.001016, 0.00254, -0.001016, 0.003048, 0, 0.00508, 0, End=0, Join=0, LineStyle=0, BeginObj=0, EndObj=0)
+					Line(0, 1, 12566272, -0.00508, 0, -0.003048, 0, End=0, Join=0, LineStyle=0, BeginObj=0, EndObj=0)
+				$end 'Graphics'
+				$begin 'PropDisplayMap'
+					R(2, 5, 0, Text(-2.1684e-019, -0.00359481, 0, 4, 5, false, 'Arial', 0, '[R]', false, false, ExtentRect(0, 0, 0, 0, -2.1684e-019, -0.00271286555555203, 0.00186188271605683, 0.00176388888889594, 0, 0, 0), DisplayRect(0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0)))
+					LabelID(4, 5, 0, Text(1.6263e-019, -0.00562958, 0, 4, 5, false, 'Arial', 0, '***', false, false, ExtentRect(0, 0, 0, 0, 1.6263e-019, -0.00474763555555203, 0.00176388888889594, 0.00176388888889594, 0, 0, 0), DisplayRect(0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0)))
+				$end 'PropDisplayMap'
+			$end 'resv'
+			$begin 'sw_imodel'
+				ModTime=1105738660
+				Library='Maxwell Circuit Elements\\MaxCir'
+				ModSinceLib=false
+				LibLocation='SysLibrary'
+				HighestLevel=0
+				Normalize=true
+				InitialLevels(0, 1)
+				$begin 'Graphics'
+					Rect(0, 0, 12566272, 0, 0, -5.28035e-006, 0.0101786, 0.00608343, 12566272, 0, 0)
+					Line(0, 1, 12566272, -0.003302, 0, -0.004572, 0, End=0, Join=0, LineStyle=0, BeginObj=0, EndObj=0)
+					Text(0.000762, 0.000762, 0, 0, 5, false, 'Arial', 12566272, 'Model', false, false, ExtentRect(0, 0, 12566272, 0, 0.00294930636514196, -0.000158971101112405, 0.00437461273028392, 0.00184194220222481, 12566272, 0, 0), DisplayRect(0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0))
+					Line(0, 1, 12566272, -0.003302, 0, -0.000762, 0.00127, End=0, Join=0, LineStyle=0, BeginObj=0, EndObj=0)
+					Line(0, 1, 12566272, -0.001778, 0.000762, -0.001778, -0.00127, End=0, Join=0, LineStyle=0, BeginObj=0, EndObj=0)
+					Line(0, 1, 12566272, -0.00127, -0.000508, -0.001778, -0.00127, -0.002286, -0.000508, End=0, Join=0, LineStyle=0, BeginObj=0, EndObj=0)
+					Line(0, 1, 12566272, -0.000762, 0, 0.000508, 0, End=0, Join=0, LineStyle=0, BeginObj=0, EndObj=0)
+					Text(-0.003302, -0.000508, 0, 0, 5, false, 'Arial', 12566272, 'I', false, false, ExtentRect(0, 0, 12566272, 0, -0.0030717572247219, -0.0014289711011124, 0.000460485550556202, 0.00184194220222481, 12566272, 0, 0), DisplayRect(0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0))
+				$end 'Graphics'
+				$begin 'PropDisplayMap'
+					DeviceName(2, 3, 0, Text(0, -0.0061338, 0, 5, 5, false, 'Arial', 0, '[DeviceName]', false, false, ExtentRect(0, 0, 0, 0, 0, -0.00525185555555203, 0.0097013888889277, 0.00176388888889594, 0, 0, 0), DisplayRect(0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0)))
+				$end 'PropDisplayMap'
+			$end 'sw_imodel'
+			$begin 'sw_vmodel'
+				ModTime=1105738901
+				Library='Maxwell Circuit Elements\\MaxCir'
+				ModSinceLib=false
+				LibLocation='SysLibrary'
+				HighestLevel=0
+				Normalize=true
+				InitialLevels(0, 1)
+				$begin 'Graphics'
+					Rect(0, 0, 12566272, 0, 0, -5.28035e-006, 0.0101786, 0.00608343, 12566272, 0, 0)
+					Line(0, 1, 12566272, -0.003302, 0, -0.004572, 0, End=0, Join=0, LineStyle=0, BeginObj=0, EndObj=0)
+					Text(0.000762, 0.000762, 0, 0, 5, false, 'Arial', 12566272, 'Model', false, false, ExtentRect(0, 0, 12566272, 0, 0.00294930636514196, -0.000158971101112405, 0.00437461273028392, 0.00184194220222481, 12566272, 0, 0), DisplayRect(0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0))
+					Line(0, 1, 12566272, -0.003302, 0, -0.000762, 0.00127, End=0, Join=0, LineStyle=0, BeginObj=0, EndObj=0)
+					Line(0, 1, 12566272, -0.001778, 0.000762, -0.001778, -0.00127, End=0, Join=0, LineStyle=0, BeginObj=0, EndObj=0)
+					Line(0, 1, 12566272, -0.00127, -0.000508, -0.001778, -0.00127, -0.002286, -0.000508, End=0, Join=0, LineStyle=0, BeginObj=0, EndObj=0)
+					Line(0, 1, 12566272, -0.000762, 0, 0.000508, 0, End=0, Join=0, LineStyle=0, BeginObj=0, EndObj=0)
+					Text(-0.003556, -0.000508, 0, 0, 5, false, 'Arial', 12566272, 'V', false, false, ExtentRect(0, 0, 12566272, 0, -0.00298039306180475, -0.0014289711011124, 0.00115121387639051, 0.00184194220222481, 12566272, 0, 0), DisplayRect(0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0))
+				$end 'Graphics'
+				$begin 'PropDisplayMap'
+					DeviceName(2, 3, 0, Text(0, -0.0061338, 0, 5, 5, false, 'Arial', 0, '[DeviceName]', false, false, ExtentRect(0, 0, 0, 0, 0, -0.00525185555555203, 0.0097013888889277, 0.00176388888889594, 0, 0, 0), DisplayRect(0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0)))
+				$end 'PropDisplayMap'
+			$end 'sw_vmodel'
+			$begin 'switch_i'
+				ModTime=1105545768
+				Library='Maxwell Circuit Elements\\MaxCir'
+				ModSinceLib=false
+				LibLocation='SysLibrary'
+				HighestLevel=0
+				Normalize=true
+				InitialLevels(0, 1)
+				$begin 'PinDef'
+					Pin('n1', -0.00508, 0, 0, 'N', 0, 0, false, 0, true, '', false, false, 'n1', true)
+				$end 'PinDef'
+				$begin 'PinDef'
+					Pin('n2', 0.00508, 0, 0, 'N', 0, 0, false, 0, true, '', false, false, 'n2', true)
+				$end 'PinDef'
+				$begin 'Graphics'
+					Text(0.001016, 0.000508, 0, 0, 5, false, 'Arial', 12566272, 'I', false, false, ExtentRect(0, 0, 12566272, 0, 0.0012462427752781, -0.000412971101112405, 0.000460485550556202, 0.00184194220222481, 12566272, 0, 0), DisplayRect(0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0))
+					Line(0, 1, 12566272, -0.00508, 0, -0.00254, 0, 0.00254, 0.00254, 0.00254, 0.00254, 0.00254, 0.00254, End=0, Join=0, LineStyle=0, BeginObj=0, EndObj=0)
+					Line(0, 1, 12566272, 0.00254, 0, 0.00508, 0, End=0, Join=0, LineStyle=0, BeginObj=0, EndObj=0)
+					Line(0, 1, 12566272, 0, 0.00127, 0, -0.00127, 0.000508, -0.000762, 0.000508, -0.000762, 0.000508, -0.000762, End=0, Join=0, LineStyle=0, BeginObj=0, EndObj=0)
+					Line(0, 1, 12566272, 0, -0.00127, -0.000508, -0.000762, End=0, Join=0, LineStyle=0, BeginObj=0, EndObj=0)
+				$end 'Graphics'
+				$begin 'PropDisplayMap'
+					LabelID(4, 5, 0, Text(0, -0.00427919, 0, 5, 5, false, 'Arial', 0, '***', false, false, ExtentRect(0, 0, 0, 0, 0, -0.00339724555555203, 0.00176388888889594, 0.00176388888889594, 0, 0, 0), DisplayRect(0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0)))
+				$end 'PropDisplayMap'
+			$end 'switch_i'
+			$begin 'switch_v'
+				ModTime=1105545919
+				Library='Maxwell Circuit Elements\\MaxCir'
+				ModSinceLib=false
+				LibLocation='SysLibrary'
+				HighestLevel=0
+				Normalize=true
+				InitialLevels(0, 1)
+				$begin 'PinDef'
+					Pin('n1', -0.00508, 0, 0, 'N', 0, 0, false, 0, true, '', false, false, 'n1', true)
+				$end 'PinDef'
+				$begin 'PinDef'
+					Pin('n2', 0.00508, 0, 0, 'N', 0, 0, false, 0, true, '', false, false, 'n2', true)
+				$end 'PinDef'
+				$begin 'Graphics'
+					Text(0.001016, 0.000508, 0, 0, 5, false, 'Arial', 12566272, 'V', false, false, ExtentRect(0, 0, 12566272, 0, 0.00159160693819525, -0.000412971101112405, 0.00115121387639051, 0.00184194220222481, 12566272, 0, 0), DisplayRect(0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0))
+					Line(0, 1, 12566272, -0.00508, 0, -0.00254, 0, 0.00254, 0.00254, 0.00254, 0.00254, 0.00254, 0.00254, End=0, Join=0, LineStyle=0, BeginObj=0, EndObj=0)
+					Line(0, 1, 12566272, 0.00254, 0, 0.00508, 0, End=0, Join=0, LineStyle=0, BeginObj=0, EndObj=0)
+					Line(0, 1, 12566272, 0, 0.00127, 0, -0.00127, 0.000508, -0.000762, 0.000508, -0.000762, 0.000508, -0.000762, End=0, Join=0, LineStyle=0, BeginObj=0, EndObj=0)
+					Line(0, 1, 12566272, 0, -0.00127, -0.000508, -0.000762, End=0, Join=0, LineStyle=0, BeginObj=0, EndObj=0)
+				$end 'Graphics'
+				$begin 'PropDisplayMap'
+					LabelID(4, 5, 0, Text(0, -0.00427919, 0, 5, 5, false, 'Arial', 0, '***', false, false, ExtentRect(0, 0, 0, 0, 0, -0.00339724555555203, 0.00176388888889594, 0.00176388888889594, 0, 0, 0), DisplayRect(0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0)))
+				$end 'PropDisplayMap'
+			$end 'switch_v'
+			$begin 'vdc'
+				ModTime=1128978187
+				Library='Maxwell Circuit Elements\\MaxCir'
+				ModSinceLib=false
+				LibLocation='SysLibrary'
+				HighestLevel=0
+				Normalize=true
+				InitialLevels(0, 1)
+				$begin 'PinDef'
+					Pin('n2', 0, -0.00508, 0, 'N', 0, 0, false, 0, true, '', false, false, 'n2', true)
+				$end 'PinDef'
+				$begin 'PinDef'
+					Pin('n1', 0, 0.00508, 0, 'N', 0, 0, false, 0, true, '', false, false, 'n1', true)
+				$end 'PinDef'
+				$begin 'Graphics'
+					Circle(0, 0, 0, 4.33681e-019, 0, 0.00254, 0)
+					Line(0, 1, 12566272, 0, -0.00508, 0, -0.00254, End=0, Join=0, LineStyle=0, BeginObj=0, EndObj=0)
+					Line(0, 1, 12566272, 0, 0.00508, 0, 0.00254, End=0, Join=0, LineStyle=0, BeginObj=0, EndObj=0)
+					Text(-0.000254, -0.000762, 0, 0, 5, false, 'Arial', 0, '-', false, false, ExtentRect(0, 0, 0, 0, -2.37572247218988e-005, -0.0016829711011124, 0.000460485550556202, 0.00184194220222481, 0, 0, 0), DisplayRect(0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0))
+					Text(-0.0004572, 0.00113934, 0, 1, 5, false, 'Arial', 0, '+', false, false, ExtentRect(0, 0, 0, 0, 3.28555055620231e-006, 0.0015998255505562, 0.000920971101112405, 0.00184194220222481, 0, 0, 0), DisplayRect(0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0))
+				$end 'Graphics'
+				$begin 'PropDisplayMap'
+					v(2, 2, 0, Text(0.00430389, 0.000440972, 0, 1, 5, false, 'Arial', 0, '[v]', false, false, ExtentRect(0, 0, 0, 0, 0.00503884370370664, 0.00132291644444797, 0.00146990740741329, 0.00176388888889594, 0, 0, 0), DisplayRect(0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0)))
+					LabelID(5, 2, 0, Text(0.00430389, -0.00132292, 0, 1, 5, false, 'Arial', 0, 'LabelID=***', false, false, ExtentRect(0, 0, 0, 0, 0.00827264000001588, -0.000440975555552028, 0.00793750000003175, 0.00176388888889594, 0, 0, 0), DisplayRect(0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0)))
+				$end 'PropDisplayMap'
+			$end 'vdc'
+			$begin 'voltmeter_g'
+				ModTime=1128978277
+				Library='Maxwell Circuit Elements\\MaxCir'
+				ModSinceLib=false
+				LibLocation='SysLibrary'
+				HighestLevel=0
+				Normalize=true
+				InitialLevels(0, 1)
+				$begin 'PinDef'
+					Pin('n2', 0, -0.00508, 0, 'N', 0, 0, false, 0, true, '', false, false, 'n2', true)
+				$end 'PinDef'
+				$begin 'Graphics'
+					Circle(0, 0, 0, 0, 0, 0.00254, 0)
+					Line(0, 1, 12566272, 0, -0.00508, 0, -0.00254, End=0, Join=0, LineStyle=0, BeginObj=0, EndObj=0)
+					Line(0.0003, 1, 12566272, -0.001016, 0.001016, 0, -0.00127, 0.001016, 0.001016, End=0, Join=0, LineStyle=0, BeginObj=0, EndObj=0)
+				$end 'Graphics'
+				$begin 'PropDisplayMap'
+					LabelID(5, 5, 0, Text(0, 0.00453319, 0, 3, 5, false, 'Arial', 0, 'LabelID=***', false, false, ExtentRect(0, 0, 0, 0, 0, 0.00365124555555203, 0.00793750000003175, 0.00176388888889594, 0, 0, 0), DisplayRect(0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0)))
+				$end 'PropDisplayMap'
+			$end 'voltmeter_g'
+			$begin 'vpulset'
+				ModTime=1128978300
+				Library='Maxwell Circuit Elements\\MaxCir'
+				ModSinceLib=false
+				LibLocation='SysLibrary'
+				HighestLevel=0
+				Normalize=true
+				InitialLevels(0, 1)
+				$begin 'PinDef'
+					Pin('n2', 0, -0.00508, 0, 'N', 0, 0, false, 0, true, '', false, false, 'n2', true)
+				$end 'PinDef'
+				$begin 'PinDef'
+					Pin('n1', 0, 0.00508, 0, 'N', 0, 0, false, 0, true, '', false, false, 'n1', true)
+				$end 'PinDef'
+				$begin 'Graphics'
+					Circle(0, 0, 0, 8.67362e-019, 0, 0.00254, 0)
+					Line(0, 1, 12566272, 0, -0.00508, 0, -0.00254, End=0, Join=0, LineStyle=0, BeginObj=0, EndObj=0)
+					Line(0, 1, 12566272, 0, 0.00508, 0, 0.00254, End=0, Join=0, LineStyle=0, BeginObj=0, EndObj=0)
+					Line(0, 1, 12566272, -0.001524, -0.001016, -0.000762, -0.001016, -0.000762, 0.001016, 0.000762, 0.001016, 0.000762, -0.001016, 0.001524, -0.001016, End=0, Join=0, LineStyle=0, BeginObj=0, EndObj=0)
+					Text(-0.0004572, 0.00113934, 0, 1, 5, false, 'Arial', 0, '+', false, false, ExtentRect(0, 0, 0, 0, 3.28555055620231e-006, 0.0015998255505562, 0.000920971101112405, 0.00184194220222481, 0, 0, 0), DisplayRect(0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0))
+				$end 'Graphics'
+				$begin 'PropDisplayMap'
+					v1(2, 2, 0, Text(0.00430389, 0.00132292, 0, 1, 5, false, 'Arial', 0, '[v1]', false, false, ExtentRect(0, 0, 0, 0, 0.00547981592593063, 0.00220486444444797, 0.00235185185186126, 0.00176388888889594, 0, 0, 0), DisplayRect(0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0)))
+					v2(2, 2, 0, Text(0.00430389, -0.000440972, 0, 1, 5, false, 'Arial', 0, '[v2]', false, false, ExtentRect(0, 0, 0, 0, 0.00547981592593063, 0.000440972444447972, 0.00235185185186126, 0.00176388888889594, 0, 0, 0), DisplayRect(0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0)))
+					LabelID(5, 2, 0, Text(0.00430389, -0.00220486, 0, 1, 5, false, 'Arial', 0, 'LabelID=***', false, false, ExtentRect(0, 0, 0, 0, 0.00827264000001588, -0.00132291555555203, 0.00793750000003175, 0.00176388888889594, 0, 0, 0), DisplayRect(0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0)))
+				$end 'PropDisplayMap'
+			$end 'vpulset'
+			$begin 'winding'
+				ModTime=1120762804
+				Library='Maxwell Circuit Elements\\MaxCir'
+				ModSinceLib=false
+				LibLocation='SysLibrary'
+				HighestLevel=0
+				Normalize=true
+				InitialLevels(0, 1)
+				$begin 'PinDef'
+					Pin('n1', -0.00508, 0, 0, 'N', 0, 0, false, 0, true, '', false, false, 'n1', true)
+				$end 'PinDef'
+				$begin 'PinDef'
+					Pin('n2', 0.00508, 0, 3.14159, 'N', 0, 0, false, 0, true, '', false, false, 'n2', true)
+				$end 'PinDef'
+				$begin 'Graphics'
+					Circle(0, 1, 12566272, -0.004572, 0.001016, 0.000254, 12566272)
+					Arc(0, 1, 12566272, 0, 0, 0.001524, 0, 3.14159, 12566272, 0, 0)
+					Arc(0, 1, 12566272, -0.002032, 0, 0.001524, 0, 3.14159, 12566272, 0, 0)
+					Arc(0, 1, 12566272, -0.001016, 0, 0.000508, 3.14159, 0, 12566272, 0, 0)
+					Arc(0, 1, 12566272, 0.002032, 0, 0.001524, 0, 3.14159, 12566272, 0, 0)
+					Arc(0, 1, 12566272, 0.001016, 0, 0.000508, 3.14159, 0, 12566272, 0, 0)
+					Line(0, 1, 12566272, 0.003556, 0, 0.00508, 0, End=0, Join=0, LineStyle=0, BeginObj=0, EndObj=0)
+					Line(0, 1, 12566272, -0.00508, 0, -0.003556, 0, End=0, Join=0, LineStyle=0, BeginObj=0, EndObj=0)
+				$end 'Graphics'
+				$begin 'PropDisplayMap'
+					LabelID(4, 5, 0, Text(0, -0.00359481, 0, 5, 5, false, 'Arial', 0, '***', false, false, ExtentRect(0, 0, 0, 0, 0, -0.00271286555555203, 0.00176388888889594, 0.00176388888889594, 0, 0, 0), DisplayRect(0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0)))
+				$end 'PropDisplayMap'
+			$end 'winding'
+			$begin 'SrmA4e'
+				ModTime=1419518440
+				Library=''
+				ModSinceLib=false
+				LibLocation='Project'
+				HighestLevel=1
+				Normalize=true
+				InitialLevels(0, 1)
+				$begin 'Graphics'
+					Rect(0, 1, 0, 0, 0.000423333333333333, 0.00254, 0.000423333333333333, 0.000423333333333333, 0, 0, 0)
+					Rect(0, 0, 0, 0, 0.00254, 0.00254, 0.00508, 0.00508, 0, 0, 0)
+				$end 'Graphics'
+			$end 'SrmA4e'
+			$begin 'ground_earth'
+				ModTime=1016213689
+				Library='Symbols'
+				ModSinceLib=false
+				LibLocation='SysLibrary'
+				HighestLevel=1
+				Normalize=true
+				InitialLevels(0, 1)
+				$begin 'PinDef'
+					Pin('n1', 0, 0.00254, 4.71239, 'N', 0, 0, false, 0, true, '', false, false, 'n1', true)
+				$end 'PinDef'
+				$begin 'Graphics'
+					Line(0, 1, 12566272, -4.33681e-019, 0.00254, -4.33681e-019, 4.33681e-019, End=0, Join=0, LineStyle=0, BeginObj=0, EndObj=0)
+					Line(0, 1, 12566272, 0.0017145, -4.33681e-019, -0.0017145, -4.33681e-019, End=0, Join=0, LineStyle=0, BeginObj=0, EndObj=0)
+					Line(0, 1, 12566272, -0.001143, -0.000762, 0.001143, -0.000762, End=0, Join=0, LineStyle=0, BeginObj=0, EndObj=0)
+					Line(0, 1, 12566272, -0.0005715, -0.001524, 0.0005715, -0.001524, End=0, Join=0, LineStyle=0, BeginObj=0, EndObj=0)
+				$end 'Graphics'
+			$end 'ground_earth'
+		$end 'Symbols'
+		$begin 'DefInfo'
+			SrmA4e(0, 0, '', 1419518440, '', 'SrmA4e', '', '', '', '', '', '', '', 'Project', '', '', 1419518440, '')
+			Winding(0, 2, 'Ansoft built-in component', 1125334668, '', 'Maxwell Circuit Elements\\MaxCir:winding', '', '', 'Winding', 'Winding.htm', 'maxcir.chm', 'choke.bmp', 'Maxwell Circuit Elements\\Dedicated Elements', 'SysLibrary', '', '', 1102358561, '')
+			Res(0, 2, 'Ansoft built-in component', 1125334145, '', 'Maxwell Circuit Elements\\MaxCir:resv', '', '', 'Resistor', 'ResistorRes.htm', 'maxcir.chm', 'res.bmp', 'Maxwell Circuit Elements\\Passive Elements', 'SysLibrary', '', '', 1102358574, '')
+			Ind(0, 2, 'Ansoft built-in component', 1125333919, '', 'Maxwell Circuit Elements\\MaxCir:indv', '', '', 'Inductor', 'InductorIND.htm', 'maxcir.chm', 'ind.bmp', 'Maxwell Circuit Elements\\Passive Elements', 'SysLibrary', '', '', 1102358561, '')
+			Ammeter(0, 2, 'Ansoft built-in component', 1128457395, '', 'Maxwell Circuit Elements\\MaxCir:ammeter', '', '', 'Ammeter', 'Ammeter.htm', 'maxcir.chm', 'iprb.bmp', 'Maxwell Circuit Elements\\Probes', 'SysLibrary', '', '', 1102358184, '')
+			VPulse(0, 2, 'Ansoft built-in component', 1125334120, '', 'Maxwell Circuit Elements\\MaxCir:vpulset', '', '', 'Pulse Voltage Source', 'PulseVoltageSource.htm', 'maxcir.chm', 'vpulse.bmp', 'Maxwell Circuit Elements\\Sources', 'SysLibrary', '', '', 1102358230, '')
+			VoltmeterG(0, 1, 'Ansoft built-in component', 1128457494, '', 'Maxwell Circuit Elements\\MaxCir:voltmeter_g', '', '', 'Voltmeter with One Pin Grounded', 'VoltmeterwithOnePinGroundedVoltmeterG.htm', 'maxcir.chm', 'vprb.bmp', 'Maxwell Circuit Elements\\Probes', 'SysLibrary', '', '', 1102358022, '')
+			VDC(0, 2, 'Ansoft built-in component', 1125333661, '', 'Maxwell Circuit Elements\\MaxCir:vdc', '', '', 'DC Voltage Source', 'DCVoltageSource.htm', 'maxcir.chm', 'vdc.bmp', 'Maxwell Circuit Elements\\Sources', 'SysLibrary', '', '', 1102358184, '')
+			DIODE(0, 2, 'Ansoft built-in component', 1125333733, '', 'Maxwell Circuit Elements\\MaxCir:diode', '', '', 'Diode', 'DiodeDiodeModel.htm', 'maxcir.chm', 'diodev.bmp', 'Maxwell Circuit Elements\\Passive Elements', 'SysLibrary', '', '', 1102358014, '')
+			SW_V(0, 2, 'Ansoft built-in component', 1128977806, '', 'Maxwell Circuit Elements\\MaxCir:switch_v', '', '', 'Voltage Controlled Switch', 'VoltageControlledSwitchSWV.htm', 'maxcir.chm', 'vspst.bmp', 'Maxwell Circuit Elements\\Passive Elements', 'SysLibrary', '', '', 1102358639, '')
+			SW_I(0, 2, 'Ansoft built-in component', 1128977771, '', 'Maxwell Circuit Elements\\MaxCir:switch_i', '', '', 'Current Controlled Switch', 'CurrentControlledSwitchSWI.htm', 'maxcir.chm', 'ispst.bmp', 'Maxwell Circuit Elements\\Passive Elements', 'SysLibrary', '', '', 1102358590, '')
+			DIODE_Model(0, 0, 'Ansoft built-in component', 1125333746, '', 'Maxwell Circuit Elements\\MaxCir:diode_model', '', '', 'Diode Model Data', 'DiodeDiodeModel.htm', 'maxcir.chm', 'diodev.bmp', 'Maxwell Circuit Elements\\Passive Elements', 'SysLibrary', '', '', 1102358022, '')
+			SW_VModel(0, 0, 'Ansoft built-in component', 1125334598, '', 'Maxwell Circuit Elements\\MaxCir:sw_vmodel', '', '', 'Model Data for Voltage Controlled Switches', 'VoltageControlledSwitchSWV.htm', 'maxcir.chm', 'vspstm.bmp', 'Maxwell Circuit Elements\\Passive Elements', 'SysLibrary', '', '', 1102358022, '')
+			SW_IModel(0, 0, 'Ansoft built-in component', 1125333596, '', 'Maxwell Circuit Elements\\MaxCir:sw_imodel', '', '', 'Model Data for Current Controlled Switches', 'CurrentControlledSwitchSWI.htm', 'maxcir.chm', 'ispstm.bmp', 'Maxwell Circuit Elements\\Passive Elements', 'SysLibrary', '', '', 1102358022, '')
+		$end 'DefInfo'
+		$begin 'Compdefs'
+			$begin 'SrmA4e'
+				Library=''
+				Refbase='U'
+				NumParts=1
+				ModSinceLib=false
+				$begin 'Properties'
+					TextProp('Representation', 'SRD', '', 'SrmA4e')
+					TextProp('Owner', 'SRD', '', 'Maxwell Circuit')
+				$end 'Properties'
+				CompExtID=4
+			$end 'SrmA4e'
+			$begin 'Winding'
+				Library='Maxwell Circuit Elements\\Dedicated Elements'
+				Refbase='L'
+				NumParts=1
+				ModSinceLib=false
+				Terminal('n1', 'n1', 'A', true, 0, 1, '', 'Electrical', '0')
+				Terminal('n2', 'n2', 'A', true, 1, 1, '', 'Electrical', '0')
+				CompExtID=2
+				$begin 'Parameters'
+					TextProp('Name', 'D', 'Name of the winding (from Maxwell)', 'WindingName')
+					ButtonProp('MaxCirNetlist', 'HD', '', 'L@Name %0 %1 1 Winding', 'L@Name %0 %1 1 Winding', 1, ButtonPropClientData())
+					TextProp('ModelName', 'SRHD', '', 'L')
+					TextProp('LabelID', 'HD', '', 'L@(Name)')
+				$end 'Parameters'
+			$end 'Winding'
+			$begin 'Res'
+				Library='Maxwell Circuit Elements\\Passive Elements'
+				Refbase='R'
+				NumParts=1
+				ModSinceLib=false
+				Terminal('n1', 'n1', 'A', true, 0, 1, '', 'Electrical', '0')
+				Terminal('n2', 'n2', 'A', true, 1, 1, '', 'Electrical', '0')
+				CompExtID=2
+				$begin 'Parameters'
+					TextProp('Name', 'D', 'Element instance name', '')
+					VariableProp('R', 'D', '', '100ohm')
+					ButtonProp('MaxCirNetlist', 'HD', '', 'R?Name(@Name):(@ID) %0 %1 @R', 'R?Name(@Name):(@ID) %0 %1 @R', 1, ButtonPropClientData())
+					TextProp('ModelName', 'SRHD', '', 'R')
+					TextProp('LabelID', 'HD', '', 'R?Name(@Name):(@ID)')
+				$end 'Parameters'
+			$end 'Res'
+			$begin 'Ind'
+				Library='Maxwell Circuit Elements\\Passive Elements'
+				Refbase='L'
+				NumParts=1
+				ModSinceLib=false
+				Terminal('n1', 'n1', 'A', true, 0, 1, '', 'Electrical', '0')
+				Terminal('n2', 'n2', 'A', true, 1, 1, '', 'Electrical', '0')
+				CompExtID=2
+				$begin 'Parameters'
+					TextProp('Name', 'D', 'Element instance name', '')
+					VariableProp('L', 'D', '', '10nH')
+					VariableProp('IC', 'D', 'Initial current, in amperes', '0A')
+					ButtonProp('MaxCirNetlist', 'HD', '', 'L?Name(@Name):(@ID) %0 %1 @L *IC(IC=@IC)', 'L?Name(@Name):(@ID) %0 %1 @L *IC(IC=@IC)', 1, ButtonPropClientData())
+					TextProp('ModelName', 'SRHD', '', 'L')
+					TextProp('LabelID', 'HD', '', 'L?Name(@Name):(@ID)')
+				$end 'Parameters'
+			$end 'Ind'
+			$begin 'Ammeter'
+				Library='Maxwell Circuit Elements\\Probes'
+				Refbase='V'
+				NumParts=1
+				ModSinceLib=false
+				Terminal('n1', 'n1', 'A', true, 0, 1, '', 'Electrical', '0')
+				Terminal('n2', 'n2', 'A', true, 1, 1, '', 'Electrical', '0')
+				CompExtID=2
+				$begin 'Parameters'
+					TextProp('Name', 'D', 'Element instance name', '')
+					ButtonProp('MaxCirNetlist', 'HD', '', '?Name(V@Name):(VAmmeter@ID) %0 %1 DC 0 \
+.PRINT TRAN PROBE ?Name(V@Name):(VAmmeter@ID)(t) I(?Name(V@Name):(VAmmeter@ID))', '?Name(V@Name):(VAmmeter@ID) %0 %1 DC 0 \
+.PRINT TRAN PROBE ?Name(V@Name):(VAmmeter@ID)(t) I(?Name(V@Name):(VAmmeter@ID))', 1, ButtonPropClientData())
+					TextProp('ModelName', 'SRHD', '', 'V')
+					TextProp('LabelID', 'HD', '', '?Name(V@Name):(VAmmeter@ID)')
+				$end 'Parameters'
+			$end 'Ammeter'
+			$begin 'VPulse'
+				Library='Maxwell Circuit Elements\\Sources'
+				Refbase='V'
+				NumParts=1
+				ModSinceLib=false
+				Terminal('n1', 'n1', 'A', true, 0, 1, '', 'Electrical', '0')
+				Terminal('n2', 'n2', 'A', true, 1, 1, '', 'Electrical', '0')
+				CompExtID=2
+				$begin 'Parameters'
+					TextProp('Name', 'D', 'Element instance name', '')
+					VariableProp('V1', 'D', 'Initial voltage, in Volts', '0V')
+					VariableProp('V2', 'D', 'Peak voltage, in Volts', '1V')
+					VariableProp('Td', 'D', 'Initial delat time, in Seconds if Type is TIME', '0')
+					VariableProp('Tr', 'D', 'Rise time, in Seconds if Type is TIME', '0.1')
+					VariableProp('Tf', 'D', 'Fall time, in Seconds if Type is TIME', '0.1')
+					VariableProp('Pw', 'D', 'Pulse width, in Seconds if Type is TIME', '0.5')
+					VariableProp('Period', 'D', 'Pulse period, in Seconds if Type is TIME', '1')
+					MenuProp('Type', 'D', '', 'TIME,POS,SPEED', 0)
+					ButtonProp('MaxCirNetlist', 'HD', '', 'V?Name(@Name):(@ID) %0 %1 PULSE (@V1 @V2 @td @Tr @Tf @Pw @Period) *Type(TYPE=@Type)', 'V?Name(@Name):(@ID) %0 %1 PULSE (@V1 @V2 @td @Tr @Tf @Pw @Period) *Type(TYPE=@Type)', 1, ButtonPropClientData())
+					TextProp('ModelName', 'SRHD', '', 'V')
+					TextProp('LabelID', 'HD', '', 'V?Name(@Name):(@ID)')
+				$end 'Parameters'
+			$end 'VPulse'
+			$begin 'VoltmeterG'
+				Library='Maxwell Circuit Elements\\Probes'
+				Refbase='I'
+				NumParts=1
+				ModSinceLib=false
+				Terminal('n2', 'n2', 'A', true, 0, 1, '', 'Electrical', '0')
+				CompExtID=2
+				$begin 'Parameters'
+					TextProp('Name', 'D', 'Element instance name', '')
+					ButtonProp('MaxCirNetlist', 'HD', '', '?Name(I@Name):(IVoltmeter@ID) %0 0 DC 0 \
+.PRINT TRAN PROBE ?Name(I@Name):(IVoltmeter@ID)(t) V(?Name(I@Name):(IVoltmeter@ID))', '?Name(I@Name):(IVoltmeter@ID) %0 0 DC 0 \
+.PRINT TRAN PROBE ?Name(I@Name):(IVoltmeter@ID)(t) V(?Name(I@Name):(IVoltmeter@ID))', 1, ButtonPropClientData())
+					TextProp('ModelName', 'SRHD', '', 'I')
+					TextProp('LabelID', 'HD', '', '?Name(I@Name):(IVoltmeter@ID)')
+				$end 'Parameters'
+			$end 'VoltmeterG'
+			$begin 'VDC'
+				Library='Maxwell Circuit Elements\\Sources'
+				Refbase='V'
+				NumParts=1
+				ModSinceLib=false
+				Terminal('n1', 'n1', 'A', true, 0, 1, '', 'Electrical', '0')
+				Terminal('n2', 'n2', 'A', true, 1, 1, '', 'Electrical', '0')
+				CompExtID=2
+				$begin 'Parameters'
+					TextProp('Name', 'D', 'Element instance name', '')
+					VariableProp('V', 'D', 'Source Voltage, in Volts', '0V')
+					ButtonProp('MaxCirNetlist', 'HD', '', 'V?Name(@Name):(@ID) %0 %1 @V', 'V?Name(@Name):(@ID) %0 %1 @V', 1, ButtonPropClientData())
+					TextProp('ModelName', 'SRHD', '', 'V')
+					TextProp('LabelID', 'HD', '', 'V?Name(@Name):(@ID)')
+				$end 'Parameters'
+			$end 'VDC'
+			$begin 'DIODE'
+				Library='Maxwell Circuit Elements\\Passive Elements'
+				Refbase='D'
+				NumParts=1
+				ModSinceLib=false
+				Terminal('n1', 'n1', 'A', true, 6, 1, '', 'Electrical', '0')
+				Terminal('n2', 'n2', 'A', true, 7, 1, '', 'Electrical', '0')
+				CompExtID=2
+				$begin 'Parameters'
+					TextProp('Name', 'D', 'Element instance name', '')
+					TextProp('MOD', 'D', 'Name of model data reference', 'required')
+					VariableProp('AREA', 'HD', 'Area multiplier', '1')
+					ButtonProp('MaxCirNetlist', 'HD', '', 'D?Name(@Name):(@ID) %0 %1  @MOD *AREA(@AREA)', 'D?Name(@Name):(@ID) %0 %1  @MOD *AREA(@AREA)', 1, ButtonPropClientData())
+					TextProp('ModelName', 'SRHD', '', 'D')
+					TextProp('LabelID', 'HD', '', 'D?Name(@Name):(@ID)')
+				$end 'Parameters'
+			$end 'DIODE'
+			$begin 'SW_V'
+				Library='Maxwell Circuit Elements\\Passive Elements'
+				Refbase='S'
+				NumParts=1
+				ModSinceLib=false
+				Terminal('n1', 'n1', 'A', true, 0, 1, '', 'Electrical', '0')
+				Terminal('n2', 'n2', 'A', true, 1, 1, '', 'Electrical', '0')
+				CompExtID=2
+				$begin 'Parameters'
+					TextProp('Name', 'D', 'Element instance name', '')
+					TextProp('MOD', 'D', 'Name of model data reference', 'required')
+					TextProp('ID_V', 'D', 'The LabelId property value of the controlling voltmeter or current source, as seen on the schematic', '')
+					MenuProp('IC', 'HD', 'Initial condition, on or off', 'OFF,ON', 0)
+					MenuProp('CP', 'HD', 'Controlling polarity, positive or negative', 'POS,NEG', 0)
+					ButtonProp('MaxCirNetlist', 'HD', '', 'S_?Name(@Name):(@ID) %0 %1 @ID_V @CP @MOD @IC', 'S_?Name(@Name):(@ID) %0 %1 @ID_V @CP @MOD @IC', 1, ButtonPropClientData())
+					TextProp('ModelName', 'SRHD', '', 'S')
+					TextProp('LabelID', 'HD', '', 'S_?Name(@Name):(@ID)')
+				$end 'Parameters'
+			$end 'SW_V'
+			$begin 'SW_I'
+				Library='Maxwell Circuit Elements\\Passive Elements'
+				Refbase='W'
+				NumParts=1
+				ModSinceLib=false
+				Terminal('n1', 'n1', 'A', true, 0, 1, '', 'Electrical', '0')
+				Terminal('n2', 'n2', 'A', true, 1, 1, '', 'Electrical', '0')
+				CompExtID=2
+				$begin 'Parameters'
+					TextProp('Name', 'D', 'Element instance name', '')
+					TextProp('MOD', 'D', 'Name of model data reference', 'required')
+					TextProp('ID_I', 'D', 'The LabelId property value of the controlling ammeter or voltage source, as seen on the schematic', '')
+					MenuProp('IC', 'HD', 'Initial condition, on or off', 'OFF,ON', 0)
+					ButtonProp('MaxCirNetlist', 'HD', '', 'W_?Name(@Name):(@ID) %0 %1 @ID_I @MOD @IC', 'W_?Name(@Name):(@ID) %0 %1 @ID_I @MOD @IC', 1, ButtonPropClientData())
+					TextProp('ModelName', 'SRHD', '', 'W')
+					TextProp('LabelID', 'HD', '', 'W_?Name(@Name):(@ID)')
+				$end 'Parameters'
+			$end 'SW_I'
+			$begin 'DIODE_Model'
+				Library='Maxwell Circuit Elements\\Passive Elements'
+				Refbase='DData'
+				NumParts=1
+				ModSinceLib=false
+				CompExtID=2
+				$begin 'Parameters'
+					TextProp('DeviceName', 'D', 'Name of device model', 'ModelName')
+					VariableProp('IS', 'D', 'Saturation current, in Amps', '1e-014A')
+					VariableProp('RS', 'D', 'Contact resistance, in Ohms', '0ohm')
+					VariableProp('N', 'D', 'Emission coefficient', '1')
+					VariableProp('EG', 'D', 'Barrier height at 0K, in Volts', '1.11V')
+					VariableProp('XTI', 'D', 'Diode saturation current temperature coefficient', '3')
+					VariableProp('BV', 'D', 'Magnitude of the reverse breakdown voltage, in Volts', '1e+030V')
+					VariableProp('IBV', 'D', 'Magnitude of the reverse breakdown current', '0.001A')
+					VariableProp('TNOM', 'D', 'Reference temperature, in Celsius', '27')
+					ButtonProp('MaxCirNetlist', 'HD', '', '.MODEL @DeviceName D (IS=@IS RS=@RS N=@N EG=@EG XTI=@XTI BV=@BV IBV=@IBV TNOM=@TNOM)', '.MODEL @DeviceName D (IS=@IS RS=@RS N=@N EG=@EG XTI=@XTI BV=@BV IBV=@IBV TNOM=@TNOM)', 1, ButtonPropClientData())
+				$end 'Parameters'
+			$end 'DIODE_Model'
+			$begin 'SW_VModel'
+				Library='Maxwell Circuit Elements\\Passive Elements'
+				Refbase='SData'
+				NumParts=1
+				ModSinceLib=false
+				CompExtID=2
+				$begin 'Parameters'
+					TextProp('DeviceName', 'D', 'Name of device model', 'ModelName')
+					VariableProp('Ron', 'D', 'Resistance of on state', '0.001ohm')
+					VariableProp('Roff', 'D', 'Resistance of off state', '1000000ohm')
+					VariableProp('Von', 'D', 'On value of controlling voltage, in Volts', '0V')
+					VariableProp('Voff', 'D', 'Off value of controlling voltage, in Volts', '0V')
+					ButtonProp('MaxCirNetlist', 'RHD', '', '.MODEL @DeviceName SW (Ron=@Ron Roff=@Roff Von=@Von Voff=@Voff)', '.MODEL @DeviceName SW (Ron=@Ron Roff=@Roff Von=@Von Voff=@Voff)', 1, ButtonPropClientData())
+				$end 'Parameters'
+			$end 'SW_VModel'
+			$begin 'SW_IModel'
+				Library='Maxwell Circuit Elements\\Passive Elements'
+				Refbase='WData'
+				NumParts=1
+				ModSinceLib=false
+				CompExtID=2
+				$begin 'Parameters'
+					TextProp('DeviceName', 'D', 'Name of device model', 'ModelName')
+					VariableProp('Ron', 'D', 'Resistance of on state', '0.001ohm')
+					VariableProp('Roff', 'D', 'Resistance of off state', '1000000ohm')
+					VariableProp('Ion', 'D', 'On value of controlling current, in Amps', '0A')
+					VariableProp('Ioff', 'D', 'Off value of controlling current, in Amps', '0A')
+					ButtonProp('MaxCirNetlist', 'RHD', '', '.MODEL @DeviceName CSW (Ron=@Ron Roff=@Roff Ion=@Ion Ioff=@Ioff)', '.MODEL @DeviceName CSW (Ron=@Ron Roff=@Roff Ion=@Ion Ioff=@Ioff)', 1, ButtonPropClientData())
+				$end 'Parameters'
+			$end 'SW_IModel'
+		$end 'Compdefs'
+	$end 'Definitions'
+	DesignIDServer=2
+	MoveBackwards=false
+	$begin 'MaxCirCircuit'
+		Name='SrmA4e'
+		DesignID=0
+		$begin 'Circuit'
+			ComponentName='SrmA4e'
+			AutoFP=''
+			$begin 'DesignDatasets'
+				NextUniqueID=0
+				MoveBackwards=false
+				DatasetType='DesignDatasetType'
+				$begin 'DatasetDefinitions'
+				$end 'DatasetDefinitions'
+			$end 'DesignDatasets'
+			$begin 'Variables'
+				VariableProp('Kle', 'UD', '', '1')
+			$end 'Variables'
+			$begin 'Compinst'
+				ID='2'
+				Status='Status'
+				CompName='Maxwell Circuit Elements\\Dedicated Elements:Winding'
+				$begin 'Properties'
+					TextProp('ID', 'SRID', '', '2')
+				$end 'Properties'
+				$begin 'Parameters'
+					TextProp('Name', 'OD', 'Name of the winding (from Maxwell)', 'PhaseA')
+				$end 'Parameters'
+			$end 'Compinst'
+			$begin 'Compinst'
+				ID='3'
+				Status='Status'
+				CompName='Maxwell Circuit Elements\\Dedicated Elements:Winding'
+				$begin 'Properties'
+					TextProp('ID', 'SRID', '', '3')
+				$end 'Properties'
+				$begin 'Parameters'
+					TextProp('Name', 'OD', 'Name of the winding (from Maxwell)', 'PhaseB')
+				$end 'Parameters'
+			$end 'Compinst'
+			$begin 'Compinst'
+				ID='4'
+				Status='Status'
+				CompName='Maxwell Circuit Elements\\Dedicated Elements:Winding'
+				$begin 'Properties'
+					TextProp('ID', 'SRID', '', '4')
+				$end 'Properties'
+				$begin 'Parameters'
+					TextProp('Name', 'OD', 'Name of the winding (from Maxwell)', 'PhaseC')
+				$end 'Parameters'
+			$end 'Compinst'
+			$begin 'Compinst'
+				ID='5'
+				Status='Status'
+				CompName='Maxwell Circuit Elements\\Passive Elements:Res'
+				$begin 'Properties'
+					TextProp('ID', 'SRID', '', '5')
+				$end 'Properties'
+				$begin 'Parameters'
+					TextProp('Name', 'OD', 'Element instance name', 'A')
+					ValueProp('R', 'OD', '', '4.0005ohm', 0)
+				$end 'Parameters'
+			$end 'Compinst'
+			$begin 'Compinst'
+				ID='6'
+				Status='Status'
+				CompName='Maxwell Circuit Elements\\Passive Elements:Res'
+				$begin 'Properties'
+					TextProp('ID', 'SRID', '', '6')
+				$end 'Properties'
+				$begin 'Parameters'
+					TextProp('Name', 'OD', 'Element instance name', 'B')
+					ValueProp('R', 'OD', '', '4.0005ohm', 0)
+				$end 'Parameters'
+			$end 'Compinst'
+			$begin 'Compinst'
+				ID='7'
+				Status='Status'
+				CompName='Maxwell Circuit Elements\\Passive Elements:Res'
+				$begin 'Properties'
+					TextProp('ID', 'SRID', '', '7')
+				$end 'Properties'
+				$begin 'Parameters'
+					TextProp('Name', 'OD', 'Element instance name', 'C')
+					ValueProp('R', 'OD', '', '4.0005ohm', 0)
+				$end 'Parameters'
+			$end 'Compinst'
+			$begin 'Compinst'
+				ID='8'
+				Status='Status'
+				CompName='Maxwell Circuit Elements\\Passive Elements:Ind'
+				$begin 'Properties'
+					TextProp('ID', 'SRID', '', '8')
+				$end 'Properties'
+				$begin 'Parameters'
+					TextProp('Name', 'OD', 'Element instance name', 'A')
+					ValueProp('L', 'OD', '', '0.000996242H*Kle', 0)
+				$end 'Parameters'
+			$end 'Compinst'
+			$begin 'Compinst'
+				ID='9'
+				Status='Status'
+				CompName='Maxwell Circuit Elements\\Passive Elements:Ind'
+				$begin 'Properties'
+					TextProp('ID', 'SRID', '', '9')
+				$end 'Properties'
+				$begin 'Parameters'
+					TextProp('Name', 'OD', 'Element instance name', 'B')
+					ValueProp('L', 'OD', '', '0.000996242H*Kle', 0)
+				$end 'Parameters'
+			$end 'Compinst'
+			$begin 'Compinst'
+				ID='10'
+				Status='Status'
+				CompName='Maxwell Circuit Elements\\Passive Elements:Ind'
+				$begin 'Properties'
+					TextProp('ID', 'SRID', '', '10')
+				$end 'Properties'
+				$begin 'Parameters'
+					TextProp('Name', 'OD', 'Element instance name', 'C')
+					ValueProp('L', 'OD', '', '0.000996242H*Kle', 0)
+				$end 'Parameters'
+			$end 'Compinst'
+			$begin 'Compinst'
+				ID='11'
+				Status='Status'
+				CompName='Maxwell Circuit Elements\\Probes:Ammeter'
+				$begin 'Properties'
+					TextProp('ID', 'SRID', '', '11')
+				$end 'Properties'
+				$begin 'Parameters'
+					TextProp('Name', 'OD', 'Element instance name', 'IA')
+				$end 'Parameters'
+			$end 'Compinst'
+			$begin 'Compinst'
+				ID='12'
+				Status='Status'
+				CompName='Maxwell Circuit Elements\\Probes:Ammeter'
+				$begin 'Properties'
+					TextProp('ID', 'SRID', '', '12')
+				$end 'Properties'
+				$begin 'Parameters'
+					TextProp('Name', 'OD', 'Element instance name', 'IB')
+				$end 'Parameters'
+			$end 'Compinst'
+			$begin 'Compinst'
+				ID='13'
+				Status='Status'
+				CompName='Maxwell Circuit Elements\\Probes:Ammeter'
+				$begin 'Properties'
+					TextProp('ID', 'SRID', '', '13')
+				$end 'Properties'
+				$begin 'Parameters'
+					TextProp('Name', 'OD', 'Element instance name', 'IC')
+				$end 'Parameters'
+			$end 'Compinst'
+			$begin 'Compinst'
+				ID='14'
+				Status='Status'
+				CompName='Maxwell Circuit Elements\\Sources:VPulse'
+				$begin 'Properties'
+					TextProp('ID', 'SRID', '', '14')
+				$end 'Properties'
+				$begin 'Parameters'
+					ValueProp('V1', 'OD', 'Initial voltage, in Volts', '-1', 0)
+					ValueProp('Td', 'OD', 'Initial delat time, in Seconds if Type is TIME', '6', 0)
+					ValueProp('Tr', 'OD', 'Rise time, in Seconds if Type is TIME', '0', 0)
+					ValueProp('Tf', 'OD', 'Fall time, in Seconds if Type is TIME', '0', 0)
+					ValueProp('Pw', 'OD', 'Pulse width, in Seconds if Type is TIME', '13', 0)
+					ValueProp('Period', 'OD', 'Pulse period, in Seconds if Type is TIME', '45', 0)
+					MenuProp('Type', 'OD', '', 'TIME,POS,SPEED', 1)
+				$end 'Parameters'
+			$end 'Compinst'
+			$begin 'Compinst'
+				ID='15'
+				Status='Status'
+				CompName='Maxwell Circuit Elements\\Sources:VPulse'
+				$begin 'Properties'
+					TextProp('ID', 'SRID', '', '15')
+				$end 'Properties'
+				$begin 'Parameters'
+					ValueProp('V1', 'OD', 'Initial voltage, in Volts', '-1', 0)
+					ValueProp('Td', 'OD', 'Initial delat time, in Seconds if Type is TIME', '21', 0)
+					ValueProp('Tr', 'OD', 'Rise time, in Seconds if Type is TIME', '0', 0)
+					ValueProp('Tf', 'OD', 'Fall time, in Seconds if Type is TIME', '0', 0)
+					ValueProp('Pw', 'OD', 'Pulse width, in Seconds if Type is TIME', '13', 0)
+					ValueProp('Period', 'OD', 'Pulse period, in Seconds if Type is TIME', '45', 0)
+					MenuProp('Type', 'OD', '', 'TIME,POS,SPEED', 1)
+				$end 'Parameters'
+			$end 'Compinst'
+			$begin 'Compinst'
+				ID='16'
+				Status='Status'
+				CompName='Maxwell Circuit Elements\\Sources:VPulse'
+				$begin 'Properties'
+					TextProp('ID', 'SRID', '', '16')
+				$end 'Properties'
+				$begin 'Parameters'
+					ValueProp('V1', 'OD', 'Initial voltage, in Volts', '-1', 0)
+					ValueProp('Td', 'OD', 'Initial delat time, in Seconds if Type is TIME', '36', 0)
+					ValueProp('Tr', 'OD', 'Rise time, in Seconds if Type is TIME', '0', 0)
+					ValueProp('Tf', 'OD', 'Fall time, in Seconds if Type is TIME', '0', 0)
+					ValueProp('Pw', 'OD', 'Pulse width, in Seconds if Type is TIME', '13', 0)
+					ValueProp('Period', 'OD', 'Pulse period, in Seconds if Type is TIME', '45', 0)
+					MenuProp('Type', 'OD', '', 'TIME,POS,SPEED', 1)
+				$end 'Parameters'
+			$end 'Compinst'
+			$begin 'Compinst'
+				ID='17'
+				Status='Status'
+				CompName='Maxwell Circuit Elements\\Passive Elements:Res'
+				$begin 'Properties'
+					TextProp('ID', 'SRID', '', '17')
+				$end 'Properties'
+			$end 'Compinst'
+			$begin 'Compinst'
+				ID='18'
+				Status='Status'
+				CompName='Maxwell Circuit Elements\\Passive Elements:Res'
+				$begin 'Properties'
+					TextProp('ID', 'SRID', '', '18')
+				$end 'Properties'
+			$end 'Compinst'
+			$begin 'Compinst'
+				ID='19'
+				Status='Status'
+				CompName='Maxwell Circuit Elements\\Passive Elements:Res'
+				$begin 'Properties'
+					TextProp('ID', 'SRID', '', '19')
+				$end 'Properties'
+			$end 'Compinst'
+			$begin 'Compinst'
+				ID='20'
+				Status='Status'
+				CompName='Maxwell Circuit Elements\\Probes:VoltmeterG'
+				$begin 'Properties'
+					TextProp('ID', 'SRID', '', '20')
+				$end 'Properties'
+				$begin 'Parameters'
+					TextProp('Name', 'OD', 'Element instance name', 'Vc1')
+				$end 'Parameters'
+			$end 'Compinst'
+			$begin 'Compinst'
+				ID='21'
+				Status='Status'
+				CompName='Maxwell Circuit Elements\\Probes:VoltmeterG'
+				$begin 'Properties'
+					TextProp('ID', 'SRID', '', '21')
+				$end 'Properties'
+				$begin 'Parameters'
+					TextProp('Name', 'OD', 'Element instance name', 'Vc2')
+				$end 'Parameters'
+			$end 'Compinst'
+			$begin 'Compinst'
+				ID='22'
+				Status='Status'
+				CompName='Maxwell Circuit Elements\\Probes:VoltmeterG'
+				$begin 'Properties'
+					TextProp('ID', 'SRID', '', '22')
+				$end 'Properties'
+				$begin 'Parameters'
+					TextProp('Name', 'OD', 'Element instance name', 'Vc3')
+				$end 'Parameters'
+			$end 'Compinst'
+			$begin 'Compinst'
+				ID='23'
+				Status='Status'
+				CompName='Maxwell Circuit Elements\\Sources:VDC'
+				$begin 'Properties'
+					TextProp('ID', 'SRID', '', '23')
+				$end 'Properties'
+				$begin 'Parameters'
+					ValueProp('V', 'OD', 'Source Voltage, in Volts', '257V', 0)
+				$end 'Parameters'
+			$end 'Compinst'
+			$begin 'Compinst'
+				ID='24'
+				Status='Status'
+				CompName='Maxwell Circuit Elements\\Sources:VDC'
+				$begin 'Properties'
+					TextProp('ID', 'SRID', '', '24')
+				$end 'Properties'
+				$begin 'Parameters'
+					ValueProp('V', 'OD', 'Source Voltage, in Volts', '257V', 0)
+				$end 'Parameters'
+			$end 'Compinst'
+			$begin 'Compinst'
+				ID='25'
+				Status='Status'
+				CompName='Maxwell Circuit Elements\\Passive Elements:DIODE'
+				$begin 'Properties'
+					TextProp('ID', 'SRID', '', '25')
+				$end 'Properties'
+				$begin 'Parameters'
+					TextProp('MOD', 'OD', 'Name of model data reference', 'DModel1')
+				$end 'Parameters'
+			$end 'Compinst'
+			$begin 'Compinst'
+				ID='26'
+				Status='Status'
+				CompName='Maxwell Circuit Elements\\Passive Elements:DIODE'
+				$begin 'Properties'
+					TextProp('ID', 'SRID', '', '26')
+				$end 'Properties'
+				$begin 'Parameters'
+					TextProp('MOD', 'OD', 'Name of model data reference', 'DModel1')
+				$end 'Parameters'
+			$end 'Compinst'
+			$begin 'Compinst'
+				ID='27'
+				Status='Status'
+				CompName='Maxwell Circuit Elements\\Passive Elements:DIODE'
+				$begin 'Properties'
+					TextProp('ID', 'SRID', '', '27')
+				$end 'Properties'
+				$begin 'Parameters'
+					TextProp('MOD', 'OD', 'Name of model data reference', 'DModel1')
+				$end 'Parameters'
+			$end 'Compinst'
+			$begin 'Compinst'
+				ID='28'
+				Status='Status'
+				CompName='Maxwell Circuit Elements\\Passive Elements:DIODE'
+				$begin 'Properties'
+					TextProp('ID', 'SRID', '', '28')
+				$end 'Properties'
+				$begin 'Parameters'
+					TextProp('MOD', 'OD', 'Name of model data reference', 'DModel1')
+				$end 'Parameters'
+			$end 'Compinst'
+			$begin 'Compinst'
+				ID='29'
+				Status='Status'
+				CompName='Maxwell Circuit Elements\\Passive Elements:DIODE'
+				$begin 'Properties'
+					TextProp('ID', 'SRID', '', '29')
+				$end 'Properties'
+				$begin 'Parameters'
+					TextProp('MOD', 'OD', 'Name of model data reference', 'DModel1')
+				$end 'Parameters'
+			$end 'Compinst'
+			$begin 'Compinst'
+				ID='30'
+				Status='Status'
+				CompName='Maxwell Circuit Elements\\Passive Elements:DIODE'
+				$begin 'Properties'
+					TextProp('ID', 'SRID', '', '30')
+				$end 'Properties'
+				$begin 'Parameters'
+					TextProp('MOD', 'OD', 'Name of model data reference', 'DModel1')
+				$end 'Parameters'
+			$end 'Compinst'
+			$begin 'Compinst'
+				ID='31'
+				Status='Status'
+				CompName='Maxwell Circuit Elements\\Passive Elements:DIODE'
+				$begin 'Properties'
+					TextProp('ID', 'SRID', '', '31')
+				$end 'Properties'
+				$begin 'Parameters'
+					TextProp('MOD', 'OD', 'Name of model data reference', 'DModel1')
+				$end 'Parameters'
+			$end 'Compinst'
+			$begin 'Compinst'
+				ID='32'
+				Status='Status'
+				CompName='Maxwell Circuit Elements\\Passive Elements:DIODE'
+				$begin 'Properties'
+					TextProp('ID', 'SRID', '', '32')
+				$end 'Properties'
+				$begin 'Parameters'
+					TextProp('MOD', 'OD', 'Name of model data reference', 'DModel1')
+				$end 'Parameters'
+			$end 'Compinst'
+			$begin 'Compinst'
+				ID='33'
+				Status='Status'
+				CompName='Maxwell Circuit Elements\\Passive Elements:DIODE'
+				$begin 'Properties'
+					TextProp('ID', 'SRID', '', '33')
+				$end 'Properties'
+				$begin 'Parameters'
+					TextProp('MOD', 'OD', 'Name of model data reference', 'DModel1')
+				$end 'Parameters'
+			$end 'Compinst'
+			$begin 'Compinst'
+				ID='34'
+				Status='Status'
+				CompName='Maxwell Circuit Elements\\Passive Elements:DIODE'
+				$begin 'Properties'
+					TextProp('ID', 'SRID', '', '34')
+				$end 'Properties'
+				$begin 'Parameters'
+					TextProp('MOD', 'OD', 'Name of model data reference', 'DModel1')
+				$end 'Parameters'
+			$end 'Compinst'
+			$begin 'Compinst'
+				ID='35'
+				Status='Status'
+				CompName='Maxwell Circuit Elements\\Passive Elements:DIODE'
+				$begin 'Properties'
+					TextProp('ID', 'SRID', '', '35')
+				$end 'Properties'
+				$begin 'Parameters'
+					TextProp('MOD', 'OD', 'Name of model data reference', 'DModel1')
+				$end 'Parameters'
+			$end 'Compinst'
+			$begin 'Compinst'
+				ID='36'
+				Status='Status'
+				CompName='Maxwell Circuit Elements\\Passive Elements:DIODE'
+				$begin 'Properties'
+					TextProp('ID', 'SRID', '', '36')
+				$end 'Properties'
+				$begin 'Parameters'
+					TextProp('MOD', 'OD', 'Name of model data reference', 'DModel1')
+				$end 'Parameters'
+			$end 'Compinst'
+			$begin 'Compinst'
+				ID='37'
+				Status='Status'
+				CompName='Maxwell Circuit Elements\\Passive Elements:SW_V'
+				$begin 'Properties'
+					TextProp('ID', 'SRID', '', '37')
+				$end 'Properties'
+				$begin 'Parameters'
+					TextProp('ID_V', 'OD', 'The LabelId property value of the controlling voltmeter or current source, as seen on the schematic', 'IVc1')
+					TextProp('MOD', 'OD', 'Name of model data reference', 'SModel1')
+				$end 'Parameters'
+			$end 'Compinst'
+			$begin 'Compinst'
+				ID='38'
+				Status='Status'
+				CompName='Maxwell Circuit Elements\\Passive Elements:SW_V'
+				$begin 'Properties'
+					TextProp('ID', 'SRID', '', '38')
+				$end 'Properties'
+				$begin 'Parameters'
+					TextProp('ID_V', 'OD', 'The LabelId property value of the controlling voltmeter or current source, as seen on the schematic', 'IVc1')
+					TextProp('MOD', 'OD', 'Name of model data reference', 'SModel1')
+				$end 'Parameters'
+			$end 'Compinst'
+			$begin 'Compinst'
+				ID='39'
+				Status='Status'
+				CompName='Maxwell Circuit Elements\\Passive Elements:SW_V'
+				$begin 'Properties'
+					TextProp('ID', 'SRID', '', '39')
+				$end 'Properties'
+				$begin 'Parameters'
+					TextProp('ID_V', 'OD', 'The LabelId property value of the controlling voltmeter or current source, as seen on the schematic', 'IVc2')
+					TextProp('MOD', 'OD', 'Name of model data reference', 'SModel1')
+				$end 'Parameters'
+			$end 'Compinst'
+			$begin 'Compinst'
+				ID='40'
+				Status='Status'
+				CompName='Maxwell Circuit Elements\\Passive Elements:SW_V'
+				$begin 'Properties'
+					TextProp('ID', 'SRID', '', '40')
+				$end 'Properties'
+				$begin 'Parameters'
+					TextProp('ID_V', 'OD', 'The LabelId property value of the controlling voltmeter or current source, as seen on the schematic', 'IVc2')
+					TextProp('MOD', 'OD', 'Name of model data reference', 'SModel1')
+				$end 'Parameters'
+			$end 'Compinst'
+			$begin 'Compinst'
+				ID='41'
+				Status='Status'
+				CompName='Maxwell Circuit Elements\\Passive Elements:SW_V'
+				$begin 'Properties'
+					TextProp('ID', 'SRID', '', '41')
+				$end 'Properties'
+				$begin 'Parameters'
+					TextProp('ID_V', 'OD', 'The LabelId property value of the controlling voltmeter or current source, as seen on the schematic', 'IVc3')
+					TextProp('MOD', 'OD', 'Name of model data reference', 'SModel1')
+				$end 'Parameters'
+			$end 'Compinst'
+			$begin 'Compinst'
+				ID='42'
+				Status='Status'
+				CompName='Maxwell Circuit Elements\\Passive Elements:SW_V'
+				$begin 'Properties'
+					TextProp('ID', 'SRID', '', '42')
+				$end 'Properties'
+				$begin 'Parameters'
+					TextProp('ID_V', 'OD', 'The LabelId property value of the controlling voltmeter or current source, as seen on the schematic', 'IVc3')
+					TextProp('MOD', 'OD', 'Name of model data reference', 'SModel1')
+				$end 'Parameters'
+			$end 'Compinst'
+			$begin 'Compinst'
+				ID='44'
+				Status='Status'
+				CompName='Maxwell Circuit Elements\\Passive Elements:SW_I'
+				$begin 'Properties'
+					TextProp('ID', 'SRID', '', '44')
+				$end 'Properties'
+				$begin 'Parameters'
+					TextProp('ID_I', 'OD', 'The LabelId property value of the controlling ammeter or voltage source, as seen on the schematic', 'VIA')
+					TextProp('MOD', 'OD', 'Name of model data reference', 'WModelP')
+				$end 'Parameters'
+			$end 'Compinst'
+			$begin 'Compinst'
+				ID='46'
+				Status='Status'
+				CompName='Maxwell Circuit Elements\\Passive Elements:SW_I'
+				$begin 'Properties'
+					TextProp('ID', 'SRID', '', '46')
+				$end 'Properties'
+				$begin 'Parameters'
+					TextProp('ID_I', 'OD', 'The LabelId property value of the controlling ammeter or voltage source, as seen on the schematic', 'VIB')
+					TextProp('MOD', 'OD', 'Name of model data reference', 'WModelP')
+				$end 'Parameters'
+			$end 'Compinst'
+			$begin 'Compinst'
+				ID='48'
+				Status='Status'
+				CompName='Maxwell Circuit Elements\\Passive Elements:SW_I'
+				$begin 'Properties'
+					TextProp('ID', 'SRID', '', '48')
+				$end 'Properties'
+				$begin 'Parameters'
+					TextProp('ID_I', 'OD', 'The LabelId property value of the controlling ammeter or voltage source, as seen on the schematic', 'VIC')
+					TextProp('MOD', 'OD', 'Name of model data reference', 'WModelP')
+				$end 'Parameters'
+			$end 'Compinst'
+			$begin 'Compinst'
+				ID='49'
+				Status='Status'
+				CompName='Maxwell Circuit Elements\\Passive Elements:DIODE_Model'
+				$begin 'Properties'
+					TextProp('ID', 'SRID', '', '49')
+				$end 'Properties'
+				$begin 'Parameters'
+					ValueProp('RS', 'OD', 'Contact resistance, in Ohms', '0.275024ohm', 0)
+					TextProp('DeviceName', 'OD', 'Name of device model', 'DModel1')
+				$end 'Parameters'
+			$end 'Compinst'
+			$begin 'Compinst'
+				ID='50'
+				Status='Status'
+				CompName='Maxwell Circuit Elements\\Passive Elements:SW_VModel'
+				$begin 'Properties'
+					TextProp('ID', 'SRID', '', '50')
+				$end 'Properties'
+				$begin 'Parameters'
+					ValueProp('Von', 'OD', 'On value of controlling voltage, in Volts', '0V', 0)
+					ValueProp('Voff', 'OD', 'Off value of controlling voltage, in Volts', '0V', 0)
+					TextProp('DeviceName', 'OD', 'Name of device model', 'SModel1')
+				$end 'Parameters'
+			$end 'Compinst'
+			$begin 'Compinst'
+				ID='51'
+				Status='Status'
+				CompName='Maxwell Circuit Elements\\Passive Elements:SW_IModel'
+				$begin 'Properties'
+					TextProp('ID', 'SRID', '', '51')
+				$end 'Properties'
+				$begin 'Parameters'
+					ValueProp('Ron', 'OD', 'Resistance of on state', '1000000ohm', 0)
+					ValueProp('Roff', 'OD', 'Resistance of off state', '0.001ohm', 0)
+					ValueProp('Ion', 'OD', 'On value of controlling current, in Amps', '16A', 0)
+					ValueProp('Ioff', 'OD', 'Off value of controlling current, in Amps', '15A', 0)
+					TextProp('DeviceName', 'OD', 'Name of device model', 'WModelP')
+				$end 'Parameters'
+			$end 'Compinst'
+			$begin 'Compinst'
+				ID='52'
+				Status='Status'
+				CompName='Maxwell Circuit Elements\\Passive Elements:SW_IModel'
+				$begin 'Properties'
+					TextProp('ID', 'SRID', '', '52')
+				$end 'Properties'
+				$begin 'Parameters'
+					TextProp('DeviceName', 'OD', 'Name of device model', 'WModelN')
+					ValueProp('Ion', 'OD', 'On value of controlling current, in Amps', '-10.5A', 0)
+					ValueProp('Ioff', 'OD', 'Off value of controlling current, in Amps', '-12A', 0)
+				$end 'Parameters'
+			$end 'Compinst'
+			$begin 'GlobalPort'
+				PortName='0'
+			$end 'GlobalPort'
+			$begin 'Net'
+				NetName='0'
+				NetGPorts='0'
+				NetPin('14', 1)
+				NetPin('15', 1)
+				NetPin('16', 1)
+				NetPin('23', 1)
+				NetPin('24', 0)
+			$end 'Net'
+			$begin 'Net'
+				NetName='net_10'
+				NetPin('9', 0)
+				NetPin('12', 1)
+			$end 'Net'
+			$begin 'Net'
+				NetName='net_11'
+				NetPin('10', 0)
+				NetPin('13', 1)
+			$end 'Net'
+			$begin 'Net'
+				NetName='net_15'
+				NetPin('14', 0)
+				NetPin('17', 0)
+				NetPin('20', 0)
+			$end 'Net'
+			$begin 'Net'
+				NetName='net_16'
+				NetPin('15', 0)
+				NetPin('18', 0)
+				NetPin('21', 0)
+			$end 'Net'
+			$begin 'Net'
+				NetName='net_17'
+				NetPin('16', 0)
+				NetPin('19', 0)
+				NetPin('22', 0)
+			$end 'Net'
+			$begin 'Net'
+				NetName='net_20'
+				NetPin('17', 1)
+				NetPin('18', 1)
+				NetPin('19', 1)
+			$end 'Net'
+			$begin 'Net'
+				NetName='net_21'
+				NetPin('23', 0)
+				NetPin('26', 1)
+				NetPin('28', 1)
+				NetPin('30', 1)
+				NetPin('31', 0)
+				NetPin('33', 0)
+				NetPin('35', 0)
+			$end 'Net'
+			$begin 'Net'
+				NetName='net_23'
+				NetPin('24', 1)
+				NetPin('25', 0)
+				NetPin('27', 0)
+				NetPin('29', 0)
+				NetPin('44', 1)
+				NetPin('46', 1)
+				NetPin('48', 1)
+			$end 'Net'
+			$begin 'Net'
+				NetName='net_24'
+				NetPin('11', 0)
+				NetPin('25', 1)
+				NetPin('37', 1)
+			$end 'Net'
+			$begin 'Net'
+				NetName='net_25'
+				NetPin('12', 0)
+				NetPin('27', 1)
+				NetPin('39', 1)
+			$end 'Net'
+			$begin 'Net'
+				NetName='net_27'
+				NetPin('2', 1)
+				NetPin('26', 0)
+				NetPin('32', 0)
+			$end 'Net'
+			$begin 'Net'
+				NetName='net_28'
+				NetPin('3', 1)
+				NetPin('28', 0)
+				NetPin('34', 0)
+			$end 'Net'
+			$begin 'Net'
+				NetName='net_29'
+				NetPin('4', 1)
+				NetPin('30', 0)
+				NetPin('36', 0)
+			$end 'Net'
+			$begin 'Net'
+				NetName='net_3'
+				NetPin('2', 0)
+				NetPin('5', 1)
+			$end 'Net'
+			$begin 'Net'
+				NetName='net_30'
+				NetPin('31', 1)
+				NetPin('37', 0)
+			$end 'Net'
+			$begin 'Net'
+				NetName='net_31'
+				NetPin('32', 1)
+				NetPin('38', 0)
+			$end 'Net'
+			$begin 'Net'
+				NetName='net_32'
+				NetPin('33', 1)
+				NetPin('39', 0)
+			$end 'Net'
+			$begin 'Net'
+				NetName='net_33'
+				NetPin('34', 1)
+				NetPin('40', 0)
+			$end 'Net'
+			$begin 'Net'
+				NetName='net_34'
+				NetPin('35', 1)
+				NetPin('41', 0)
+			$end 'Net'
+			$begin 'Net'
+				NetName='net_35'
+				NetPin('36', 1)
+				NetPin('42', 0)
+			$end 'Net'
+			$begin 'Net'
+				NetName='net_37'
+				NetPin('38', 1)
+				NetPin('44', 0)
+			$end 'Net'
+			$begin 'Net'
+				NetName='net_39'
+				NetPin('40', 1)
+				NetPin('46', 0)
+			$end 'Net'
+			$begin 'Net'
+				NetName='net_4'
+				NetPin('3', 0)
+				NetPin('6', 1)
+			$end 'Net'
+			$begin 'Net'
+				NetName='net_40'
+				NetPin('13', 0)
+				NetPin('29', 1)
+				NetPin('41', 1)
+			$end 'Net'
+			$begin 'Net'
+				NetName='net_41'
+				NetPin('42', 1)
+				NetPin('48', 0)
+			$end 'Net'
+			$begin 'Net'
+				NetName='net_5'
+				NetPin('4', 0)
+				NetPin('7', 1)
+			$end 'Net'
+			$begin 'Net'
+				NetName='net_6'
+				NetPin('5', 0)
+				NetPin('8', 1)
+			$end 'Net'
+			$begin 'Net'
+				NetName='net_7'
+				NetPin('6', 0)
+				NetPin('9', 1)
+			$end 'Net'
+			$begin 'Net'
+				NetName='net_8'
+				NetPin('7', 0)
+				NetPin('10', 1)
+			$end 'Net'
+			$begin 'Net'
+				NetName='net_9'
+				NetPin('8', 0)
+				NetPin('11', 1)
+			$end 'Net'
+		$end 'Circuit'
+		$begin 'Schematic'
+			PPortCounter=0
+			BusEntryCounter=0
+			$begin 'Page'
+				PageSize('A')
+				PageData(Origin(x='0mm', y='0mm'), PageSize(x='0', y='0'), Margins(x='0', y='0'), 0, 0, 0)
+				PageNumber=1
+				$begin 'SchGPort'
+					SchPortInst('Symbols:ground_earth', '0', '0', 208, 0.127, -0.05334, 0, false, 'Symbols:ground_earth', 0)
+					$begin 'PropDisplayMap'
+						PortName(2, 5, 0, Text(0.12827, -0.05334, 0, 1, 5, false, 'Arial', 0, '0', false, false, ExtentRect(0, 0, 0, 0, 0.128730485550556, -0.0528795144494438, 0.000920971101112405, 0.00184194220222481, 0, 0, 0), DisplayRect(0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0)))
+					$end 'PropDisplayMap'
+				$end 'SchGPort'
+				$begin 'SchGPort'
+					SchPortInst('Symbols:ground_earth', '2', '0', 253, -0.00508, -0.00254, 0, false, 'Symbols:ground_earth', 0)
+					$begin 'PropDisplayMap'
+						PortName(2, 5, 0, Text(-0.00381, -0.00254, 0, 1, 5, false, 'Arial', 0, '0', false, false, ExtentRect(0, 0, 0, 0, -0.0033495144494438, -0.0020795144494438, 0.000920971101112405, 0.00184194220222481, 0, 0, 0), DisplayRect(0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0)))
+					$end 'PropDisplayMap'
+				$end 'SchGPort'
+				$begin 'SchCompDef'
+					SchCompInst('Maxwell Circuit Elements\\Dedicated Elements:Winding', 'A', '2', 1, '2', 'normal', 0.15748, 0.0127, 0, false, 4294967295, true)
+					Levels(0, 1)
+					$begin 'PropDisplayMap'
+						LabelID(4, 5, 0, Text(0.15748, 0.00910519, 0, 5, 5, false, 'Arial', 0, 'LPhaseA', false, false, ExtentRect(0, 0, 0, 0, 0.15748, 0.0100261611011124, 0.00690728325834303, 0.00184194220222481, 0, 0, 0), DisplayRect(0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0)))
+					$end 'PropDisplayMap'
+				$end 'SchCompDef'
+				$begin 'SchCompDef'
+					SchCompInst('Maxwell Circuit Elements\\Dedicated Elements:Winding', 'A', '3', 8, '3', 'normal', 0.15748, 0.00254, 0, false, 4294967295, true)
+					Levels(0, 1)
+					$begin 'PropDisplayMap'
+						LabelID(4, 5, 0, Text(0.15748, -0.00105481, 0, 5, 5, false, 'Arial', 0, 'LPhaseB', false, false, ExtentRect(0, 0, 0, 0, 0.15748, -0.000133838898887595, 0.00690728325834303, 0.00184194220222481, 0, 0, 0), DisplayRect(0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0)))
+					$end 'PropDisplayMap'
+				$end 'SchCompDef'
+				$begin 'SchCompDef'
+					SchCompInst('Maxwell Circuit Elements\\Dedicated Elements:Winding', 'A', '4', 15, '4', 'normal', 0.15748, -0.00762, 0, false, 4294967295, true)
+					Levels(0, 1)
+					$begin 'PropDisplayMap'
+						LabelID(4, 5, 0, Text(0.15748, -0.01121481, 0, 5, 5, false, 'Arial', 0, 'LPhaseC', false, false, ExtentRect(0, 0, 0, 0, 0.15748, -0.0102938388988876, 0.00690728325834303, 0.00184194220222481, 0, 0, 0), DisplayRect(0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0)))
+					$end 'PropDisplayMap'
+				$end 'SchCompDef'
+				$begin 'SchCompDef'
+					SchCompInst('Maxwell Circuit Elements\\Passive Elements:Res', 'A', '5', 22, '5', 'normal', 0.14478, 0.0127, 0, false, 4294967295, true)
+					Levels(0, 1)
+					$begin 'PropDisplayMap'
+						R(2, 5, 0, Text(0.14478, 0.00910519, 0, 4, 5, false, 'Arial', 0, '4.0005ohm', false, false, ExtentRect(0, 0, 0, 0, 0.14478, 0.0095656755505562, 0.00828873991001164, 0.00184194220222481, 0, 0, 0), DisplayRect(0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0)))
+						LabelID(4, 5, 0, Text(0.14478, 0.00707042, 0, 4, 5, false, 'Arial', 0, 'RA', false, false, ExtentRect(0, 0, 0, 0, 0.14478, 0.0075309055505562, 0.00230242775278101, 0.00184194220222481, 0, 0, 0), DisplayRect(0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0)))
+					$end 'PropDisplayMap'
+				$end 'SchCompDef'
+				$begin 'SchCompDef'
+					SchCompInst('Maxwell Circuit Elements\\Passive Elements:Res', 'A', '6', 31, '6', 'normal', 0.14478, 0.00254, 0, false, 4294967295, true)
+					Levels(0, 1)
+					$begin 'PropDisplayMap'
+						R(2, 5, 0, Text(0.14478, -0.00105481, 0, 4, 5, false, 'Arial', 0, '4.0005ohm', false, false, ExtentRect(0, 0, 0, 0, 0.14478, -0.000594324449443798, 0.00828873991001164, 0.00184194220222481, 0, 0, 0), DisplayRect(0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0)))
+						LabelID(4, 5, 0, Text(0.14478, -0.00308958, 0, 4, 5, false, 'Arial', 0, 'RB', false, false, ExtentRect(0, 0, 0, 0, 0.14478, -0.0026290944494438, 0.00230242775278101, 0.00184194220222481, 0, 0, 0), DisplayRect(0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0)))
+					$end 'PropDisplayMap'
+				$end 'SchCompDef'
+				$begin 'SchCompDef'
+					SchCompInst('Maxwell Circuit Elements\\Passive Elements:Res', 'A', '7', 40, '7', 'normal', 0.14478, -0.00762, 0, false, 4294967295, true)
+					Levels(0, 1)
+					$begin 'PropDisplayMap'
+						R(2, 5, 0, Text(0.14478, -0.01121481, 0, 4, 5, false, 'Arial', 0, '4.0005ohm', false, false, ExtentRect(0, 0, 0, 0, 0.14478, -0.0107543244494438, 0.00828873991001164, 0.00184194220222481, 0, 0, 0), DisplayRect(0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0)))
+						LabelID(4, 5, 0, Text(0.14478, -0.01324958, 0, 4, 5, false, 'Arial', 0, 'RC', false, false, ExtentRect(0, 0, 0, 0, 0.14478, -0.0127890944494438, 0.00230242775278101, 0.00184194220222481, 0, 0, 0), DisplayRect(0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0)))
+					$end 'PropDisplayMap'
+				$end 'SchCompDef'
+				$begin 'SchCompDef'
+					SchCompInst('Maxwell Circuit Elements\\Passive Elements:Ind', 'A', '8', 49, '8', 'normal', 0.13208, 0.0127, 0, false, 4294967295, true)
+					Levels(0, 1)
+					$begin 'PropDisplayMap'
+						L(2, 5, 0, Text(0.13208, 0.00916869, 0, 4, 5, false, 'Arial', 0, '0.000996242H*Kle', false, false, ExtentRect(0, 0, 0, 0, 0.13208, 0.0096291755505562, 0.0140448092919642, 0.00184194220222481, 0, 0, 0), DisplayRect(0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0)))
+						LabelID(4, 5, 0, Text(0.13208, 0.00707042, 0, 4, 5, false, 'Arial', 0, 'LA', false, false, ExtentRect(0, 0, 0, 0, 0.13208, 0.0075309055505562, 0.00207218497750291, 0.00184194220222481, 0, 0, 0), DisplayRect(0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0)))
+					$end 'PropDisplayMap'
+				$end 'SchCompDef'
+				$begin 'SchCompDef'
+					SchCompInst('Maxwell Circuit Elements\\Passive Elements:Ind', 'A', '9', 58, '9', 'normal', 0.13208, 0.00254, 0, false, 4294967295, true)
+					Levels(0, 1)
+					$begin 'PropDisplayMap'
+						L(2, 5, 0, Text(0.13208, -0.00099131, 0, 4, 5, false, 'Arial', 0, '0.000996242H*Kle', false, false, ExtentRect(0, 0, 0, 0, 0.13208, -0.000530824449443798, 0.0140448092919642, 0.00184194220222481, 0, 0, 0), DisplayRect(0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0)))
+						LabelID(4, 5, 0, Text(0.13208, -0.00308958, 0, 4, 5, false, 'Arial', 0, 'LB', false, false, ExtentRect(0, 0, 0, 0, 0.13208, -0.0026290944494438, 0.00207218497750291, 0.00184194220222481, 0, 0, 0), DisplayRect(0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0)))
+					$end 'PropDisplayMap'
+				$end 'SchCompDef'
+				$begin 'SchCompDef'
+					SchCompInst('Maxwell Circuit Elements\\Passive Elements:Ind', 'A', '10', 67, '10', 'normal', 0.13208, -0.00762, 0, false, 4294967295, true)
+					Levels(0, 1)
+					$begin 'PropDisplayMap'
+						L(2, 5, 0, Text(0.13208, -0.01115131, 0, 4, 5, false, 'Arial', 0, '0.000996242H*Kle', false, false, ExtentRect(0, 0, 0, 0, 0.13208, -0.0106908244494438, 0.0140448092919642, 0.00184194220222481, 0, 0, 0), DisplayRect(0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0)))
+						LabelID(4, 5, 0, Text(0.13208, -0.01324958, 0, 4, 5, false, 'Arial', 0, 'LC', false, false, ExtentRect(0, 0, 0, 0, 0.13208, -0.0127890944494438, 0.00207218497750291, 0.00184194220222481, 0, 0, 0), DisplayRect(0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0)))
+					$end 'PropDisplayMap'
+				$end 'SchCompDef'
+				$begin 'SchCompDef'
+					SchCompInst('Maxwell Circuit Elements\\Probes:Ammeter', 'A', '11', 76, '11', 'normal', 0.11938, 0.0127, 1.5707963267949, false, 4294967295, true)
+					Levels(0, 1)
+					$begin 'PropDisplayMap'
+						LabelID(5, 5, 0, Text(0.122936, 0.01113719, 0, 1, 5, false, 'Arial', 0, 'LabelID=VIA', false, false, ExtentRect(0, 0, 0, 0, 0.127655976893201, 0.0115976755505562, 0.00943995378640215, 0.00184194220222481, 0, 0, 0), DisplayRect(0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0)))
+					$end 'PropDisplayMap'
+				$end 'SchCompDef'
+				$begin 'SchCompDef'
+					SchCompInst('Maxwell Circuit Elements\\Probes:Ammeter', 'A', '12', 84, '12', 'normal', 0.11938, 0.00254, 1.5707963267949, false, 4294967295, true)
+					Levels(0, 1)
+					$begin 'PropDisplayMap'
+						LabelID(5, 5, 0, Text(0.122936, 0.00097719, 0, 1, 5, false, 'Arial', 0, 'LabelID=VIB', false, false, ExtentRect(0, 0, 0, 0, 0.127655976893201, 0.0014376755505562, 0.00943995378640215, 0.00184194220222481, 0, 0, 0), DisplayRect(0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0)))
+					$end 'PropDisplayMap'
+				$end 'SchCompDef'
+				$begin 'SchCompDef'
+					SchCompInst('Maxwell Circuit Elements\\Probes:Ammeter', 'A', '13', 92, '13', 'normal', 0.11938, -0.00762, 1.5707963267949, false, 4294967295, true)
+					Levels(0, 1)
+					$begin 'PropDisplayMap'
+						LabelID(5, 5, 0, Text(0.122936, -0.00918281, 0, 1, 5, false, 'Arial', 0, 'LabelID=VIC', false, false, ExtentRect(0, 0, 0, 0, 0.127655976893201, -0.0087223244494438, 0.00943995378640215, 0.00184194220222481, 0, 0, 0), DisplayRect(0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0)))
+					$end 'PropDisplayMap'
+				$end 'SchCompDef'
+				$begin 'SchCompDef'
+					SchCompInst('Maxwell Circuit Elements\\Sources:VPulse', 'A', '14', 109, '14', 'normal', 0.1016, -0.04318, 0, false, 4294967295, true)
+					Levels(0, 1)
+					$begin 'PropDisplayMap'
+						v1(2, 2, 0, Text(0.105903888888896, -0.041857083333328, 0, 1, 5, false, 'Arial', 0, '-1', false, false, ExtentRect(0, 0, 0, 0, 0.10659461721473, -0.0413965977827718, 0.00138145665166861, 0.00184194220222481, 0, 0, 0), DisplayRect(0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0)))
+						v2(2, 2, 0, Text(0.105903888888896, -0.043620972222224, 0, 1, 5, false, 'Arial', 0, '1V', false, false, ExtentRect(0, 0, 0, 0, 0.106939981377647, -0.0431604866716678, 0.00207218497750291, 0.00184194220222481, 0, 0, 0), DisplayRect(0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0)))
+						LabelID(5, 2, 0, Text(0.105903888888896, -0.0453848611111199, 0, 1, 5, false, 'Arial', 0, 'LabelID=V14', false, false, ExtentRect(0, 0, 0, 0, 0.110738987169736, -0.0449243755605637, 0.00967019656168025, 0.00184194220222481, 0, 0, 0), DisplayRect(0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0)))
+					$end 'PropDisplayMap'
+				$end 'SchCompDef'
+				$begin 'SchCompDef'
+					SchCompInst('Maxwell Circuit Elements\\Sources:VPulse', 'A', '15', 122, '15', 'normal', 0.1143, -0.04318, 0, false, 4294967295, true)
+					Levels(0, 1)
+					$begin 'PropDisplayMap'
+						v1(2, 2, 0, Text(0.118603888888896, -0.041857083333328, 0, 1, 5, false, 'Arial', 0, '-1', false, false, ExtentRect(0, 0, 0, 0, 0.11929461721473, -0.0413965977827718, 0.00138145665166861, 0.00184194220222481, 0, 0, 0), DisplayRect(0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0)))
+						v2(2, 2, 0, Text(0.118603888888896, -0.043620972222224, 0, 1, 5, false, 'Arial', 0, '1V', false, false, ExtentRect(0, 0, 0, 0, 0.119639981377647, -0.0431604866716678, 0.00207218497750291, 0.00184194220222481, 0, 0, 0), DisplayRect(0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0)))
+						LabelID(5, 2, 0, Text(0.118603888888896, -0.0453848611111199, 0, 1, 5, false, 'Arial', 0, 'LabelID=V15', false, false, ExtentRect(0, 0, 0, 0, 0.123438987169736, -0.0449243755605637, 0.00967019656168025, 0.00184194220222481, 0, 0, 0), DisplayRect(0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0)))
+					$end 'PropDisplayMap'
+				$end 'SchCompDef'
+				$begin 'SchCompDef'
+					SchCompInst('Maxwell Circuit Elements\\Sources:VPulse', 'A', '16', 135, '16', 'normal', 0.127, -0.04318, 0, false, 4294967295, true)
+					Levels(0, 1)
+					$begin 'PropDisplayMap'
+						v1(2, 2, 0, Text(0.131303888888896, -0.041857083333328, 0, 1, 5, false, 'Arial', 0, '-1', false, false, ExtentRect(0, 0, 0, 0, 0.13199461721473, -0.0413965977827718, 0.00138145665166861, 0.00184194220222481, 0, 0, 0), DisplayRect(0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0)))
+						v2(2, 2, 0, Text(0.131303888888896, -0.043620972222224, 0, 1, 5, false, 'Arial', 0, '1V', false, false, ExtentRect(0, 0, 0, 0, 0.132339981377647, -0.0431604866716678, 0.00207218497750291, 0.00184194220222481, 0, 0, 0), DisplayRect(0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0)))
+						LabelID(5, 2, 0, Text(0.131303888888896, -0.0453848611111199, 0, 1, 5, false, 'Arial', 0, 'LabelID=V16', false, false, ExtentRect(0, 0, 0, 0, 0.136138987169736, -0.0449243755605637, 0.00967019656168025, 0.00184194220222481, 0, 0, 0), DisplayRect(0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0)))
+					$end 'PropDisplayMap'
+				$end 'SchCompDef'
+				$begin 'SchCompDef'
+					SchCompInst('Maxwell Circuit Elements\\Passive Elements:Res', 'A', '17', 149, '17', 'normal', 0.1016, -0.03048, 1.5707963267949, false, 4294967295, true)
+					Levels(0, 1)
+					$begin 'PropDisplayMap'
+						R(2, 5, 0, Text(0.1016, -0.03407481, 0, 4, 5, false, 'Arial', 0, '100ohm', false, false, ExtentRect(0, 0, 0, 0, 0.1016, -0.0336143244494438, 0.00598631215723063, 0.00184194220222481, 0, 0, 0), DisplayRect(0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0)))
+						LabelID(4, 5, 0, Text(0.1016, -0.03610958, 0, 4, 5, false, 'Arial', 0, 'R17', false, false, ExtentRect(0, 0, 0, 0, 0.1016, -0.0356490944494438, 0.00299315607861532, 0.00184194220222481, 0, 0, 0), DisplayRect(0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0)))
+					$end 'PropDisplayMap'
+				$end 'SchCompDef'
+				$begin 'SchCompDef'
+					SchCompInst('Maxwell Circuit Elements\\Passive Elements:Res', 'A', '18', 156, '18', 'normal', 0.1143, -0.03048, 1.5707963267949, false, 4294967295, true)
+					Levels(0, 1)
+					$begin 'PropDisplayMap'
+						R(2, 5, 0, Text(0.1143, -0.03407481, 0, 4, 5, false, 'Arial', 0, '100ohm', false, false, ExtentRect(0, 0, 0, 0, 0.1143, -0.0336143244494438, 0.00598631215723063, 0.00184194220222481, 0, 0, 0), DisplayRect(0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0)))
+						LabelID(4, 5, 0, Text(0.1143, -0.03610958, 0, 4, 5, false, 'Arial', 0, 'R18', false, false, ExtentRect(0, 0, 0, 0, 0.1143, -0.0356490944494438, 0.00299315607861532, 0.00184194220222481, 0, 0, 0), DisplayRect(0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0)))
+					$end 'PropDisplayMap'
+				$end 'SchCompDef'
+				$begin 'SchCompDef'
+					SchCompInst('Maxwell Circuit Elements\\Passive Elements:Res', 'A', '19', 163, '19', 'normal', 0.127, -0.03048, 1.5707963267949, false, 4294967295, true)
+					Levels(0, 1)
+					$begin 'PropDisplayMap'
+						R(2, 5, 0, Text(0.127, -0.03407481, 0, 4, 5, false, 'Arial', 0, '100ohm', false, false, ExtentRect(0, 0, 0, 0, 0.127, -0.0336143244494438, 0.00598631215723063, 0.00184194220222481, 0, 0, 0), DisplayRect(0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0)))
+						LabelID(4, 5, 0, Text(0.127, -0.03610958, 0, 4, 5, false, 'Arial', 0, 'R19', false, false, ExtentRect(0, 0, 0, 0, 0.127, -0.0356490944494438, 0.00299315607861532, 0.00184194220222481, 0, 0, 0), DisplayRect(0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0)))
+					$end 'PropDisplayMap'
+				$end 'SchCompDef'
+				$begin 'SchCompDef'
+					SchCompInst('Maxwell Circuit Elements\\Probes:VoltmeterG', 'A', '20', 170, '20', 'normal', 0.09652, -0.03556, 1.5707963267949, false, 4294967295, true)
+					Levels(0, 1)
+					$begin 'PropDisplayMap'
+						LabelID(5, 5, 0, Text(0.09652, -0.03102681, 0, 3, 5, false, 'Arial', 0, 'LabelID=IVc1', false, false, ExtentRect(0, 0, 0, 0, 0.09652, -0.0319477811011124, 0.0101306821122365, 0.00184194220222481, 0, 0, 0), DisplayRect(0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0)))
+					$end 'PropDisplayMap'
+				$end 'SchCompDef'
+				$begin 'SchCompDef'
+					SchCompInst('Maxwell Circuit Elements\\Probes:VoltmeterG', 'A', '21', 178, '21', 'normal', 0.10922, -0.03556, 1.5707963267949, false, 4294967295, true)
+					Levels(0, 1)
+					$begin 'PropDisplayMap'
+						LabelID(5, 5, 0, Text(0.10922, -0.03102681, 0, 3, 5, false, 'Arial', 0, 'LabelID=IVc2', false, false, ExtentRect(0, 0, 0, 0, 0.10922, -0.0319477811011124, 0.0101306821122365, 0.00184194220222481, 0, 0, 0), DisplayRect(0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0)))
+					$end 'PropDisplayMap'
+				$end 'SchCompDef'
+				$begin 'SchCompDef'
+					SchCompInst('Maxwell Circuit Elements\\Probes:VoltmeterG', 'A', '22', 186, '22', 'normal', 0.12192, -0.03556, 1.5707963267949, false, 4294967295, true)
+					Levels(0, 1)
+					$begin 'PropDisplayMap'
+						LabelID(5, 5, 0, Text(0.12192, -0.03102681, 0, 3, 5, false, 'Arial', 0, 'LabelID=IVc3', false, false, ExtentRect(0, 0, 0, 0, 0.12192, -0.0319477811011124, 0.0101306821122365, 0.00184194220222481, 0, 0, 0), DisplayRect(0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0)))
+					$end 'PropDisplayMap'
+				$end 'SchCompDef'
+				$begin 'SchCompDef'
+					SchCompInst('Maxwell Circuit Elements\\Sources:VDC', 'A', '23', 234, '23', 'normal', 0, 0.0127, 0, false, 4294967295, true)
+					Levels(0, 1)
+					$begin 'PropDisplayMap'
+						v(2, 2, 0, Text(0.00430388888889595, 0.013140972222224, 0, 1, 5, false, 'Arial', 0, '257V', false, false, ExtentRect(0, 0, 0, 0, 0.00626095247875981, 0.0136014577727802, 0.00391412717972772, 0.00184194220222481, 0, 0, 0), DisplayRect(0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0)))
+						LabelID(5, 2, 0, Text(0.00430388888889595, 0.011377083333328, 0, 1, 5, false, 'Arial', 0, 'LabelID=V23', false, false, ExtentRect(0, 0, 0, 0, 0.00913898716973607, 0.0118375688838842, 0.00967019656168025, 0.00184194220222481, 0, 0, 0), DisplayRect(0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0)))
+					$end 'PropDisplayMap'
+				$end 'SchCompDef'
+				$begin 'SchCompDef'
+					SchCompInst('Maxwell Circuit Elements\\Sources:VDC', 'A', '24', 237, '24', 'normal', 0, -0.0127, 0, false, 4294967295, true)
+					Levels(0, 1)
+					$begin 'PropDisplayMap'
+						v(2, 2, 0, Text(0.00430388888889595, -0.012259027777776, 0, 1, 5, false, 'Arial', 0, '257V', false, false, ExtentRect(0, 0, 0, 0, 0.00626095247875981, -0.0117985422272198, 0.00391412717972772, 0.00184194220222481, 0, 0, 0), DisplayRect(0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0)))
+						LabelID(5, 2, 0, Text(0.00430388888889595, -0.014022916666672, 0, 1, 5, false, 'Arial', 0, 'LabelID=V24', false, false, ExtentRect(0, 0, 0, 0, 0.00913898716973607, -0.0135624311161158, 0.00967019656168025, 0.00184194220222481, 0, 0, 0), DisplayRect(0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0)))
+					$end 'PropDisplayMap'
+				$end 'SchCompDef'
+				$begin 'SchCompDef'
+					SchCompInst('Maxwell Circuit Elements\\Passive Elements:DIODE', 'A', '25', 265, '25', 'normal', 0.0254, -0.03048, 1.5707963267949, false, 4294967295, true)
+					Levels(0, 1)
+					$begin 'PropDisplayMap'
+						LabelID(4, 5, 0, Text(0.0254, -0.03509081, 0, 4, 5, false, 'Arial', 0, 'D25', false, false, ExtentRect(0, 0, 0, 0, 0.0254, -0.0346303244494438, 0.00299315607861532, 0.00184194220222481, 0, 0, 0), DisplayRect(0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0)))
+					$end 'PropDisplayMap'
+				$end 'SchCompDef'
+				$begin 'SchCompDef'
+					SchCompInst('Maxwell Circuit Elements\\Passive Elements:DIODE', 'A', '26', 272, '26', 'normal', 0.0381, 0.03048, 1.5707963267949, false, 4294967295, true)
+					Levels(0, 1)
+					$begin 'PropDisplayMap'
+						LabelID(4, 5, 0, Text(0.0381, 0.02586919, 0, 4, 5, false, 'Arial', 0, 'D26', false, false, ExtentRect(0, 0, 0, 0, 0.0381, 0.0263296755505562, 0.00299315607861532, 0.00184194220222481, 0, 0, 0), DisplayRect(0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0)))
+					$end 'PropDisplayMap'
+				$end 'SchCompDef'
+				$begin 'SchCompDef'
+					SchCompInst('Maxwell Circuit Elements\\Passive Elements:DIODE', 'A', '27', 278, '27', 'normal', 0.0508, -0.03048, 1.5707963267949, false, 4294967295, true)
+					Levels(0, 1)
+					$begin 'PropDisplayMap'
+						LabelID(4, 5, 0, Text(0.0508, -0.03509081, 0, 4, 5, false, 'Arial', 0, 'D27', false, false, ExtentRect(0, 0, 0, 0, 0.0508, -0.0346303244494438, 0.00299315607861532, 0.00184194220222481, 0, 0, 0), DisplayRect(0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0)))
+					$end 'PropDisplayMap'
+				$end 'SchCompDef'
+				$begin 'SchCompDef'
+					SchCompInst('Maxwell Circuit Elements\\Passive Elements:DIODE', 'A', '28', 285, '28', 'normal', 0.0635, 0.03048, 1.5707963267949, false, 4294967295, true)
+					Levels(0, 1)
+					$begin 'PropDisplayMap'
+						LabelID(4, 5, 0, Text(0.0635, 0.02586919, 0, 4, 5, false, 'Arial', 0, 'D28', false, false, ExtentRect(0, 0, 0, 0, 0.0635, 0.0263296755505562, 0.00299315607861532, 0.00184194220222481, 0, 0, 0), DisplayRect(0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0)))
+					$end 'PropDisplayMap'
+				$end 'SchCompDef'
+				$begin 'SchCompDef'
+					SchCompInst('Maxwell Circuit Elements\\Passive Elements:DIODE', 'A', '29', 291, '29', 'normal', 0.0762, -0.03048, 1.5707963267949, false, 4294967295, true)
+					Levels(0, 1)
+					$begin 'PropDisplayMap'
+						LabelID(4, 5, 0, Text(0.0762, -0.03509081, 0, 4, 5, false, 'Arial', 0, 'D29', false, false, ExtentRect(0, 0, 0, 0, 0.0762, -0.0346303244494438, 0.00299315607861532, 0.00184194220222481, 0, 0, 0), DisplayRect(0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0)))
+					$end 'PropDisplayMap'
+				$end 'SchCompDef'
+				$begin 'SchCompDef'
+					SchCompInst('Maxwell Circuit Elements\\Passive Elements:DIODE', 'A', '30', 298, '30', 'normal', 0.0889, 0.03048, 1.5707963267949, false, 4294967295, true)
+					Levels(0, 1)
+					$begin 'PropDisplayMap'
+						LabelID(4, 5, 0, Text(0.0889, 0.02586919, 0, 4, 5, false, 'Arial', 0, 'D30', false, false, ExtentRect(0, 0, 0, 0, 0.0889, 0.0263296755505562, 0.00299315607861532, 0.00184194220222481, 0, 0, 0), DisplayRect(0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0)))
+					$end 'PropDisplayMap'
+				$end 'SchCompDef'
+				$begin 'SchCompDef'
+					SchCompInst('Maxwell Circuit Elements\\Passive Elements:DIODE', 'A', '31', 304, '31', 'normal', 0.0254, 0.04318, 4.71238898038469, false, 4294967295, true)
+					Levels(0, 1)
+					$begin 'PropDisplayMap'
+						LabelID(4, 5, 0, Text(0.0254, 0.03856919, 0, 4, 5, false, 'Arial', 0, 'D31', false, false, ExtentRect(0, 0, 0, 0, 0.0254, 0.0390296755505562, 0.00299315607861532, 0.00184194220222481, 0, 0, 0), DisplayRect(0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0)))
+					$end 'PropDisplayMap'
+				$end 'SchCompDef'
+				$begin 'SchCompDef'
+					SchCompInst('Maxwell Circuit Elements\\Passive Elements:DIODE', 'A', '32', 310, '32', 'normal', 0.0381, -0.01778, 4.71238898038469, false, 4294967295, true)
+					Levels(0, 1)
+					$begin 'PropDisplayMap'
+						LabelID(4, 5, 0, Text(0.0381, -0.02239081, 0, 4, 5, false, 'Arial', 0, 'D32', false, false, ExtentRect(0, 0, 0, 0, 0.0381, -0.0219303244494438, 0.00299315607861532, 0.00184194220222481, 0, 0, 0), DisplayRect(0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0)))
+					$end 'PropDisplayMap'
+				$end 'SchCompDef'
+				$begin 'SchCompDef'
+					SchCompInst('Maxwell Circuit Elements\\Passive Elements:DIODE', 'A', '33', 318, '33', 'normal', 0.0508, 0.04318, 4.71238898038469, false, 4294967295, true)
+					Levels(0, 1)
+					$begin 'PropDisplayMap'
+						LabelID(4, 5, 0, Text(0.0508, 0.03856919, 0, 4, 5, false, 'Arial', 0, 'D33', false, false, ExtentRect(0, 0, 0, 0, 0.0508, 0.0390296755505562, 0.00299315607861532, 0.00184194220222481, 0, 0, 0), DisplayRect(0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0)))
+					$end 'PropDisplayMap'
+				$end 'SchCompDef'
+				$begin 'SchCompDef'
+					SchCompInst('Maxwell Circuit Elements\\Passive Elements:DIODE', 'A', '34', 324, '34', 'normal', 0.0635, -0.01778, 4.71238898038469, false, 4294967295, true)
+					Levels(0, 1)
+					$begin 'PropDisplayMap'
+						LabelID(4, 5, 0, Text(0.0635, -0.02239081, 0, 4, 5, false, 'Arial', 0, 'D34', false, false, ExtentRect(0, 0, 0, 0, 0.0635, -0.0219303244494438, 0.00299315607861532, 0.00184194220222481, 0, 0, 0), DisplayRect(0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0)))
+					$end 'PropDisplayMap'
+				$end 'SchCompDef'
+				$begin 'SchCompDef'
+					SchCompInst('Maxwell Circuit Elements\\Passive Elements:DIODE', 'A', '35', 332, '35', 'normal', 0.0762, 0.04318, 4.71238898038469, false, 4294967295, true)
+					Levels(0, 1)
+					$begin 'PropDisplayMap'
+						LabelID(4, 5, 0, Text(0.0762, 0.03856919, 0, 4, 5, false, 'Arial', 0, 'D35', false, false, ExtentRect(0, 0, 0, 0, 0.0762, 0.0390296755505562, 0.00299315607861532, 0.00184194220222481, 0, 0, 0), DisplayRect(0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0)))
+					$end 'PropDisplayMap'
+				$end 'SchCompDef'
+				$begin 'SchCompDef'
+					SchCompInst('Maxwell Circuit Elements\\Passive Elements:DIODE', 'A', '36', 338, '36', 'normal', 0.0889, -0.01778, 4.71238898038469, false, 4294967295, true)
+					Levels(0, 1)
+					$begin 'PropDisplayMap'
+						LabelID(4, 5, 0, Text(0.0889, -0.02239081, 0, 4, 5, false, 'Arial', 0, 'D36', false, false, ExtentRect(0, 0, 0, 0, 0.0889, -0.0219303244494438, 0.00299315607861532, 0.00184194220222481, 0, 0, 0), DisplayRect(0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0)))
+					$end 'PropDisplayMap'
+				$end 'SchCompDef'
+				$begin 'SchCompDef'
+					SchCompInst('Maxwell Circuit Elements\\Passive Elements:SW_V', 'A', '37', 346, '37', 'normal', 0.0254, 0.03048, 4.71238898038469, false, 4294967295, true)
+					Levels(0, 1)
+					$begin 'PropDisplayMap'
+						LabelID(4, 5, 0, Text(0.0254, 0.02620081, 0, 5, 5, false, 'Arial', 0, 'S_37', false, false, ExtentRect(0, 0, 0, 0, 0.0254, 0.0271217811011124, 0.00391412717972772, 0.00184194220222481, 0, 0, 0), DisplayRect(0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0)))
+					$end 'PropDisplayMap'
+				$end 'SchCompDef'
+				$begin 'SchCompDef'
+					SchCompInst('Maxwell Circuit Elements\\Passive Elements:SW_V', 'A', '38', 355, '38', 'normal', 0.0381, -0.03048, 4.71238898038469, false, 4294967295, true)
+					Levels(0, 1)
+					$begin 'PropDisplayMap'
+						LabelID(4, 5, 0, Text(0.0381, -0.03475919, 0, 5, 5, false, 'Arial', 0, 'S_38', false, false, ExtentRect(0, 0, 0, 0, 0.0381, -0.0338382188988876, 0.00391412717972772, 0.00184194220222481, 0, 0, 0), DisplayRect(0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0)))
+					$end 'PropDisplayMap'
+				$end 'SchCompDef'
+				$begin 'SchCompDef'
+					SchCompInst('Maxwell Circuit Elements\\Passive Elements:SW_V', 'A', '39', 364, '39', 'normal', 0.0508, 0.03048, 4.71238898038469, false, 4294967295, true)
+					Levels(0, 1)
+					$begin 'PropDisplayMap'
+						LabelID(4, 5, 0, Text(0.0508, 0.02620081, 0, 5, 5, false, 'Arial', 0, 'S_39', false, false, ExtentRect(0, 0, 0, 0, 0.0508, 0.0271217811011124, 0.00391412717972772, 0.00184194220222481, 0, 0, 0), DisplayRect(0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0)))
+					$end 'PropDisplayMap'
+				$end 'SchCompDef'
+				$begin 'SchCompDef'
+					SchCompInst('Maxwell Circuit Elements\\Passive Elements:SW_V', 'A', '40', 373, '40', 'normal', 0.0635, -0.03048, 4.71238898038469, false, 4294967295, true)
+					Levels(0, 1)
+					$begin 'PropDisplayMap'
+						LabelID(4, 5, 0, Text(0.0635, -0.03475919, 0, 5, 5, false, 'Arial', 0, 'S_40', false, false, ExtentRect(0, 0, 0, 0, 0.0635, -0.0338382188988876, 0.00391412717972772, 0.00184194220222481, 0, 0, 0), DisplayRect(0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0)))
+					$end 'PropDisplayMap'
+				$end 'SchCompDef'
+				$begin 'SchCompDef'
+					SchCompInst('Maxwell Circuit Elements\\Passive Elements:SW_V', 'A', '41', 382, '41', 'normal', 0.0762, 0.03048, 4.71238898038469, false, 4294967295, true)
+					Levels(0, 1)
+					$begin 'PropDisplayMap'
+						LabelID(4, 5, 0, Text(0.0762, 0.02620081, 0, 5, 5, false, 'Arial', 0, 'S_41', false, false, ExtentRect(0, 0, 0, 0, 0.0762, 0.0271217811011124, 0.00391412717972772, 0.00184194220222481, 0, 0, 0), DisplayRect(0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0)))
+					$end 'PropDisplayMap'
+				$end 'SchCompDef'
+				$begin 'SchCompDef'
+					SchCompInst('Maxwell Circuit Elements\\Passive Elements:SW_V', 'A', '42', 391, '42', 'normal', 0.0889, -0.03048, 4.71238898038469, false, 4294967295, true)
+					Levels(0, 1)
+					$begin 'PropDisplayMap'
+						LabelID(4, 5, 0, Text(0.0889, -0.03475919, 0, 5, 5, false, 'Arial', 0, 'S_42', false, false, ExtentRect(0, 0, 0, 0, 0.0889, -0.0338382188988876, 0.00391412717972772, 0.00184194220222481, 0, 0, 0), DisplayRect(0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0)))
+					$end 'PropDisplayMap'
+				$end 'SchCompDef'
+				$begin 'SchCompDef'
+					SchCompInst('Maxwell Circuit Elements\\Passive Elements:SW_I', 'A', '44', 410, '44', 'normal', 0.0381, -0.04318, 4.71238898038469, false, 4294967295, true)
+					Levels(0, 1)
+					$begin 'PropDisplayMap'
+						LabelID(4, 5, 0, Text(0.0381, -0.04745919, 0, 5, 5, false, 'Arial', 0, 'W_44', false, false, ExtentRect(0, 0, 0, 0, 0.0381, -0.0465382188988876, 0.00437461273028392, 0.00184194220222481, 0, 0, 0), DisplayRect(0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0)))
+					$end 'PropDisplayMap'
+				$end 'SchCompDef'
+				$begin 'SchCompDef'
+					SchCompInst('Maxwell Circuit Elements\\Passive Elements:SW_I', 'A', '46', 429, '46', 'normal', 0.0635, -0.04318, 4.71238898038469, false, 4294967295, true)
+					Levels(0, 1)
+					$begin 'PropDisplayMap'
+						LabelID(4, 5, 0, Text(0.0635, -0.04745919, 0, 5, 5, false, 'Arial', 0, 'W_46', false, false, ExtentRect(0, 0, 0, 0, 0.0635, -0.0465382188988876, 0.00437461273028392, 0.00184194220222481, 0, 0, 0), DisplayRect(0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0)))
+					$end 'PropDisplayMap'
+				$end 'SchCompDef'
+				$begin 'SchCompDef'
+					SchCompInst('Maxwell Circuit Elements\\Passive Elements:SW_I', 'A', '48', 448, '48', 'normal', 0.0889, -0.04318, 4.71238898038469, false, 4294967295, true)
+					Levels(0, 1)
+					$begin 'PropDisplayMap'
+						LabelID(4, 5, 0, Text(0.0889, -0.04745919, 0, 5, 5, false, 'Arial', 0, 'W_48', false, false, ExtentRect(0, 0, 0, 0, 0.0889, -0.0465382188988876, 0.00437461273028392, 0.00184194220222481, 0, 0, 0), DisplayRect(0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0)))
+					$end 'PropDisplayMap'
+				$end 'SchCompDef'
+				$begin 'SchCompDef'
+					SchCompInst('Maxwell Circuit Elements\\Passive Elements:DIODE_Model', 'A', '49', 508, '49', 'normal', 0.1016, 0.04826, 0, false, 4294967295, true)
+					Levels(0, 1)
+					$begin 'PropDisplayMap'
+						DeviceName(2, 3, 0, Text(0.105383737654338, 0.0416842222222081, 0, 5, 5, false, 'Arial', 0, 'DModel1', false, false, ExtentRect(0, 0, 0, 0, 0.105383737654338, 0.0426051933233205, 0.00644679770778683, 0.00184194220222481, 0, 0, 0), DisplayRect(0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0)))
+					$end 'PropDisplayMap'
+				$end 'SchCompDef'
+				$begin 'SchCompDef'
+					SchCompInst('Maxwell Circuit Elements\\Passive Elements:SW_VModel', 'A', '50', 512, '50', 'normal', 0.1143, 0.04826, 0, false, 4294967295, true)
+					Levels(0, 1)
+					$begin 'PropDisplayMap'
+						DeviceName(2, 3, 0, Text(0.118464737654338, 0.0416852268722081, 0, 5, 5, false, 'Arial', 0, 'SModel1', false, false, ExtentRect(0, 0, 0, 0, 0.118464737654338, 0.0426061979733205, 0.00644679770778683, 0.00184194220222481, 0, 0, 0), DisplayRect(0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0)))
+					$end 'PropDisplayMap'
+				$end 'SchCompDef'
+				$begin 'SchCompDef'
+					SchCompInst('Maxwell Circuit Elements\\Passive Elements:SW_IModel', 'A', '51', 517, '51', 'normal', 0.127, 0.04826, 0, false, 4294967295, true)
+					Levels(0, 1)
+					$begin 'PropDisplayMap'
+						DeviceName(2, 3, 0, Text(0.131164737654338, 0.0416852268722081, 0, 5, 5, false, 'Arial', 0, 'WModelP', false, false, ExtentRect(0, 0, 0, 0, 0.131164737654338, 0.0426061979733205, 0.00713752603362114, 0.00184194220222481, 0, 0, 0), DisplayRect(0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0)))
+					$end 'PropDisplayMap'
+				$end 'SchCompDef'
+				$begin 'SchCompDef'
+					SchCompInst('Maxwell Circuit Elements\\Passive Elements:SW_IModel', 'A', '52', 524, '52', 'normal', 0.1397, 0.04826, 0, false, 4294967295, true)
+					Levels(0, 1)
+					$begin 'PropDisplayMap'
+						DeviceName(2, 3, 0, Text(0.143864737654338, 0.0416852268722081, 0, 5, 5, false, 'Arial', 0, 'WModelN', false, false, ExtentRect(0, 0, 0, 0, 0.143864737654338, 0.0426061979733205, 0.00713752603362114, 0.00184194220222481, 0, 0, 0), DisplayRect(0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0)))
+					$end 'PropDisplayMap'
+				$end 'SchCompDef'
+				$begin 'PageNet'
+					NetName='net_3'
+					ID=44
+					WireSeg(0.14986, 0.0127, 0.1524, 0.0127, 3)
+					Color=16711680
+				$end 'PageNet'
+				$begin 'PageNet'
+					NetName='net_4'
+					ID=53
+					WireSeg(0.14986, 0.00254, 0.1524, 0.00254, 4)
+					Color=16711680
+				$end 'PageNet'
+				$begin 'PageNet'
+					NetName='net_5'
+					ID=62
+					WireSeg(0.14986, -0.00762, 0.1524, -0.00762, 5)
+					Color=16711680
+				$end 'PageNet'
+				$begin 'PageNet'
+					NetName='net_6'
+					ID=71
+					WireSeg(0.13716, 0.0127, 0.1397, 0.0127, 6)
+					Color=16711680
+				$end 'PageNet'
+				$begin 'PageNet'
+					NetName='net_7'
+					ID=80
+					WireSeg(0.13716, 0.00254, 0.1397, 0.00254, 7)
+					Color=16711680
+				$end 'PageNet'
+				$begin 'PageNet'
+					NetName='net_8'
+					ID=89
+					WireSeg(0.13716, -0.00762, 0.1397, -0.00762, 8)
+					Color=16711680
+				$end 'PageNet'
+				$begin 'PageNet'
+					NetName='net_9'
+					ID=97
+					WireSeg(0.12446, 0.0127, 0.127, 0.0127, 9)
+					Color=16711680
+				$end 'PageNet'
+				$begin 'PageNet'
+					NetName='net_10'
+					ID=104
+					WireSeg(0.12446, 0.00254, 0.127, 0.00254, 10)
+					Color=16711680
+				$end 'PageNet'
+				$begin 'PageNet'
+					NetName='net_11'
+					ID=112
+					WireSeg(0.12446, -0.00762, 0.127, -0.00762, 11)
+					Color=16711680
+				$end 'PageNet'
+				$begin 'PageNet'
+					NetName='net_15'
+					ID=164
+					WireSeg(0.1016, -0.0381, 0.1016, -0.03556, 21)
+					Color=16711680
+				$end 'PageNet'
+				$begin 'PageNet'
+					NetName='net_16'
+					ID=171
+					WireSeg(0.1143, -0.0381, 0.1143, -0.03556, 22)
+					Color=16711680
+				$end 'PageNet'
+				$begin 'PageNet'
+					NetName='net_17'
+					ID=177
+					WireSeg(0.127, -0.0381, 0.127, -0.03556, 23)
+					Color=16711680
+				$end 'PageNet'
+				$begin 'PageNet'
+					NetName='net_20'
+					ID=216
+					WireSeg(0.1016, -0.0254, 0.1016, -0.02286, 24)
+					WireSeg(0.1016, -0.02286, 0.1143, -0.02286, 28)
+					WireSeg(0.1143, -0.0254, 0.1143, -0.02286, 25)
+					WireSeg(0.127, -0.0254, 0.127, -0.02286, 26)
+					WireSeg(0.1143, -0.02286, 0.127, -0.02286, 28)
+					Color=16711680
+				$end 'PageNet'
+				$begin 'PageNet'
+					NetName='0'
+					ID=228
+					Global('0', 208)
+					WireSeg(0.1016, -0.0508, 0.1016, -0.04826, 18)
+					WireSeg(0.1016, -0.0508, 0.1143, -0.0508, 27)
+					WireSeg(0.1143, -0.0508, 0.1143, -0.04826, 19)
+					WireSeg(0.127, -0.0508, 0.127, -0.04826, 20)
+					WireSeg(0.1143, -0.0508, 0.127, -0.0508, 27)
+					Color=16711680
+				$end 'PageNet'
+				$begin 'PageNet'
+					NetName='net_21'
+					ID=352
+					WireSeg(0, 0.01778, 0, 0.0508, 29)
+					WireSeg(0, 0.0508, 0.0254, 0.0508, 30)
+					WireSeg(0.0381, 0.03556, 0.0381, 0.0508, 36)
+					WireSeg(0.0381, 0.0508, 0.0508, 0.0508, 30)
+					WireSeg(0.0635, 0.03556, 0.0635, 0.0508, 38)
+					WireSeg(0.0635, 0.0508, 0.0762, 0.0508, 30)
+					WireSeg(0.0889, 0.03556, 0.0889, 0.0508, 40)
+					WireSeg(0.0254, 0.04826, 0.0254, 0.0508, 41)
+					WireSeg(0.0254, 0.0508, 0.0381, 0.0508, 30)
+					WireSeg(0.0508, 0.04826, 0.0508, 0.0508, 43)
+					WireSeg(0.0508, 0.0508, 0.0635, 0.0508, 30)
+					WireSeg(0.0762, 0.04826, 0.0762, 0.0508, 45)
+					WireSeg(0.0762, 0.0508, 0.0889, 0.0508, 30)
+					Color=16711680
+				$end 'PageNet'
+				$begin 'PageNet'
+					NetName='net_23'
+					ID=488
+					WireSeg(0, -0.01778, 0, -0.0508, 32)
+					WireSeg(0, -0.0508, 0.0254, -0.0508, 33)
+					WireSeg(0.0254, -0.0508, 0.0254, -0.03556, 59)
+					WireSeg(0.0254, -0.0508, 0.0381, -0.0508, 33)
+					WireSeg(0.0381, -0.0508, 0.0381, -0.04826, 60)
+					WireSeg(0.0381, -0.0508, 0.0508, -0.0508, 33)
+					WireSeg(0.0508, -0.0508, 0.0508, -0.03556, 61)
+					WireSeg(0.0508, -0.0508, 0.0635, -0.0508, 33)
+					WireSeg(0.0635, -0.0508, 0.0635, -0.04826, 62)
+					WireSeg(0.0635, -0.0508, 0.0762, -0.0508, 33)
+					WireSeg(0.0762, -0.0508, 0.0762, -0.03556, 63)
+					WireSeg(0.0762, -0.0508, 0.0889, -0.0508, 33)
+					WireSeg(0.0889, -0.0508, 0.0889, -0.04826, 64)
+					Color=16711680
+				$end 'PageNet'
+				$begin 'PageNet'
+					NetName='0'
+					ID=275
+					Global('0', 253)
+					WireSeg(0, 0, -0.00508, 0, 34)
+					WireSeg(0, 0.00762, 0, 0, 31)
+					WireSeg(0, 0, 0, -0.00762, 31)
+					Color=16711680
+				$end 'PageNet'
+				$begin 'PageNet'
+					NetName='net_30'
+					ID=366
+					WireSeg(0.0254, 0.03556, 0.0254, 0.0381, 47)
+					Color=16711680
+				$end 'PageNet'
+				$begin 'PageNet'
+					NetName='net_31'
+					ID=375
+					WireSeg(0.0381, -0.0254, 0.0381, -0.02286, 48)
+					Color=16711680
+				$end 'PageNet'
+				$begin 'PageNet'
+					NetName='net_32'
+					ID=384
+					WireSeg(0.0508, 0.03556, 0.0508, 0.0381, 49)
+					Color=16711680
+				$end 'PageNet'
+				$begin 'PageNet'
+					NetName='net_33'
+					ID=393
+					WireSeg(0.0635, -0.0254, 0.0635, -0.02286, 50)
+					Color=16711680
+				$end 'PageNet'
+				$begin 'PageNet'
+					NetName='net_34'
+					ID=401
+					WireSeg(0.0762, 0.03556, 0.0762, 0.0381, 51)
+					Color=16711680
+				$end 'PageNet'
+				$begin 'PageNet'
+					NetName='net_35'
+					ID=409
+					WireSeg(0.0889, -0.0254, 0.0889, -0.02286, 52)
+					Color=16711680
+				$end 'PageNet'
+				$begin 'PageNet'
+					NetName='net_37'
+					ID=428
+					WireSeg(0.0381, -0.0381, 0.0381, -0.03556, 54)
+					Color=16711680
+				$end 'PageNet'
+				$begin 'PageNet'
+					NetName='net_39'
+					ID=447
+					WireSeg(0.0635, -0.0381, 0.0635, -0.03556, 56)
+					Color=16711680
+				$end 'PageNet'
+				$begin 'PageNet'
+					NetName='net_41'
+					ID=466
+					WireSeg(0.0889, -0.0381, 0.0889, -0.03556, 58)
+					Color=16711680
+				$end 'PageNet'
+				$begin 'PageNet'
+					NetName='net_27'
+					ID=494
+					WireSeg(0.16256, 0.0127, 0.1651, 0.0127, 0)
+					WireSeg(0.10922, 0.00762, 0.1651, 0.00762, 12)
+					WireSeg(0.1651, 0.00762, 0.1651, 0.0127, 13)
+					WireSeg(0.0381, -0.0127, 0.0381, 0.00254, 42)
+					WireSeg(0.0381, 0.00254, 0.10922, 0.00254, 70)
+					WireSeg(0.10922, 0.00254, 0.10922, 0.00762, 71)
+					WireSeg(0.0381, 0.00254, 0.0381, 0.0254, 42)
+					Color=16711680
+				$end 'PageNet'
+				$begin 'PageNet'
+					NetName='net_28'
+					ID=505
+					WireSeg(0.16256, 0.00254, 0.1651, 0.00254, 1)
+					WireSeg(0.0635, -0.00254, 0.1651, -0.00254, 14)
+					WireSeg(0.1651, -0.00254, 0.1651, 0.00254, 15)
+					WireSeg(0.0635, -0.0127, 0.0635, -0.00254, 44)
+					WireSeg(0.0635, -0.00254, 0.0635, 0.0254, 44)
+					Color=16711680
+				$end 'PageNet'
+				$begin 'PageNet'
+					NetName='net_29'
+					ID=519
+					WireSeg(0.16256, -0.00762, 0.1651, -0.00762, 2)
+					WireSeg(0.10668, -0.0127, 0.1651, -0.0127, 16)
+					WireSeg(0.1651, -0.0127, 0.1651, -0.00762, 17)
+					WireSeg(0.0889, -0.0127, 0.0889, -0.00762, 46)
+					WireSeg(0.0889, -0.00762, 0.10668, -0.00762, 86)
+					WireSeg(0.10668, -0.00762, 0.10668, -0.0127, 87)
+					WireSeg(0.0889, -0.00762, 0.0889, 0.0254, 46)
+					Color=16711680
+				$end 'PageNet'
+				$begin 'PageNet'
+					NetName='net_24'
+					ID=540
+					WireSeg(0.0254, -0.0254, 0.0254, 0.00508, 35)
+					WireSeg(0.0254, 0.00508, 0.10668, 0.00508, 66)
+					WireSeg(0.10668, 0.00508, 0.10668, 0.0127, 67)
+					WireSeg(0.10668, 0.0127, 0.1143, 0.0127, 68)
+					WireSeg(0.0254, 0.00508, 0.0254, 0.0254, 53)
+					Color=16711680
+				$end 'PageNet'
+				$begin 'PageNet'
+					NetName='net_25'
+					ID=549
+					WireSeg(0.0508, -0.0254, 0.0508, 0, 37)
+					WireSeg(0.0508, 0, 0.11176, 0, 74)
+					WireSeg(0.11176, 0, 0.11176, 0.00254, 75)
+					WireSeg(0.11176, 0.00254, 0.1143, 0.00254, 76)
+					WireSeg(0.0508, 0, 0.0508, 0.0254, 55)
+					Color=16711680
+				$end 'PageNet'
+				$begin 'PageNet'
+					NetName='net_40'
+					ID=558
+					WireSeg(0.0762, -0.0254, 0.0762, -0.00508, 39)
+					WireSeg(0.0762, -0.00508, 0.10922, -0.00508, 82)
+					WireSeg(0.10922, -0.00508, 0.10922, -0.00762, 83)
+					WireSeg(0.10922, -0.00762, 0.1143, -0.00762, 84)
+					WireSeg(0.0762, -0.00508, 0.0762, 0.0254, 57)
+					Color=16711680
+				$end 'PageNet'
+				$begin 'Properties'
+					TextProp('Title', 'SD', '', '<Page Title>')
+					TextProp('Author', 'SD', '', '')
+				$end 'Properties'
+			$end 'Page'
+			GridSetup('1000mil', '100mil', '100mil', 16772075, 16774645, true, true, 16777215, Origin(x='0mm', y='0mm'), PageSize(x='0mm', y='0mm'), Margins(x='0mm', y='0mm'), 0, 0, 0)
+			hasWindowBeenOpened=false
+			NextUniqueID=0
+			MoveBackwards=false
+		$end 'Schematic'
+		$begin 'ConfiguredLibs'
+			$begin 'SysLibraries'
+				Materials='Maxwell Circuit Elements;Materials'
+				Scripts='Maxwell Circuit Elements;Scripts'
+				Symbols='Maxwell Circuit Elements;Symbols'
+				Components='Maxwell Circuit Elements'
+			$end 'SysLibraries'
+		$end 'ConfiguredLibs'
+		Notes=$begin_cdata$		$end_cdata$
+		$begin 'AnimationSetups'
+		$end 'AnimationSetups'
+		CacheHeaderFile='HDR5652484814254378722.tmp'
+	$end 'MaxCirCircuit'
+	$begin 'DataInstances'
+		DesignEditor='TopLevel'
+		Refdes('0', 'U1')
+		$begin 'CompInstances'
+			$begin 'Compinst'
+				ID='0'
+				Status='Status'
+				CompName='SrmA4e'
+				GatesInUse()
+				$begin 'Properties'
+					TextProp('ID', 'SRID', '', '0')
+				$end 'Properties'
+			$end 'Compinst'
+		$end 'CompInstances'
+		$begin 'Instance'
+			DesignEditor='SrmA4e'
+			ID='0'
+			Refdes('2', 'L1')
+			Refdes('3', 'L2')
+			Refdes('4', 'L3')
+			Refdes('5', 'R1')
+			Refdes('6', 'R2')
+			Refdes('7', 'R3')
+			Refdes('8', 'L4')
+			Refdes('9', 'L5')
+			Refdes('10', 'L6')
+			Refdes('11', 'V1')
+			Refdes('12', 'V2')
+			Refdes('13', 'V3')
+			Refdes('14', 'V4')
+			Refdes('15', 'V5')
+			Refdes('16', 'V6')
+			Refdes('17', 'R4')
+			Refdes('18', 'R5')
+			Refdes('19', 'R6')
+			Refdes('20', 'I1')
+			Refdes('21', 'I2')
+			Refdes('22', 'I3')
+			Refdes('23', 'V7')
+			Refdes('24', 'V8')
+			Refdes('25', 'D1')
+			Refdes('26', 'D2')
+			Refdes('27', 'D3')
+			Refdes('28', 'D4')
+			Refdes('29', 'D5')
+			Refdes('30', 'D6')
+			Refdes('31', 'D7')
+			Refdes('32', 'D8')
+			Refdes('33', 'D9')
+			Refdes('34', 'D10')
+			Refdes('35', 'D11')
+			Refdes('36', 'D12')
+			Refdes('37', 'S1')
+			Refdes('38', 'S2')
+			Refdes('39', 'S3')
+			Refdes('40', 'S4')
+			Refdes('41', 'S5')
+			Refdes('42', 'S6')
+			Refdes('44', 'W2')
+			Refdes('46', 'W4')
+			Refdes('48', 'W6')
+			Refdes('49', 'DData1')
+			Refdes('50', 'SData1')
+			Refdes('51', 'WData1')
+			Refdes('52', 'WData2')
+			$begin 'MaxCirCircuit'
+				DesignInstanceID=1
+				$begin 'WindowPosition'
+					$begin 'EditorWindow'
+						Circuit(Schematic(View(WindowPos(3, -1, -1, -4, -23, 0, 0, 112, 50), Extent(-0.507, -0.507, 1.015, 1.015, 3779.52755904, 3779.52755904, -0.017725209007158, 0.0706327162082736, 0.22678913364893, 0.161630428245227, 1.14914934036394), Pages(1, 1, -0.00984250000000203, 1.06902625297621, 0.168448000000002, 1.01596360416669))))
+					$end 'EditorWindow'
+					$begin 'ReportWindow'
+					$end 'ReportWindow'
+				$end 'WindowPosition'
+				$begin 'Reports'
+				$end 'Reports'
+			$end 'MaxCirCircuit'
+		$end 'Instance'
+		$begin 'SODInfo'
+		$end 'SODInfo'
+	$end 'DataInstances'
+	$begin 'WBSystemIDToDesignInstanceIDMap'
+	$end 'WBSystemIDToDesignInstanceIDMap'
+	$begin 'WBSysIDSysDetails'
+	$end 'WBSysIDSysDetails'
+	$begin 'WBConnIDConnDetails'
+	$end 'WBConnIDConnDetails'
+$end 'AnsoftProject'
+$begin 'ProjectPreview'
+	Thumbnail64='/9j/4AAQSkZJRgABAQAAAQABAAD/2wBDAAEBAQEBAQEBAQEBAQEBAQEBAQEBAQEBAQEBAQEBAQEBAQE\
+BAQICAQECAQEBAgICAgICAgICAQICAgICAgICAgL/2wBDAQEBAQEBAQEBAQECAQEBAgICAgICAgICAg\
+ICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgL/wAARCABgAGADASIAAhEBAxEB/\
+8QAHwAAAQUBAQEBAQEAAAAAAAAAAAECAwQFBgcICQoL/8QAtRAAAgEDAwIEAwUFBAQAAAF9AQIDAAQR\
+BRIhMUEGE1FhByJxFDKBkaEII0KxwRVS0fAkM2JyggkKFhcYGRolJicoKSo0NTY3ODk6Q0RFRkdISUp\
+TVFVWV1hZWmNkZWZnaGlqc3R1dnd4eXqDhIWGh4iJipKTlJWWl5iZmqKjpKWmp6ipqrKztLW2t7i5us\
+LDxMXGx8jJytLT1NXW19jZ2uHi4+Tl5ufo6erx8vP09fb3+Pn6/8QAHwEAAwEBAQEBAQEBAQAAAAAAA\
+AECAwQFBgcICQoL/8QAtREAAgECBAQDBAcFBAQAAQJ3AAECAxEEBSExBhJBUQdhcRMiMoEIFEKRobHB\
+CSMzUvAVYnLRChYkNOEl8RcYGRomJygpKjU2Nzg5OkNERUZHSElKU1RVVldYWVpjZGVmZ2hpanN0dXZ\
+3eHl6goOEhYaHiImKkpOUlZaXmJmaoqOkpaanqKmqsrO0tba3uLm6wsPExcbHyMnK0tPU1dbX2Nna4u\
+Pk5ebn6Onq8vP09fb3+Pn6/9oADAMBAAIRAxEAPwD+/iivlb9qH47fEr4N3P7Pnhb4QfC/wN8VfiJ+0\
+P8AHG++DPh7SfiR8W9f+C/gvQf7H+APx3/aA1bxJrXjDwx8HPHV8+3Q/gXqdhbWcGgSefd6/A8t1bQw\
+yM3Df8J9/wAFJ/8Ao039h3/xYV8ev/pYtfcYHw84kx+WZbm8KmV4LA5xTqVcM8bn2RZdVq0qeIrYSdW\
+OGx+ZYbEKmsRhq9JTlSUZSpT5HJK5zSxdGM507TlKm0pctKrNJtKVrxg1e0k9+p9xUV+Sml/tv/ts6v\
+8AtUeK/wBj60/ZK/ZMf4seEPgp4a+O1/qUf7bv7SF58NpvDHiDxdqvg+98MD4iad/wTBm07SPibpU0P\
+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'
+	$begin 'DesignInfo'
+		DesignName='SrmA4e'
+		Notes=''
+		Factory='Maxwell Circuit'
+		IsSolved=false
+		'Nominal Setups'[0:]
+		'Optimetrics Setups'[0:]
+		'Optimetrics Experiment Types'[0:]
+		Image64='/9j/4AAQSkZJRgABAQAAAQABAAD/2wBDAAEBAQEBAQEBAQEBAQEBAQEBAQEBAQEBAQEBAQEBAQEBAQE\
+BAQICAQECAQEBAgICAgICAgICAQICAgICAgICAgL/2wBDAQEBAQEBAQEBAQECAQEBAgICAgICAgICAg\
+ICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgL/wAARCADIAMgDASIAAhEBAxEB/\
+8QAHwAAAQUBAQEBAQEAAAAAAAAAAAECAwQFBgcICQoL/8QAtRAAAgEDAwIEAwUFBAQAAAF9AQIDAAQR\
+BRIhMUEGE1FhByJxFDKBkaEII0KxwRVS0fAkM2JyggkKFhcYGRolJicoKSo0NTY3ODk6Q0RFRkdISUp\
+TVFVWV1hZWmNkZWZnaGlqc3R1dnd4eXqDhIWGh4iJipKTlJWWl5iZmqKjpKWmp6ipqrKztLW2t7i5us\
+LDxMXGx8jJytLT1NXW19jZ2uHi4+Tl5ufo6erx8vP09fb3+Pn6/8QAHwEAAwEBAQEBAQEBAQAAAAAAA\
+AECAwQFBgcICQoL/8QAtREAAgECBAQDBAcFBAQAAQJ3AAECAxEEBSExBhJBUQdhcRMiMoEIFEKRobHB\
+CSMzUvAVYnLRChYkNOEl8RcYGRomJygpKjU2Nzg5OkNERUZHSElKU1RVVldYWVpjZGVmZ2hpanN0dXZ\
+3eHl6goOEhYaHiImKkpOUlZaXmJmaoqOkpaanqKmqsrO0tba3uLm6wsPExcbHyMnK0tPU1dbX2Nna4u\
+Pk5ebn6Onq8vP09fb3+Pn6/9oADAMBAAIRAxEAPwD+/iiiigAooooAKKKKACiiigAooooAKKKKACiii\
+gAooooAKKKKACiiigAooooAKKKKACiiigAoor85fHGn/HH4yftvfGH4QeFv2tvjj+zx8O/hV+yr+yh8\
+SNJ8PfBnwf8Asrax/b3jT40fFz9tfwx4w1nxJq37QH7Nnjq+fbofwK8BQWdtYXOn2kHkXUrwTTXLSL9\
+RwxwxLiWWdTnnWDyDA8P4NY3E4nGrGypRpSxuDwEIxhgMHjsROpPEY6hFKNBxUeecpxUdca1b2Ps7U5\
+VZVZcqjHlvfllJ/FKKslF9fRH6NUV8O/8ADJvx6/6Sdftxf+ED/wAE2P8A6XrR/wAMm/Hr/pJ1+3F/4\
+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\
+67oMsOq/Fj4hz619jlvhznlLD5w6uacLqpLC8tONfifhqpOpOWIoQcMM4ZrOFLEQpynX9rVlQgqVCrC\
+NV1Jww9c4jyt57i+Fq1LNczyqlkOYwx1SGCnisLHFRp4fEQjh8ZGFL/a8JOdWKq4Sq3QndVnD29DD1a\
+P6M/tG6L8R/EPwg8RaV8LJtWXxNLq3gW51PT/DevxeE/F3ib4cab8QPC+pfGLwP4E8WzalYDwj8Q9f+\
+Edp440Tw9qw1bQn0zW9fsL6PxH4be3XXdP8AxW/4JGeFfj5Pa+Hde/4Rbxb4S0nR/i1r6/GHxdbfCLw\
+Z+yf8CvE3haP9nLQ9F+IPwE0b9lrwedIttT/aG8Gftn3n9j6n8SP+EAsbnU9H+BWraH/wsD7JBF4If9\
+N/+E+/4KT/APRpv7Dv/iwr49f/AEsWvz+/4IN/tfeCv2jf2dfFtt4d8NfE61i8TfH/APa/+K3gXxpPp\
+P7eXxO+C/jf4V3f7SfijSdD1vw1+1B+1N+z14U8Pap4mkvdQeBvD+laxe6/q6aNe+NvE2laL411bx74\
+c8M/lHF/hVm+CzbIeKsdnWWvC5dJ0JUMBxBlGY151JP29GX1TLcXjWqC9lUhia9VUnFyw9GlNe1qxl/\
+Wfh5444LhHwR8VvDFZDh8dm3HGLwM8LXxGWylKlh54XG4bMqksbKpQrUquGX1KWW4eCqYaVevisTi8P\
+Xq4fBVMJ+8dFFFUfz+FFFFABRRRQAUUUUAFFFFABRRRQAUUUUAFFFFABRRRQAUUUUAFFFFABRRRQAV4\
+B+y5+y58Cf2LvgT4G/Zo/Zo8Df8K1+CXw1/4Sb/AIQrwV/wk3jHxj/Yv/CY+MfEPj/xH/xUfj/xDqur\
+6j9p8W+Kteu/9Lv5/J+3+RB5VtFDDH7/AEUAFFFFABRRRQAUUUUAFFFFABRRRQAUUUUAFFFFABRRRQA\
+UUUUAFFFFABRRRQAUUUUAFFFFABRRRQAUUUUAFFFFABRRRQAUUUUAFFFFABRRRQAUUUUAFFFFABRRRQ\
+AUUUUAFFFFABRRRQAUUUUAFFFFABRRRQAUUUUAFFFFABRRRQAUUUUAFFFFABRRRQAUUUUAFFFFABRRR\
+QAUUUUAFFFFABRRRQAUUUUAf//Z'
+	$end 'DesignInfo'
+$end 'ProjectPreview'

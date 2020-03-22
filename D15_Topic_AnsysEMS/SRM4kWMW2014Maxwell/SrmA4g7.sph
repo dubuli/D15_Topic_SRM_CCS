@@ -1,0 +1,67 @@
+* 0;SrmA4e.ckt
+* Project: G:/Ansoft/SRM4kWMW2014/SrmA4g7.amcp
+* Design: SrmA4e
+
+*BeginParamDef
+*EndParamDef
+
+
+*begin toplevel circuit
+.PARAM Kle=1
+LPhaseA net_3 net_27 1 Winding
+LPhaseB net_4 net_28 1 Winding
+LPhaseC net_5 net_29 1 Winding
+RA net_6 net_3 4.0005ohm
+V16 net_17 0 PULSE (-1 1V 34 0 0 14 45) TYPE=POS
+R17 net_15 net_20 100ohm
+R18 net_16 net_20 100ohm
+R19 net_17 net_20 100ohm
+IVc1 net_15 0 DC 0 
+.PRINT TRAN PROBE IVc1(t) V(IVc1)
+IVc2 net_16 0 DC 0 
+.PRINT TRAN PROBE IVc2(t) V(IVc2)
+IVc3 net_17 0 DC 0 
+.PRINT TRAN PROBE IVc3(t) V(IVc3)
+V23 net_21 0 104V
+V24 0 net_23 104V
+D25 net_23 net_24 DModel1 
+D26 net_27 net_21 DModel1 
+D27 net_23 net_25 DModel1 
+D28 net_28 net_21 DModel1 
+RB net_7 net_4 4.0005ohm
+RC net_8 net_5 4.0005ohm
+LA net_9 net_6 '0.000996242*Kle' 
+LB net_10 net_7 '0.000996242*Kle' 
+LC net_11 net_8 '0.000996242*Kle' 
+VIA net_24 net_9 DC 0 
+.PRINT TRAN PROBE VIA(t) I(VIA)
+VIB net_25 net_10 DC 0 
+.PRINT TRAN PROBE VIB(t) I(VIB)
+VIC net_40 net_11 DC 0 
+.PRINT TRAN PROBE VIC(t) I(VIC)
+V14 net_15 0 PULSE (-1 1V 4 0 0 14 45) TYPE=POS
+V15 net_16 0 PULSE (-1 1V 19 0 0 14 45) TYPE=POS
+D29 net_23 net_40 DModel1 
+D30 net_29 net_21 DModel1 
+D31 net_21 net_30 DModel1 
+D32 net_27 net_31 DModel1 
+D33 net_21 net_32 DModel1 
+D34 net_28 net_33 DModel1 
+D35 net_21 net_34 DModel1 
+D36 net_29 net_35 DModel1 
+S_37 net_30 net_24 IVc1 POS SModel1 OFF
+S_38 net_31 net_37 IVc1 POS SModel1 OFF
+S_39 net_32 net_25 IVc2 POS SModel1 OFF
+S_40 net_33 net_39 IVc2 POS SModel1 OFF
+S_41 net_34 net_40 IVc3 POS SModel1 OFF
+S_42 net_35 net_41 IVc3 POS SModel1 OFF
+W_44 net_37 net_23 VIA WModelP OFF
+W_46 net_39 net_23 VIB WModelP OFF
+W_48 net_41 net_23 VIC WModelP OFF
+.MODEL DModel1 D (IS=1e-014A RS=0.275024ohm N=1 EG=1.11V XTI=3 BV=1e+030V IBV=0.001A TNOM=27)
+.MODEL SModel1 SW (Ron=0.001ohm Roff=1000000ohm Von=0V Voff=0V)
+.MODEL WModelP CSW (Ron=1000000ohm Roff=0.001ohm Ion=5A Ioff=4.5A)
+.MODEL WModelN CSW (Ron=0.001ohm Roff=1000000ohm Ion=-10.5A Ioff=-12A)
+
+*end toplevel circuit
+.end
