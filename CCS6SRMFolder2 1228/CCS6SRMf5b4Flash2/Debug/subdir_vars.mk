@@ -4,7 +4,7 @@
 
 # Add inputs and outputs from these tool invocations to the build variables 
 CMD_SRCS += \
-../RAM_Link.cmd 
+../Flash_Link.cmd 
 
 LIB_SRCS += \
 ../rts2800_ml.lib 
@@ -24,7 +24,7 @@ C_SRCS += \
 ../DSP281x_PieVect.c \
 ../DSP281x_Sci.c \
 ../DSP281x_SysCtrl.c \
-../ccsSRMf7.c 
+../ccsSRM.c 
 
 OBJS += \
 ./DSP281x_Adc.obj \
@@ -39,7 +39,7 @@ OBJS += \
 ./DSP281x_PieVect.obj \
 ./DSP281x_Sci.obj \
 ./DSP281x_SysCtrl.obj \
-./ccsSRMf7.obj 
+./ccsSRM.obj 
 
 ASM_DEPS += \
 ./DSP281x_CodeStartBranch.pp 
@@ -56,7 +56,7 @@ C_DEPS += \
 ./DSP281x_PieVect.pp \
 ./DSP281x_Sci.pp \
 ./DSP281x_SysCtrl.pp \
-./ccsSRMf7.pp 
+./ccsSRM.pp 
 
 C_DEPS__QUOTED += \
 "DSP281x_Adc.pp" \
@@ -70,7 +70,7 @@ C_DEPS__QUOTED += \
 "DSP281x_PieVect.pp" \
 "DSP281x_Sci.pp" \
 "DSP281x_SysCtrl.pp" \
-"ccsSRMf7.pp" 
+"ccsSRM.pp" 
 
 OBJS__QUOTED += \
 "DSP281x_Adc.obj" \
@@ -85,7 +85,7 @@ OBJS__QUOTED += \
 "DSP281x_PieVect.obj" \
 "DSP281x_Sci.obj" \
 "DSP281x_SysCtrl.obj" \
-"ccsSRMf7.obj" 
+"ccsSRM.obj" 
 
 ASM_DEPS__QUOTED += \
 "DSP281x_CodeStartBranch.pp" 
@@ -102,7 +102,7 @@ C_SRCS__QUOTED += \
 "../DSP281x_PieVect.c" \
 "../DSP281x_Sci.c" \
 "../DSP281x_SysCtrl.c" \
-"../ccsSRMf7.c" 
+"../ccsSRM.c" 
 
 ASM_SRCS__QUOTED += \
 "../DSP281x_CodeStartBranch.asm" 
