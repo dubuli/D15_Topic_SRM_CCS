@@ -121,32 +121,32 @@ endif
 
 # Add inputs and outputs from these tool invocations to the build variables 
 EXE_OUTPUTS += \
-CCS6SRMf7Flash1TestI2f.out \
+CCS6SRMf7Flash1TestI2g.out \
 
 EXE_OUTPUTS__QUOTED += \
-"CCS6SRMf7Flash1TestI2f.out" \
+"CCS6SRMf7Flash1TestI2g.out" \
 
 BIN_OUTPUTS += \
-CCS6SRMf7Flash1TestI2f.hex \
+CCS6SRMf7Flash1TestI2g.hex \
 
 BIN_OUTPUTS__QUOTED += \
-"CCS6SRMf7Flash1TestI2f.hex" \
+"CCS6SRMf7Flash1TestI2g.hex" \
 
 
 # All Target
-all: CCS6SRMf7Flash1TestI2f.out
+all: CCS6SRMf7Flash1TestI2g.out
 
 # Tool invocations
-CCS6SRMf7Flash1TestI2f.out: $(OBJS) $(CMD_SRCS) $(LIB_SRCS) $(GEN_CMDS)
+CCS6SRMf7Flash1TestI2g.out: $(OBJS) $(CMD_SRCS) $(LIB_SRCS) $(GEN_CMDS)
 	@echo 'Building target: $@'
 	@echo 'Invoking: C2000 Linker'
-	"C:/ti2/ccsv6/tools/compiler/c2000_6.2.7/bin/cl2000" -v28 -ml -mt -g --diag_warning=225 --display_error_number --diag_wrap=off -z -m"CCS6SRMf7Flash1TestI2f.map" --stack_size=1000 --warn_sections -i"C:/ti2/ccsv6/tools/compiler/c2000_6.2.7/lib" -i"C:/ti2/ccsv6/tools/compiler/c2000_6.2.7/include" --reread_libs --display_error_number --diag_wrap=off --xml_link_info="CCS6SRMf7Flash1TestI2f_linkInfo.xml" --rom_model -o "CCS6SRMf7Flash1TestI2f.out" $(ORDERED_OBJS)
+	"C:/ti2/ccsv6/tools/compiler/c2000_6.2.7/bin/cl2000" -v28 -ml -mt -g --diag_warning=225 --display_error_number --diag_wrap=off -z -m"CCS6SRMf7Flash1TestI2g.map" --stack_size=1000 --warn_sections -i"C:/ti2/ccsv6/tools/compiler/c2000_6.2.7/lib" -i"C:/ti2/ccsv6/tools/compiler/c2000_6.2.7/include" --reread_libs --display_error_number --diag_wrap=off --xml_link_info="CCS6SRMf7Flash1TestI2g_linkInfo.xml" --rom_model -o "CCS6SRMf7Flash1TestI2g.out" $(ORDERED_OBJS)
 	@echo 'Finished building target: $@'
 	@echo ' '
 
-CCS6SRMf7Flash1TestI2f.hex: $(EXE_OUTPUTS)
+CCS6SRMf7Flash1TestI2g.hex: $(EXE_OUTPUTS)
 	@echo 'Invoking: C2000 Hex Utility'
-	"C:/ti2/ccsv6/tools/compiler/c2000_6.2.7/bin/hex2000"  -o "CCS6SRMf7Flash1TestI2f.hex" $(EXE_OUTPUTS__QUOTED)
+	"C:/ti2/ccsv6/tools/compiler/c2000_6.2.7/bin/hex2000"  -o "CCS6SRMf7Flash1TestI2g.hex" $(EXE_OUTPUTS__QUOTED)
 	@echo 'Finished building: $@'
 	@echo ' '
 

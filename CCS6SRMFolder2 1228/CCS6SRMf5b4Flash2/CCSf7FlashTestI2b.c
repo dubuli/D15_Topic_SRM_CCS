@@ -111,7 +111,7 @@ void main(void)
 
 	SpeedPiFlag=0;
 	speed_error=0;
-	iDes=CURRENT_1A*1.2;
+	iDes=CURRENT_1A*1.4;
 	StartFlag=0;
 
 	SRM.wDes_10xrpm=4000;	//Desninate rpm

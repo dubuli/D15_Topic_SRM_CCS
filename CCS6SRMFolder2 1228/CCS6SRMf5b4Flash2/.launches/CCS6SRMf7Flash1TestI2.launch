@@ -5,7 +5,7 @@
 <stringAttribute key="com.ti.ccstudio.debug.debugModel.ATTR_PROGRAM.Texas Instruments XDS100v3 USB Emulator/C28xx" value="${build_artifact:CCS6SRMf7Flash1TestI2}"/>
 <stringAttribute key="com.ti.ccstudio.debug.debugModel.ATTR_PROJECT.Texas Instruments XDS100v3 USB Emulator/C28xx" value="CCS6SRMf7Flash1TestI2"/>
 <stringAttribute key="com.ti.ccstudio.debug.debugModel.ATTR_TARGET_CONFIG" value="${target_config_active_default:CCS6SRMf7Flash1TestI2}"/>
-<stringAttribute key="com.ti.ccstudio.debug.debugModel.MRU_PROGRAM.Texas Instruments XDS100v3 USB Emulator/C28xx" value="G:/CCS6SRMFolder2\CCS6SRMf7Flash1TestI2\Debug\CCS6SRMf7Flash1TestI2.out"/>
+<stringAttribute key="com.ti.ccstudio.debug.debugModel.MRU_PROGRAM.Texas Instruments XDS100v3 USB Emulator/C28xx" value="E:/CCS6SRMFolder2\CCS6SRMf7Flash1TestI2\Debug\CCS6SRMf7Flash1TestI2.out"/>
 <listAttribute key="org.eclipse.debug.core.MAPPED_RESOURCE_PATHS">
 <listEntry value="/CCS6SRMf7Flash1TestI2"/>
 </listAttribute>
