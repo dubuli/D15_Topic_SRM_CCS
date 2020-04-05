@@ -337,11 +337,11 @@ delete in 2812f4
 	}
 
 	//	485,transfer the wEst,OUTPUT the wEst
-		if(!(count%1920))		{				//changeto 9600Hz 480-20Hz			//%250 20Hz		//5Hz// 5000/100=50 Hz
+		if(!(count%480))		{				//changeto 9600Hz 480-20Hz			//%250 20Hz		//5Hz// 5000/100=50 Hz
 			GpioDataRegs.GPEDAT.bit.GPIOE1=0;
 
 			if((SciaTx_Ready() == 1) )//&& (SendFlag == 1))
-				SciaRegs.SCITXBUF=((SRM.wEst_10xrpm/50));// & 0xff);
+				SciaRegs.SCITXBUF=((int)(SRM.wEst_10xrpm-7750));// & 0xff);
 		}
 
 	//	GpioDataRegs.GPEDAT.bit.GPIOE1=0;
@@ -354,7 +354,7 @@ delete in 2812f4
 ** 	test the cap module,A8-10	 **
 **-------------------------------*/
 /* Use GPADAT to give a simulate signal to the sensor*/		//simu6pos
-		if(count%480==0)	{				//%480 20HzCap = 25rpm  //%600 16Hz CAP = 20rpm;					// 0.5s per circle
+		if(count%48==0)	{				//%480 20HzCap = 25rpm  //%600 16Hz CAP = 20rpm;					// 0.5s per circle
 			GpioDataRegs.GPADAT.bit.GPIOA8=simu6pos[simu6count] & 1;
 			GpioDataRegs.GPADAT.bit.GPIOA9=(simu6pos[simu6count]>>1) & 1;
 			GpioDataRegs.GPADAT.bit.GPIOA10=(simu6pos[simu6count]>>2) & 1;
@@ -389,6 +389,7 @@ void EvbCAP4ISR_INT(void)
 {
 	int delta_count;
 	WORD edge_time1;
+	int FlagFifo=0;
 	//	WORD edge_time2;
 
 	// modified in 2812f5
@@ -398,9 +399,22 @@ void EvbCAP4ISR_INT(void)
 	CapCount++;
 
 	//need to change
+
+	SRM.capture_delta[0][3] = SRM.capture_delta[0][2];
+	SRM.capture_delta[0][2] = SRM.capture_delta[0][1];
 	SRM.capture_delta[0][1] = SRM.capture_delta[0][0];
 	SRM.capture_delta[0][0] = edge_time1 - SRM.capture_edge[0];//edgetime=return fifo_data = EvbRegs.CAP4FIFO
 	SRM.capture_edge[0] = edge_time1;
+
+
+//	if(	SRM.capture_delta[0][0]>30000)
+//		FlagFifo |=0x01;
+//	else if(SRM.capture_delta[0][0]<2929)
+//		FlagFifo |=0x10;
+//
+//	GpioDataRegs.GPEDAT.bit.GPIOE1=0;
+//	if((SciaTx_Ready() == 1) )//&& (SendFlag == 1))
+//		SciaRegs.SCITXBUF=FlagFifo;// & 0xff);
 
 	SRM.last_capture = 1; /* save capture data *///capture=1 2 3//use to update the position//ddcap
 
@@ -479,6 +493,8 @@ void EvbCAP5ISR_INT(void)
 	//	edge_time2 = EvbRegs.CAP5FIFO; /* read value */
 
 	//need to change
+	SRM.capture_delta[1][3] = SRM.capture_delta[1][2];
+	SRM.capture_delta[1][2] = SRM.capture_delta[1][1];
 	SRM.capture_delta[1][1] = SRM.capture_delta[1][0];
 	SRM.capture_delta[1][0] = edge_time1 - SRM.capture_edge[1];//edgetime=return fifo_data = EvbRegs.CAP5FIFO
 	SRM.capture_edge[1] = edge_time1;
@@ -559,6 +575,8 @@ void EvbCAP6ISR_INT(void)
 //	edge_time2 = EvbRegs.CAP6FIFO; /* read value */
 
 	//need to change
+	SRM.capture_delta[2][3] = SRM.capture_delta[2][2];
+	SRM.capture_delta[2][2] = SRM.capture_delta[2][1];
 	SRM.capture_delta[2][1] = SRM.capture_delta[2][0];
 	SRM.capture_delta[2][0] = edge_time1 - SRM.capture_edge[2];//edgetime=return fifo_data = EvbRegs.CAP6FIFO
 	SRM.capture_edge[2] = edge_time1;
@@ -772,6 +790,8 @@ change to F11 12 13  origin.old:8 A9 A10
 		anSRM->iFB[i] = 0;
 		anSRM->capture_delta[i][0] = 65535;
 		anSRM->capture_delta[i][1] = 65535;
+		anSRM->capture_delta[i][2] = 65535;
+		anSRM->capture_delta[i][3] = 65535;
 	}
 	anSRM->wEst_10xrpm = 0;
 	anSRM->shaft_direction = 0;
@@ -787,10 +807,12 @@ change to F11 12 13  origin.old:8 A9 A10
 
 void UpdateVelocity(anSRM_struct *anSRM, int mode)
 {
-	DWORD a1, a2, a3, a4, a5, a6;
+	DWORD a[12];
 	long sum_cnt;
 	long inst_velocity;
 	long filt_velocity;
+	int FlagSum=0;
+	int i;
 	/*----------------------------------------------- */
 	/* Obtain instantaneous velocity estimate */
 	/*----------------------------------------------- */
@@ -800,13 +822,62 @@ void UpdateVelocity(anSRM_struct *anSRM, int mode)
 		/*------------------------------------------------------------*/
 		/* FIR filter for removing once per electrical cycle effects */
 		/*------------------------------------------------------------*/
-		a1 = (DWORD)anSRM->capture_delta[0][0];
-		a2 = (DWORD)anSRM->capture_delta[0][1];
-		a3 = (DWORD)anSRM->capture_delta[1][0];
-		a4 = (DWORD)anSRM->capture_delta[1][1];
-		a5 = (DWORD)anSRM->capture_delta[2][0];
-		a6 = (DWORD)anSRM->capture_delta[2][1];
-		sum_cnt = a1 + a2 + a3 + a4 + a5 + a6;
+
+		a[0] = (DWORD)anSRM->capture_delta[0][0];
+		a[1] = (DWORD)anSRM->capture_delta[0][1];
+		a[2] = (DWORD)anSRM->capture_delta[0][2];
+		a[3] = (DWORD)anSRM->capture_delta[0][3];
+		a[4] = (DWORD)anSRM->capture_delta[1][0];
+		a[5] = (DWORD)anSRM->capture_delta[1][1];
+		a[6] = (DWORD)anSRM->capture_delta[1][2];
+		a[7] = (DWORD)anSRM->capture_delta[1][3];
+		a[8] = (DWORD)anSRM->capture_delta[2][0];
+		a[9] = (DWORD)anSRM->capture_delta[2][1];
+		a[10] = (DWORD)anSRM->capture_delta[2][2];
+		a[11] = (DWORD)anSRM->capture_delta[2][3];
+//		for(i=0;i<12;i++)
+//			a[i]=12-i;
+
+
+
+		QuickSort(&a[0],12);
+//		if(a1>30000)
+//			FlagSum |=0x01;
+//		else if(a1<2929)
+//			FlagSum |=0x10;
+//
+//		if(a2>30000)
+//			FlagSum |=0x02;
+//		else if(a2<2929)
+//			FlagSum |=0x20;
+//
+//		if(a3>30000)
+//			FlagSum |=0x04;
+//		else if(a3<2929)
+//			FlagSum |=0x40;
+//
+//		if(a4>30000)
+//			FlagSum |=0x08;
+//		else if(a4<2929)
+//			FlagSum |=0x80;
+
+//		if(a1>30000)
+//			FlagSum |=0x01;
+//		else if(a1<2929)
+//			FlagSum |=0x10;
+//
+//		if(a1>30000)
+//			FlagSum |=0x01;
+//		else if(a1<2929)
+//			FlagSum |=0x10;
+
+
+
+//		GpioDataRegs.GPEDAT.bit.GPIOE1=0;
+//		if((SciaTx_Ready() == 1) )//&& (SendFlag == 1))
+//			SciaRegs.SCITXBUF=FlagSum;// & 0xff);
+
+		sum_cnt = a[3] + a[4] + a[5] + a[6] + a[7] + a[8];
 		/*---------------------------------------------------*/
 		/* apply velocity = delta_theta/delta_time algorithm */
 		/*---------------------------------------------------*/
@@ -1078,4 +1149,81 @@ void currentController(anSRM_struct *anSRM)
 	/* end currentController */
 
 }
+
+//void　QuickSort(DWORD　&a,int　numsize)/*a是整形数组，numsize是元素个数*/
+//{
+//　	 int　i=0;
+//　	 int j=numsize-1;
+//　	 DWORD　val=a[0];/*指定参考值val大小*/
+//　	 if(numsize>1)/*确保数组长度至少为2，否则无需排序*/　	 {
+//
+//　		 while(i<j)/*循环结束条件*/		 {
+//　		 /*从后向前搜索比val小的元素，找到后填到a[i]中并跳出循环*/
+//　			 for(;j>i;j--)
+//　				 if(a[j]<val)	 {
+//　					 a[i++]=a[j];
+//　					 break;
+//　				 }
+//　				 /*从前往后搜索比val大的元素，找到后填到a[j]中并跳出循环*/
+//　			 for(;i<j;i++)
+//　				 if(a[i]>val)	 {
+//　					 a[j--]=a[i];
+//　					 break;
+//　				 }
+//　		 }
+//　		 a[i]=val;/*将保存在val中的数放到a[i]中*/
+//　		 QuickSort(a,i);/*递归，对前i个数排序*/
+//　		 QuickSort(a+i+1,numsize-i-1);/*对i+2到numsize这numsize-1-i个数排序*/
+//　	 }
+//}
+
+
+void QuickSort(unsigned long *a, int numsize)	//QuickSort(int a, int　numsize)/*a是整形数组，numsize是元素个数*/
+{
+	int i=0;
+	int j=numsize-1;
+	DWORD val=a[0];
+	if(numsize>1)	{
+		while(i<j)	{
+			for(; j>i;j--)
+				if(a[j]<val)	{
+					a[i++]=a[j];
+					break;
+				}
+			for(;i<j;i++)
+				if(a[i]>val)	{
+					a[j--]=a[i];
+					break;
+				}
+		}
+		a[i]=val;
+		QuickSort(&a[0],i);
+		QuickSort(&a[i+1],numsize-i-1);
+
+	}
+}
+
+//　	 int　i=0;
+//　	 int j=numsize-1;
+//　	 DWORD　val=a[0];/*指定参考值val大小*/
+//　	 if(numsize>1)/*确保数组长度至少为2，否则无需排序*/　	 {
+//
+//　		 while(i<j)/*循环结束条件*/		 {
+//　		 /*从后向前搜索比val小的元素，找到后填到a[i]中并跳出循环*/
+//　			 for(;j>i;j--)
+//　				 if(a[j]<val)	 {
+//　					 a[i++]=a[j];
+//　					 break;
+//　				 }
+//　				 /*从前往后搜索比val大的元素，找到后填到a[j]中并跳出循环*/
+//　			 for(;i<j;i++)
+//　				 if(a[i]>val)	 {
+//　					 a[j--]=a[i];
+//　					 break;
+//　				 }
+//　		 }
+//　		 a[i]=val;/*将保存在val中的数放到a[i]中*/
+//　		 QuickSort(a,i);/*递归，对前i个数排序*/
+//　		 QuickSort(a+i+1,numsize-i-1);/*对i+2到numsize这numsize-1-i个数排序*/
+//　	 }
 
