@@ -1,24 +1,24 @@
 ------------------------------  PWM.pjt - Debug  ------------------------------
-[DSP281x_CodeStartBranch.asm] "C:\Program Files (x86)\CCStudio_v3.3PLA\C2000\cgtools\bin\cl2000" -g -pdr -fr"F:/kuaipan/ALsrm/CCS/sSRM2812b/Debug" -d"_DEBUG" -d"LARGE_MODEL" -ml -mt -v28 -@"Debug.lkf" "DSP281x_CodeStartBranch.asm"
+[DSP281x_CodeStartBranch.asm] "C:\Program Files (x86)\CCStudio_v3.3PLA\C2000\cgtools\bin\cl2000" -g -pdr -fr"F:/Weiyun/CCSSRM2812c/Debug" -d"_DEBUG" -d"LARGE_MODEL" -ml -mt -v28 -@"Debug.lkf" "DSP281x_CodeStartBranch.asm"
 
-[DSP281x_DefaultIsr.c] "C:\Program Files (x86)\CCStudio_v3.3PLA\C2000\cgtools\bin\cl2000" -g -pdr -fr"F:/kuaipan/ALsrm/CCS/sSRM2812b/Debug" -d"_DEBUG" -d"LARGE_MODEL" -ml -mt -v28 -@"Debug.lkf" "DSP281x_DefaultIsr.c"
+[DSP281x_DefaultIsr.c] "C:\Program Files (x86)\CCStudio_v3.3PLA\C2000\cgtools\bin\cl2000" -g -pdr -fr"F:/Weiyun/CCSSRM2812c/Debug" -d"_DEBUG" -d"LARGE_MODEL" -ml -mt -v28 -@"Debug.lkf" "DSP281x_DefaultIsr.c"
 
-[DSP281x_GlobalVariableDefs.c] "C:\Program Files (x86)\CCStudio_v3.3PLA\C2000\cgtools\bin\cl2000" -g -pdr -fr"F:/kuaipan/ALsrm/CCS/sSRM2812b/Debug" -d"_DEBUG" -d"LARGE_MODEL" -ml -mt -v28 -@"Debug.lkf" "DSP281x_GlobalVariableDefs.c"
+[DSP281x_GlobalVariableDefs.c] "C:\Program Files (x86)\CCStudio_v3.3PLA\C2000\cgtools\bin\cl2000" -g -pdr -fr"F:/Weiyun/CCSSRM2812c/Debug" -d"_DEBUG" -d"LARGE_MODEL" -ml -mt -v28 -@"Debug.lkf" "DSP281x_GlobalVariableDefs.c"
 
-[DSP281x_MemCopy.c] "C:\Program Files (x86)\CCStudio_v3.3PLA\C2000\cgtools\bin\cl2000" -g -pdr -fr"F:/kuaipan/ALsrm/CCS/sSRM2812b/Debug" -d"_DEBUG" -d"LARGE_MODEL" -ml -mt -v28 -@"Debug.lkf" "DSP281x_MemCopy.c"
+[DSP281x_MemCopy.c] "C:\Program Files (x86)\CCStudio_v3.3PLA\C2000\cgtools\bin\cl2000" -g -pdr -fr"F:/Weiyun/CCSSRM2812c/Debug" -d"_DEBUG" -d"LARGE_MODEL" -ml -mt -v28 -@"Debug.lkf" "DSP281x_MemCopy.c"
 
-[DSP281x_PieCtrl.c] "C:\Program Files (x86)\CCStudio_v3.3PLA\C2000\cgtools\bin\cl2000" -g -pdr -fr"F:/kuaipan/ALsrm/CCS/sSRM2812b/Debug" -d"_DEBUG" -d"LARGE_MODEL" -ml -mt -v28 -@"Debug.lkf" "DSP281x_PieCtrl.c"
+[DSP281x_PieCtrl.c] "C:\Program Files (x86)\CCStudio_v3.3PLA\C2000\cgtools\bin\cl2000" -g -pdr -fr"F:/Weiyun/CCSSRM2812c/Debug" -d"_DEBUG" -d"LARGE_MODEL" -ml -mt -v28 -@"Debug.lkf" "DSP281x_PieCtrl.c"
 
-[DSP281x_PieVect.c] "C:\Program Files (x86)\CCStudio_v3.3PLA\C2000\cgtools\bin\cl2000" -g -pdr -fr"F:/kuaipan/ALsrm/CCS/sSRM2812b/Debug" -d"_DEBUG" -d"LARGE_MODEL" -ml -mt -v28 -@"Debug.lkf" "DSP281x_PieVect.c"
+[DSP281x_PieVect.c] "C:\Program Files (x86)\CCStudio_v3.3PLA\C2000\cgtools\bin\cl2000" -g -pdr -fr"F:/Weiyun/CCSSRM2812c/Debug" -d"_DEBUG" -d"LARGE_MODEL" -ml -mt -v28 -@"Debug.lkf" "DSP281x_PieVect.c"
 
-[DSP281x_SysCtrl.c] "C:\Program Files (x86)\CCStudio_v3.3PLA\C2000\cgtools\bin\cl2000" -g -pdr -fr"F:/kuaipan/ALsrm/CCS/sSRM2812b/Debug" -d"_DEBUG" -d"LARGE_MODEL" -ml -mt -v28 -@"Debug.lkf" "DSP281x_SysCtrl.c"
+[DSP281x_SysCtrl.c] "C:\Program Files (x86)\CCStudio_v3.3PLA\C2000\cgtools\bin\cl2000" -g -pdr -fr"F:/Weiyun/CCSSRM2812c/Debug" -d"_DEBUG" -d"LARGE_MODEL" -ml -mt -v28 -@"Debug.lkf" "DSP281x_SysCtrl.c"
 
-[Evmgr.c] "C:\Program Files (x86)\CCStudio_v3.3PLA\C2000\cgtools\bin\cl2000" -g -pdr -fr"F:/kuaipan/ALsrm/CCS/sSRM2812b/Debug" -d"_DEBUG" -d"LARGE_MODEL" -ml -mt -v28 -@"Debug.lkf" "Evmgr.c"
+[Evmgr.c] "C:\Program Files (x86)\CCStudio_v3.3PLA\C2000\cgtools\bin\cl2000" -g -pdr -fr"F:/Weiyun/CCSSRM2812c/Debug" -d"_DEBUG" -d"LARGE_MODEL" -ml -mt -v28 -@"Debug.lkf" "Evmgr.c"
 
-[main.c] "C:\Program Files (x86)\CCStudio_v3.3PLA\C2000\cgtools\bin\cl2000" -g -pdr -fr"F:/kuaipan/ALsrm/CCS/sSRM2812b/Debug" -d"_DEBUG" -d"LARGE_MODEL" -ml -mt -v28 -@"Debug.lkf" "main.c"
-"main.c", line 85: remark: controlling expression is constant
+[main.c] "C:\Program Files (x86)\CCStudio_v3.3PLA\C2000\cgtools\bin\cl2000" -g -pdr -fr"F:/Weiyun/CCSSRM2812c/Debug" -d"_DEBUG" -d"LARGE_MODEL" -ml -mt -v28 -@"Debug.lkf" "main.c"
+"main.c", line 86: remark: controlling expression is constant
 
-[srm.c] "C:\Program Files (x86)\CCStudio_v3.3PLA\C2000\cgtools\bin\cl2000" -g -pdr -fr"F:/kuaipan/ALsrm/CCS/sSRM2812b/Debug" -d"_DEBUG" -d"LARGE_MODEL" -ml -mt -v28 -@"Debug.lkf" "srm.c"
+[srm.c] "C:\Program Files (x86)\CCStudio_v3.3PLA\C2000\cgtools\bin\cl2000" -g -pdr -fr"F:/Weiyun/CCSSRM2812c/Debug" -d"_DEBUG" -d"LARGE_MODEL" -ml -mt -v28 -@"Debug.lkf" "srm.c"
 
 [Linking...] "C:\Program Files (x86)\CCStudio_v3.3PLA\C2000\cgtools\bin\cl2000" -@"Debug.lkf"
 <Linking>

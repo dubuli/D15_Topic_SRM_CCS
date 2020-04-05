@@ -1,4 +1,4 @@
-/*File: MAIN.C---------------------*/
+/*File: MAIN.C-------------------haha--*/
 //#include "c240.h"
 #include "srm.h"
 #include "DSP281x_Device.h"
@@ -65,6 +65,7 @@ void main()
 	GpioDataRegs.GPADAT.bit.GPIOA14=0;//D1对应输出电平
 	GpioDataRegs.GPADAT.bit.GPIOA15=0;//D1对应输出电平
 	GpioDataRegs.GPADAT.bit.GPIOA13=0;
+	EDIS;
 	initializeSRM(&SRM);
 	eventmgr_init();
 
