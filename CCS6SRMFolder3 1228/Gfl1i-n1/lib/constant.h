@@ -17,8 +17,8 @@
 #define PWM_FREQ 20000 /* PWM frequency (Hz) */
 #define SYSCLK_FREQ 150000000 /* DSP clock frequency (Hz) *///initial is 20
 #define HSCLK 75000000
-#define CPU_INT_FREQ 5000 /* timer ISR frequency (Hz) */
-#define ONE_HALF_SECOND (CPU_INT_FREQ/2)
+#define T1FREQ 9600	//CPU_INT_FREQ 5000 /* timer ISR frequency (Hz) */
+#define ONE_HALF_SECOND (T1FREQ/2)	//ONE_HALF_SECOND (CPU_INT_FREQ/2)
 /*----------------------------------- */
 /* current loop algorithm constants */
 /*----------------------------------- */
@@ -36,7 +36,7 @@
 #define ANGLESTEPLIMIT 27//sdfsdfdjfskjsldkjfl;sajdflksdjflksjdlfkjsdlkfjlsjdfljsdlkfjslkdjf????????
 
 #define INTEGRAL_LIMIT 2793472 /* integrator limit */
-#define KI 3 /* (Q13*1000): Ki = 0.366 */
+#define KI 2 /* (Q13*1000): Ki = 0.366 */
 #define KP 1 /* Q1: Kp = 0.5 */
 #define KI2 3 /* (Q13*1000): Ki = 0.366 *///////////////////////waiting for calculate!!!!!!!!!!!!!!!!
 #define KP2 1 /* Q1: Kp = 0.5 */
@@ -45,7 +45,7 @@
 /*----------------------------------------------------------*/
 /* position & velocity estimation algorithm constants */
 /*----------------------------------------------------------*/
-#define K_POSITION_EST 1432 //Page 179,unchanged
+#define K_POSITION_EST 5965	//1432 //Page 179,unchanged
 
 /*-----------**
 ** attention **
@@ -53,7 +53,7 @@
 **-----------*/	 
 #define K1_VELOCITY_EST 263671875	//使用75Mhz/64的时钟频率来计算的。    //421875000//281250000//Page 181
 
-#define K2_VELOCITY_EST 62500		//使用 5000Hz 的count 来计算的
+#define K2_VELOCITY_EST 120000	//62500		//使用 5000Hz 的count 来计算的
 
 #define ALPHA 4 /* Q3: alpha = 0.875 */
 #define ONE_MINUS_ALPHA 4 /* Q3: 1-alpha = 0.125 */

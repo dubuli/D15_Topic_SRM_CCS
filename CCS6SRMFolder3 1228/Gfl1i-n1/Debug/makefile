@@ -21,7 +21,7 @@ $(GEN_CMDS__FLAG) \
 "./DSP281x_Sci.obj" \
 "./DSP281x_SysCtrl.obj" \
 "./Gfl1i-n2.obj" \
-"../Flash_Link.cmd" \
+"../RAM_Link.cmd" \
 "../rts2800_ml.lib" \
 -l"C:/ti2/ccsv6/tools/compiler/c2000_6.2.7/lib/rts2800_ml.lib" \
 
@@ -121,32 +121,32 @@ endif
 
 # Add inputs and outputs from these tool invocations to the build variables 
 EXE_OUTPUTS += \
-Gfl1PiTwoPhaseStart1.out \
+Kfl1PiTwoPhaseStart1.out \
 
 EXE_OUTPUTS__QUOTED += \
-"Gfl1PiTwoPhaseStart1.out" \
+"Kfl1PiTwoPhaseStart1.out" \
 
 BIN_OUTPUTS += \
-Gfl1PiTwoPhaseStart1.hex \
+Kfl1PiTwoPhaseStart1.hex \
 
 BIN_OUTPUTS__QUOTED += \
-"Gfl1PiTwoPhaseStart1.hex" \
+"Kfl1PiTwoPhaseStart1.hex" \
 
 
 # All Target
-all: Gfl1PiTwoPhaseStart1.out
+all: Kfl1PiTwoPhaseStart1.out
 
 # Tool invocations
-Gfl1PiTwoPhaseStart1.out: $(OBJS) $(CMD_SRCS) $(LIB_SRCS) $(GEN_CMDS)
+Kfl1PiTwoPhaseStart1.out: $(OBJS) $(CMD_SRCS) $(LIB_SRCS) $(GEN_CMDS)
 	@echo 'Building target: $@'
 	@echo 'Invoking: C2000 Linker'
-	"C:/ti2/ccsv6/tools/compiler/c2000_6.2.7/bin/cl2000" -v28 -ml -mt -g --diag_warning=225 --display_error_number --diag_wrap=off -z -m"Gfl1PiTwoPhaseStart1.map" --stack_size=1000 --warn_sections -i"C:/ti2/ccsv6/tools/compiler/c2000_6.2.7/lib" -i"C:/ti2/ccsv6/tools/compiler/c2000_6.2.7/include" --reread_libs --display_error_number --diag_wrap=off --xml_link_info="Gfl1PiTwoPhaseStart1_linkInfo.xml" --rom_model -o "Gfl1PiTwoPhaseStart1.out" $(ORDERED_OBJS)
+	"C:/ti2/ccsv6/tools/compiler/c2000_6.2.7/bin/cl2000" -v28 -ml -mt -g --diag_warning=225 --display_error_number --diag_wrap=off -z -m"Kfl1PiTwoPhaseStart1.map" --stack_size=1000 --warn_sections -i"C:/ti2/ccsv6/tools/compiler/c2000_6.2.7/lib" -i"C:/ti2/ccsv6/tools/compiler/c2000_6.2.7/include" --reread_libs --display_error_number --diag_wrap=off --xml_link_info="Kfl1PiTwoPhaseStart1_linkInfo.xml" --rom_model -o "Kfl1PiTwoPhaseStart1.out" $(ORDERED_OBJS)
 	@echo 'Finished building target: $@'
 	@echo ' '
 
-Gfl1PiTwoPhaseStart1.hex: $(EXE_OUTPUTS)
+Kfl1PiTwoPhaseStart1.hex: $(EXE_OUTPUTS)
 	@echo 'Invoking: C2000 Hex Utility'
-	"C:/ti2/ccsv6/tools/compiler/c2000_6.2.7/bin/hex2000"  -o "Gfl1PiTwoPhaseStart1.hex" $(EXE_OUTPUTS__QUOTED)
+	"C:/ti2/ccsv6/tools/compiler/c2000_6.2.7/bin/hex2000"  -o "Kfl1PiTwoPhaseStart1.hex" $(EXE_OUTPUTS__QUOTED)
 	@echo 'Finished building: $@'
 	@echo ' '
 

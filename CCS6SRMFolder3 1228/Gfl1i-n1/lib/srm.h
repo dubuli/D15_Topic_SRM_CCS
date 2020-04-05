@@ -37,7 +37,7 @@ typedef struct
 	int dutyRatio[NUMBER_OF_PHASES];
 	WORD position;
 	int position_state;
-	int shaft_direction;
+	long shaft_direction;
 	int shaft_direction_old;
 	state_machine trans_lut[7][4];
 	WORD position_initial_guess[7];
