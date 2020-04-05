@@ -27,6 +27,12 @@ void InitSci(void)
 	GpioMuxRegs.GPFMUX.bit.SCITXDA_GPIOF4=1;
 	GpioMuxRegs.GPFMUX.bit.SCIRXDA_GPIOF5=1;
 	EDIS;
+
+/*	SciaRegs.SCIFFTX.all = 0xe040;
+	SciaRegs.SCIFFRX.all = 0x2021;
+	SciaRegs.SCIFFCT.all = 0x0000;*/
+
+
 	/* loopback   8 bit data */
 	SciaRegs.SCICCR.all = 0x07;	// 1 bit stop, disable parity, idle mode, 8 bits data
 

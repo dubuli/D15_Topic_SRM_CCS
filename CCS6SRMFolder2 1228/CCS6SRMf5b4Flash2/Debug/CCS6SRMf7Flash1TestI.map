@@ -1,10 +1,10 @@
 ******************************************************************************
              TMS320C2000 Linker PC v6.2.7                      
 ******************************************************************************
->> Linked Sun Dec 21 12:32:08 2014
+>> Linked Sat Dec 20 20:30:12 2014
 
 OUTPUT FILE NAME:   <CCS6SRMf7Flash1TestI.out>
-ENTRY POINT SYMBOL: "_c_int00"  address: 003d8a14
+ENTRY POINT SYMBOL: "_c_int00"  address: 003d8a10
 
 
 MEMORY CONFIGURATION
@@ -13,7 +13,7 @@ MEMORY CONFIGURATION
 ----------------------  --------  ---------  --------  --------  ----  --------
 PAGE 0:
   RAML0                 00008000   00001000  00000019  00000fe7  RWIX
-  FLASH                 003d8000   0001ff80  00000cce  0001f2b2  RWIX
+  FLASH                 003d8000   0001ff80  00000cca  0001f2b6  RWIX
   BEGIN                 003f7ff6   00000002  00000002  00000000  RWIX
   ROM                   003ff000   00000fc0  00000000  00000fc0  RWIX
   RESET                 003fffc0   00000002  00000000  00000002  RWIX
@@ -57,7 +57,7 @@ SECTION ALLOCATION MAP
  output                                  attributes/
 section   page    origin      length       input sections
 --------  ----  ----------  ----------   ----------------
-.text      0    003d8000    00000b75     
+.text      0    003d8000    00000b71     
                   003d8000    000003c0     CCSf7FlashTestI.obj (.text)
                   003d83c0    0000021d     CCSf7FlashTestI.obj (.text:retain)
                   003d85dd    0000014f     DSP281x_DefaultIsr.obj (.text:retain)
@@ -66,31 +66,31 @@ section   page    origin      length       input sections
                   003d8844    00000078     rts2800_ml.lib : fs_add.obj (.text)
                   003d88bc    0000005c     DSP281x_Ev.obj (.text)
                   003d8918    0000005a     rts2800_ml.lib : fs_mpy.obj (.text)
-                  003d8972    00000058     DSP281x_Gpio.obj (.text)
-                  003d89ca    0000004a     rts2800_ml.lib : exit.obj (.text)
-                  003d8a14    00000044                    : boot.obj (.text)
-                  003d8a58    00000036     DSP281x_Sci.obj (.text)
-                  003d8a8e    00000029     rts2800_ml.lib : fs_tol.obj (.text)
-                  003d8ab7    00000028     DSP281x_PieCtrl.obj (.text)
-                  003d8adf    00000022     rts2800_ml.lib : i_div.obj (.text)
-                  003d8b01    00000020     DSP281x_PieVect.obj (.text)
-                  003d8b21    0000001a     rts2800_ml.lib : l_tofs.obj (.text)
-                  003d8b3b    00000015     DSP281x_MemCopy.obj (.text)
-                  003d8b50    00000014     rts2800_ml.lib : args_main.obj (.text)
-                  003d8b64    00000009                    : _lock.obj (.text)
-                  003d8b6d    00000008     DSP281x_CodeStartBranch.obj (.text)
+                  003d8972    00000054     DSP281x_Gpio.obj (.text)
+                  003d89c6    0000004a     rts2800_ml.lib : exit.obj (.text)
+                  003d8a10    00000044                    : boot.obj (.text)
+                  003d8a54    00000036     DSP281x_Sci.obj (.text)
+                  003d8a8a    00000029     rts2800_ml.lib : fs_tol.obj (.text)
+                  003d8ab3    00000028     DSP281x_PieCtrl.obj (.text)
+                  003d8adb    00000022     rts2800_ml.lib : i_div.obj (.text)
+                  003d8afd    00000020     DSP281x_PieVect.obj (.text)
+                  003d8b1d    0000001a     rts2800_ml.lib : l_tofs.obj (.text)
+                  003d8b37    00000015     DSP281x_MemCopy.obj (.text)
+                  003d8b4c    00000014     rts2800_ml.lib : args_main.obj (.text)
+                  003d8b60    00000009                    : _lock.obj (.text)
+                  003d8b69    00000008     DSP281x_CodeStartBranch.obj (.text)
 
-ramfuncs   0    003d8b75    00000019     RUN ADDR = 00008000
-                  003d8b75    00000019     DSP281x_SysCtrl.obj (ramfuncs)
+ramfuncs   0    003d8b71    00000019     RUN ADDR = 00008000
+                  003d8b71    00000019     DSP281x_SysCtrl.obj (ramfuncs)
 
-.econst    0    003d8b8e    00000100     
-                  003d8b8e    00000100     DSP281x_PieVect.obj (.econst)
+.econst    0    003d8b8a    00000100     
+                  003d8b8a    00000100     DSP281x_PieVect.obj (.econst)
 
-.cinit     0    003d8c8e    00000040     
-                  003d8c8e    00000026     CCSf7FlashTestI.obj (.cinit)
-                  003d8cb4    0000000e     rts2800_ml.lib : exit.obj (.cinit)
-                  003d8cc2    0000000a                    : _lock.obj (.cinit)
-                  003d8ccc    00000002     --HOLE-- [fill = 0]
+.cinit     0    003d8c8a    00000040     
+                  003d8c8a    00000026     CCSf7FlashTestI.obj (.cinit)
+                  003d8cb0    0000000e     rts2800_ml.lib : exit.obj (.cinit)
+                  003d8cbe    0000000a                    : _lock.obj (.cinit)
+                  003d8cc8    00000002     --HOLE-- [fill = 0]
 
 codestart 
 *          0    003f7ff6    00000002     
@@ -295,7 +295,7 @@ address     data page           name
 00009102     244 (00009100)     __dtors_ptr
 00009104     244 (00009100)     __cleanup_ptr
 
-003d8b8e    f62e (003d8b80)     _PieVectTableInit
+003d8b8a    f62e (003d8b80)     _PieVectTableInit
 
 003f7ff8    fdff (003f7fc0)     _CsmPwl
 
@@ -306,14 +306,14 @@ address    name
 --------   ----
 00009000   .bss
 003d8000   .text
-003d89f0   C$$EXIT
+003d89ec   C$$EXIT
 003d8849   FS$$ADD
 003d8918   FS$$MPY
 003d8844   FS$$SUB
-003d8a8e   FS$$TOL
-003d8adf   I$$DIV
-003d8af0   I$$MOD
-003d8b21   L$$TOFS
+003d8a8a   FS$$TOL
+003d8adb   I$$DIV
+003d8aec   I$$MOD
+003d8b1d   L$$TOFS
 003d8650   _ADCINT_ISR
 00007100   _AdcRegs
 003d8696   _CAPINT1_ISR
@@ -351,7 +351,7 @@ address    name
 00006000   _ECanaRegs
 003d871d   _EMPTY_ISR
 003d85f1   _EMUINT_ISR
-003d8ad6   _EnableInterrupts
+003d8ad2   _EnableInterrupts
 00007400   _EvaRegs
 003d849c   _EvbCAP4ISR_INT
 003d850b   _EvbCAP5ISR_INT
@@ -368,17 +368,17 @@ address    name
 00008000   _InitFlash
 003d8972   _InitGpio
 003d877f   _InitPeripheralClocks
-003d8ab7   _InitPieCtrl
-003d8b01   _InitPieVectTable
+003d8ab3   _InitPieCtrl
+003d8afd   _InitPieVectTable
 003d8760   _InitPll
-003d8a58   _InitSci
+003d8a54   _InitSci
 003d872c   _InitSysCtrl
 003d8756   _KickDog
 00009002   _LEDvalue
 003d86f5   _MRINTA_ISR
 003d86fa   _MXINTA_ISR
 00007800   _McbspaRegs
-003d8b3b   _MemCopy
+003d8b37   _MemCopy
 003d823f   _Msmt_Update_Velocity
 003d85f6   _NMI_ISR
 003d863c   _PDPINTA_ISR
@@ -386,10 +386,10 @@ address    name
 003d8722   _PIE_RESERVED
 00000ce0   _PieCtrlRegs
 00000d00   _PieVectTable
-003d8b8e   _PieVectTableInit
+003d8b8a   _PieVectTableInit
 003d85ec   _RTOSINT_ISR
-003d8b8e   _RamfuncsLoadEnd
-003d8b75   _RamfuncsLoadStart
+003d8b8a   _RamfuncsLoadEnd
+003d8b71   _RamfuncsLoadStart
 00008000   _RamfuncsRunStart
 003d86ff   _SCIRXINTA_ISR
 003d8709   _SCIRXINTB_ISR
@@ -400,8 +400,8 @@ address    name
 003d86f0   _SPITXINTA_ISR
 00009040   _SRM
 00007050   _SciaRegs
-003d8a7f   _SciaRx_Ready
-003d8a70   _SciaTx_Ready
+003d8a7b   _SciaRx_Ready
+003d8a6c   _SciaTx_Ready
 00007750   _ScibRegs
 00009007   _SpeedFlag
 00009005   _SpeedPiFlag
@@ -449,27 +449,27 @@ address    name
 ffffffff   ___binit__
 00009000   ___bss__
 ffffffff   ___c_args__
-003d8c8e   ___cinit__
+003d8c8a   ___cinit__
 00009000   ___end__
-003d8b75   ___etext__
+003d8b71   ___etext__
 ffffffff   ___pinit__
 003d8000   ___text__
-003d8b50   __args_main
+003d8b4c   __args_main
 00009104   __cleanup_ptr
 00009102   __dtors_ptr
 000090de   __lock
-003d8b64   __nop
-003d8b65   __register_lock
-003d8b69   __register_unlock
+003d8b60   __nop
+003d8b61   __register_lock
+003d8b65   __register_unlock
 000090dc   __unlock
-003d8a13   _abort
+003d8a0f   _abort
 003d83c0   _ad
 0000900e   _adclo
-003d89f2   _atexit
-003d8a14   _c_int00
+003d89ee   _atexit
+003d8a10   _c_int00
 00009008   _count
 003d8294   _currentController
-003d89ca   _exit
+003d89c6   _exit
 0000900a   _i
 00009010   _iDes
 003d810b   _initializeSRM
@@ -482,9 +482,9 @@ ffffffff   ___pinit__
 0000900c   _speed_error
 003d8390   _switch_lowside
 ffffffff   binit
-003d8c8e   cinit
+003d8c8a   cinit
 00009000   end
-003d8b75   etext
+003d8b71   etext
 ffffffff   pinit
 
 
@@ -641,33 +641,33 @@ address    name
 003d88bc   _InitEv
 003d8918   FS$$MPY
 003d8972   _InitGpio
-003d89ca   _exit
-003d89f0   C$$EXIT
-003d89f2   _atexit
-003d8a13   _abort
-003d8a14   _c_int00
-003d8a58   _InitSci
-003d8a70   _SciaTx_Ready
-003d8a7f   _SciaRx_Ready
-003d8a8e   FS$$TOL
-003d8ab7   _InitPieCtrl
-003d8ad6   _EnableInterrupts
-003d8adf   I$$DIV
-003d8af0   I$$MOD
-003d8b01   _InitPieVectTable
-003d8b21   L$$TOFS
-003d8b3b   _MemCopy
-003d8b50   __args_main
-003d8b64   __nop
-003d8b65   __register_lock
-003d8b69   __register_unlock
-003d8b75   _RamfuncsLoadStart
-003d8b75   ___etext__
-003d8b75   etext
-003d8b8e   _PieVectTableInit
-003d8b8e   _RamfuncsLoadEnd
-003d8c8e   ___cinit__
-003d8c8e   cinit
+003d89c6   _exit
+003d89ec   C$$EXIT
+003d89ee   _atexit
+003d8a0f   _abort
+003d8a10   _c_int00
+003d8a54   _InitSci
+003d8a6c   _SciaTx_Ready
+003d8a7b   _SciaRx_Ready
+003d8a8a   FS$$TOL
+003d8ab3   _InitPieCtrl
+003d8ad2   _EnableInterrupts
+003d8adb   I$$DIV
+003d8aec   I$$MOD
+003d8afd   _InitPieVectTable
+003d8b1d   L$$TOFS
+003d8b37   _MemCopy
+003d8b4c   __args_main
+003d8b60   __nop
+003d8b61   __register_lock
+003d8b65   __register_unlock
+003d8b71   _RamfuncsLoadStart
+003d8b71   ___etext__
+003d8b71   etext
+003d8b8a   _PieVectTableInit
+003d8b8a   _RamfuncsLoadEnd
+003d8c8a   ___cinit__
+003d8c8a   cinit
 003f7ff8   _CsmPwl
 ffffffff   ___binit__
 ffffffff   ___c_args__

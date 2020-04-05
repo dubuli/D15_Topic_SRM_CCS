@@ -11,7 +11,7 @@
 /******************************************************************/ 
 #include "DSP281x_Device.h"    
 
-
+extern int SCiRxData;
 // Note CPU-Timer1 ISR is reserved for TI use.
 interrupt void INT13_ISR(void)     // INT13 or CPU-Timer1
 {
@@ -843,20 +843,19 @@ interrupt void SCIRXINTA_ISR(void)     // SCI-A
 
   // Next two lines for debug only to halt the processor here
   // Remove after inserting ISR Code
-   asm ("      ESTOP0");
-   for(;;);
-/*	PieCtrl.PIEACK.bit.ACK9 = 1;
-	if(SciaRx_Ready() == 1)
-	{
-		SCiRxData[j] = SciaRegs.SCIRXBUF.all;
-		SendFlag = 1;
-		j++;
-		if(j == 100)
-		{
-			j = 0;
-		}
-	}
-	EINT;*/
+   //asm ("      ESTOP0");
+   //for(;;);
+
+
+	SCiRxData = SciaRegs.SCIRXBUF.all;
+	SCiRxData &= 0xff;
+//	SciaRegs.SCIFFRX.bit.RXFFOVRCLR =1;
+//	SciaRegs.SCIFFRX.bit.RXFFINTCLR =1;
+
+
+//	PieCtrlRegs.PIEACK.bit.ACK9 = 1;
+	PieCtrlRegs.PIEACK.all = PIEACK_GROUP9;
+	EINT;
 }
 
 // INT9.2
