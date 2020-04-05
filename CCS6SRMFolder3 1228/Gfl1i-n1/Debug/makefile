@@ -20,7 +20,7 @@ $(GEN_CMDS__FLAG) \
 "./DSP281x_PieVect.obj" \
 "./DSP281x_Sci.obj" \
 "./DSP281x_SysCtrl.obj" \
-"./Gfl1i-n2.obj" \
+"./Ifl1.obj" \
 "../RAM_Link.cmd" \
 "../rts2800_ml.lib" \
 -l"C:/ti2/ccsv6/tools/compiler/c2000_6.2.7/lib/rts2800_ml.lib" \
@@ -121,40 +121,40 @@ endif
 
 # Add inputs and outputs from these tool invocations to the build variables 
 EXE_OUTPUTS += \
-Kfl1PiTwoPhaseStart1.out \
+Ifl1PiTwoPhaseStart1.out \
 
 EXE_OUTPUTS__QUOTED += \
-"Kfl1PiTwoPhaseStart1.out" \
+"Ifl1PiTwoPhaseStart1.out" \
 
 BIN_OUTPUTS += \
-Kfl1PiTwoPhaseStart1.hex \
+Ifl1PiTwoPhaseStart1.hex \
 
 BIN_OUTPUTS__QUOTED += \
-"Kfl1PiTwoPhaseStart1.hex" \
+"Ifl1PiTwoPhaseStart1.hex" \
 
 
 # All Target
-all: Kfl1PiTwoPhaseStart1.out
+all: Ifl1PiTwoPhaseStart1.out
 
 # Tool invocations
-Kfl1PiTwoPhaseStart1.out: $(OBJS) $(CMD_SRCS) $(LIB_SRCS) $(GEN_CMDS)
+Ifl1PiTwoPhaseStart1.out: $(OBJS) $(CMD_SRCS) $(LIB_SRCS) $(GEN_CMDS)
 	@echo 'Building target: $@'
 	@echo 'Invoking: C2000 Linker'
-	"C:/ti2/ccsv6/tools/compiler/c2000_6.2.7/bin/cl2000" -v28 -ml -mt -g --diag_warning=225 --display_error_number --diag_wrap=off -z -m"Kfl1PiTwoPhaseStart1.map" --stack_size=1000 --warn_sections -i"C:/ti2/ccsv6/tools/compiler/c2000_6.2.7/lib" -i"C:/ti2/ccsv6/tools/compiler/c2000_6.2.7/include" --reread_libs --display_error_number --diag_wrap=off --xml_link_info="Kfl1PiTwoPhaseStart1_linkInfo.xml" --rom_model -o "Kfl1PiTwoPhaseStart1.out" $(ORDERED_OBJS)
+	"C:/ti2/ccsv6/tools/compiler/c2000_6.2.7/bin/cl2000" -v28 -ml -mt -g --diag_warning=225 --display_error_number --diag_wrap=off -z -m"Ifl1PiTwoPhaseStart1.map" --stack_size=1000 --warn_sections -i"C:/ti2/ccsv6/tools/compiler/c2000_6.2.7/lib" -i"C:/ti2/ccsv6/tools/compiler/c2000_6.2.7/include" --reread_libs --display_error_number --diag_wrap=off --xml_link_info="Ifl1PiTwoPhaseStart1_linkInfo.xml" --rom_model -o "Ifl1PiTwoPhaseStart1.out" $(ORDERED_OBJS)
 	@echo 'Finished building target: $@'
 	@echo ' '
 
-Kfl1PiTwoPhaseStart1.hex: $(EXE_OUTPUTS)
+Ifl1PiTwoPhaseStart1.hex: $(EXE_OUTPUTS)
 	@echo 'Invoking: C2000 Hex Utility'
-	"C:/ti2/ccsv6/tools/compiler/c2000_6.2.7/bin/hex2000"  -o "Kfl1PiTwoPhaseStart1.hex" $(EXE_OUTPUTS__QUOTED)
+	"C:/ti2/ccsv6/tools/compiler/c2000_6.2.7/bin/hex2000"  -o "Ifl1PiTwoPhaseStart1.hex" $(EXE_OUTPUTS__QUOTED)
 	@echo 'Finished building: $@'
 	@echo ' '
 
 # Other Targets
 clean:
 	-$(RM) $(EXE_OUTPUTS__QUOTED)$(BIN_OUTPUTS__QUOTED)
-	-$(RM) "DSP281x_Adc.pp" "DSP281x_CpuTimers.pp" "DSP281x_DefaultIsr.pp" "DSP281x_Ev.pp" "DSP281x_GlobalVariableDefs.pp" "DSP281x_Gpio.pp" "DSP281x_MemCopy.pp" "DSP281x_PieCtrl.pp" "DSP281x_PieVect.pp" "DSP281x_Sci.pp" "DSP281x_SysCtrl.pp" "Gfl1i-n2.pp" 
-	-$(RM) "DSP281x_Adc.obj" "DSP281x_CodeStartBranch.obj" "DSP281x_CpuTimers.obj" "DSP281x_DefaultIsr.obj" "DSP281x_Ev.obj" "DSP281x_GlobalVariableDefs.obj" "DSP281x_Gpio.obj" "DSP281x_MemCopy.obj" "DSP281x_PieCtrl.obj" "DSP281x_PieVect.obj" "DSP281x_Sci.obj" "DSP281x_SysCtrl.obj" "Gfl1i-n2.obj" 
+	-$(RM) "DSP281x_Adc.pp" "DSP281x_CpuTimers.pp" "DSP281x_DefaultIsr.pp" "DSP281x_Ev.pp" "DSP281x_GlobalVariableDefs.pp" "DSP281x_Gpio.pp" "DSP281x_MemCopy.pp" "DSP281x_PieCtrl.pp" "DSP281x_PieVect.pp" "DSP281x_Sci.pp" "DSP281x_SysCtrl.pp" "Ifl1.pp" 
+	-$(RM) "DSP281x_Adc.obj" "DSP281x_CodeStartBranch.obj" "DSP281x_CpuTimers.obj" "DSP281x_DefaultIsr.obj" "DSP281x_Ev.obj" "DSP281x_GlobalVariableDefs.obj" "DSP281x_Gpio.obj" "DSP281x_MemCopy.obj" "DSP281x_PieCtrl.obj" "DSP281x_PieVect.obj" "DSP281x_Sci.obj" "DSP281x_SysCtrl.obj" "Ifl1.obj" 
 	-$(RM) "DSP281x_CodeStartBranch.pp" 
 	-@echo 'Finished clean'
 	-@echo ' '

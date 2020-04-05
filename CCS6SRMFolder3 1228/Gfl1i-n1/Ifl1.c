@@ -18,7 +18,10 @@
 float	adclo=0.0;
 
 int count=0;//5000Hz
-int slice=0;//1-5
+
+int watchdogcount;
+int WatchdogFlag;
+
 int count_old=0;//record count
 int UpdateVelocityFlag=0;//flag
 //int Toggle_LED=0;//flag
@@ -35,6 +38,10 @@ long iDes;
 int StartFlag;
 
 int SCiRxData=0;
+
+int CurrentControllerFlag;
+int PhaseControlFlag;
+int Time_Update_PositionFlag;
 
 //extern Uint16 RamfuncsLoadStart;		//flash++
 //extern Uint16 RamfuncsRunStart;
@@ -65,7 +72,7 @@ interrupt void EvbCAP6ISR_INT(void);
 void currentController(anSRM_struct *anSRM);
 void UpdateVelocity(anSRM_struct *anSRM, int mode);
 void Time_Update_Position(anSRM_struct *anSRM);
-void Commutation_Algorithm(anSRM_struct *anSRM);
+void PhaseControl(anSRM_struct *anSRM);
 void switch_lowside(int phaseactive);
 void InitFlash(void);
 void MemCopy(Uint16 *SourceAddr, Uint16* SourceEndAddr, Uint16* DestAddr);
@@ -112,6 +119,11 @@ void main(void)
 	speed_error=0;
 	iDes=0;	//gfl1i-n2
 	StartFlag=0;
+	watchdogcount=0;
+	WatchdogFlag=0;
+	CurrentControllerFlag=0;
+	PhaseControlFlag=0;
+	Time_Update_PositionFlag=0;
 
 	SRM.wDes_10xrpm=4750;	//Desninate rpm
 /*---------------------------------**
@@ -169,7 +181,7 @@ after the above lines, the ACK5=1; IFR=0x10;
 	{
 		KickDog();
 
-		if(SWITCH1==1 || PAOCUP==1 ||PAOCDN==1 || PBOCUP==1 || PBOCDN==1 || PCOCUP==1 ||PCOCDN==1)	{
+		if(SWITCH1==1 || PAOCUP==1 ||PAOCDN==1 || PBOCUP==1 || PBOCDN==1 || PCOCUP==1 ||PCOCDN==1 || WatchdogFlag==0)	{
 			EvbRegs.ACTRB.all = 0xfff;
 			//EvbRegs.ACTRB.bit.CMP7-12ACT=3; //forecd high, PWM is forbiddend
 			StartFlag=0;
@@ -184,7 +196,22 @@ after the above lines, the ACK5=1; IFR=0x10;
 		else
 			StartFlag=1;
 
-//		while(SWITCH1==1 || PAOCUP==1 ||PAOCDN==1 || PBOCUP==1 || PBOCDN==1 || PCOCUP==1 ||PCOCDN==1)
+
+		if(Time_Update_PositionFlag)	{
+			Time_Update_Position(&SRM); /* using algorithm */
+			Time_Update_PositionFlag=0;
+		}
+
+
+		if(PhaseControlFlag && StartFlag)	{
+			PhaseControl(&SRM); /* do commutation in the 1st */
+										//there is some question about it, should recosider!!!
+			PhaseControlFlag=0;
+		}
+		if(CurrentControllerFlag && StartFlag)	{
+			currentController(&SRM); /* current loop algorithm *///ddcap
+			CurrentControllerFlag=0;
+		}
 
 		/*----------------------*/
 		/* Velocity update task */
@@ -205,7 +232,9 @@ after the above lines, the ACK5=1; IFR=0x10;
 			UpdateVelocityFlag = 0;
 		}
 
-		//speedpiFlag is 1KHz;
+
+
+		//speedpiFlag is 480Hz;
 		if(SpeedPiFlag==1 && StartFlag==1)	{
 
 			speed_error=SRM.wDes_10xrpm-SRM.wEst_10xrpm;
@@ -227,6 +256,14 @@ after the above lines, the ACK5=1; IFR=0x10;
 
 
 			SpeedPiFlag=0;
+
+				//changeto 9600Hz 480-20Hz			//%250 20Hz		//5Hz// 5000/100=50 Hz
+//				GpioDataRegs.GPEDAT.bit.GPIOE1=0;
+//
+//				if((SciaTx_Ready() == 1) )//&& (SendFlag == 1))
+//					SciaRegs.SCITXBUF=(SRM.wEst_10xrpm/50);
+
+
 		}
 
 
@@ -256,23 +293,26 @@ delete in 2812f4
 	SRM.iFB[1]=(AdcRegs.ADCRESULT2>>4) & 0x0fff;
 	SRM.iFB[2]=(AdcRegs.ADCRESULT4>>4) & 0x0fff;
 
-	currentController(&SRM); /* current loop algorithm *///ddcap
+	CurrentControllerFlag=1;
+	PhaseControlFlag=1;
+	Time_Update_PositionFlag=1;
 
-
-	Time_Update_Position(&SRM); /* using algorithm */
 
 //	check_for_stall();
 
 
 	count++;	// = count + 1; /* increment count */
 //	slice++; 	//= slice + 1; /* increment slicer */
+	watchdogcount++;//1-5
+	if(watchdogcount==1600 || watchdogcount==1610)
+		WatchdogFlag=1;
+
 	if (count >= T1FREQ)
 	{
 		count = 0;
 	}
 
-	Commutation_Algorithm(&SRM); /* do commutation in the 1st */
-								//there is some question about it, should recosider!!!
+
 
 	if (  !( count % (T1FREQ/480) )  )	{		//9600/20=480Hz PI
 		SpeedPiFlag=1;
@@ -288,16 +328,21 @@ delete in 2812f4
 		else
 			SpeedFlag=1;			//High speed,use CapFIFO
 
+//		GpioDataRegs.GPEDAT.bit.GPIOE1=0;
+//
+//		if((SciaTx_Ready() == 1) )//&& (SendFlag == 1))
+//			SciaRegs.SCITXBUF=(SpeedFlag);
+
 		CapCount=0;
 	}
 
 	//	485,transfer the wEst,OUTPUT the wEst
-		if(!(count%480))		{				//changeto 9600Hz 480-20Hz			//%250 20Hz		//5Hz// 5000/100=50 Hz
-			GpioDataRegs.GPEDAT.bit.GPIOE1=0;
-
-			if((SciaTx_Ready() == 1) )//&& (SendFlag == 1))
-				SciaRegs.SCITXBUF=(SRM.wEst_10xrpm/50);
-		}
+//		if(!(count%480))		{				//changeto 9600Hz 480-20Hz			//%250 20Hz		//5Hz// 5000/100=50 Hz
+//			GpioDataRegs.GPEDAT.bit.GPIOE1=0;
+//
+//			if((SciaTx_Ready() == 1) )//&& (SendFlag == 1))
+//				SciaRegs.SCITXBUF=(SRM.wEst_10xrpm/50);
+//		}
 
 	//	GpioDataRegs.GPEDAT.bit.GPIOE1=0;
 
@@ -402,6 +447,10 @@ void EvbCAP4ISR_INT(void)
 	}
 
 
+	GpioDataRegs.GPEDAT.bit.GPIOE1=0;
+
+	if((SciaTx_Ready() == 1) )//&& (SendFlag == 1))
+		SciaRegs.SCITXBUF=(SRM.position_state);
 
 	EvbRegs.EVBIFRC.bit.CAP4INT = 1;//to clear the 清除捕获中断4的标志位
 	PieCtrlRegs.PIEACK.bit.ACK5 = 1; //origin: ACK.all=0x0010
@@ -474,6 +523,10 @@ void EvbCAP5ISR_INT(void)
 		UpdateVelocityFlag = 2;
 	}
 
+	GpioDataRegs.GPEDAT.bit.GPIOE1=0;
+
+	if((SciaTx_Ready() == 1) )//&& (SendFlag == 1))
+		SciaRegs.SCITXBUF=(SRM.position_state);
 
 	EvbRegs.EVBIFRC.bit.CAP5INT = 1;
 	PieCtrlRegs.PIEACK.bit.ACK5 = 1; //origin: ACK.all=0x0010
@@ -546,7 +599,10 @@ void EvbCAP6ISR_INT(void)
 	}
 
 
+	GpioDataRegs.GPEDAT.bit.GPIOE1=0;
 
+	if((SciaTx_Ready() == 1) )//&& (SendFlag == 1))
+		SciaRegs.SCITXBUF=(SRM.position_state);
 
 
 	EvbRegs.EVBIFRC.bit.CAP6INT = 1;
@@ -764,55 +820,16 @@ void UpdateVelocity(anSRM_struct *anSRM, int mode)
 		anSRM->wEst_10xrpm = filt_velocity >> 3;
 	}
 
+//	GpioDataRegs.GPEDAT.bit.GPIOE1=0;
+//
+//	if((SciaTx_Ready() == 1) )//&& (SendFlag == 1))
+//		SciaRegs.SCITXBUF=(anSRM->shaft_direction);
+
 // set to 0
 //	anSRM->wEst_10xrpm=0;
 } /* end, velocity estimation */
 
 
-
-
-void currentController(anSRM_struct *anSRM)
-{
-	int phase;
-//	int ierr;
-
-
-	for (phase = 0; phase < NUMBER_OF_PHASES; phase++)
-	{
-		/*----------------------------------------------*/
-		/* for each active phase do ... */
-		/*----------------------------------------------*/
-		if (anSRM->active[phase] > 0)
-		{
-
-
-			if(anSRM->iFB[phase] > (iDes + 10))		//184-800mA,92-400mA	//chopcurrent
-			{
-				anSRM->dutyRatio[phase]=0;//compare to output LOW
-			}
-			else if(anSRM->iFB[phase] < (iDes))	//172-750mA,86-375mA
-			{
-				anSRM->dutyRatio[phase]=0xffff;//compare to output HIGH
-			}
-		}
-		/*----------------------------------------------*/
-		/* else, phase is not active */
-		/*----------------------------------------------*/
-		else
-		{
-			anSRM->iDes[phase] = 0;
-			anSRM->dutyRatio[phase] = 0;
-		}
-	} /* end for loop */
-	/*---------------------------------------*/
-	/* output PWM signals to high-side FET’s */
-	///*---------------------------------------*/
-	EvbRegs.CMPR4 = anSRM->dutyRatio[0];//设置比较寄存器
-	EvbRegs.CMPR5 = anSRM->dutyRatio[1];
-	EvbRegs.CMPR6 = anSRM->dutyRatio[2];
-	/* end currentController */
-
-}
 
 
 
@@ -875,7 +892,7 @@ void Time_Update_Position(anSRM_struct *anSRM)
 
 
 
-void Commutation_Algorithm(anSRM_struct *anSRM)	//int the ADC interrupt
+void PhaseControl(anSRM_struct *anSRM)	//int the ADC interrupt
 {
 	int phase;
 	WORD electricalAngle;//update in position update
@@ -923,12 +940,8 @@ void Commutation_Algorithm(anSRM_struct *anSRM)	//int the ADC interrupt
 	/*------------------------------------*/
 	/* switch low-side FETs, as required */
 	/*------------------------------------*/
-	if(!StartFlag)	{
-		EvbRegs.ACTRB.all = 0xfff;
-	}
-	else	{
 		switch_lowside(whats_active);
-	}
+
 
 }
 
@@ -1006,3 +1019,50 @@ void switch_lowside(int phaseactive)
 	}
 
 }
+
+
+
+
+void currentController(anSRM_struct *anSRM)
+{
+	int phase;
+//	int ierr;
+
+
+	for (phase = 0; phase < NUMBER_OF_PHASES; phase++)
+	{
+		/*----------------------------------------------*/
+		/* for each active phase do ... */
+		/*----------------------------------------------*/
+		if (anSRM->active[phase] > 0)
+		{
+
+
+			if(anSRM->iFB[phase] > (iDes + 10))		//184-800mA,92-400mA	//chopcurrent
+			{
+				anSRM->dutyRatio[phase]=0;//compare to output LOW
+			}
+			else if(anSRM->iFB[phase] < (iDes))	//172-750mA,86-375mA
+			{
+				anSRM->dutyRatio[phase]=0xffff;//compare to output HIGH
+			}
+		}
+		/*----------------------------------------------*/
+		/* else, phase is not active */
+		/*----------------------------------------------*/
+		else
+		{
+			anSRM->iDes[phase] = 0;
+			anSRM->dutyRatio[phase] = 0;
+		}
+	} /* end for loop */
+	/*---------------------------------------*/
+	/* output PWM signals to high-side FET’s */
+	///*---------------------------------------*/
+	EvbRegs.CMPR4 = anSRM->dutyRatio[0];//设置比较寄存器
+	EvbRegs.CMPR5 = anSRM->dutyRatio[1];
+	EvbRegs.CMPR6 = anSRM->dutyRatio[2];
+	/* end currentController */
+
+}
+
