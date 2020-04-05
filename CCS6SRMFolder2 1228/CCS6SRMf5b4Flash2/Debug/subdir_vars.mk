@@ -4,120 +4,107 @@
 
 # Add inputs and outputs from these tool invocations to the build variables 
 CMD_SRCS += \
-../SRAM.cmd 
+../Flash_Link.cmd 
+
+LIB_SRCS += \
+../rts2800_ml.lib 
+
+ASM_SRCS += \
+../DSP281x_CodeStartBranch.asm 
 
 C_SRCS += \
-../CCSSRM2812f.c \
-../Cotherfiles.c \
-../DSP28_Adc.c \
-../DSP28_CpuTimers.c \
-../DSP28_DefaultIsr.c \
-../DSP28_Ev.c \
-../DSP28_GlobalVariableDefs.c \
-../DSP28_Gpio.c \
-../DSP28_InitPeripherals.c \
-../DSP28_Mcbsp.c \
-../DSP28_PieCtrl.c \
-../DSP28_PieVect.c \
-../DSP28_Sci.c \
-../DSP28_Spi.c \
-../DSP28_SysCtrl.c \
-../DSP28_XIntrupt.c \
-../DSP28_Xintf.c 
+../DSP281x_Adc.c \
+../DSP281x_CpuTimers.c \
+../DSP281x_DefaultIsr.c \
+../DSP281x_Ev.c \
+../DSP281x_GlobalVariableDefs.c \
+../DSP281x_Gpio.c \
+../DSP281x_MemCopy.c \
+../DSP281x_PieCtrl.c \
+../DSP281x_PieVect.c \
+../DSP281x_Sci.c \
+../DSP281x_SysCtrl.c \
+../ccsSRM.c 
 
 OBJS += \
-./CCSSRM2812f.obj \
-./Cotherfiles.obj \
-./DSP28_Adc.obj \
-./DSP28_CpuTimers.obj \
-./DSP28_DefaultIsr.obj \
-./DSP28_Ev.obj \
-./DSP28_GlobalVariableDefs.obj \
-./DSP28_Gpio.obj \
-./DSP28_InitPeripherals.obj \
-./DSP28_Mcbsp.obj \
-./DSP28_PieCtrl.obj \
-./DSP28_PieVect.obj \
-./DSP28_Sci.obj \
-./DSP28_Spi.obj \
-./DSP28_SysCtrl.obj \
-./DSP28_XIntrupt.obj \
-./DSP28_Xintf.obj 
+./DSP281x_Adc.obj \
+./DSP281x_CodeStartBranch.obj \
+./DSP281x_CpuTimers.obj \
+./DSP281x_DefaultIsr.obj \
+./DSP281x_Ev.obj \
+./DSP281x_GlobalVariableDefs.obj \
+./DSP281x_Gpio.obj \
+./DSP281x_MemCopy.obj \
+./DSP281x_PieCtrl.obj \
+./DSP281x_PieVect.obj \
+./DSP281x_Sci.obj \
+./DSP281x_SysCtrl.obj \
+./ccsSRM.obj 
+
+ASM_DEPS += \
+./DSP281x_CodeStartBranch.pp 
 
 C_DEPS += \
-./CCSSRM2812f.pp \
-./Cotherfiles.pp \
-./DSP28_Adc.pp \
-./DSP28_CpuTimers.pp \
-./DSP28_DefaultIsr.pp \
-./DSP28_Ev.pp \
-./DSP28_GlobalVariableDefs.pp \
-./DSP28_Gpio.pp \
-./DSP28_InitPeripherals.pp \
-./DSP28_Mcbsp.pp \
-./DSP28_PieCtrl.pp \
-./DSP28_PieVect.pp \
-./DSP28_Sci.pp \
-./DSP28_Spi.pp \
-./DSP28_SysCtrl.pp \
-./DSP28_XIntrupt.pp \
-./DSP28_Xintf.pp 
+./DSP281x_Adc.pp \
+./DSP281x_CpuTimers.pp \
+./DSP281x_DefaultIsr.pp \
+./DSP281x_Ev.pp \
+./DSP281x_GlobalVariableDefs.pp \
+./DSP281x_Gpio.pp \
+./DSP281x_MemCopy.pp \
+./DSP281x_PieCtrl.pp \
+./DSP281x_PieVect.pp \
+./DSP281x_Sci.pp \
+./DSP281x_SysCtrl.pp \
+./ccsSRM.pp 
 
 C_DEPS__QUOTED += \
-"CCSSRM2812f.pp" \
-"Cotherfiles.pp" \
-"DSP28_Adc.pp" \
-"DSP28_CpuTimers.pp" \
-"DSP28_DefaultIsr.pp" \
-"DSP28_Ev.pp" \
-"DSP28_GlobalVariableDefs.pp" \
-"DSP28_Gpio.pp" \
-"DSP28_InitPeripherals.pp" \
-"DSP28_Mcbsp.pp" \
-"DSP28_PieCtrl.pp" \
-"DSP28_PieVect.pp" \
-"DSP28_Sci.pp" \
-"DSP28_Spi.pp" \
-"DSP28_SysCtrl.pp" \
-"DSP28_XIntrupt.pp" \
-"DSP28_Xintf.pp" 
+"DSP281x_Adc.pp" \
+"DSP281x_CpuTimers.pp" \
+"DSP281x_DefaultIsr.pp" \
+"DSP281x_Ev.pp" \
+"DSP281x_GlobalVariableDefs.pp" \
+"DSP281x_Gpio.pp" \
+"DSP281x_MemCopy.pp" \
+"DSP281x_PieCtrl.pp" \
+"DSP281x_PieVect.pp" \
+"DSP281x_Sci.pp" \
+"DSP281x_SysCtrl.pp" \
+"ccsSRM.pp" 
 
 OBJS__QUOTED += \
-"CCSSRM2812f.obj" \
-"Cotherfiles.obj" \
-"DSP28_Adc.obj" \
-"DSP28_CpuTimers.obj" \
-"DSP28_DefaultIsr.obj" \
-"DSP28_Ev.obj" \
-"DSP28_GlobalVariableDefs.obj" \
-"DSP28_Gpio.obj" \
-"DSP28_InitPeripherals.obj" \
-"DSP28_Mcbsp.obj" \
-"DSP28_PieCtrl.obj" \
-"DSP28_PieVect.obj" \
-"DSP28_Sci.obj" \
-"DSP28_Spi.obj" \
-"DSP28_SysCtrl.obj" \
-"DSP28_XIntrupt.obj" \
-"DSP28_Xintf.obj" 
+"DSP281x_Adc.obj" \
+"DSP281x_CodeStartBranch.obj" \
+"DSP281x_CpuTimers.obj" \
+"DSP281x_DefaultIsr.obj" \
+"DSP281x_Ev.obj" \
+"DSP281x_GlobalVariableDefs.obj" \
+"DSP281x_Gpio.obj" \
+"DSP281x_MemCopy.obj" \
+"DSP281x_PieCtrl.obj" \
+"DSP281x_PieVect.obj" \
+"DSP281x_Sci.obj" \
+"DSP281x_SysCtrl.obj" \
+"ccsSRM.obj" 
+
+ASM_DEPS__QUOTED += \
+"DSP281x_CodeStartBranch.pp" 
 
 C_SRCS__QUOTED += \
-"../CCSSRM2812f.c" \
-"../Cotherfiles.c" \
-"../DSP28_Adc.c" \
-"../DSP28_CpuTimers.c" \
-"../DSP28_DefaultIsr.c" \
-"../DSP28_Ev.c" \
-"../DSP28_GlobalVariableDefs.c" \
-"../DSP28_Gpio.c" \
-"../DSP28_InitPeripherals.c" \
-"../DSP28_Mcbsp.c" \
-"../DSP28_PieCtrl.c" \
-"../DSP28_PieVect.c" \
-"../DSP28_Sci.c" \
-"../DSP28_Spi.c" \
-"../DSP28_SysCtrl.c" \
-"../DSP28_XIntrupt.c" \
-"../DSP28_Xintf.c" 
+"../DSP281x_Adc.c" \
+"../DSP281x_CpuTimers.c" \
+"../DSP281x_DefaultIsr.c" \
+"../DSP281x_Ev.c" \
+"../DSP281x_GlobalVariableDefs.c" \
+"../DSP281x_Gpio.c" \
+"../DSP281x_MemCopy.c" \
+"../DSP281x_PieCtrl.c" \
+"../DSP281x_PieVect.c" \
+"../DSP281x_Sci.c" \
+"../DSP281x_SysCtrl.c" \
+"../ccsSRM.c" 
+
+ASM_SRCS__QUOTED += \
+"../DSP281x_CodeStartBranch.asm" 
 
 

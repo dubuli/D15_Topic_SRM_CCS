@@ -4,5 +4,5 @@
 
 USER_OBJS :=
 
-LIBS := -l"C:/ti2/ccsv6/tools/compiler/c2000_6.2.7/lib/rts2800_ml.lib"
+LIBS := -l"G:/CCS6SRMFolder/LEDFLASH/rts2800_ml.lib"
 
