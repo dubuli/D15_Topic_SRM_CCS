@@ -188,7 +188,7 @@ after the above lines, the ACK5=1; IFR=0x10;
 		}
 
 		//limit the current to 3A	//Set a Flag, break when Flag==5
-		else if(SRM.iFB[0]>CURRENT_1A*3 || SRM.iFB[1]>CURRENT_1A*3 || SRM.iFB[2]>CURRENT_1A*3)	{
+		else if(SRM.iFB[0]>CURRENT_1A*7 || SRM.iFB[1]>CURRENT_1A*7 || SRM.iFB[2]>CURRENT_1A*7)	{
 			EvbRegs.ACTRB.all = 0xfff;
 			StartFlag=0;
 
@@ -247,8 +247,8 @@ after the above lines, the ACK5=1; IFR=0x10;
 			}
 
 			iDes=speed_error*KP+(SRM.integral_speed_error>>16);	//KP=10KP注意速度已经是10倍速度 ,KI
-			if(iDes>CURRENT_1A*4)	{
-				iDes=CURRENT_1A*4;
+			if(iDes>CURRENT_1A*7)	{
+				iDes=CURRENT_1A*7;
 			}
 			else if(iDes<0)	{
 				iDes=0;
