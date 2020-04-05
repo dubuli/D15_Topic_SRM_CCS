@@ -15,14 +15,13 @@ int Toggle_LED;
 int Msmt_Update;
 anSRM_struct SRM;
 int LEDvalue;
-
-
 int Error1;//if there is a Position error or Current Sensor Error
 int PosError;//Position Error
 int SlowDownFlag;//ir Slow Down or NOT
 int BrakeFlag;//zhidong
-int OprMode;//1:CCC 2:APC
-int LastOprMode;
+
+int simu6pos[6]={0x2,0x3,0x1,0x5,0x4,0x6};//simulate the postion signal
+int simu6count;
 
 unsigned int i;//for key input 
 
@@ -58,173 +57,86 @@ void main()
 	
 
 	EALLOW;
-	GpioMuxRegs.GPADIR.bit.GPIOA15=1;//Test 设置D1对应的DSP引脚为输出
-	GpioMuxRegs.GPADIR.bit.GPIOA14=1;//Test
-	GpioMuxRegs.GPADIR.bit.GPIOA13=1;//Test,to be deleted
-	EDIS;
-	GpioDataRegs.GPADAT.bit.GPIOA14=0;//D1对应输出电平
-	GpioDataRegs.GPADAT.bit.GPIOA15=0;//D1对应输出电平
-	GpioDataRegs.GPADAT.bit.GPIOA13=0;
+	GpioMuxRegs.GPADIR.bit.GPIOA10=1;//Test 设置D1对应的DSP引脚为输出
+	GpioMuxRegs.GPADIR.bit.GPIOA9=1;//Test
+	GpioMuxRegs.GPADIR.bit.GPIOA8=1;//Test,to be deleted
+	GpioMuxRegs.GPADIR.bit.GPIOA12=1;
+
+	GpioDataRegs.GPADAT.bit.GPIOA10=0;//D1对应输出电平
+	GpioDataRegs.GPADAT.bit.GPIOA9=1;//D1对应输出电平
+	GpioDataRegs.GPADAT.bit.GPIOA8=0;
+	GpioDataRegs.GPADAT.bit.GPIOA12=0;
 	EDIS;
 	initializeSRM(&SRM);
 	eventmgr_init();
+
 
 	initialize_counters_and_flags();
 	Error1=1;
 	PosError=0;
 	SlowDownFlag=0;
 	BrakeFlag=0;
-	OprMode=1;
-	LastOprMode=1;
 	StartEn=0;
-	enable_interrupts();
+	
+	simu6count=0;
+//	enable_interrupts();
+	EINT;
+	ERTM;
+
 	start_background();
 }
 
 void start_background()
 {	
-	//Detect the error before start
-	//There are detects done only before start
-	//while(Errors)
-	//{
-	//}
+
+	SRM.position_state = 2;
+	SRM.position = SRM.position_initial_guess[SRM.position_state];
 	
 	//Big loop
 	while(1) //change to: while (!Errors)
 	{
-		// if((S1==0)|(S2==0)|(S3==0)|(S4==0))//扫描是否按键按下   
-		//{                                                          
-		//		                                                   
-		//	for(i=0;i<10000;i++);    //键盘消抖动                  
-		//	if(S1==0)                                              
-		//	{                                                      
-		//		BrakeFlag ^= 1;                                    
-		//	}                                                      
-		//	                                                       
-		//	else if(S2==0)                                         
-		//	{                                                      
-		//		StartEn ^= 1;                                      
-		//	}                                                      
-		//		                                                   
-		//	else if(S3==0)                                         
-		//	{                                                      
-		//		SRM.wDes_10xrpm+=5;                                
-		//	}                                                      
-		//		                                                   
-		//	else if(S4==0)                                         
-		//	{                                                      
-		//		SRM.wDes_10xrpm-=5;                                
-		//	}                                                      
-		//	                                                       
-		//	while((S1==0)|(S2==0)|(S3==0)|(S4==0));		           
-		//}//if((S1==0)|(S2==0)|(S3==0)|(S4==0))//扫描是否按键按下   
 
-		//while (Error1==1)	//detect if there is a position error 
-		//{
-		//	
-		//	SRM.position_state = GpioDataRegs.GPADAT.all & 0x7;
-		//	if(SRM.position_state == 0 || SRM.position_state==7)
-		//	{
-		//		PosError+=1;
-		//	}
-		//	else
-		//	{
-		//		PosError-=1;
-		//	}
-		//	
-		//	if(PosError > 5)
-		//	{
-		//		Error1=1;
-		//		PosError=0;
-		//	}
-		//	else if(PosError < -5)
-		//	{
-		//		Error1=0;
-		//		PosError=0;
-		//	}
+		/*----------------------*/
+		/* Velocity update task */
+		/*----------------------*/
 
-		//}//while (Error1==1)
-		
-		if (StartEn==1)
+		if (Update_Velocity) //Update_Velocity intial is 0
 		{
-			//if (Error1==0)//init Error=1
-			//{
-				/*----------------------*/
-				/* Velocity update task */
-				/*----------------------*/
+			if (Update_Velocity == 1) 
+			{ /* use capture data */
+				/* as time base */
+				Msmt_Update_Velocity(&SRM, 1);
+			}
+			else 
+			{ 
 
-				if (Update_Velocity) 
-				{
-					if (Update_Velocity == 1) 
-					{ /* use capture data */
-						/* as time base */
-						Msmt_Update_Velocity(&SRM, 1);
-					}
-					else { 
+				Msmt_Update_Velocity(&SRM, 2);
+			}
+			Update_Velocity = 0;
+		}
 
-						Msmt_Update_Velocity(&SRM, 2);
-					}
-					Update_Velocity = 0;
-				}
+		/*-----------------------*/
+		/* Visual feedback task */
+		/*-----------------------*/
 
-				if(SRM.wEst_10xrpm < wCHANGE && SRM.wEst_10xrpm > -wCHANGE)	//WRONG,need to rewrite
-				{
-					LastOprMode=OprMode;
-					OprMode = 1;
-				}
-				else
-				{
-					LastOprMode=OprMode;
-					OprMode = 2;
-				}
+		//下面语句没看懂。/////////////////////////////////////////////？？？？？
 
-				if(LastOprMode!=OprMode)
-				{
-					if(OprMode==1)
-					{
-					//	SRM.integral_speed_error=0;
-					}
-					else if(OprMode==2)
-					{
-						SRM.cmprstep = 500;//设置比较寄存器
-					
-					}
-				}
+		if (Toggle_LED) 
+		{
+
+			GpioDataRegs.GPATOGGLE.bit.GPIOA12=1;
+
+			Toggle_LED = 0;
 
 
 
-				if(SRM.wEst_10xrpm==0)
-				{
-					BrakeFlag=0;
-				}
+			SRM.wDes_10xrpm = 6000; /* motor speed command units = (rpm x 10) */
+			/* just hard-coded here, but setup */
+			/* another background task to allow */
+			/* command from an external input */
+		}
 
-				/*-----------------------*/
-				/* Visual feedback task */
-				/*-----------------------*/
-
-				//下面语句没看懂。/////////////////////////////////////////////？？？？？
-
-				if (Toggle_LED) 
-				{
-
-					GpioDataRegs.GPATOGGLE.bit.GPIOA14=1;
-
-					Toggle_LED = 0;
-
-
-
-					SRM.wDes_10xrpm = 6000; /* motor speed command units = (rpm x 10) */
-					/* just hard-coded here, but setup */
-					/* another background task to allow */
-					/* command from an external input */
-				}
-			//} //if (Error1==0)
-		}//if (StartEn==1)
 	}/* infinite loop */
-	else
-	{
-		//Set the PWM to low 
-	}
 }
 
 interrupt void AdcInt_ISR(void)		//2
@@ -266,52 +178,26 @@ interrupt void AdcInt_ISR(void)		//2
 	
 		
 		Commutation_Algorithm(&SRM); /* do commutation in the 1st */
-		
+
+		//if (phaseactive & 0x1)
+		//{
+		//	//action = action | 0x000c;
+		//	EvbRegs.ACTRB.bit.CMP7ACT = 1;
+		//	if (SlowDownFlag == 1)
+		//	{
+		//		EvbRegs.ACTRB.bit.CMP8ACT = 0;
+		//	}
+		//	else
+		//		EvbRegs.ACTRB.bit.CMP8ACT = 3;
+		//}
+		//else
+		//{
+		//	EvbRegs.ACTRB.bit.CMP7ACT = 0;
+		//	EvbRegs.ACTRB.bit.CMP8ACT = 0;
+		//}
 
 	} /* slice. */
-	else if (slice == 2)
-	{ /* velocity loop algorithm in */
-		if(BrakeFlag==0)//Slow down OR not
-		{
-			if(SRM.wEst_10xrpm>0)
-			{
-				if(SRM.wDes_10xrpm < SRM.wEst_10xrpm)
-				{
-					SlowDownFlag=1;
-				}
-				else
-				{
-					SlowDownFlag=0;
-				}
-			}
-			else if(SRM.wEst_10xrpm<0)
-			{
-				if(SRM.wDes_10xrpm > SRM.wEst_10xrpm)
-				{
-					SlowDownFlag=1;
-				}
-				else
-				{
-					SlowDownFlag=0;
-				}
-			}
-			else
-			{
-				SlowDownFlag=0;
-			}
-		}
-		else
-		{
-			SlowDownFlag=0;
-		}
 
-		velocityController(&SRM); /* the 2nd */
-
-		
-
-
-
-	}
 	else if (slice == 5) 
 	{
 		slice = 0; /* reset slicer */
@@ -324,8 +210,26 @@ interrupt void AdcInt_ISR(void)		//2
 
 	PieCtrl.PIEACK.all = 0x0001;
 	AdcRegs.ADC_ST_FLAG.bit.INT_SEQ1_CLR = 1;
-	AdcRegs.ADCTRL2.bit.RST_SEQ1 = 0;
+	AdcRegs.ADCTRL2.bit.RST_SEQ1 = 1;
 	EINT;
+
+		if(count%10==0)
+	{
+		//GpioDataRegs.GPADAT.all=GpioDataRegs.GPADAT.all & 0x8f;
+		//GpioDataRegs.GPADAT.all=(GpioDataRegs.GPADAT.all | simu6pos[simu6count]);
+		GpioDataRegs.GPADAT.bit.GPIOA8=simu6pos[simu6count] & 1;
+		GpioDataRegs.GPADAT.bit.GPIOA9=(simu6pos[simu6count]>>1) & 1;
+		GpioDataRegs.GPADAT.bit.GPIOA10=(simu6pos[simu6count]>>2) & 1;
+
+		simu6count=simu6count+1;
+	
+		if(simu6count>=6)
+		{
+			simu6count=0;
+		} 
+		
+	}
+
 }
 
 void EvbCAPISR_INT(void)		//2
@@ -383,7 +287,7 @@ void EvbCAPISR_INT(void)		//2
 		if (delta_count < 0) 
 			delta_count = delta_count + ONE_HALF_SECOND;
 
-		if (delta_count > 100) 
+		if (delta_count > 50) 
 		{ /* low shaft speed use */
 			/* ISR counter */
 			SRM.delta_count = delta_count;

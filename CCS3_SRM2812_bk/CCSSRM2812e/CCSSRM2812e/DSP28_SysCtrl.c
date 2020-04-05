@@ -49,14 +49,15 @@ void InitSysCtrl(void)
    for(i= 0; i< 5000; i++){}
        
 // HISPCP/LOSPCP prescale register settings, normally it will be set to default values
-   SysCtrlRegs.HISPCP.all = 0x0001;
+   SysCtrlRegs.HISPCP.all = 0x0000;
    SysCtrlRegs.LOSPCP.all = 0x0002;	
 // Peripheral clock enables set for the selected peripherals.   
-//   SysCtrlRegs.PCLKCR.bit.EVAENCLK=1;
-//   SysCtrlRegs.PCLKCR.bit.EVBENCLK=1;
+   SysCtrlRegs.PCLKCR.bit.EVAENCLK=1;
+   SysCtrlRegs.PCLKCR.bit.EVBENCLK=1;
 //   SysCtrlRegs.PCLKCR.bit.SCIENCLKA=1;
 // SysCtrlRegs.PCLKCR.bit.SCIENCLKB=1;
    SysCtrlRegs.PCLKCR.bit.SPIENCLK=1;
+   SysCtrlRegs.PCLKCR.bit.ADCENCLK=1;
 				
    EDIS;
 	

@@ -14,7 +14,7 @@
 /* clock frequencies and time related constants */
 /*----------------------------------------------*/
 #define PWM_FREQ 20000 /* PWM frequency (Hz) */
-#define SYSCLK_FREQ 20000000 /* DSP clock frequency (Hz) */
+#define SYSCLK_FREQ 30000000 /* DSP clock frequency (Hz) *///initial is 20
 #define CPU_INT_FREQ 5000 /* timer ISR frequency (Hz) */
 #define ONE_HALF_SECOND (CPU_INT_FREQ/2)
 /*----------------------------------- */
@@ -43,8 +43,8 @@
 /*----------------------------------------------------------*/
 /* position & velocity estimation algorithm constants */
 /*----------------------------------------------------------*/
-#define K_POSITION_EST 1432
-#define K1_VELOCITY_EST 281250000
+#define K_POSITION_EST 1432 //Page 179,unchanged
+#define K1_VELOCITY_EST 421875000//281250000//Page 181
 #define K2_VELOCITY_EST 62500
 #define ALPHA 7 /* Q3: alpha = 0.875 */
 #define ONE_MINUS_ALPHA 1 /* Q3: 1-alpha = 0.125 */
@@ -75,6 +75,10 @@
 
 
 #define S1 GpioDataRegs.GPADAT.bit.GPIOA7
-#define S2 GpioDataRegs.GPADAT.bit.GPIOA8
-#define S3 GpioDataRegs.GPADAT.bit.GPIOA9
-#define S4 GpioDataRegs.GPADAT.bit.GPIOA10
+#define A8 GpioDataRegs.GPADAT.bit.GPIOA8
+#define A9 GpioDataRegs.GPADAT.bit.GPIOA9
+#define A10 GpioDataRegs.GPADAT.bit.GPIOA10
+
+
+#define DESCURRENT 256//the current desired in the phase
+

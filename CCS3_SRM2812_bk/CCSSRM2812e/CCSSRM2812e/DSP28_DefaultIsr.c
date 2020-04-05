@@ -13,7 +13,7 @@
 //  0.57| 27 May 2002 | L.H. | No change
 //###########################################################################
 #include "DSP28_Device.h"
-
+extern void EvbCAPISR_INT(void);
 //---------------------------------------------------------------------------
 // INT13, INT14, NMI, XINT1, XINT2 Default ISRs:
 //
@@ -307,7 +307,7 @@ interrupt void USER11_ISR(void)    // User Defined trap 11
 //---------------------------------------------------------------------------
 // ADC Default ISR: 
 //
-interrupt void  ADCINT_ISR(void)     // ADC
+interrupt void  ADCINT_ISR(void)     // ADC// FILE:	DSP28_DefaultIsr.c
 {
   // Insert ISR Code here
 
@@ -634,9 +634,8 @@ interrupt void CMP4INT_ISR(void)    // EV-B
 
   // Next two lines for debug only - remove after inserting
   // ISR Code
-   asm ("      ESTOP0");
-   for(;;);
 
+ EvbCAPISR_INT();
   // Uncomment this line after adding ISR Code 
   // return;
 }
@@ -650,9 +649,8 @@ interrupt void CMP5INT_ISR(void)    // EV-B
 
   // Next two lines for debug only - remove after inserting
   // ISR Code
-   asm ("      ESTOP0");
-   for(;;);
 
+ EvbCAPISR_INT();
   // Uncomment this line after adding ISR Code 
   // return;
 }
@@ -666,9 +664,8 @@ interrupt void CMP6INT_ISR(void)    // EV-B
 
   // Next two lines for debug only - remove after inserting
   // ISR Code
-   asm ("      ESTOP0");
-   for(;;);
 
+ EvbCAPISR_INT();
   // Uncomment this line after adding ISR Code 
   // return;
 }

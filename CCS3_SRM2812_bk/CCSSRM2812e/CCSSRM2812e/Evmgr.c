@@ -10,7 +10,6 @@
 #include "System.h"
 #include "typedefs.h"
 
-interrupt void AdcInt_ISR(void);
 extern int SlowDownFlag;
 //interrupt void EvbCAPISR_INT(void);
 
@@ -30,7 +29,7 @@ void eventmgr_init()
 	EvaRegs.T1CNT = 0x0000;     // 清零Timer1 counter
 	EvaRegs.T1CON.all = 0x1040;//TPS=0
 
-	EvaRegs.GPTCONA.bit.T1TOADC = 2;
+	EvaRegs.GPTCONA.bit.T1TOADC = 2;//period to ADC
 
 	iperiod2 = (SYSCLK_FREQ / PWM_FREQ) - 1;
 	EvbRegs.T3PR = iperiod2;
@@ -41,7 +40,7 @@ void eventmgr_init()
 	EvbRegs.T4PR = 0xffff;
 	EvbRegs.T4CNT = 0;
 
-	EvbRegs.T4CON.all = 0x1540;//Tps=5,GuweiGang P245
+	EvbRegs.T4CON.all = 0x1440;//Tps=5,GuweiGang P245
 
 	EvbRegs.CMPR4 = 0;//设置比较寄存器
 	EvbRegs.CMPR5 = 0;
@@ -79,10 +78,6 @@ void eventmgr_init()
 
 
 	//ADC
-	EALLOW;
-	PieVectTable.ADCINT = &AdcInt_ISR;//用CAP中断函数入口更新PIE向量表	//2    ！！！要把这个加到main中去
-	EDIS;
-
 
 	AdcRegs.ADCTRL1.bit.RESET = 1;
 	asm(" NOP");
@@ -106,16 +101,16 @@ void eventmgr_init()
 	}
 	AdcRegs.ADCTRL3.bit.ADCCLKPS = 15;
 	AdcRegs.ADCTRL3.bit.SMODE_SEL = 1;
-	AdcRegs.MAX_CONV.all = 0x000f;
+	AdcRegs.MAX_CONV.all = 0x0007;
 
 	AdcRegs.CHSELSEQ1.bit.CONV00 = 0;
-	AdcRegs.CHSELSEQ1.bit.CONV01 = 0;
-	AdcRegs.CHSELSEQ1.bit.CONV02 = 0;
-	AdcRegs.CHSELSEQ1.bit.CONV03 = 0;
-	AdcRegs.CHSELSEQ2.bit.CONV04 = 0;
-	AdcRegs.CHSELSEQ2.bit.CONV05 = 0;
-	AdcRegs.CHSELSEQ2.bit.CONV06 = 0;
-	AdcRegs.CHSELSEQ2.bit.CONV07 = 0;
+	AdcRegs.CHSELSEQ1.bit.CONV01 = 1;
+	AdcRegs.CHSELSEQ1.bit.CONV02 = 2;
+	AdcRegs.CHSELSEQ1.bit.CONV03 = 3;
+	AdcRegs.CHSELSEQ2.bit.CONV04 = 4;
+	AdcRegs.CHSELSEQ2.bit.CONV05 = 5;
+	AdcRegs.CHSELSEQ2.bit.CONV06 = 6;
+	AdcRegs.CHSELSEQ2.bit.CONV07 = 7;
 
 	AdcRegs.ADC_ST_FLAG.bit.INT_SEQ1_CLR = 1; 
 	AdcRegs.ADC_ST_FLAG.bit.INT_SEQ2_CLR = 1;
@@ -131,7 +126,7 @@ void eventmgr_init()
 	AdcRegs.ADCTRL2.bit.SOC_SEQ2 = 0;
 	AdcRegs.ADCTRL2.bit.INT_ENA_SEQ2 = 0;
 	AdcRegs.ADCTRL2.bit.INT_MOD_SEQ2 = 0;
-	AdcRegs.ADCTRL2.bit.EVB_SOC_SEQ2 = 1;
+	AdcRegs.ADCTRL2.bit.EVB_SOC_SEQ2 = 0;
 	AdcRegs.ADCTRL2.bit.SOC_SEQ1 = 0;
 
 
@@ -168,8 +163,6 @@ WORD read_a2d(int a2d_chan)
 void switch_lowside(int phaseactive)
 {
 	//WORD action;
-
-
 	if (phaseactive & 0x1) 
 	{
 		//action = action | 0x000c;
