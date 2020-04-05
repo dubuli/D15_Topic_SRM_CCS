@@ -106,6 +106,7 @@ t3cmpr    **
 	EvbRegs.COMCONB.bit.CENABLE = 1;  //设置比较单元??//enable;cld=2;
 	EvbRegs.COMCONB.bit.FCOMPOE=1;//compare enable
 	EvbRegs.COMCONB.bit.CLD=2;//instant
+	EvbRegs.COMCONB.bit.ACTRLD=2;
 
 
 	EvbRegs.ACTRB.all = 0x0;    //设置输出特性??//High effective// intial is low
@@ -128,3 +129,30 @@ t3cmpr    **
 //===========================================================================
 // No more.
 //===========================================================================
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+

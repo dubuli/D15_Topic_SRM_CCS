@@ -108,10 +108,7 @@ after the above lines, the ACK5=1; IFR=0x10;
 ** 	unknown why                    **
 ** 	always trigger the CAP5 ISR	   **
 **---------------------------------*/
-/* 	PieCtrl.PIEACK.all = 0x0010; */
-/* 	PieCtrl.PIEACK.all = 0x0010; */
-/* 	PieCtrl.PIEACK.all = 0x0010; */
-/* 	IFR= 0;	                     */
+
 
 	IER |= M_INT5;  // 使能 CPU INT 5	//EV CAP
 	
@@ -138,7 +135,8 @@ after the above lines, the ACK5=1; IFR=0x10;
 		if (Update_Velocity) //Update_Velocity intial is 0
 		{
 			if (Update_Velocity == 1) 
-			{ /* use capture data */
+			{
+				 /* use capture data */
 				/* as time base */
 				Msmt_Update_Velocity(&SRM, 1);
 			}
@@ -153,8 +151,6 @@ after the above lines, the ACK5=1; IFR=0x10;
 		/*-----------------------*/
 		/* Visual feedback task */
 		/*-----------------------*/
-
-		//下面语句没看懂。/////////////////////////////////////////////？？？？？
 
 
 
@@ -313,7 +309,9 @@ void EvbCAP4ISR_INT(void)
 //	capdata1 = EvbRegs.CAP4FIFO;
 
 	int delta_count;
-	WORD edge_time;
+	WORD edge_time1;
+//	WORD edge_time2;
+
 
 	//*IFR_REG = 0x0008; /* clear CPU interrupt flag */
 
@@ -322,29 +320,48 @@ void EvbCAP4ISR_INT(void)
 
 
 
-	do 
-	{
+//attentionmodify
+//	do 
+//	{
 		//fifo_data = *FIFO1; /* read value */
-		edge_time = EvbRegs.CAP4FIFO; /* read value */
+//		edge_time = EvbRegs.CAP6FIFO; /* read value */
 
 		//fifo_status = *CAPFIFO & 0x0300; /* read status register, mask bits */
 		//fifo_status = EvbRegs.CAPFIFOB.bit.CAP4FIFO; /* read status register, mask bits */
 
-	} while (EvbRegs.CAPFIFOB.bit.CAP4FIFO != 0);
+//	} while (EvbRegs.CAPFIFOB.bit.CAP6FIFO != 0);
 
-	SRM.last_capture = 1; /* save capture data *///capture=1 2 3//use to update the position//ddcap
+// modified in 2812f5
+	edge_time1 = EvbRegs.CAP4FIFO; /* read value */
+//	edge_time2 = EvbRegs.CAP4FIFO; /* read value */
+
 
 	//need to change
 	SRM.capture_delta[0][1] = SRM.capture_delta[0][0];
-	SRM.capture_delta[0][0] = edge_time - SRM.capture_edge[0];//edgetime=return fifo_data = EvbRegs.CAP6FIFO
-	SRM.capture_edge[0] = edge_time;
+	SRM.capture_delta[0][0] = edge_time1 - SRM.capture_edge[0];//edgetime=return fifo_data = EvbRegs.CAP6FIFO
+	SRM.capture_edge[0] = edge_time1;
+	
+
+
+	SRM.last_capture = 1; /* save capture data *///capture=1 2 3//use to update the position//ddcap
+
+
+/*------------------**
+** 	added in 2812f5 **
+** 	attention	    **
+**------------------*/			 
+	SRM.position_state = (GpioDataRegs.GPADAT.all>>8) & 0x7;//attentiondelete ,need to delete
+	SRM.position = SRM.trans_lut[SRM.position_state][1].position;//0 to PI //there is a time delay,not accurate
+	SRM.shaft_direction = SRM.trans_lut[SRM.position_state][1].direction;//1 -1//attentionmodify
+
+
 
 	Msmt_Update = 1; /* position update flag */
 
 	/*-----------------------------------------------------------*/
 	/* Set flags & select time base for use with velocity update */
 	/*-----------------------------------------------------------*/
-	delta_count = count - old_count;
+	delta_count = count - old_count;//attentionmodify
 	old_count = count;
 
 	if (delta_count < 0) 
@@ -378,31 +395,49 @@ void EvbCAP5ISR_INT(void)
 	//	capdata1 = EvbRegs.CAP4FIFO;
 
 	int delta_count;
-	WORD edge_time;
+	WORD edge_time1;
+//	WORD edge_time2;
+
 
 	//*IFR_REG = 0x0008; /* clear CPU interrupt flag */
 
 	//groupc_flags = *IFRC; /* read event manger interrupt */  //读取是哪个中断
 	/* flag register */
 
-
-
-	do 
-	{
+//attentionmodify
+//	do 
+//	{
 		//fifo_data = *FIFO1; /* read value */
-		edge_time = EvbRegs.CAP5FIFO; /* read value */
+//		edge_time = EvbRegs.CAP6FIFO; /* read value */
 
 		//fifo_status = *CAPFIFO & 0x0300; /* read status register, mask bits */
 		//fifo_status = EvbRegs.CAPFIFOB.bit.CAP4FIFO; /* read status register, mask bits */
 
-	} while (EvbRegs.CAPFIFOB.bit.CAP5FIFO != 0);
+//	} while (EvbRegs.CAPFIFOB.bit.CAP6FIFO != 0);
 
-	SRM.last_capture = 2; /* save capture data *///capture=1 2 3//use to update the position//ddcap
+// modified in 2812f5
+	edge_time1 = EvbRegs.CAP5FIFO; /* read value */
+//	edge_time2 = EvbRegs.CAP5FIFO; /* read value */
+
 
 	//need to change
 	SRM.capture_delta[1][1] = SRM.capture_delta[1][0];
-	SRM.capture_delta[1][0] = edge_time - SRM.capture_edge[1];//edgetime=return fifo_data = EvbRegs.CAP6FIFO
-	SRM.capture_edge[1] = edge_time;
+	SRM.capture_delta[1][0] = edge_time1 - SRM.capture_edge[1];//edgetime=return fifo_data = EvbRegs.CAP6FIFO
+	SRM.capture_edge[1] = edge_time1;
+
+
+	SRM.last_capture = 2; /* save capture data *///capture=1 2 3//use to update the position//ddcap
+
+/*------------------**
+** 	added in 2812f5 **
+** 	attention	    **
+**------------------*/			 
+	SRM.position_state = (GpioDataRegs.GPADAT.all>>8) & 0x7;//attentiondelete ,need to delete
+	SRM.position = SRM.trans_lut[SRM.position_state][2].position;//0 to PI //there is a time delay,not accurate
+	SRM.shaft_direction = SRM.trans_lut[SRM.position_state][2].direction;//1 -1//attentionmodify
+
+
+
 
 	Msmt_Update = 1; /* position update flag */
 
@@ -445,7 +480,9 @@ void EvbCAP6ISR_INT(void)
 	//	capdata1 = EvbRegs.CAP4FIFO;
 
 	int delta_count;
-	WORD edge_time;
+	WORD edge_time1;
+//	WORD edge_time2;
+
 
 	//*IFR_REG = 0x0008; /* clear CPU interrupt flag */
 
@@ -453,23 +490,40 @@ void EvbCAP6ISR_INT(void)
 	/* flag register */
 
 
-
-	do 
-	{
+//attentionmodify
+//	do 
+//	{
 		//fifo_data = *FIFO1; /* read value */
-		edge_time = EvbRegs.CAP6FIFO; /* read value */
+//		edge_time = EvbRegs.CAP6FIFO; /* read value */
 
 		//fifo_status = *CAPFIFO & 0x0300; /* read status register, mask bits */
 		//fifo_status = EvbRegs.CAPFIFOB.bit.CAP4FIFO; /* read status register, mask bits */
 
-	} while (EvbRegs.CAPFIFOB.bit.CAP6FIFO != 0);
+//	} while (EvbRegs.CAPFIFOB.bit.CAP6FIFO != 0);
 
-	SRM.last_capture = 3; /* save capture data *///capture=1 2 3//use to update the position//ddcap
+// modified in 2812f5
+	edge_time1 = EvbRegs.CAP6FIFO; /* read value */
+//	edge_time2 = EvbRegs.CAP6FIFO; /* read value */
+
 
 	//need to change
 	SRM.capture_delta[2][1] = SRM.capture_delta[2][0];
-	SRM.capture_delta[2][0] = edge_time - SRM.capture_edge[2];//edgetime=return fifo_data = EvbRegs.CAP6FIFO
-	SRM.capture_edge[2] = edge_time;
+	SRM.capture_delta[2][0] = edge_time1 - SRM.capture_edge[2];//edgetime=return fifo_data = EvbRegs.CAP6FIFO
+	SRM.capture_edge[2] = edge_time1;
+
+
+	SRM.last_capture = 3; /* save capture data *///capture=1 2 3//use to update the position//ddcap
+
+/*------------------**
+** 	added in 2812f5 **
+** 	attention	    **
+**------------------*/			 
+	SRM.position_state = (GpioDataRegs.GPADAT.all>>8) & 0x7;//attentiondelete ,need to delete
+	SRM.position = SRM.trans_lut[SRM.position_state][3].position;//0 to PI //there is a time delay,not accurate
+	SRM.shaft_direction = SRM.trans_lut[SRM.position_state][3].direction;//1 -1//attentionmodify
+
+
+
 
 	Msmt_Update = 1; /* position update flag */
 
@@ -543,9 +597,61 @@ void initializeSRM(anSRM_struct *anSRM)
 			anSRM->trans_lut[i][j].direction = 0;
 		}
 	}
+	
 	/*------------------------------*/
 	/* ’new-state’ definitions */
 	//用来更新state
+	/*------------------------------*/
+/* 	anSRM->trans_lut[1][2].state = 3;    */
+/* 	anSRM->trans_lut[1][3].state = 5;    */
+/* 	anSRM->trans_lut[2][1].state = 3;    */
+/* 	anSRM->trans_lut[2][3].state = 6;    */
+/* 	anSRM->trans_lut[3][1].state = 2;    */
+/* 	anSRM->trans_lut[3][2].state = 1;    */
+/* 	anSRM->trans_lut[4][1].state = 5;    */
+/* 	anSRM->trans_lut[4][2].state = 6;    */
+/* 	anSRM->trans_lut[5][1].state = 4;    */
+/* 	anSRM->trans_lut[5][3].state = 1;    */
+/* 	anSRM->trans_lut[6][2].state = 4;    */
+/* 	anSRM->trans_lut[6][3].state = 2;	 */
+	/*--------------------------------------*/
+	/* ’shaft direction’ definitions */
+	/*--------------------------------------*/
+/* 	anSRM->trans_lut[1][2].direction = -1;   */
+/* 	anSRM->trans_lut[1][3].direction = 1;    */
+/* 	anSRM->trans_lut[2][1].direction = 1;    */
+/* 	anSRM->trans_lut[2][3].direction = -1;   */
+/* 	anSRM->trans_lut[3][1].direction = -1;   */
+/* 	anSRM->trans_lut[3][2].direction = 1;    */
+/* 	anSRM->trans_lut[4][1].direction = -1;   */
+/* 	anSRM->trans_lut[4][2].direction = 1;    */
+/* 	anSRM->trans_lut[5][1].direction = 1;    */
+/* 	anSRM->trans_lut[5][3].direction = -1;   */
+/* 	anSRM->trans_lut[6][2].direction = -1;   */
+/* 	anSRM->trans_lut[6][3].direction = 1;	 */
+	/*--------------------------------------*/
+	/* ’shaft position’ definitions */
+	/*--------------------------------------*/
+/* 	anSRM->trans_lut[1][2].position = TWOPIBYTHREE_16;  */
+/* 	anSRM->trans_lut[1][3].position = PI_16;            */
+/* 	anSRM->trans_lut[2][1].position = PIBYTHREE_16;     */
+/* 	anSRM->trans_lut[2][3].position = 0;                */
+/* 	anSRM->trans_lut[3][1].position = PIBYTHREE_16;     */
+/* 	anSRM->trans_lut[3][2].position = TWOPIBYTHREE_16;  */
+/* 	anSRM->trans_lut[4][1].position = FOURPIBYTHREE_16; */
+/* 	anSRM->trans_lut[4][2].position = FIVEPIBYTHREE_16; */
+/* 	anSRM->trans_lut[5][1].position = FOURPIBYTHREE_16; */
+/* 	anSRM->trans_lut[5][3].position = PI_16;            */
+/* 	anSRM->trans_lut[6][2].position = FIVEPIBYTHREE_16; */
+/* 	anSRM->trans_lut[6][3].position = 0;                */
+
+
+
+	/*------------------------------*/
+	/* ’new-state’ definitions */
+	//用来更新state
+/* 	attention            */
+/* 	changed in 2812f5	 */
 	/*------------------------------*/
 	anSRM->trans_lut[1][2].state = 3;
 	anSRM->trans_lut[1][3].state = 5;
@@ -562,18 +668,18 @@ void initializeSRM(anSRM_struct *anSRM)
 	/*--------------------------------------*/
 	/* ’shaft direction’ definitions */
 	/*--------------------------------------*/
-	anSRM->trans_lut[1][2].direction = -1;
-	anSRM->trans_lut[1][3].direction = 1;
-	anSRM->trans_lut[2][1].direction = 1;
-	anSRM->trans_lut[2][3].direction = -1;
-	anSRM->trans_lut[3][1].direction = -1;
-	anSRM->trans_lut[3][2].direction = 1;
-	anSRM->trans_lut[4][1].direction = -1;
-	anSRM->trans_lut[4][2].direction = 1;
-	anSRM->trans_lut[5][1].direction = 1;
-	anSRM->trans_lut[5][3].direction = -1;
-	anSRM->trans_lut[6][2].direction = -1;
-	anSRM->trans_lut[6][3].direction = 1;
+	anSRM->trans_lut[1][2].direction = 1;
+	anSRM->trans_lut[1][3].direction = -1;
+	anSRM->trans_lut[2][1].direction = -1;
+	anSRM->trans_lut[2][3].direction = 1;
+	anSRM->trans_lut[3][1].direction = 1;
+	anSRM->trans_lut[3][2].direction = -1;
+	anSRM->trans_lut[4][1].direction = 1;
+	anSRM->trans_lut[4][2].direction = -1;
+	anSRM->trans_lut[5][1].direction = -1;
+	anSRM->trans_lut[5][3].direction = 1;
+	anSRM->trans_lut[6][2].direction = 1;
+	anSRM->trans_lut[6][3].direction = -1;
 	/*--------------------------------------*/
 	/* ’shaft position’ definitions */
 	/*--------------------------------------*/
@@ -589,6 +695,10 @@ void initializeSRM(anSRM_struct *anSRM)
 	anSRM->trans_lut[5][3].position = PI_16;
 	anSRM->trans_lut[6][2].position = FIVEPIBYTHREE_16;
 	anSRM->trans_lut[6][3].position = 0;
+
+
+
+
 	/*--------------------------------------------------------------------- */
 	/* define initial guesses for each state. The initial position */
 	/* is assumed at the midpoint of each state */
@@ -664,7 +774,7 @@ void Msmt_Update_Velocity(anSRM_struct *anSRM, int mode)
 		/* apply velocity = delta_theta/delta_time algorithm */
 		/*---------------------------------------------------*/
 		sum_cnt = K1_VELOCITY_EST / sum_cnt;
-		inst_velocity = ((int)sum_cnt) * anSRM->shaft_direction;
+		inst_velocity = ((int)sum_cnt) * anSRM->shaft_direction;//10*rpm 
 	}
 	else 
 	{ /* else, use timer ISR count as time base */
@@ -673,6 +783,7 @@ void Msmt_Update_Velocity(anSRM_struct *anSRM, int mode)
 		/*---------------------------------------------------*/
 		sum_cnt = K2_VELOCITY_EST / anSRM->delta_count;
 		inst_velocity = ((int)sum_cnt) * anSRM->shaft_direction;
+
 	}
 	/*----------------------------------------------- */
 	/* IIR filter for smoothing velocity estimate */
@@ -745,16 +856,25 @@ void Msmt_Update_Position(anSRM_struct *anSRM)
 	/*----------------------------------------------------*/
 	if (new_state != 0) 
 	{ /* valid transition, update data */
-		anSRM->position = anSRM->trans_lut[old_state][cap].position;//0 to PI //there is a time delay,not accurate
-		anSRM->shaft_direction = anSRM->trans_lut[old_state][cap].direction;//1 -1
-		anSRM->position_state = new_state;
+//		anSRM->position = anSRM->trans_lut[old_state][cap].position;//0 to PI //there is a time delay,not accurate
+//		anSRM->shaft_direction = anSRM->trans_lut[old_state][cap].direction;//1 -1
+//		anSRM->position_state = new_state;
 	}
 	else 
 	{ 
 		/* else, not a valid transition, use opto-coupler */
 		/* level & re-initialize position estimate */
 		//anSRM->position_state = *PBDATDIR & 0x7;
-		anSRM->position_state = GpioDataRegs.GPADAT.all & 0x7;
+		//anSRM->position_state = GpioDataRegs.GPADAT.all & 0x7;//same to 2812f4
+
+/*-------------------------------------**
+** 	attention                          **
+** 	the oppo is set to GPADAT & 0x7	   **
+change to A8 A9 A10
+changed in 2812f5
+**-------------------------------------*/								   
+		anSRM->position_state = (GpioDataRegs.GPADAT.all>>8) & 0x7;
+
 		anSRM->position = anSRM->position_initial_guess[anSRM->position_state];
 	}
 }
@@ -838,6 +958,8 @@ void Commutation_Algorithm(anSRM_struct *anSRM)	//int the ADC interrupt
 void switch_lowside(int phaseactive)
 {
 	//WORD action;
+
+
 	if (phaseactive & 0x1) 
 	{
 		//action = action | 0x000c;

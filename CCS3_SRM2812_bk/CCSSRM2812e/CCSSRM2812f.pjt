@@ -45,3 +45,6 @@ LinkOrder=1
 ["CCSSRM2812f\SRAM.cmd" Settings: "Release"]
 LinkOrder=1
 
+
+[Tools]
+ToolDeleteList 

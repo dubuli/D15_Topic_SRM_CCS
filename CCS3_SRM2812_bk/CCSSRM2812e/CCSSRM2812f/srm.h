@@ -30,8 +30,8 @@ typedef struct
 	WORD capture_edge[NUMBER_OF_PHASES];
 	WORD capture_delta[NUMBER_OF_PHASES][2];
 	WORD delta_count;
-	int wEst_10xrpm;
-	int wDes_10xrpm;
+	long wEst_10xrpm;//edit in 2812f5
+	long wDes_10xrpm;//edit in 2812f5
 	int active[NUMBER_OF_PHASES];
 	WORD iFB[NUMBER_OF_PHASES];
 	int dutyRatio[NUMBER_OF_PHASES];
