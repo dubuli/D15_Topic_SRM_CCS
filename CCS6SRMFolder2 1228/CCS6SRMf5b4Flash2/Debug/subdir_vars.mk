@@ -13,6 +13,7 @@ ASM_SRCS += \
 ../DSP281x_CodeStartBranch.asm 
 
 C_SRCS += \
+../CCSf7FlashTestI.c \
 ../DSP281x_Adc.c \
 ../DSP281x_CpuTimers.c \
 ../DSP281x_DefaultIsr.c \
@@ -23,10 +24,10 @@ C_SRCS += \
 ../DSP281x_PieCtrl.c \
 ../DSP281x_PieVect.c \
 ../DSP281x_Sci.c \
-../DSP281x_SysCtrl.c \
-../ccsSRM.c 
+../DSP281x_SysCtrl.c 
 
 OBJS += \
+./CCSf7FlashTestI.obj \
 ./DSP281x_Adc.obj \
 ./DSP281x_CodeStartBranch.obj \
 ./DSP281x_CpuTimers.obj \
@@ -38,13 +39,13 @@ OBJS += \
 ./DSP281x_PieCtrl.obj \
 ./DSP281x_PieVect.obj \
 ./DSP281x_Sci.obj \
-./DSP281x_SysCtrl.obj \
-./ccsSRM.obj 
+./DSP281x_SysCtrl.obj 
 
 ASM_DEPS += \
 ./DSP281x_CodeStartBranch.pp 
 
 C_DEPS += \
+./CCSf7FlashTestI.pp \
 ./DSP281x_Adc.pp \
 ./DSP281x_CpuTimers.pp \
 ./DSP281x_DefaultIsr.pp \
@@ -55,10 +56,10 @@ C_DEPS += \
 ./DSP281x_PieCtrl.pp \
 ./DSP281x_PieVect.pp \
 ./DSP281x_Sci.pp \
-./DSP281x_SysCtrl.pp \
-./ccsSRM.pp 
+./DSP281x_SysCtrl.pp 
 
 C_DEPS__QUOTED += \
+"CCSf7FlashTestI.pp" \
 "DSP281x_Adc.pp" \
 "DSP281x_CpuTimers.pp" \
 "DSP281x_DefaultIsr.pp" \
@@ -69,10 +70,10 @@ C_DEPS__QUOTED += \
 "DSP281x_PieCtrl.pp" \
 "DSP281x_PieVect.pp" \
 "DSP281x_Sci.pp" \
-"DSP281x_SysCtrl.pp" \
-"ccsSRM.pp" 
+"DSP281x_SysCtrl.pp" 
 
 OBJS__QUOTED += \
+"CCSf7FlashTestI.obj" \
 "DSP281x_Adc.obj" \
 "DSP281x_CodeStartBranch.obj" \
 "DSP281x_CpuTimers.obj" \
@@ -84,13 +85,13 @@ OBJS__QUOTED += \
 "DSP281x_PieCtrl.obj" \
 "DSP281x_PieVect.obj" \
 "DSP281x_Sci.obj" \
-"DSP281x_SysCtrl.obj" \
-"ccsSRM.obj" 
+"DSP281x_SysCtrl.obj" 
 
 ASM_DEPS__QUOTED += \
 "DSP281x_CodeStartBranch.pp" 
 
 C_SRCS__QUOTED += \
+"../CCSf7FlashTestI.c" \
 "../DSP281x_Adc.c" \
 "../DSP281x_CpuTimers.c" \
 "../DSP281x_DefaultIsr.c" \
@@ -101,8 +102,7 @@ C_SRCS__QUOTED += \
 "../DSP281x_PieCtrl.c" \
 "../DSP281x_PieVect.c" \
 "../DSP281x_Sci.c" \
-"../DSP281x_SysCtrl.c" \
-"../ccsSRM.c" 
+"../DSP281x_SysCtrl.c" 
 
 ASM_SRCS__QUOTED += \
 "../DSP281x_CodeStartBranch.asm" 

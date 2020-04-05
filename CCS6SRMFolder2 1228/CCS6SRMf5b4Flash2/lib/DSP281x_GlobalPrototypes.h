@@ -54,6 +54,8 @@ extern void InitXIntrupt(void);
 
 extern void KickDog(void);
 
+int SciaRx_Ready(void);
+
 #ifdef __cplusplus
 }
 #endif

@@ -845,6 +845,18 @@ interrupt void SCIRXINTA_ISR(void)     // SCI-A
   // Remove after inserting ISR Code
    asm ("      ESTOP0");
    for(;;);
+/*	PieCtrl.PIEACK.bit.ACK9 = 1;
+	if(SciaRx_Ready() == 1)
+	{
+		SCiRxData[j] = SciaRegs.SCIRXBUF.all;
+		SendFlag = 1;
+		j++;
+		if(j == 100)
+		{
+			j = 0;
+		}
+	}
+	EINT;*/
 }
 
 // INT9.2
