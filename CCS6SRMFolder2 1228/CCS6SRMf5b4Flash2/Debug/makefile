@@ -8,22 +8,25 @@ CG_TOOL_ROOT := C:/ti2/ccsv6/tools/compiler/c2000_6.2.7
 
 ORDERED_OBJS += \
 $(GEN_CMDS__FLAG) \
-"./DSP281x_Adc.obj" \
-"./DSP281x_CodeStartBranch.obj" \
-"./DSP281x_CpuTimers.obj" \
-"./DSP281x_DefaultIsr.obj" \
-"./DSP281x_Ev.obj" \
-"./DSP281x_GlobalVariableDefs.obj" \
-"./DSP281x_Gpio.obj" \
-"./DSP281x_MemCopy.obj" \
-"./DSP281x_PieCtrl.obj" \
-"./DSP281x_PieVect.obj" \
-"./DSP281x_Sci.obj" \
-"./DSP281x_SysCtrl.obj" \
-"./ccsSRM.obj" \
-"../Flash_Link.cmd" \
-"../rts2800_ml.lib" \
--l"G:/CCS6SRMFolder/LEDFLASH/rts2800_ml.lib" \
+"./CCSSRM2812f.obj" \
+"./Cotherfiles.obj" \
+"./DSP28_Adc.obj" \
+"./DSP28_CpuTimers.obj" \
+"./DSP28_DefaultIsr.obj" \
+"./DSP28_Ev.obj" \
+"./DSP28_GlobalVariableDefs.obj" \
+"./DSP28_Gpio.obj" \
+"./DSP28_InitPeripherals.obj" \
+"./DSP28_Mcbsp.obj" \
+"./DSP28_PieCtrl.obj" \
+"./DSP28_PieVect.obj" \
+"./DSP28_Sci.obj" \
+"./DSP28_Spi.obj" \
+"./DSP28_SysCtrl.obj" \
+"./DSP28_XIntrupt.obj" \
+"./DSP28_Xintf.obj" \
+"../SRAM.cmd" \
+-l"C:/ti2/ccsv6/tools/compiler/c2000_6.2.7/lib/rts2800_ml.lib" \
 
 -include ../makefile.init
 
@@ -121,41 +124,40 @@ endif
 
 # Add inputs and outputs from these tool invocations to the build variables 
 EXE_OUTPUTS += \
-CCS6SRMf5b4Flash2.out \
+CCS6SRMf5b5.out \
 
 EXE_OUTPUTS__QUOTED += \
-"CCS6SRMf5b4Flash2.out" \
+"CCS6SRMf5b5.out" \
 
 BIN_OUTPUTS += \
-CCS6SRMf5b4Flash2.hex \
+CCS6SRMf5b5.hex \
 
 BIN_OUTPUTS__QUOTED += \
-"CCS6SRMf5b4Flash2.hex" \
+"CCS6SRMf5b5.hex" \
 
 
 # All Target
-all: CCS6SRMf5b4Flash2.out
+all: CCS6SRMf5b5.out
 
 # Tool invocations
-CCS6SRMf5b4Flash2.out: $(OBJS) $(CMD_SRCS) $(LIB_SRCS) $(GEN_CMDS)
+CCS6SRMf5b5.out: $(OBJS) $(CMD_SRCS) $(GEN_CMDS)
 	@echo 'Building target: $@'
 	@echo 'Invoking: C2000 Linker'
-	"C:/ti2/ccsv6/tools/compiler/c2000_6.2.7/bin/cl2000" -v28 -ml -mt -g --diag_warning=225 --display_error_number --diag_wrap=off -z -m"CCS6SRMf5b4Flash2.map" --stack_size=1000 --warn_sections -i"C:/ti2/ccsv6/tools/compiler/c2000_6.2.7/lib" -i"C:/ti2/ccsv6/tools/compiler/c2000_6.2.7/include" --reread_libs --display_error_number --diag_wrap=off --xml_link_info="CCS6SRMf5b4Flash2_linkInfo.xml" --rom_model -o "CCS6SRMf5b4Flash2.out" $(ORDERED_OBJS)
+	"C:/ti2/ccsv6/tools/compiler/c2000_6.2.7/bin/cl2000" -v28 -ml -mt -g --diag_warning=225 --display_error_number --diag_wrap=off -z -m"CCS6SRMf5b5.map" --stack_size=1000 --warn_sections -i"C:/ti2/ccsv6/tools/compiler/c2000_6.2.7/lib" -i"C:/ti2/ccsv6/tools/compiler/c2000_6.2.7/include" --reread_libs --display_error_number --diag_wrap=off --xml_link_info="CCS6SRMf5b5_linkInfo.xml" --rom_model -o "CCS6SRMf5b5.out" $(ORDERED_OBJS)
 	@echo 'Finished building target: $@'
 	@echo ' '
 
-CCS6SRMf5b4Flash2.hex: $(EXE_OUTPUTS)
+CCS6SRMf5b5.hex: $(EXE_OUTPUTS)
 	@echo 'Invoking: C2000 Hex Utility'
-	"C:/ti2/ccsv6/tools/compiler/c2000_6.2.7/bin/hex2000"  -o "CCS6SRMf5b4Flash2.hex" $(EXE_OUTPUTS__QUOTED)
+	"C:/ti2/ccsv6/tools/compiler/c2000_6.2.7/bin/hex2000"  -o "CCS6SRMf5b5.hex" $(EXE_OUTPUTS__QUOTED)
 	@echo 'Finished building: $@'
 	@echo ' '
 
 # Other Targets
 clean:
 	-$(RM) $(EXE_OUTPUTS__QUOTED)$(BIN_OUTPUTS__QUOTED)
-	-$(RM) "DSP281x_Adc.pp" "DSP281x_CpuTimers.pp" "DSP281x_DefaultIsr.pp" "DSP281x_Ev.pp" "DSP281x_GlobalVariableDefs.pp" "DSP281x_Gpio.pp" "DSP281x_MemCopy.pp" "DSP281x_PieCtrl.pp" "DSP281x_PieVect.pp" "DSP281x_Sci.pp" "DSP281x_SysCtrl.pp" "ccsSRM.pp" 
-	-$(RM) "DSP281x_Adc.obj" "DSP281x_CodeStartBranch.obj" "DSP281x_CpuTimers.obj" "DSP281x_DefaultIsr.obj" "DSP281x_Ev.obj" "DSP281x_GlobalVariableDefs.obj" "DSP281x_Gpio.obj" "DSP281x_MemCopy.obj" "DSP281x_PieCtrl.obj" "DSP281x_PieVect.obj" "DSP281x_Sci.obj" "DSP281x_SysCtrl.obj" "ccsSRM.obj" 
-	-$(RM) "DSP281x_CodeStartBranch.pp" 
+	-$(RM) "CCSSRM2812f.pp" "Cotherfiles.pp" "DSP28_Adc.pp" "DSP28_CpuTimers.pp" "DSP28_DefaultIsr.pp" "DSP28_Ev.pp" "DSP28_GlobalVariableDefs.pp" "DSP28_Gpio.pp" "DSP28_InitPeripherals.pp" "DSP28_Mcbsp.pp" "DSP28_PieCtrl.pp" "DSP28_PieVect.pp" "DSP28_Sci.pp" "DSP28_Spi.pp" "DSP28_SysCtrl.pp" "DSP28_XIntrupt.pp" "DSP28_Xintf.pp" 
+	-$(RM) "CCSSRM2812f.obj" "Cotherfiles.obj" "DSP28_Adc.obj" "DSP28_CpuTimers.obj" "DSP28_DefaultIsr.obj" "DSP28_Ev.obj" "DSP28_GlobalVariableDefs.obj" "DSP28_Gpio.obj" "DSP28_InitPeripherals.obj" "DSP28_Mcbsp.obj" "DSP28_PieCtrl.obj" "DSP28_PieVect.obj" "DSP28_Sci.obj" "DSP28_Spi.obj" "DSP28_SysCtrl.obj" "DSP28_XIntrupt.obj" "DSP28_Xintf.obj" 
 	-@echo 'Finished clean'
 	-@echo ' '
 
