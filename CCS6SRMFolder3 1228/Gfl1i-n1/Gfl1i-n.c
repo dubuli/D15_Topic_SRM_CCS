@@ -111,7 +111,7 @@ void main(void)
 
 	SpeedPiFlag=0;
 	speed_error=0;
-	iDes=CURRENT_1A*1;
+	iDes=CURRENT_1A*0.6;	//gfl1i-n2
 	StartFlag=0;
 
 	SRM.wDes_10xrpm=4000;	//Desninate rpm
@@ -329,7 +329,7 @@ delete in 2812f4
 
 
 	//	485,transfer the wEst
-		if(!(count%100))		{									//5Hz// 5000/100=50 Hz
+		if(!(count%250))		{									//5Hz// 5000/100=50 Hz
 			GpioDataRegs.GPEDAT.bit.GPIOE1=0;
 			if((SciaTx_Ready() == 1) )//&& (SendFlag == 1))
 				//SciaRegs.SCITXBUF = SRM.wEst_10xrpm;
@@ -349,7 +349,7 @@ delete in 2812f4
 ** 	test the cap module,A8-10	 **
 **-------------------------------*/
 /* Use GPADAT to give a simulate signal to the sensor*/		//simu6pos
-		if(count%10==0)	{									// 0.5s per circle
+		if(count%417==0)	{						//417 12Hz Intrrupt, equal to 15r/min			// 0.5s per circle
 			GpioDataRegs.GPADAT.bit.GPIOA8=simu6pos[simu6count] & 1;
 			GpioDataRegs.GPADAT.bit.GPIOA9=(simu6pos[simu6count]>>1) & 1;
 			GpioDataRegs.GPADAT.bit.GPIOA10=(simu6pos[simu6count]>>2) & 1;
@@ -857,7 +857,34 @@ void Time_Update_Position(anSRM_struct *anSRM)
 //		temp = (int)(dp >> 16);//to convert to Electrial Angle
 //		anSRM->position = anSRM->position + (temp * NR);
 		temp = (int)(dp >> 13);
-	//	anSRM->position = anSRM->position + temp;
+		anSRM->position = anSRM->position + temp;
+
+		if(anSRM->position_state==3)	{
+			if(anSRM->position>PIBYTHREE_16)
+				anSRM->position=PIBYTHREE_16-6;
+		}
+		else if(anSRM->position_state==1)	{
+			if(anSRM->position>TWOPIBYTHREE_16)
+				anSRM->position=TWOPIBYTHREE_16-6;
+		}
+		else if(anSRM->position_state==5)	{
+			if(anSRM->position>PI_16)
+				anSRM->position=PI_16-6;
+		}
+		else if(anSRM->position_state==4)	{
+			if(anSRM->position>FOURPIBYTHREE_16)
+				anSRM->position=FOURPIBYTHREE_16-6;
+		}
+		else if(anSRM->position_state==6)	{
+			if(anSRM->position>FIVEPIBYTHREE_16)
+				anSRM->position=FIVEPIBYTHREE_16-6;
+		}
+		else if(anSRM->position_state==2)	{
+			if(anSRM->position<FIVEPIBYTHREE_16)
+				anSRM->position=0xffff-6;
+		}
+
+
 	}
 	else
 	{
@@ -867,7 +894,7 @@ void Time_Update_Position(anSRM_struct *anSRM)
 //		temp = (int)(dp >> 16);
 //		anSRM->position = anSRM->position - (temp * NR);
 		temp = (int)(dp >> 13);
-//		anSRM->position = anSRM->position - temp;
+		anSRM->position = anSRM->position - temp;
 	}
 } /* end Time_Update_Position */
 

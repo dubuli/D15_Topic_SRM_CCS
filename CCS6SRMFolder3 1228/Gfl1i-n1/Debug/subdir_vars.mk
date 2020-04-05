@@ -24,7 +24,7 @@ C_SRCS += \
 ../DSP281x_PieVect.c \
 ../DSP281x_Sci.c \
 ../DSP281x_SysCtrl.c \
-../Gfl1i-n.c 
+../Gfl1i-n2.c 
 
 OBJS += \
 ./DSP281x_Adc.obj \
@@ -39,7 +39,7 @@ OBJS += \
 ./DSP281x_PieVect.obj \
 ./DSP281x_Sci.obj \
 ./DSP281x_SysCtrl.obj \
-./Gfl1i-n.obj 
+./Gfl1i-n2.obj 
 
 ASM_DEPS += \
 ./DSP281x_CodeStartBranch.pp 
@@ -56,7 +56,7 @@ C_DEPS += \
 ./DSP281x_PieVect.pp \
 ./DSP281x_Sci.pp \
 ./DSP281x_SysCtrl.pp \
-./Gfl1i-n.pp 
+./Gfl1i-n2.pp 
 
 C_DEPS__QUOTED += \
 "DSP281x_Adc.pp" \
@@ -70,7 +70,7 @@ C_DEPS__QUOTED += \
 "DSP281x_PieVect.pp" \
 "DSP281x_Sci.pp" \
 "DSP281x_SysCtrl.pp" \
-"Gfl1i-n.pp" 
+"Gfl1i-n2.pp" 
 
 OBJS__QUOTED += \
 "DSP281x_Adc.obj" \
@@ -85,7 +85,7 @@ OBJS__QUOTED += \
 "DSP281x_PieVect.obj" \
 "DSP281x_Sci.obj" \
 "DSP281x_SysCtrl.obj" \
-"Gfl1i-n.obj" 
+"Gfl1i-n2.obj" 
 
 ASM_DEPS__QUOTED += \
 "DSP281x_CodeStartBranch.pp" 
@@ -102,7 +102,7 @@ C_SRCS__QUOTED += \
 "../DSP281x_PieVect.c" \
 "../DSP281x_Sci.c" \
 "../DSP281x_SysCtrl.c" \
-"../Gfl1i-n.c" 
+"../Gfl1i-n2.c" 
 
 ASM_SRCS__QUOTED += \
 "../DSP281x_CodeStartBranch.asm" 

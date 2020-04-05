@@ -20,7 +20,7 @@ $(GEN_CMDS__FLAG) \
 "./DSP281x_PieVect.obj" \
 "./DSP281x_Sci.obj" \
 "./DSP281x_SysCtrl.obj" \
-"./Gfl1i-n.obj" \
+"./Gfl1i-n2.obj" \
 "../Flash_Link.cmd" \
 "../rts2800_ml.lib" \
 -l"C:/ti2/ccsv6/tools/compiler/c2000_6.2.7/lib/rts2800_ml.lib" \
@@ -121,40 +121,40 @@ endif
 
 # Add inputs and outputs from these tool invocations to the build variables 
 EXE_OUTPUTS += \
-Gfl1i-n1.out \
+Gfl1i-n2.out \
 
 EXE_OUTPUTS__QUOTED += \
-"Gfl1i-n1.out" \
+"Gfl1i-n2.out" \
 
 BIN_OUTPUTS += \
-Gfl1i-n1.hex \
+Gfl1i-n2.hex \
 
 BIN_OUTPUTS__QUOTED += \
-"Gfl1i-n1.hex" \
+"Gfl1i-n2.hex" \
 
 
 # All Target
-all: Gfl1i-n1.out
+all: Gfl1i-n2.out
 
 # Tool invocations
-Gfl1i-n1.out: $(OBJS) $(CMD_SRCS) $(LIB_SRCS) $(GEN_CMDS)
+Gfl1i-n2.out: $(OBJS) $(CMD_SRCS) $(LIB_SRCS) $(GEN_CMDS)
 	@echo 'Building target: $@'
 	@echo 'Invoking: C2000 Linker'
-	"C:/ti2/ccsv6/tools/compiler/c2000_6.2.7/bin/cl2000" -v28 -ml -mt -g --diag_warning=225 --display_error_number --diag_wrap=off -z -m"Gfl1i-n1.map" --stack_size=1000 --warn_sections -i"C:/ti2/ccsv6/tools/compiler/c2000_6.2.7/lib" -i"C:/ti2/ccsv6/tools/compiler/c2000_6.2.7/include" --reread_libs --display_error_number --diag_wrap=off --xml_link_info="Gfl1i-n1_linkInfo.xml" --rom_model -o "Gfl1i-n1.out" $(ORDERED_OBJS)
+	"C:/ti2/ccsv6/tools/compiler/c2000_6.2.7/bin/cl2000" -v28 -ml -mt -g --diag_warning=225 --display_error_number --diag_wrap=off -z -m"Gfl1i-n2.map" --stack_size=1000 --warn_sections -i"C:/ti2/ccsv6/tools/compiler/c2000_6.2.7/lib" -i"C:/ti2/ccsv6/tools/compiler/c2000_6.2.7/include" --reread_libs --display_error_number --diag_wrap=off --xml_link_info="Gfl1i-n2_linkInfo.xml" --rom_model -o "Gfl1i-n2.out" $(ORDERED_OBJS)
 	@echo 'Finished building target: $@'
 	@echo ' '
 
-Gfl1i-n1.hex: $(EXE_OUTPUTS)
+Gfl1i-n2.hex: $(EXE_OUTPUTS)
 	@echo 'Invoking: C2000 Hex Utility'
-	"C:/ti2/ccsv6/tools/compiler/c2000_6.2.7/bin/hex2000"  -o "Gfl1i-n1.hex" $(EXE_OUTPUTS__QUOTED)
+	"C:/ti2/ccsv6/tools/compiler/c2000_6.2.7/bin/hex2000"  -o "Gfl1i-n2.hex" $(EXE_OUTPUTS__QUOTED)
 	@echo 'Finished building: $@'
 	@echo ' '
 
 # Other Targets
 clean:
 	-$(RM) $(EXE_OUTPUTS__QUOTED)$(BIN_OUTPUTS__QUOTED)
-	-$(RM) "DSP281x_Adc.pp" "DSP281x_CpuTimers.pp" "DSP281x_DefaultIsr.pp" "DSP281x_Ev.pp" "DSP281x_GlobalVariableDefs.pp" "DSP281x_Gpio.pp" "DSP281x_MemCopy.pp" "DSP281x_PieCtrl.pp" "DSP281x_PieVect.pp" "DSP281x_Sci.pp" "DSP281x_SysCtrl.pp" "Gfl1i-n.pp" 
-	-$(RM) "DSP281x_Adc.obj" "DSP281x_CodeStartBranch.obj" "DSP281x_CpuTimers.obj" "DSP281x_DefaultIsr.obj" "DSP281x_Ev.obj" "DSP281x_GlobalVariableDefs.obj" "DSP281x_Gpio.obj" "DSP281x_MemCopy.obj" "DSP281x_PieCtrl.obj" "DSP281x_PieVect.obj" "DSP281x_Sci.obj" "DSP281x_SysCtrl.obj" "Gfl1i-n.obj" 
+	-$(RM) "DSP281x_Adc.pp" "DSP281x_CpuTimers.pp" "DSP281x_DefaultIsr.pp" "DSP281x_Ev.pp" "DSP281x_GlobalVariableDefs.pp" "DSP281x_Gpio.pp" "DSP281x_MemCopy.pp" "DSP281x_PieCtrl.pp" "DSP281x_PieVect.pp" "DSP281x_Sci.pp" "DSP281x_SysCtrl.pp" "Gfl1i-n2.pp" 
+	-$(RM) "DSP281x_Adc.obj" "DSP281x_CodeStartBranch.obj" "DSP281x_CpuTimers.obj" "DSP281x_DefaultIsr.obj" "DSP281x_Ev.obj" "DSP281x_GlobalVariableDefs.obj" "DSP281x_Gpio.obj" "DSP281x_MemCopy.obj" "DSP281x_PieCtrl.obj" "DSP281x_PieVect.obj" "DSP281x_Sci.obj" "DSP281x_SysCtrl.obj" "Gfl1i-n2.obj" 
 	-$(RM) "DSP281x_CodeStartBranch.pp" 
 	-@echo 'Finished clean'
 	-@echo ' '

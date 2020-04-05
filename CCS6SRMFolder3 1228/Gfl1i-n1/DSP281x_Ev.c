@@ -53,7 +53,7 @@ test the EVA pwm
 /* 	EvaRegs.T1CMPR=3000;              */
 
 ////EVB ------------------------------------------------
-	iperiod3 = (HSCLK / PWM_FREQ) - 1;	//PWM
+	iperiod3 = (HSCLK / PWM_FREQ) - 1;	//PWM	//=3749
 	EvbRegs.T3PR = iperiod3;
 	EvbRegs.T3CNT = 0;
 
