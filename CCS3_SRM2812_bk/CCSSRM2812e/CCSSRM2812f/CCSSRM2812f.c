@@ -29,7 +29,7 @@ anSRM_struct SRM;
 ** attention                   **
 **-----------------------------*/		 
 int iTest=0;
-int simu6pos[6]={0x2,0x3,0x1,0x5,0x4,0x6};//simulate the postion signal
+int simu6pos[6]={0x3,0x1,0x5,0x4,0x6,0x2};//simulate the postion signal
 int simu6count=0;
 
 unsigned int i;//for key input 
@@ -49,6 +49,7 @@ void Msmt_Update_Velocity(anSRM_struct *anSRM, int mode);
 void Msmt_Update_Position(anSRM_struct *anSRM);
 void Time_Update_Position(anSRM_struct *anSRM);
 void Commutation_Algorithm(anSRM_struct *anSRM);
+
 void switch_lowside(int phaseactive);
 
 void main(void)
@@ -67,23 +68,31 @@ void main(void)
 	PieVectTable.CAPINT4=&EvbCAP4ISR_INT;
 	PieVectTable.CAPINT5=&EvbCAP5ISR_INT;
 	PieVectTable.CAPINT6=&EvbCAP6ISR_INT;
-
 	EDIS;   
 
-    InitGpio();
+ 	EvbRegs.EVBIMRC.bit.CAP4INT = 0;    //because the cpu willnot reset
+ 	EvbRegs.EVBIMRC.bit.CAP5INT = 0;    
+ 	EvbRegs.EVBIMRC.bit.CAP6INT = 0;    
+
+    InitGpio();//ddcap
 	InitAdc();				//初始化ADC
 
-	InitEv();
+	InitEv();//ddcap
 	initializeSRM(&SRM);// should be set after the InitGpio();
    	
+/*---------------------------------**
+** 	attention                      **
+** 	add the nop, to wait stable	   **
+**---------------------------------*/							   
+	for(i=0;i<10000;i++)	NOP;
 
-
-	EvbRegs.EVBIFRC.bit.CAP4INT = 1;
-	EvbRegs.EVBIFRC.bit.CAP5INT = 1;
-	EvbRegs.EVBIFRC.bit.CAP6INT = 1;
-	EvbRegs.EVBIMRC.bit.CAP4INT = 1;
-	EvbRegs.EVBIMRC.bit.CAP5INT = 1;
-	EvbRegs.EVBIMRC.bit.CAP6INT = 1;
+ 	EvbRegs.EVBIFRC.bit.CAP4INT = 1;  //in order to clear the beginning ISR  
+ 	EvbRegs.EVBIFRC.bit.CAP5INT = 1;    
+ 	EvbRegs.EVBIFRC.bit.CAP6INT = 1;   
+ 	 
+ 	EvbRegs.EVBIMRC.bit.CAP4INT = 1;    
+ 	EvbRegs.EVBIMRC.bit.CAP5INT = 1;    
+ 	EvbRegs.EVBIMRC.bit.CAP6INT = 1;    
 	
 //	PieCtrl.PIEIFR5.bit.INTx5=0;//CAP4 IFR
 //	PieCtrl.PIEIFR5.bit.INTx6=0;
@@ -93,8 +102,21 @@ void main(void)
 	PieCtrl.PIEIER5.bit.INTx6 = 1;//CAP5
 	PieCtrl.PIEIER5.bit.INTx7 = 1;//CAP6
 
-	IER |= M_INT5;  // 使能 CPU INT 5	//EV CAP
+/*---------------------------------**
+after the above lines, the ACK5=1; IFR=0x10;
+** 	attention                      **
+** 	unknown why                    **
+** 	always trigger the CAP5 ISR	   **
+**---------------------------------*/
+/* 	PieCtrl.PIEACK.all = 0x0010; */
+/* 	PieCtrl.PIEACK.all = 0x0010; */
+/* 	PieCtrl.PIEACK.all = 0x0010; */
+/* 	IFR= 0;	                     */
 
+	IER |= M_INT5;  // 使能 CPU INT 5	//EV CAP
+	
+
+//ADC------------------------------------------   
 	PieCtrl.PIEIER1.bit.INTx6 = 1;//ADCINT enable
 	IER |= M_INT1;			// Enable INT14 which is connected to CPU-Timer 2:
 
@@ -167,7 +189,13 @@ attention**
 
 interrupt void ad(void)
 {
-	IFR=0x0000;
+/*-------------**
+** //what for? **
+** attention   **
+delete in 2812f4
+**-------------*/		 
+//	IFR=0x0000;
+
 //	PieCtrl.PIEIFR1.all = 0;
 //	PieCtrl.PIEACK.all=0xffff;
 
@@ -179,7 +207,7 @@ interrupt void ad(void)
 	SRM.iFB[1]=((AdcRegs.RESULT2>>4)*3)/4095.0+adclo;
 	SRM.iFB[2]=((AdcRegs.RESULT4>>4)*3)/4095.0+adclo;
 		
-	currentController(&SRM); /* current loop algorithm */
+	currentController(&SRM); /* current loop algorithm *///ddcap
 	
 	if (Msmt_Update) 
 	{ /* position estimation */
@@ -236,10 +264,6 @@ interrupt void ad(void)
 		count = 0;
 	}
 
-	PieCtrl.PIEACK.all = 0x0001;
-	AdcRegs.ADC_ST_FLAG.bit.INT_SEQ1_CLR = 1;
-	AdcRegs.ADCTRL2.bit.RST_SEQ1 = 1;
-	EINT;
 
 
 /*-------------------------------**
@@ -248,7 +272,6 @@ interrupt void ad(void)
 **-------------------------------*/							 
 		if(count%10==0)
 	{
-		simu6count=simu6count+1;
 
 		//GpioDataRegs.GPADAT.all=GpioDataRegs.GPADAT.all & 0x8f;
 		//GpioDataRegs.GPADAT.all=(GpioDataRegs.GPADAT.all | simu6pos[simu6count]);
@@ -256,7 +279,9 @@ interrupt void ad(void)
 		GpioDataRegs.GPADAT.bit.GPIOA9=(simu6pos[simu6count]>>1) & 1;
 		GpioDataRegs.GPADAT.bit.GPIOA10=(simu6pos[simu6count]>>2) & 1;
 
-		if(simu6count>=5)
+		simu6count=simu6count+1;
+
+		if(simu6count>=6)//ddcap
 		{
 			simu6count=0;
 		} 
@@ -265,13 +290,18 @@ interrupt void ad(void)
 
 
 
-
 	PieCtrl.PIEACK.all = 0x0001;
 
 	AdcRegs.ADC_ST_FLAG.bit.INT_SEQ1_CLR=1;
-//	AdcRegs.ADCTRL2.bit.SOC_SEQ1=1;			//在这里设置断点
-	AdcRegs.ADCTRL2.bit.RST_SEQ1=1;//rest the SEQ1
-	EINT;
+
+/*----------------------------------------------**
+** in some examples,there is no next line ,why? **
+** attention                                    **
+**----------------------------------------------*/		 
+	AdcRegs.ADCTRL2.bit.RST_SEQ1=1;//rest the SEQ1		//在这里设置断点
+
+
+//	EINT;// what for? //delete in 2812f4
 }
 
 
@@ -302,7 +332,7 @@ void EvbCAP4ISR_INT(void)
 
 	} while (EvbRegs.CAPFIFOB.bit.CAP4FIFO != 0);
 
-	SRM.last_capture = 1; /* save capture data *///capture=1 2 3//use to update the position
+	SRM.last_capture = 1; /* save capture data *///capture=1 2 3//use to update the position//ddcap
 
 	//need to change
 	SRM.capture_delta[0][1] = SRM.capture_delta[0][0];
@@ -335,7 +365,7 @@ void EvbCAP4ISR_INT(void)
 
 
 	 
-	EvbRegs.EVBIFRC.bit.CAP4INT = 1;
+	EvbRegs.EVBIFRC.bit.CAP4INT = 1;//to clear the 
 
 	PieCtrl.PIEACK.all = 0x0010;
 //need to add some commands to cleare IFRs
@@ -367,7 +397,7 @@ void EvbCAP5ISR_INT(void)
 
 	} while (EvbRegs.CAPFIFOB.bit.CAP5FIFO != 0);
 
-	SRM.last_capture = 2; /* save capture data *///capture=1 2 3//use to update the position
+	SRM.last_capture = 2; /* save capture data *///capture=1 2 3//use to update the position//ddcap
 
 	//need to change
 	SRM.capture_delta[1][1] = SRM.capture_delta[1][0];
@@ -434,7 +464,7 @@ void EvbCAP6ISR_INT(void)
 
 	} while (EvbRegs.CAPFIFOB.bit.CAP6FIFO != 0);
 
-	SRM.last_capture = 3; /* save capture data *///capture=1 2 3//use to update the position
+	SRM.last_capture = 3; /* save capture data *///capture=1 2 3//use to update the position//ddcap
 
 	//need to change
 	SRM.capture_delta[2][1] = SRM.capture_delta[2][0];
