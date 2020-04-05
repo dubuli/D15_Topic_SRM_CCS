@@ -785,7 +785,7 @@ void switch_lowside(int phaseactive)
 	if (phaseactive & 0x1) 
 	{
 		//action = action | 0x000c;
-		EvbRegs.ACTRB.bit.CMP7ACT = 1;//low effective
+		EvbRegs.ACTRB.bit.CMP7ACT = 2;//low effective
 
 /*--------------**
 ** SlowDownFlag **
@@ -797,12 +797,12 @@ void switch_lowside(int phaseactive)
 /* 		}                                  */
 /* 		else                               */
 
-		EvbRegs.ACTRB.bit.CMP8ACT = 3;
+		EvbRegs.ACTRB.bit.CMP8ACT = 0;
 	}
 	else
 	{
-		EvbRegs.ACTRB.bit.CMP7ACT = 0;
-		EvbRegs.ACTRB.bit.CMP8ACT = 0;
+		EvbRegs.ACTRB.bit.CMP7ACT = 3;
+		EvbRegs.ACTRB.bit.CMP8ACT = 3;
 	}
 	/*---------------------------------------*/
 	/* Force hi PWM4 if phase1 (B) is active */
@@ -810,7 +810,7 @@ void switch_lowside(int phaseactive)
 	if (phaseactive & 0x2) 
 	{
 		//action = action | 0x00c0;
-		EvbRegs.ACTRB.bit.CMP9ACT = 1;
+		EvbRegs.ACTRB.bit.CMP9ACT = 2;
 
 /* 		if(SlowDownFlag==1)                 */
 /* 		{                                   */
@@ -818,12 +818,12 @@ void switch_lowside(int phaseactive)
 /* 		}                                   */
 /* 		else                                */
 
-		EvbRegs.ACTRB.bit.CMP10ACT = 3;
+		EvbRegs.ACTRB.bit.CMP10ACT = 0;
 	}
 	else
 	{
-		EvbRegs.ACTRB.bit.CMP9ACT = 0;
-		EvbRegs.ACTRB.bit.CMP10ACT = 0;
+		EvbRegs.ACTRB.bit.CMP9ACT = 3;
+		EvbRegs.ACTRB.bit.CMP10ACT = 3;
 	}
 	/*---------------------------------------*/
 	/* Force hi PWM6 if phase2 (C) is active */
@@ -831,7 +831,7 @@ void switch_lowside(int phaseactive)
 	if (phaseactive & 0x4) 
 	{
 		//action = action | 0x0c00;
-		EvbRegs.ACTRB.bit.CMP11ACT = 1;
+		EvbRegs.ACTRB.bit.CMP11ACT = 2;
 
 /* 		if(SlowDownFlag==1)                 */
 /* 		{                                   */
@@ -839,12 +839,12 @@ void switch_lowside(int phaseactive)
 /* 		}                                   */
 /* 		else                                */
 
-		EvbRegs.ACTRB.bit.CMP12ACT = 3;
+		EvbRegs.ACTRB.bit.CMP12ACT = 0;
 	}
 	else
 	{
-		EvbRegs.ACTRB.bit.CMP11ACT = 0;
-		EvbRegs.ACTRB.bit.CMP12ACT = 0;
+		EvbRegs.ACTRB.bit.CMP11ACT = 3;
+		EvbRegs.ACTRB.bit.CMP12ACT = 3;
 	}
 
 }
