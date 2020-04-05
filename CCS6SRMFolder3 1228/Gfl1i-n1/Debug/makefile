@@ -121,32 +121,32 @@ endif
 
 # Add inputs and outputs from these tool invocations to the build variables 
 EXE_OUTPUTS += \
-Jfl1PiTwoPhaseStart2.out \
+Jfl1PiTwoPhaseStart3.out \
 
 EXE_OUTPUTS__QUOTED += \
-"Jfl1PiTwoPhaseStart2.out" \
+"Jfl1PiTwoPhaseStart3.out" \
 
 BIN_OUTPUTS += \
-Jfl1PiTwoPhaseStart2.hex \
+Jfl1PiTwoPhaseStart3.hex \
 
 BIN_OUTPUTS__QUOTED += \
-"Jfl1PiTwoPhaseStart2.hex" \
+"Jfl1PiTwoPhaseStart3.hex" \
 
 
 # All Target
-all: Jfl1PiTwoPhaseStart2.out
+all: Jfl1PiTwoPhaseStart3.out
 
 # Tool invocations
-Jfl1PiTwoPhaseStart2.out: $(OBJS) $(CMD_SRCS) $(LIB_SRCS) $(GEN_CMDS)
+Jfl1PiTwoPhaseStart3.out: $(OBJS) $(CMD_SRCS) $(LIB_SRCS) $(GEN_CMDS)
 	@echo 'Building target: $@'
 	@echo 'Invoking: C2000 Linker'
-	"C:/ti2/ccsv6/tools/compiler/c2000_6.2.7/bin/cl2000" -v28 -ml -mt -g --diag_warning=225 --display_error_number --diag_wrap=off -z -m"Jfl1PiTwoPhaseStart2.map" --stack_size=1000 --warn_sections -i"C:/ti2/ccsv6/tools/compiler/c2000_6.2.7/lib" -i"C:/ti2/ccsv6/tools/compiler/c2000_6.2.7/include" --reread_libs --display_error_number --diag_wrap=off --xml_link_info="Jfl1PiTwoPhaseStart2_linkInfo.xml" --rom_model -o "Jfl1PiTwoPhaseStart2.out" $(ORDERED_OBJS)
+	"C:/ti2/ccsv6/tools/compiler/c2000_6.2.7/bin/cl2000" -v28 -ml -mt -g --diag_warning=225 --display_error_number --diag_wrap=off -z -m"Jfl1PiTwoPhaseStart3.map" --stack_size=1000 --warn_sections -i"C:/ti2/ccsv6/tools/compiler/c2000_6.2.7/lib" -i"C:/ti2/ccsv6/tools/compiler/c2000_6.2.7/include" --reread_libs --display_error_number --diag_wrap=off --xml_link_info="Jfl1PiTwoPhaseStart3_linkInfo.xml" --rom_model -o "Jfl1PiTwoPhaseStart3.out" $(ORDERED_OBJS)
 	@echo 'Finished building target: $@'
 	@echo ' '
 
-Jfl1PiTwoPhaseStart2.hex: $(EXE_OUTPUTS)
+Jfl1PiTwoPhaseStart3.hex: $(EXE_OUTPUTS)
 	@echo 'Invoking: C2000 Hex Utility'
-	"C:/ti2/ccsv6/tools/compiler/c2000_6.2.7/bin/hex2000"  -o "Jfl1PiTwoPhaseStart2.hex" $(EXE_OUTPUTS__QUOTED)
+	"C:/ti2/ccsv6/tools/compiler/c2000_6.2.7/bin/hex2000"  -o "Jfl1PiTwoPhaseStart3.hex" $(EXE_OUTPUTS__QUOTED)
 	@echo 'Finished building: $@'
 	@echo ' '
 
