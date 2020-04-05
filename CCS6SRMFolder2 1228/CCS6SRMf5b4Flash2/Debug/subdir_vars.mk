@@ -13,7 +13,7 @@ ASM_SRCS += \
 ../DSP281x_CodeStartBranch.asm 
 
 C_SRCS += \
-../CCSf7FlashTestI2.c \
+../CCSf7FlashTestI2b.c \
 ../DSP281x_Adc.c \
 ../DSP281x_CpuTimers.c \
 ../DSP281x_DefaultIsr.c \
@@ -27,7 +27,7 @@ C_SRCS += \
 ../DSP281x_SysCtrl.c 
 
 OBJS += \
-./CCSf7FlashTestI2.obj \
+./CCSf7FlashTestI2b.obj \
 ./DSP281x_Adc.obj \
 ./DSP281x_CodeStartBranch.obj \
 ./DSP281x_CpuTimers.obj \
@@ -45,7 +45,7 @@ ASM_DEPS += \
 ./DSP281x_CodeStartBranch.pp 
 
 C_DEPS += \
-./CCSf7FlashTestI2.pp \
+./CCSf7FlashTestI2b.pp \
 ./DSP281x_Adc.pp \
 ./DSP281x_CpuTimers.pp \
 ./DSP281x_DefaultIsr.pp \
@@ -59,7 +59,7 @@ C_DEPS += \
 ./DSP281x_SysCtrl.pp 
 
 C_DEPS__QUOTED += \
-"CCSf7FlashTestI2.pp" \
+"CCSf7FlashTestI2b.pp" \
 "DSP281x_Adc.pp" \
 "DSP281x_CpuTimers.pp" \
 "DSP281x_DefaultIsr.pp" \
@@ -73,7 +73,7 @@ C_DEPS__QUOTED += \
 "DSP281x_SysCtrl.pp" 
 
 OBJS__QUOTED += \
-"CCSf7FlashTestI2.obj" \
+"CCSf7FlashTestI2b.obj" \
 "DSP281x_Adc.obj" \
 "DSP281x_CodeStartBranch.obj" \
 "DSP281x_CpuTimers.obj" \
@@ -91,7 +91,7 @@ ASM_DEPS__QUOTED += \
 "DSP281x_CodeStartBranch.pp" 
 
 C_SRCS__QUOTED += \
-"../CCSf7FlashTestI2.c" \
+"../CCSf7FlashTestI2b.c" \
 "../DSP281x_Adc.c" \
 "../DSP281x_CpuTimers.c" \
 "../DSP281x_DefaultIsr.c" \

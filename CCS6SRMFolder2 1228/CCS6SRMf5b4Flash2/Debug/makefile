@@ -4,11 +4,11 @@
 
 SHELL = cmd.exe
 
-CG_TOOL_ROOT := c:/ti/ccsv6/tools/compiler/c2000_6.2.7
+CG_TOOL_ROOT := C:/ti2/ccsv6/tools/compiler/c2000_6.2.7
 
 ORDERED_OBJS += \
 $(GEN_CMDS__FLAG) \
-"./CCSf7FlashTestI2.obj" \
+"./CCSf7FlashTestI2b.obj" \
 "./DSP281x_Adc.obj" \
 "./DSP281x_CodeStartBranch.obj" \
 "./DSP281x_CpuTimers.obj" \
@@ -23,7 +23,7 @@ $(GEN_CMDS__FLAG) \
 "./DSP281x_SysCtrl.obj" \
 "../Flash_Link.cmd" \
 "../rts2800_ml.lib" \
--l"C:/ti/ccsv6/tools/compiler/c2000_6.2.7/lib/rts2800_ml.lib" \
+-l"C:/ti2/ccsv6/tools/compiler/c2000_6.2.7/lib/rts2800_ml.lib" \
 
 -include ../makefile.init
 
@@ -121,40 +121,40 @@ endif
 
 # Add inputs and outputs from these tool invocations to the build variables 
 EXE_OUTPUTS += \
-CCS6SRMf7Flash1TestI2.out \
+CCS6SRMf7Flash1TestI2f.out \
 
 EXE_OUTPUTS__QUOTED += \
-"CCS6SRMf7Flash1TestI2.out" \
+"CCS6SRMf7Flash1TestI2f.out" \
 
 BIN_OUTPUTS += \
-CCS6SRMf7Flash1TestI2.hex \
+CCS6SRMf7Flash1TestI2f.hex \
 
 BIN_OUTPUTS__QUOTED += \
-"CCS6SRMf7Flash1TestI2.hex" \
+"CCS6SRMf7Flash1TestI2f.hex" \
 
 
 # All Target
-all: CCS6SRMf7Flash1TestI2.out
+all: CCS6SRMf7Flash1TestI2f.out
 
 # Tool invocations
-CCS6SRMf7Flash1TestI2.out: $(OBJS) $(CMD_SRCS) $(LIB_SRCS) $(GEN_CMDS)
+CCS6SRMf7Flash1TestI2f.out: $(OBJS) $(CMD_SRCS) $(LIB_SRCS) $(GEN_CMDS)
 	@echo 'Building target: $@'
 	@echo 'Invoking: C2000 Linker'
-	"c:/ti/ccsv6/tools/compiler/c2000_6.2.7/bin/cl2000" -v28 -ml -mt -g --diag_warning=225 --display_error_number --diag_wrap=off -z -m"CCS6SRMf7Flash1TestI2.map" --stack_size=1000 --warn_sections -i"c:/ti/ccsv6/tools/compiler/c2000_6.2.7/lib" -i"c:/ti/ccsv6/tools/compiler/c2000_6.2.7/include" --reread_libs --display_error_number --diag_wrap=off --xml_link_info="CCS6SRMf7Flash1TestI2_linkInfo.xml" --rom_model -o "CCS6SRMf7Flash1TestI2.out" $(ORDERED_OBJS)
+	"C:/ti2/ccsv6/tools/compiler/c2000_6.2.7/bin/cl2000" -v28 -ml -mt -g --diag_warning=225 --display_error_number --diag_wrap=off -z -m"CCS6SRMf7Flash1TestI2f.map" --stack_size=1000 --warn_sections -i"C:/ti2/ccsv6/tools/compiler/c2000_6.2.7/lib" -i"C:/ti2/ccsv6/tools/compiler/c2000_6.2.7/include" --reread_libs --display_error_number --diag_wrap=off --xml_link_info="CCS6SRMf7Flash1TestI2f_linkInfo.xml" --rom_model -o "CCS6SRMf7Flash1TestI2f.out" $(ORDERED_OBJS)
 	@echo 'Finished building target: $@'
 	@echo ' '
 
-CCS6SRMf7Flash1TestI2.hex: $(EXE_OUTPUTS)
+CCS6SRMf7Flash1TestI2f.hex: $(EXE_OUTPUTS)
 	@echo 'Invoking: C2000 Hex Utility'
-	"c:/ti/ccsv6/tools/compiler/c2000_6.2.7/bin/hex2000"  -o "CCS6SRMf7Flash1TestI2.hex" $(EXE_OUTPUTS__QUOTED)
+	"C:/ti2/ccsv6/tools/compiler/c2000_6.2.7/bin/hex2000"  -o "CCS6SRMf7Flash1TestI2f.hex" $(EXE_OUTPUTS__QUOTED)
 	@echo 'Finished building: $@'
 	@echo ' '
 
 # Other Targets
 clean:
 	-$(RM) $(EXE_OUTPUTS__QUOTED)$(BIN_OUTPUTS__QUOTED)
-	-$(RM) "CCSf7FlashTestI2.pp" "DSP281x_Adc.pp" "DSP281x_CpuTimers.pp" "DSP281x_DefaultIsr.pp" "DSP281x_Ev.pp" "DSP281x_GlobalVariableDefs.pp" "DSP281x_Gpio.pp" "DSP281x_MemCopy.pp" "DSP281x_PieCtrl.pp" "DSP281x_PieVect.pp" "DSP281x_Sci.pp" "DSP281x_SysCtrl.pp" 
-	-$(RM) "CCSf7FlashTestI2.obj" "DSP281x_Adc.obj" "DSP281x_CodeStartBranch.obj" "DSP281x_CpuTimers.obj" "DSP281x_DefaultIsr.obj" "DSP281x_Ev.obj" "DSP281x_GlobalVariableDefs.obj" "DSP281x_Gpio.obj" "DSP281x_MemCopy.obj" "DSP281x_PieCtrl.obj" "DSP281x_PieVect.obj" "DSP281x_Sci.obj" "DSP281x_SysCtrl.obj" 
+	-$(RM) "CCSf7FlashTestI2b.pp" "DSP281x_Adc.pp" "DSP281x_CpuTimers.pp" "DSP281x_DefaultIsr.pp" "DSP281x_Ev.pp" "DSP281x_GlobalVariableDefs.pp" "DSP281x_Gpio.pp" "DSP281x_MemCopy.pp" "DSP281x_PieCtrl.pp" "DSP281x_PieVect.pp" "DSP281x_Sci.pp" "DSP281x_SysCtrl.pp" 
+	-$(RM) "CCSf7FlashTestI2b.obj" "DSP281x_Adc.obj" "DSP281x_CodeStartBranch.obj" "DSP281x_CpuTimers.obj" "DSP281x_DefaultIsr.obj" "DSP281x_Ev.obj" "DSP281x_GlobalVariableDefs.obj" "DSP281x_Gpio.obj" "DSP281x_MemCopy.obj" "DSP281x_PieCtrl.obj" "DSP281x_PieVect.obj" "DSP281x_Sci.obj" "DSP281x_SysCtrl.obj" 
 	-$(RM) "DSP281x_CodeStartBranch.pp" 
 	-@echo 'Finished clean'
 	-@echo ' '
