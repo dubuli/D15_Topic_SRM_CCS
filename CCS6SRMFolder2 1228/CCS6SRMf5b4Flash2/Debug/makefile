@@ -121,32 +121,32 @@ endif
 
 # Add inputs and outputs from these tool invocations to the build variables 
 EXE_OUTPUTS += \
-CCS6SRMg1.out \
+CCS6SRMf6TestI0.5.out \
 
 EXE_OUTPUTS__QUOTED += \
-"CCS6SRMg1.out" \
+"CCS6SRMf6TestI0.5.out" \
 
 BIN_OUTPUTS += \
-CCS6SRMg1.hex \
+CCS6SRMf6TestI0.5.hex \
 
 BIN_OUTPUTS__QUOTED += \
-"CCS6SRMg1.hex" \
+"CCS6SRMf6TestI0.5.hex" \
 
 
 # All Target
-all: CCS6SRMg1.out
+all: CCS6SRMf6TestI0.5.out
 
 # Tool invocations
-CCS6SRMg1.out: $(OBJS) $(CMD_SRCS) $(LIB_SRCS) $(GEN_CMDS)
+CCS6SRMf6TestI0.5.out: $(OBJS) $(CMD_SRCS) $(LIB_SRCS) $(GEN_CMDS)
 	@echo 'Building target: $@'
 	@echo 'Invoking: C2000 Linker'
-	"C:/ti2/ccsv6/tools/compiler/c2000_6.2.7/bin/cl2000" -v28 -ml -mt -g --diag_warning=225 --display_error_number --diag_wrap=off -z -m"CCS6SRMg1.map" --stack_size=1000 --warn_sections -i"C:/ti2/ccsv6/tools/compiler/c2000_6.2.7/lib" -i"C:/ti2/ccsv6/tools/compiler/c2000_6.2.7/include" --reread_libs --display_error_number --diag_wrap=off --xml_link_info="CCS6SRMg1_linkInfo.xml" --rom_model -o "CCS6SRMg1.out" $(ORDERED_OBJS)
+	"C:/ti2/ccsv6/tools/compiler/c2000_6.2.7/bin/cl2000" -v28 -ml -mt -g --diag_warning=225 --display_error_number --diag_wrap=off -z -m"CCS6SRMf6TestI0.5.map" --stack_size=1000 --warn_sections -i"C:/ti2/ccsv6/tools/compiler/c2000_6.2.7/lib" -i"C:/ti2/ccsv6/tools/compiler/c2000_6.2.7/include" --reread_libs --display_error_number --diag_wrap=off --xml_link_info="CCS6SRMf6TestI0.5_linkInfo.xml" --rom_model -o "CCS6SRMf6TestI0.5.out" $(ORDERED_OBJS)
 	@echo 'Finished building target: $@'
 	@echo ' '
 
-CCS6SRMg1.hex: $(EXE_OUTPUTS)
+CCS6SRMf6TestI0.5.hex: $(EXE_OUTPUTS)
 	@echo 'Invoking: C2000 Hex Utility'
-	"C:/ti2/ccsv6/tools/compiler/c2000_6.2.7/bin/hex2000"  -o "CCS6SRMg1.hex" $(EXE_OUTPUTS__QUOTED)
+	"C:/ti2/ccsv6/tools/compiler/c2000_6.2.7/bin/hex2000"  -o "CCS6SRMf6TestI0.5.hex" $(EXE_OUTPUTS__QUOTED)
 	@echo 'Finished building: $@'
 	@echo ' '
 
