@@ -22,11 +22,14 @@ int Update_Velocity=0;//flag
 int Msmt_Update=0;// position update
 int LEDvalue;
 
-extern Uint16 RamfuncsLoadStart;
-//extern Uint16 RamfuncsLoadSize;
-extern Uint16 RamfuncsRunStart;
-extern Uint16 RamfuncsLoadEnd;
+int SpeedFlag;
+int CapCount;
 
+int SpeedPiFlag;
+
+long speed_error;
+long iDes;
+int StartFlag;
 
 anSRM_struct SRM;
 
@@ -35,8 +38,8 @@ anSRM_struct SRM;
 ** attention                   **
 **-----------------------------*/
 //int iTest=0;
-//int simu6pos[6]={0x3,0x1,0x5,0x4,0x6,0x2};//simulate the postion signal
-//int simu6count=0;
+int simu6pos[6]={0x3,0x1,0x5,0x4,0x6,0x2};//simulate the postion signal	//simu6pos
+int simu6count=0;							//simu6pos
 
 unsigned int i;//for key input
 
@@ -72,8 +75,7 @@ void main(void)
 	InitPieCtrl();			//初始化PIE控制寄存器
 	InitPieVectTable();		//初始化PIE参数表
 
-	MemCopy(&RamfuncsLoadStart, &RamfuncsLoadEnd, &RamfuncsRunStart);
-	InitFlash();//初始化Flash
+
 
 	EALLOW;
 	PieVectTable.ADCINT=&ad;
@@ -92,6 +94,15 @@ void main(void)
 	InitSci();
 	initializeSRM(&SRM);// should be set after the InitGpio();
 
+	SpeedFlag=0;
+	CapCount=0;
+
+	SpeedPiFlag=0;
+	speed_error=0;
+	iDes=0;
+	StartFlag=0;
+
+	SRM.wDes_10xrpm=4000;	//Desninate rpm
 /*---------------------------------**
 ** 	attention                      **
 ** 	add the nop, to wait stable	   **
@@ -142,7 +153,10 @@ after the above lines, the ACK5=1; IFR=0x10;
 		if(SWITCH1==1 || PAOCUP==1 ||PAOCDN==1 || PBOCUP==1 || PBOCDN==1 || PCOCUP==1 ||PCOCDN==1)	{
 			EvbRegs.ACTRB.all = 0xfff;
 			//EvbRegs.ACTRB.bit.CMP7-12ACT=3; //forecd high, PWM is forbiddend
+			StartFlag=0;
 		}
+		else
+			StartFlag=1;
 
 //		while(SWITCH1==1 || PAOCUP==1 ||PAOCDN==1 || PBOCUP==1 || PBOCDN==1 || PCOCUP==1 ||PCOCDN==1)
 
@@ -166,16 +180,33 @@ after the above lines, the ACK5=1; IFR=0x10;
 			Update_Velocity = 0;
 		}
 
+		//speedpiFlag is 1KHz;
+		if(SpeedPiFlag==1 && StartFlag==1)	{
+
+			speed_error=SRM.wDes_10xrpm-SRM.wEst_10xrpm;
+			SRM.integral_speed_error=SRM.integral_speed_error+speed_error;	//KI=1/32768,32768=1<<15
+			if(SRM.integral_speed_error>(CURRENT_1A*10<<15))	{
+				SRM.integral_speed_error=CURRENT_1A*10<<15;
+			}
+			else if(SRM.integral_speed_error<-CURRENT_1A*10<<15)	{
+				SRM.integral_speed_error=-CURRENT_1A*10<<15;
+			}
+
+			iDes=KP*speed_error+(SRM.integral_speed_error>>15);	//KP,KI
+			if(iDes>CURRENT_1A*2)	{
+				iDes=CURRENT_1A*2;
+			}
+			else if(iDes<0)	{
+				iDes=0;
+			}
 
 
-		//Improtant,need to check the GPIOA12 for what
-		if(count==1000)		{
-
-			if((SciaTx_Ready() == 1) )//&& (SendFlag == 1))
-				SciaRegs.SCITXBUF = SRM.wEst_10xrpm;
-
-			//GpioDataRegs.GPATOGGLE.bit.GPIOA12=1;//output led
+			SpeedPiFlag=0;
 		}
+
+
+
+
 	}
 }
 
@@ -220,11 +251,16 @@ delete in 2812f4
 
 	count = count + 1; /* increment count */
 	slice = slice + 1; /* increment slicer */
+
+	Commutation_Algorithm(&SRM); /* do commutation in the 1st */
+								//there is some question about it, should recosider!!!
+
+
 	if (slice == 1)
 	{
 
 
-		Commutation_Algorithm(&SRM); /* do commutation in the 1st */
+
 
 		//if (phaseactive & 0x1)
 		//{
@@ -245,13 +281,29 @@ delete in 2812f4
 
 	} /* slice. */
 
+	else if(slice==2)	{
+		SpeedPiFlag=1;
+	}
+
 	else if (slice == 5)
 	{
 		slice = 0; /* reset slicer */
 	}
 	if (count == ONE_HALF_SECOND)
-	{ /* set flag for toggling the */
-//		Toggle_LED = 1; /* EVM LED, if time */
+	{
+		if(CapCount<6)	{
+			SpeedFlag=0;
+			SRM.wEst_10xrpm=0;
+		}
+		else if(CapCount<37)
+			SpeedFlag=1;
+		else
+			SpeedFlag=2;
+
+
+		CapCount=0;
+
+
 		count = 0;
 	}
 
@@ -261,19 +313,19 @@ delete in 2812f4
 ** 	attention                    **
 ** 	test the cap module,A8-10	 **
 **-------------------------------*/
-/* Use GPADAT to give a simulate signal to the sensor*/
-//		if(count%10==0)	{
-//		GpioDataRegs.GPADAT.bit.GPIOA8=simu6pos[simu6count] & 1;
-//		GpioDataRegs.GPADAT.bit.GPIOA9=(simu6pos[simu6count]>>1) & 1;
-//		GpioDataRegs.GPADAT.bit.GPIOA10=(simu6pos[simu6count]>>2) & 1;
-//
-//		simu6count=simu6count+1;
+/* Use GPADAT to give a simulate signal to the sensor*/		//simu6pos
+		if(count%100==0)	{									//%
+			GpioDataRegs.GPADAT.bit.GPIOA8=simu6pos[simu6count] & 1;
+			GpioDataRegs.GPADAT.bit.GPIOA9=(simu6pos[simu6count]>>1) & 1;
+			GpioDataRegs.GPADAT.bit.GPIOA10=(simu6pos[simu6count]>>2) & 1;
 
-//		if(simu6count>=6)//ddcap
-//		{
-//			simu6count=0;
-//		}
-//	}
+			simu6count=simu6count+1;
+
+			if(simu6count>=6)//ddcap
+			{
+				simu6count=0;
+			}
+		}
 
 
 
@@ -337,18 +389,22 @@ void EvbCAP4ISR_INT(void)
 
 	SRM.delta_count = delta_count;
 
-	if (delta_count > 50) 	{
+
+
+	if (SpeedFlag==1 || (SpeedFlag==2 && delta_count>70)) 	{
 		//the frequency of count is 5K, so it's 50/5000 second per 7.5degree here  .MYWORK
 		//750 mechinal degree/s,about 2 n/s
 
 		/* low shaft speed use *** ISR counter */
-		Update_Velocity = 2;
-	}
-	else 	{
-		/* else, shaft speed ok */
-		/* use 1.25MHz clk */
 		Update_Velocity = 1;
 	}
+	else if(SpeedFlag==2)	{
+		/* else, shaft speed ok */
+		/* use 1.25MHz clk */
+		Update_Velocity = 2;
+	}
+
+	CapCount++;
 
 	EvbRegs.EVBIFRC.bit.CAP4INT = 1;//to clear the 清除捕获中断4的标志位
 	PieCtrlRegs.PIEACK.bit.ACK5 = 1; //origin: ACK.all=0x0010
@@ -402,18 +458,21 @@ void EvbCAP5ISR_INT(void)
 	if (delta_count < 0)
 		delta_count = delta_count + ONE_HALF_SECOND;
 
-	if (delta_count > 50)
-	{ /* low shaft speed use */
-		/* ISR counter */
-		SRM.delta_count = delta_count;
-		Update_Velocity = 2;
-	}
-	else
-	{ /* else, shaft speed ok */
-		/* use 1.25MHz clk */
-		SRM.delta_count = delta_count;
+	if (SpeedFlag==1 || (SpeedFlag==2 && delta_count>70)) 	{
+		//the frequency of count is 5K, so it's 50/5000 second per 7.5degree here  .MYWORK
+		//750 mechinal degree/s,about 2 n/s
+
+		/* low shaft speed use *** ISR counter */
 		Update_Velocity = 1;
 	}
+	else if(SpeedFlag==2)	{
+		/* else, shaft speed ok */
+		/* use 1.25MHz clk */
+		Update_Velocity = 2;
+	}
+
+
+	CapCount++;
 
 	EvbRegs.EVBIFRC.bit.CAP5INT = 1;
 	PieCtrlRegs.PIEACK.bit.ACK5 = 1; //origin: ACK.all=0x0010
@@ -467,18 +526,21 @@ void EvbCAP6ISR_INT(void)
 	if (delta_count < 0)
 		delta_count = delta_count + ONE_HALF_SECOND;
 
-	if (delta_count > 50)
-	{ /* low shaft speed use */
-		/* ISR counter */
-		SRM.delta_count = delta_count;
-		Update_Velocity = 2;
-	}
-	else
-	{ /* else, shaft speed ok */
-		/* use 1.25MHz clk */
-		SRM.delta_count = delta_count;
+	if (SpeedFlag==1 || (SpeedFlag==2 && delta_count>70)) 	{
+		//the frequency of count is 5K, so it's 50/5000 second per 7.5degree here  .MYWORK
+		//750 mechinal degree/s,about 2 n/s
+
+		/* low shaft speed use *** ISR counter */
 		Update_Velocity = 1;
 	}
+	else if(SpeedFlag==2)	{
+		/* else, shaft speed ok */
+		/* use 1.25MHz clk */
+		Update_Velocity = 2;
+	}
+
+	CapCount++;
+
 
 
 	EvbRegs.EVBIFRC.bit.CAP6INT = 1;
@@ -636,7 +698,7 @@ void Msmt_Update_Velocity(anSRM_struct *anSRM, int mode)
 	/*----------------------------------------------- */
 	/* Obtain instantaneous velocity estimate */
 	/*----------------------------------------------- */
-	if (mode == 1)
+	if (mode == 2)
 	{
 		/* use timer #2 as time base */
 		/*------------------------------------------------------------*/
@@ -693,11 +755,13 @@ void currentController(anSRM_struct *anSRM)
 		/*----------------------------------------------*/
 		if (anSRM->active[phase] > 0)
 		{
-			if(anSRM->iFB[phase]>=92)		//184-800mA,92-400mA	//chopcurrent
+
+
+			if(anSRM->iFB[phase] > (iDes + 30))		//184-800mA,92-400mA	//chopcurrent
 			{
 				anSRM->dutyRatio[phase]=0;//compare to output LOW
 			}
-			else if(anSRM->iFB[phase]<=86)	//172-750mA,86-375mA
+			else if(anSRM->iFB[phase] < (iDes))	//172-750mA,86-375mA
 			{
 				anSRM->dutyRatio[phase]=0xffff;//compare to output HIGH
 			}

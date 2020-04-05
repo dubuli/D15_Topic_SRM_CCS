@@ -74,7 +74,16 @@ attention!
 	GpioMuxRegs.GPAMUX.bit.PWM6_GPIOA5=0;	//Swith, start or stop the motor
 	GpioMuxRegs.GPADIR.bit.GPIOA5=0;
 
+	GpioMuxRegs.GPFMUX.bit.MCLKXA_GPIOF8=0;	//not used in our project;no harm; short cicuited with F9 in 00ic
+	GpioMuxRegs.GPFDIR.bit.GPIOF8=0;
 
+	//simu6pos
+	GpioMuxRegs.GPAMUX.bit.CAP1Q1_GPIOA8=0;
+	GpioMuxRegs.GPAMUX.bit.CAP2Q2_GPIOA9=0;
+	GpioMuxRegs.GPAMUX.bit.CAP3QI1_GPIOA10=0;
+	GpioMuxRegs.GPADIR.bit.GPIOA8=1;
+	GpioMuxRegs.GPADIR.bit.GPIOA9=1;
+	GpioMuxRegs.GPADIR.bit.GPIOA10=1;
 	EDIS;
 }	
 	

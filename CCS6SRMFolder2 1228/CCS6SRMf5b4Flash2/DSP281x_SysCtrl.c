@@ -38,12 +38,12 @@ void InitSysCtrl(void)
 	   SysCtrlRegs.WDCR= 0x0068;//ban the dog
 
 	// Initalize PLL
-	   SysCtrlRegs.PLLCR.all = 0x02;
+	   SysCtrlRegs.PLLCR.all = 0x0a;	//changed, new syslck is 150M
 	   // Wait for PLL to lock
 	   for(i= 0; i< 5000; i++){}
 
 	// HISPCP/LOSPCP prescale register settings, normally it will be set to default values
-	   SysCtrlRegs.HISPCP.all = 0x0000;
+	   SysCtrlRegs.HISPCP.all = 0x0001;	//srmf6
 	   SysCtrlRegs.LOSPCP.all = 0x0002;
 	// Peripheral clock enables set for the selected peripherals.
 	   SysCtrlRegs.PCLKCR.bit.EVAENCLK=1;
@@ -106,9 +106,9 @@ void InitPll(Uint16 val)
 void InitPeripheralClocks(void)
 {
    EALLOW;
-
-   SysCtrlRegs.HISPCP.all = 0x0001;//设置高速时钟 2分频
-   SysCtrlRegs.LOSPCP.all = 0x0002;//设置低速时钟 4分频
+   	   	   	   	   	   	   	   	   //30M OSCCLK振荡器	DOG	30M
+   SysCtrlRegs.HISPCP.all = 0x0001;//设置高速时钟 2分频	EV，ADC，McBSP	75M
+   SysCtrlRegs.LOSPCP.all = 0x0002;//设置低速时钟 4分频	SCI，SPI			37.5M
 
    //使能外围模块时钟
    SysCtrlRegs.PCLKCR.bit.EVAENCLK=1;

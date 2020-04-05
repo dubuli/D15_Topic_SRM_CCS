@@ -33,8 +33,8 @@ void InitSci(void)
 	SciaRegs.SCICTL1.all = 0x03; // enable TX
 	SciaRegs.SCICTL2.all = 0x03; //
 	////////////////////9600///19200/////
-	SciaRegs.SCIHBAUD = 0x00;//0x01;//0x00;
-	SciaRegs.SCILBAUD = 0x60;//0x44;//0xa2;
+	SciaRegs.SCIHBAUD = 0x01;//0x00;//0x01;//0x00;	//LS=37.5M£¬LS/(Baud*8)-1=487,=0x1e7
+	SciaRegs.SCILBAUD = 0xe7;//0x60;//0x44;//0xa2;
 
 	SciaRegs.SCICTL1.all = 0x23;
 
