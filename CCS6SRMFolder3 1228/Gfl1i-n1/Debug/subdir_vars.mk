@@ -4,7 +4,7 @@
 
 # Add inputs and outputs from these tool invocations to the build variables 
 CMD_SRCS += \
-../RAM_Link.cmd 
+../Flash_Link.cmd 
 
 LIB_SRCS += \
 ../rts2800_ml.lib 

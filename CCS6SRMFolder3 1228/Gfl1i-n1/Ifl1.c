@@ -43,9 +43,9 @@ int CurrentControllerFlag;
 int PhaseControlFlag;
 int Time_Update_PositionFlag;
 
-//extern Uint16 RamfuncsLoadStart;		//flash++
-//extern Uint16 RamfuncsRunStart;
-//extern Uint16 RamfuncsLoadEnd;
+extern Uint16 RamfuncsLoadStart;		//flash++
+extern Uint16 RamfuncsRunStart;
+extern Uint16 RamfuncsLoadEnd;
 
 anSRM_struct SRM;
 
@@ -91,7 +91,7 @@ void main(void)
 	InitPieCtrl();			//初始化PIE控制寄存器
 	InitPieVectTable();		//初始化PIE参数表
 
-//	MemCopy(&RamfuncsLoadStart, &RamfuncsLoadEnd, &RamfuncsRunStart);	//flash++
+	MemCopy(&RamfuncsLoadStart, &RamfuncsLoadEnd, &RamfuncsRunStart);	//flash++
 	InitFlash();//初始化Flash
 
 
@@ -125,7 +125,7 @@ void main(void)
 	PhaseControlFlag=0;
 	Time_Update_PositionFlag=0;
 
-	SRM.wDes_10xrpm=4750;	//Desninate rpm
+	SRM.wDes_10xrpm=2750;	//Desninate rpm
 /*---------------------------------**
 ** 	attention                      **
 ** 	add the nop, to wait stable	   **
@@ -247,8 +247,8 @@ after the above lines, the ACK5=1; IFR=0x10;
 			}
 
 			iDes=speed_error*KP+(SRM.integral_speed_error>>16);	//KP=10KP注意速度已经是10倍速度 ,KI
-			if(iDes>CURRENT_1A*2)	{
-				iDes=CURRENT_1A*2;
+			if(iDes>CURRENT_1A*4)	{
+				iDes=CURRENT_1A*4;
 			}
 			else if(iDes<0)	{
 				iDes=0;
@@ -337,12 +337,12 @@ delete in 2812f4
 	}
 
 	//	485,transfer the wEst,OUTPUT the wEst
-//		if(!(count%480))		{				//changeto 9600Hz 480-20Hz			//%250 20Hz		//5Hz// 5000/100=50 Hz
-//			GpioDataRegs.GPEDAT.bit.GPIOE1=0;
-//
-//			if((SciaTx_Ready() == 1) )//&& (SendFlag == 1))
-//				SciaRegs.SCITXBUF=(SRM.wEst_10xrpm/50);
-//		}
+		if(!(count%480))		{				//changeto 9600Hz 480-20Hz			//%250 20Hz		//5Hz// 5000/100=50 Hz
+			GpioDataRegs.GPEDAT.bit.GPIOE1=0;
+
+			if((SciaTx_Ready() == 1) )//&& (SendFlag == 1))
+				SciaRegs.SCITXBUF=(SRM.wEst_10xrpm/50);
+		}
 
 	//	GpioDataRegs.GPEDAT.bit.GPIOE1=0;
 
@@ -405,7 +405,12 @@ void EvbCAP4ISR_INT(void)
 	SRM.last_capture = 1; /* save capture data *///capture=1 2 3//use to update the position//ddcap
 
 /** 	added in 2812f5 **** 	attention	    **/
-	SRM.position_state = (GpioDataRegs.GPFDAT.all>>11) & 0x7;//get the state use the sensor signal
+//	SRM.position_state = (GpioDataRegs.GPFDAT.all>>11) & 0x7;//get the state use the sensor signal
+
+	SRM.position_state = SRM.trans_lut[SRM.position_state][1].state;
+	if(SRM.position_state==0)
+		SRM.position_state = (GpioDataRegs.GPFDAT.all>>11) & 0x7;//get
+
 	SRM.position = SRM.trans_lut[SRM.position_state][1].position;//0 to PI //there is a time delay,not accurate
 	SRM.shaft_direction_old=SRM.shaft_direction;
 	SRM.shaft_direction = SRM.trans_lut[SRM.position_state][1].direction;//1 -1//attentionmodify
@@ -447,10 +452,10 @@ void EvbCAP4ISR_INT(void)
 	}
 
 
-	GpioDataRegs.GPEDAT.bit.GPIOE1=0;
-
-	if((SciaTx_Ready() == 1) )//&& (SendFlag == 1))
-		SciaRegs.SCITXBUF=(SRM.position_state);
+//	GpioDataRegs.GPEDAT.bit.GPIOE1=0;
+//
+//	if((SciaTx_Ready() == 1) )//&& (SendFlag == 1))
+//		SciaRegs.SCITXBUF=(SRM.position_state);
 
 	EvbRegs.EVBIFRC.bit.CAP4INT = 1;//to clear the 清除捕获中断4的标志位
 	PieCtrlRegs.PIEACK.bit.ACK5 = 1; //origin: ACK.all=0x0010
@@ -485,7 +490,11 @@ void EvbCAP5ISR_INT(void)
 	** 	added in 2812f5 **
 	** 	attention	    **
 	**------------------*/
-	SRM.position_state = (GpioDataRegs.GPFDAT.all>>11) & 0x7;//attentiondelete ,need to delete
+//	SRM.position_state = (GpioDataRegs.GPFDAT.all>>11) & 0x7;//attentiondelete ,need to delete
+	SRM.position_state = SRM.trans_lut[SRM.position_state][2].state;
+	if(SRM.position_state==0)
+		SRM.position_state = (GpioDataRegs.GPFDAT.all>>11) & 0x7;//get
+
 	SRM.position = SRM.trans_lut[SRM.position_state][2].position;//0 to PI //there is a time delay,not accurate
 	SRM.shaft_direction_old=SRM.shaft_direction;
 	SRM.shaft_direction = SRM.trans_lut[SRM.position_state][2].direction;//1 -1//attentionmodify
@@ -523,10 +532,10 @@ void EvbCAP5ISR_INT(void)
 		UpdateVelocityFlag = 2;
 	}
 
-	GpioDataRegs.GPEDAT.bit.GPIOE1=0;
-
-	if((SciaTx_Ready() == 1) )//&& (SendFlag == 1))
-		SciaRegs.SCITXBUF=(SRM.position_state);
+//	GpioDataRegs.GPEDAT.bit.GPIOE1=0;
+//
+//	if((SciaTx_Ready() == 1) )//&& (SendFlag == 1))
+//		SciaRegs.SCITXBUF=(SRM.position_state);
 
 	EvbRegs.EVBIFRC.bit.CAP5INT = 1;
 	PieCtrlRegs.PIEACK.bit.ACK5 = 1; //origin: ACK.all=0x0010
@@ -560,7 +569,11 @@ void EvbCAP6ISR_INT(void)
 	** 	added in 2812f5 **
 	** 	attention	    **
 	**------------------*/
-	SRM.position_state = (GpioDataRegs.GPFDAT.all>>11) & 0x7;//attentiondelete ,need to delete
+//	SRM.position_state = (GpioDataRegs.GPFDAT.all>>11) & 0x7;//attentiondelete ,need to delete
+	SRM.position_state = SRM.trans_lut[SRM.position_state][3].state;
+	if(SRM.position_state==0)
+		SRM.position_state = (GpioDataRegs.GPFDAT.all>>11) & 0x7;//get
+
 	SRM.position = SRM.trans_lut[SRM.position_state][3].position;//0 to PI //there is a time delay,not accurate
 	SRM.shaft_direction_old=SRM.shaft_direction;
 	SRM.shaft_direction = SRM.trans_lut[SRM.position_state][3].direction;//1 -1//attentionmodify
@@ -599,10 +612,10 @@ void EvbCAP6ISR_INT(void)
 	}
 
 
-	GpioDataRegs.GPEDAT.bit.GPIOE1=0;
-
-	if((SciaTx_Ready() == 1) )//&& (SendFlag == 1))
-		SciaRegs.SCITXBUF=(SRM.position_state);
+//	GpioDataRegs.GPEDAT.bit.GPIOE1=0;
+//
+//	if((SciaTx_Ready() == 1) )//&& (SendFlag == 1))
+//		SciaRegs.SCITXBUF=(SRM.position_state);
 
 
 	EvbRegs.EVBIFRC.bit.CAP6INT = 1;

@@ -21,7 +21,7 @@ $(GEN_CMDS__FLAG) \
 "./DSP281x_Sci.obj" \
 "./DSP281x_SysCtrl.obj" \
 "./Ifl1.obj" \
-"../RAM_Link.cmd" \
+"../Flash_Link.cmd" \
 "../rts2800_ml.lib" \
 -l"C:/ti2/ccsv6/tools/compiler/c2000_6.2.7/lib/rts2800_ml.lib" \
 
@@ -121,32 +121,32 @@ endif
 
 # Add inputs and outputs from these tool invocations to the build variables 
 EXE_OUTPUTS += \
-Ifl1PiTwoPhaseStart1.out \
+Jfl1PiTwoPhaseStart2.out \
 
 EXE_OUTPUTS__QUOTED += \
-"Ifl1PiTwoPhaseStart1.out" \
+"Jfl1PiTwoPhaseStart2.out" \
 
 BIN_OUTPUTS += \
-Ifl1PiTwoPhaseStart1.hex \
+Jfl1PiTwoPhaseStart2.hex \
 
 BIN_OUTPUTS__QUOTED += \
-"Ifl1PiTwoPhaseStart1.hex" \
+"Jfl1PiTwoPhaseStart2.hex" \
 
 
 # All Target
-all: Ifl1PiTwoPhaseStart1.out
+all: Jfl1PiTwoPhaseStart2.out
 
 # Tool invocations
-Ifl1PiTwoPhaseStart1.out: $(OBJS) $(CMD_SRCS) $(LIB_SRCS) $(GEN_CMDS)
+Jfl1PiTwoPhaseStart2.out: $(OBJS) $(CMD_SRCS) $(LIB_SRCS) $(GEN_CMDS)
 	@echo 'Building target: $@'
 	@echo 'Invoking: C2000 Linker'
-	"C:/ti2/ccsv6/tools/compiler/c2000_6.2.7/bin/cl2000" -v28 -ml -mt -g --diag_warning=225 --display_error_number --diag_wrap=off -z -m"Ifl1PiTwoPhaseStart1.map" --stack_size=1000 --warn_sections -i"C:/ti2/ccsv6/tools/compiler/c2000_6.2.7/lib" -i"C:/ti2/ccsv6/tools/compiler/c2000_6.2.7/include" --reread_libs --display_error_number --diag_wrap=off --xml_link_info="Ifl1PiTwoPhaseStart1_linkInfo.xml" --rom_model -o "Ifl1PiTwoPhaseStart1.out" $(ORDERED_OBJS)
+	"C:/ti2/ccsv6/tools/compiler/c2000_6.2.7/bin/cl2000" -v28 -ml -mt -g --diag_warning=225 --display_error_number --diag_wrap=off -z -m"Jfl1PiTwoPhaseStart2.map" --stack_size=1000 --warn_sections -i"C:/ti2/ccsv6/tools/compiler/c2000_6.2.7/lib" -i"C:/ti2/ccsv6/tools/compiler/c2000_6.2.7/include" --reread_libs --display_error_number --diag_wrap=off --xml_link_info="Jfl1PiTwoPhaseStart2_linkInfo.xml" --rom_model -o "Jfl1PiTwoPhaseStart2.out" $(ORDERED_OBJS)
 	@echo 'Finished building target: $@'
 	@echo ' '
 
-Ifl1PiTwoPhaseStart1.hex: $(EXE_OUTPUTS)
+Jfl1PiTwoPhaseStart2.hex: $(EXE_OUTPUTS)
 	@echo 'Invoking: C2000 Hex Utility'
-	"C:/ti2/ccsv6/tools/compiler/c2000_6.2.7/bin/hex2000"  -o "Ifl1PiTwoPhaseStart1.hex" $(EXE_OUTPUTS__QUOTED)
+	"C:/ti2/ccsv6/tools/compiler/c2000_6.2.7/bin/hex2000"  -o "Jfl1PiTwoPhaseStart2.hex" $(EXE_OUTPUTS__QUOTED)
 	@echo 'Finished building: $@'
 	@echo ' '
 
