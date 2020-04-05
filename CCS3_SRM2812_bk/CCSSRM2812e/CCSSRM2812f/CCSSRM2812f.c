@@ -22,6 +22,7 @@ int Update_Velocity=0;//flag
 int Msmt_Update=0;// position update
 int LEDvalue;
 
+
 anSRM_struct SRM;
 
 /*-----------------------------**
@@ -148,7 +149,7 @@ after the above lines, the ACK5=1; IFR=0x10;
 		}
 
 
-
+		//Improtant,need to check the GPIOA12 for what
 		if(count==3000)		{
 
 			GpioDataRegs.GPATOGGLE.bit.GPIOA12=1;//output led
@@ -594,6 +595,7 @@ change to F11 12 13  origin.old:8 A9 A10
 	}
 	anSRM->wEst_10xrpm = 0;
 	anSRM->shaft_direction = 0;
+	anSRM->shaft_direction_old = 0;
 	anSRM->dp_remainder = 0;
 	anSRM->integral_speed_error = 0;
 	anSRM->wDes_10xrpm = 0;
@@ -664,11 +666,11 @@ void currentController(anSRM_struct *anSRM)
 		/*----------------------------------------------*/
 		if (anSRM->active[phase] > 0) 
 		{
-			if(anSRM->iFB[phase]>=0.34)
+			if(anSRM->iFB[phase]>=5000)
 			{
 				anSRM->dutyRatio[phase]=0;//compare to output LOW 
 			}
-			else if(anSRM->iFB[phase]<=0.3)
+			else if(anSRM->iFB[phase]<=5000)
 			{
 				anSRM->dutyRatio[phase]=0xffff;//compare to output HIGH 
 			}
