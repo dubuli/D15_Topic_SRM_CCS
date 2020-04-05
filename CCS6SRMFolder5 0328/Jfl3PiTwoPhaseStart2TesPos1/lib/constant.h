@@ -36,8 +36,8 @@
 #define ANGLESTEPLIMIT 27//sdfsdfdjfskjsldkjfl;sajdflksdjflksjdlfkjsdlkfjlsjdfljsdlkfjslkdjf????????
 
 #define INTEGRAL_LIMIT 2793472 /* integrator limit */
-#define KI 2 /* (Q13*1000): Ki = 0.366 */
-#define KP 1/10 /* Q1: Kp = 0.5 */
+#define KI 1/2 /* (Q13*1000): Ki = 0.366 */
+#define KP 1/2 /* Q1: Kp = 0.5 */
 #define KI2 3 /* (Q13*1000): Ki = 0.366 *///////////////////////waiting for calculate!!!!!!!!!!!!!!!!
 #define KP2 1 /* Q1: Kp = 0.5 */
 #define KI3 3 /* (Q13*1000): Ki = 0.366 *///////////////////////waiting for calculate!!!!!!!!!!!!!!!!

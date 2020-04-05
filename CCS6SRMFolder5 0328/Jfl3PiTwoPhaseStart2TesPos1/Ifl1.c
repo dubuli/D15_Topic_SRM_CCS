@@ -46,6 +46,7 @@ int SCiRxData=0;
 int CurrentControllerFlag;
 int PhaseControlFlag;
 int Time_Update_PositionFlag;
+WORD OvercurrentNum=0;
 
 extern Uint16 RamfuncsLoadStart;		//flash++
 extern Uint16 RamfuncsRunStart;
@@ -129,7 +130,7 @@ void main(void)
 	PhaseControlFlag=0;
 	Time_Update_PositionFlag=0;
 
-	SRM.wDes_10xrpm=5000;	//Desninate rpm
+	SRM.wDes_10xrpm=4000;	//Desninate rpm
 /*---------------------------------**
 ** 	attention                      **
 ** 	add the nop, to wait stable	   **
@@ -185,21 +186,25 @@ after the above lines, the ACK5=1; IFR=0x10;
 	{
 		KickDog();
 
-		if(SWITCH1==1 || PAOCUP==1 ||PAOCDN==1 || PBOCUP==1 || PBOCDN==1 || PCOCUP==1 ||PCOCDN==1 || WatchdogFlag==0)	{
+
+
+	//	if(SWITCH1==1 || PAOCUP==1 ||PAOCDN==1 || PBOCUP==1 || PBOCDN==1 || PCOCUP==1 ||PCOCDN==1 || WatchdogFlag==0)	{
+		if(SWITCH1==1 || WatchdogFlag==0)	{
 			EvbRegs.ACTRB.all = 0xfff;
 			//EvbRegs.ACTRB.bit.CMP7-12ACT=3; //forecd high, PWM is forbiddend
 			StartFlag=0;
 		}
 
 		//limit the current to 3A	//Set a Flag, break when Flag==5
-		else if(SRM.iFB[0]>CURRENT_1A*25 || SRM.iFB[1]>CURRENT_1A*25 || SRM.iFB[2]>CURRENT_1A*25)	{
-			EvbRegs.ACTRB.all = 0xfff;
-			StartFlag=0;
+		else if(SRM.iFB[0]>CURRENT_1A*20 || SRM.iFB[1]>CURRENT_1A*20 || SRM.iFB[2]>CURRENT_1A*20)	{
+			//OvercurrentNum=OvercurrentNum+1;
+				EvbRegs.ACTRB.all = 0xfff;
+		//	StartFlag=0;
 
 		}
-		else
+		else {
 			StartFlag=1;
-
+		}
 
 		if(Time_Update_PositionFlag)	{
 			Time_Update_Position(&SRM); /* using algorithm */
@@ -212,6 +217,14 @@ after the above lines, the ACK5=1; IFR=0x10;
 										//there is some question about it, should recosider!!!
 			PhaseControlFlag=0;
 		}
+/*		if(SRM.position_state==1 && EvbRegs.ACTRB.bit.CMP8ACT==3 && StartFlag) {
+		//	OvercurrentNum=(EvbRegs.ACTRB.all & 0xfff) + (OvercurrentNum & 0xf000) + 0x1000;
+			PhaseControl(&SRM);
+		}*/
+/*		if(SRM.position_state==2 && EvbRegs.ACTRB.bit.CMP10ACT==3 && StartFlag) {
+			OvercurrentNum=(EvbRegs.ACTRB.all & 0xfff) + (OvercurrentNum & 0xf000) + 0x1000;
+			PhaseControl(&SRM);
+		}*/
 		if(CurrentControllerFlag && StartFlag)	{
 			currentController(&SRM); /* current loop algorithm *///ddcap
 			CurrentControllerFlag=0;
@@ -250,9 +263,10 @@ after the above lines, the ACK5=1; IFR=0x10;
 				SRM.integral_speed_error=-(long)CURRENT_1A<<3<<16;
 			}
 
-			iDes=speed_error*KP+(SRM.integral_speed_error>>16);	//KP=10KP注意速度已经是10倍速度 ,KI
-			if(iDes>CURRENT_1A*20)	{
-				iDes=CURRENT_1A*20;
+		//	iDes=speed_error*KP;//+(SRM.integral_speed_error>>16);	//KP=10KP注意速度已经是10倍速度 ,KI
+			iDes=CURRENT_1A*6;
+			if(iDes>CURRENT_1A*10)	{
+				iDes=CURRENT_1A*10;
 			}
 			else if(iDes<0)	{
 				iDes=0;
@@ -308,9 +322,9 @@ delete in 2812f4
 	count++;	// = count + 1; /* increment count */
 //	slice++; 	//= slice + 1; /* increment slicer */
 	watchdogcount++;//1-5
-	if(watchdogcount==1600 || watchdogcount==1610)
+	if(watchdogcount==1600 || watchdogcount==1610) {
 		WatchdogFlag=1;
-
+	}
 	if (count >= T1FREQ)
 	{
 		count = 0;
@@ -329,9 +343,9 @@ delete in 2812f4
 		}
 //		else if(CapCount<25)
 //			SpeedFlag=1;			//Low speed,use counts
-		else
+		else {
 			SpeedFlag=1;			//High speed,use CapFIFO
-
+		}
 //		GpioDataRegs.GPEDAT.bit.GPIOE1=0;
 //
 //		if((SciaTx_Ready() == 1) )//&& (SendFlag == 1))
@@ -351,15 +365,22 @@ delete in 2812f4
 //				SciTemp=(int)SRM.wEst_10xrpm;
 //				SciaRegs.SCITXBUF=((SRM.wEst_10xrpm)>>8 ) & 0xff;// & 0xff);
 //		}
-//		if(!((count)%480))		{				//changeto 9600Hz 480-20Hz			//%250 20Hz		//5Hz// 5000/100=50 Hz
-//			GpioDataRegs.GPEDAT.bit.GPIOE1=0;
-//
-//
-//			if((SciaTx_Ready() == 1) )//&& (SendFlag == 1))
-//				//SciTemp=SRM.wEst_10xrpm;
-//				SciaRegs.SCITXBUF=((SciTemp) & 0xff );// & 0xff);
-//		}
+		if(!((count+10)%480))		{				//changeto 9600Hz 480-20Hz			//%250 20Hz		//5Hz// 5000/100=50 Hz
+			GpioDataRegs.GPEDAT.bit.GPIOE1=0;
 
+
+			if((SciaTx_Ready() == 1) )//&& (SendFlag == 1))
+				//SciTemp=SRM.wEst_10xrpm;
+				SciaRegs.SCITXBUF=(OvercurrentNum >> 8 ) & 0xff;// & 0xff);
+		}
+
+		if(!((count)%480))		{				//changeto 9600Hz 480-20Hz			//%250 20Hz		//5Hz// 5000/100=50 Hz
+			GpioDataRegs.GPEDAT.bit.GPIOE1=0;
+
+			if((SciaTx_Ready() == 1) )//&& (SendFlag == 1))
+				//SciTemp=SRM.wEst_10xrpm;
+				SciaRegs.SCITXBUF=((OvercurrentNum) & 0xff );// & 0xff);
+		}
 
 //		if(!((count+10)%480))		{				//changeto 9600Hz 480-20Hz			//%250 20Hz		//5Hz// 5000/100=50 Hz
 //			GpioDataRegs.GPEDAT.bit.GPIOE1=0;
@@ -423,7 +444,7 @@ void EvbCAP4ISR_INT(void)
 {
 	int delta_count;
 	WORD edge_time1;
-	int FlagFifo=0;
+//	int FlagFifo=0;
 	//	WORD edge_time2;
 
 	// modified in 2812f5
@@ -456,13 +477,16 @@ void EvbCAP4ISR_INT(void)
 //	SRM.position_state = (GpioDataRegs.GPFDAT.all>>11) & 0x7;//get the state use the sensor signal
 
 	SRM.position_state = SRM.trans_lut[SRM.position_state][1].state;
-	if(SRM.position_state==0)
+	if(SRM.position_state==0) {
 		SRM.position_state = (GpioDataRegs.GPFDAT.all>>11) & 0x7;//get
+	}
 
 	SRM.position = SRM.trans_lut[SRM.position_state][1].position;//0 to PI //there is a time delay,not accurate
 	SRM.shaft_direction_old=SRM.shaft_direction;
 	SRM.shaft_direction = SRM.trans_lut[SRM.position_state][1].direction;//1 -1//attentionmodify
-
+//	if(SRM.shaft_direction==0 || SRM.shaft_direction==-1)
+//		OvercurrentNum=OvercurrentNum+1;
+//	SRM.shaft_direction = 1;
 	//Added in f5a,if state is illegal (maybe because missing cap interrupt),
 	//use guess position,and old direction
 	if(SRM.shaft_direction==0)	{
@@ -479,9 +503,9 @@ void EvbCAP4ISR_INT(void)
 	delta_count = count - count_old;//attentionmodify
 	count_old = count;
 
-	if (delta_count <= 0)
+	if (delta_count <= 0) {
 		delta_count = delta_count + T1FREQ;	// ONE_HALF_SECOND;//in the ad "if (count == ONE_HALF_SECOND)"
-
+	}
 	SRM.delta_count = delta_count;
 
 
@@ -500,10 +524,10 @@ void EvbCAP4ISR_INT(void)
 	}
 
 
-	GpioDataRegs.GPEDAT.bit.GPIOE1=0;
-
-	if((SciaTx_Ready() == 1) )//&& (SendFlag == 1))
-		SciaRegs.SCITXBUF=(SRM.position_state);
+//	GpioDataRegs.GPEDAT.bit.GPIOE1=0;
+//
+//	if((SciaTx_Ready() == 1) )//&& (SendFlag == 1))
+//		SciaRegs.SCITXBUF=(SRM.position_state);
 
 	EvbRegs.EVBIFRC.bit.CAP4INT = 1;//to clear the 清除捕获中断4的标志位
 	PieCtrlRegs.PIEACK.bit.ACK5 = 1; //origin: ACK.all=0x0010
@@ -542,12 +566,16 @@ void EvbCAP5ISR_INT(void)
 	**------------------*/
 //	SRM.position_state = (GpioDataRegs.GPFDAT.all>>11) & 0x7;//attentiondelete ,need to delete
 	SRM.position_state = SRM.trans_lut[SRM.position_state][2].state;
-	if(SRM.position_state==0)
+	if(SRM.position_state==0) {
 		SRM.position_state = (GpioDataRegs.GPFDAT.all>>11) & 0x7;//get
-
+	}
 	SRM.position = SRM.trans_lut[SRM.position_state][2].position;//0 to PI //there is a time delay,not accurate
 	SRM.shaft_direction_old=SRM.shaft_direction;
 	SRM.shaft_direction = SRM.trans_lut[SRM.position_state][2].direction;//1 -1//attentionmodify
+//	if(SRM.shaft_direction==0 || SRM.shaft_direction==-1)
+//		OvercurrentNum=OvercurrentNum+1;
+	SRM.shaft_direction=1;
+
 
 	if(SRM.shaft_direction==0)	{
 		SRM.position = SRM.position_initial_guess[SRM.position_state];
@@ -562,9 +590,9 @@ void EvbCAP5ISR_INT(void)
 	delta_count = count - count_old;
 	count_old = count;
 
-	if (delta_count <= 0)
+	if (delta_count <= 0) {
 		delta_count = delta_count + T1FREQ;	// ONE_HALF_SECOND;//in the ad "if (count == ONE_HALF_SECOND)"
-
+	}
 	SRM.delta_count = delta_count;
 
 
@@ -582,10 +610,12 @@ void EvbCAP5ISR_INT(void)
 		UpdateVelocityFlag = 2;
 	}
 
-	GpioDataRegs.GPEDAT.bit.GPIOE1=0;
+	//PhaseControl(&SRM); /* do commutation in the 1st */
 
-	if((SciaTx_Ready() == 1) )//&& (SendFlag == 1))
-		SciaRegs.SCITXBUF=(SRM.position_state);
+//	GpioDataRegs.GPEDAT.bit.GPIOE1=0;
+//
+//	if((SciaTx_Ready() == 1) )//&& (SendFlag == 1))
+//		SciaRegs.SCITXBUF=(SRM.position_state);
 
 	EvbRegs.EVBIFRC.bit.CAP5INT = 1;
 	PieCtrlRegs.PIEACK.bit.ACK5 = 1; //origin: ACK.all=0x0010
@@ -623,12 +653,13 @@ void EvbCAP6ISR_INT(void)
 	**------------------*/
 //	SRM.position_state = (GpioDataRegs.GPFDAT.all>>11) & 0x7;//attentiondelete ,need to delete
 	SRM.position_state = SRM.trans_lut[SRM.position_state][3].state;
-	if(SRM.position_state==0)
+	if(SRM.position_state==0) {
 		SRM.position_state = (GpioDataRegs.GPFDAT.all>>11) & 0x7;//get
-
+	}
 	SRM.position = SRM.trans_lut[SRM.position_state][3].position;//0 to PI //there is a time delay,not accurate
 	SRM.shaft_direction_old=SRM.shaft_direction;
 	SRM.shaft_direction = SRM.trans_lut[SRM.position_state][3].direction;//1 -1//attentionmodify
+	SRM.shaft_direction =1;
 
 	if(SRM.shaft_direction==0)	{
 		SRM.position = SRM.position_initial_guess[SRM.position_state];
@@ -643,9 +674,9 @@ void EvbCAP6ISR_INT(void)
 	delta_count = count - count_old;
 	count_old = count;
 
-	if (delta_count <= 0)
+	if (delta_count <= 0) {
 		delta_count = delta_count + T1FREQ;	// ONE_HALF_SECOND;//in the ad "if (count == ONE_HALF_SECOND)"
-
+	}
 	SRM.delta_count = delta_count;
 
 
@@ -664,10 +695,10 @@ void EvbCAP6ISR_INT(void)
 	}
 
 
-	GpioDataRegs.GPEDAT.bit.GPIOE1=0;
-
-	if((SciaTx_Ready() == 1) )//&& (SendFlag == 1))
-		SciaRegs.SCITXBUF=(SRM.position_state);
+//	GpioDataRegs.GPEDAT.bit.GPIOE1=0;
+//
+//	if((SciaTx_Ready() == 1) )//&& (SendFlag == 1))
+//		SciaRegs.SCITXBUF=(SRM.position_state);
 
 
 	EvbRegs.EVBIFRC.bit.CAP6INT = 1;
@@ -766,18 +797,25 @@ void initializeSRM(anSRM_struct *anSRM)
 	//	anSRM->trans_lut[6][2].position = FIVEPIBYTHREE_16;
 	//	anSRM->trans_lut[6][3].position = 0;
 
-		anSRM->trans_lut[1][2].position = PIBYTHREE_16;
-		anSRM->trans_lut[1][3].position = TWOPIBYTHREE_16;
-		anSRM->trans_lut[2][1].position = 0;
-		anSRM->trans_lut[2][3].position = FIVEPIBYTHREE_16;
-		anSRM->trans_lut[3][1].position = 0;
-		anSRM->trans_lut[3][2].position = PIBYTHREE_16;
-		anSRM->trans_lut[4][1].position = PI_16;
-		anSRM->trans_lut[4][2].position = FOURPIBYTHREE_16;
-		anSRM->trans_lut[5][1].position = PI_16;
-		anSRM->trans_lut[5][3].position = TWOPIBYTHREE_16;
-		anSRM->trans_lut[6][2].position = FOURPIBYTHREE_16;
-		anSRM->trans_lut[6][3].position = FIVEPIBYTHREE_16;
+	anSRM->trans_lut[1][1].position = PIBYSIX_16 * 3;
+	anSRM->trans_lut[2][2].position = PIBYSIX_16 * 11;
+	anSRM->trans_lut[3][3].position = PIBYSIX_16;
+	anSRM->trans_lut[4][3].position = PIBYSIX_16 * 7;
+	anSRM->trans_lut[5][2].position = PIBYSIX_16 * 5;
+	anSRM->trans_lut[6][1].position = PIBYSIX_16 * 9;
+
+	anSRM->trans_lut[1][2].position = PIBYTHREE_16;
+	anSRM->trans_lut[1][3].position = TWOPIBYTHREE_16;
+	anSRM->trans_lut[2][1].position = 0;
+	anSRM->trans_lut[2][3].position = FIVEPIBYTHREE_16;
+	anSRM->trans_lut[3][1].position = 0;
+	anSRM->trans_lut[3][2].position = PIBYTHREE_16;
+	anSRM->trans_lut[4][1].position = PI_16;
+	anSRM->trans_lut[4][2].position = FOURPIBYTHREE_16;
+	anSRM->trans_lut[5][1].position = PI_16;
+	anSRM->trans_lut[5][3].position = TWOPIBYTHREE_16;
+	anSRM->trans_lut[6][2].position = FOURPIBYTHREE_16;
+	anSRM->trans_lut[6][3].position = FIVEPIBYTHREE_16;
 
 	/*--------------------------------------------------------------------- */
 	/* define initial guesses for each state. The initial position */
@@ -927,11 +965,11 @@ void UpdateVelocity(anSRM_struct *anSRM, int mode)
 		inst_velocity = (sum_cnt) * anSRM->shaft_direction;
 
 	}
-	/*----------------------------------------------- */
+	/*-------------------------------------------SS---- */
 	/* IIR filter for smoothing velocity estimate */
 	/*----------------------------------------------- */
 
-	if(inst_velocity<12000 && inst_velocity>-12000)	{
+	if(inst_velocity<19000 && inst_velocity>-19000)	{
 
 		filt_velocity = (ALPHA * anSRM->wEst_10xrpm)+ (ONE_MINUS_ALPHA * inst_velocity);
 
@@ -969,28 +1007,41 @@ void Time_Update_Position(anSRM_struct *anSRM)
 		anSRM->position = anSRM->position + temp;
 
 		if(anSRM->position_state==3)	{
-			if(anSRM->position>PIBYTHREE_16)
+			if(anSRM->position>FIVEPIBYTHREE_16)
+				anSRM->position=0+6;
+
+			else if(anSRM->position>PIBYTHREE_16)
 				anSRM->position=PIBYTHREE_16-6;
 		}
 		else if(anSRM->position_state==1)	{
 			if(anSRM->position>TWOPIBYTHREE_16)
 				anSRM->position=TWOPIBYTHREE_16-6;
+			else if(anSRM->position<PIBYTHREE_16)
+				anSRM->position=PIBYTHREE_16+6;
 		}
 		else if(anSRM->position_state==5)	{
 			if(anSRM->position>PI_16)
 				anSRM->position=PI_16-6;
+			else if(anSRM->position<TWOPIBYTHREE_16)
+				anSRM->position=TWOPIBYTHREE_16+6;
 		}
 		else if(anSRM->position_state==4)	{
 			if(anSRM->position>FOURPIBYTHREE_16)
 				anSRM->position=FOURPIBYTHREE_16-6;
+			else if(anSRM->position<PI_16)
+				anSRM->position=PI_16+6;
 		}
 		else if(anSRM->position_state==6)	{
 			if(anSRM->position>FIVEPIBYTHREE_16)
 				anSRM->position=FIVEPIBYTHREE_16-6;
+			else if(anSRM->position<FOURPIBYTHREE_16)
+				anSRM->position=FOURPIBYTHREE_16+6;
 		}
 		else if(anSRM->position_state==2)	{
-			if(anSRM->position<FIVEPIBYTHREE_16)
+			if(anSRM->position<FOURPIBYTHREE_16)
 				anSRM->position=0xffff-6;
+			else if(anSRM->position<FIVEPIBYTHREE_16)
+				anSRM->position=FIVEPIBYTHREE_16+6;
 		}
 
 
@@ -1002,8 +1053,48 @@ void Time_Update_Position(anSRM_struct *anSRM)
 		anSRM->dp_remainder = dp & 0xffff;
 //		temp = (int)(dp >> 16);
 //		anSRM->position = anSRM->position - (temp * NR);
-		temp = (int)(dp >> 13);
+		temp = (int)(dp >> 16);
 		anSRM->position = anSRM->position - temp;
+
+		if(anSRM->position_state==3)	{
+			if(anSRM->position>TWOPIBYTHREE_16)
+				anSRM->position=0+6;
+			else if (anSRM->position>PIBYTHREE_16)
+				anSRM->position=PIBYTHREE_16-6;
+		}
+		else if(anSRM->position_state==1)	{
+			if(anSRM->position<PIBYTHREE_16)
+				anSRM->position=PIBYTHREE_16+6;
+			else if(anSRM->position>TWOPIBYTHREE_16)
+				anSRM->position=TWOPIBYTHREE_16-6;
+		}
+		else if(anSRM->position_state==5)	{
+			if(anSRM->position<TWOPIBYTHREE_16)
+				anSRM->position=TWOPIBYTHREE_16+6;
+			else if(anSRM->position>PI_16)
+				anSRM->position=PI_16-6;
+		}
+		else if(anSRM->position_state==4)	{
+			if(anSRM->position<PI_16)
+				anSRM->position=PI_16+6;
+			else if(anSRM->position>FOURPIBYTHREE_16)
+				anSRM->position=FOURPIBYTHREE_16-6;
+		}
+		else if(anSRM->position_state==6)	{
+			if(anSRM->position<FOURPIBYTHREE_16)
+				anSRM->position=FOURPIBYTHREE_16+6;
+			else if(anSRM->position>FIVEPIBYTHREE_16)
+				anSRM->position=FIVEPIBYTHREE_16-6;
+		}
+		else if(anSRM->position_state==2)	{
+			if(anSRM->position<PIBYTHREE_16)
+				anSRM->position=0xffff-6;
+
+			else if(anSRM->position<FIVEPIBYTHREE_16)
+				anSRM->position=FIVEPIBYTHREE_16+6;
+		}
+
+
 	}
 } /* end Time_Update_Position */
 
@@ -1034,13 +1125,13 @@ void PhaseControl(anSRM_struct *anSRM)	//int the ADC interrupt
 		/* phase current */
 		/*-----------------------------------------------------------*/
 
-		if ((anSRM->wEst_10xrpm<3000) && (angle >= (PIBYSIX_16/8)) && (angle < FIVEPIBYSIX_16))
+/*		if ((anSRM->wEst_10xrpm<3000) && (angle >= (PIBYSIX_16/8)) && (angle < FIVEPIBYSIX_16))
 		{
 			anSRM->active[phase] = 1;
 			temp = 0x1 << phase;
 			anSRM->iDes[phase] = iDes;//Important!!
-		}
-		else if ((angle >= (1820*3)) && (angle < 182*110))
+		}*/
+		if ((angle >= (182*25)) && (angle < 182*135))
 		{
 			anSRM->active[phase] = 1;
 			temp = 0x1 << phase;
@@ -1135,6 +1226,9 @@ void switch_lowside(int phaseactive)
 		EvbRegs.ACTRB.bit.CMP11ACT = 3;
 		EvbRegs.ACTRB.bit.CMP12ACT = 3;
 	}
+
+//	if(SRM.position_state==1 && EvbRegs.ACTRB.bit.CMP8ACT==3)
+//		OvercurrentNum=OvercurrentNum+1;
 
 }
 

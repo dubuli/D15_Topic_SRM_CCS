@@ -102,7 +102,9 @@ t3cmpr    **
 	EvbRegs.COMCONB.bit.FCOMPOE=1;//compare enable
 	EvbRegs.COMCONB.bit.CLD=2;//instant
 	EvbRegs.COMCONB.bit.ACTRLD=2;
-
+//	EvbRegs.COMCONB.bit.C4TRIPE=0;
+//	EvbRegs.COMCONB.bit.C5TRIPE=0;
+//	EvbRegs.COMCONB.bit.C6TRIPE=0;
 
 	EvbRegs.ACTRB.all =0xfff;    //设置输出特性??//High effective// intial now is high (old is low,change it)
 
