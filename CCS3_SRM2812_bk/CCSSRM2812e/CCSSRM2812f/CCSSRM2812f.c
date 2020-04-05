@@ -173,9 +173,9 @@ delete in 2812f4
 ** attention                        **
 ** may be will change the ADC input **
 **----------------------------------*/								
-	SRM.iFB[0]=((AdcRegs.RESULT0>>4)*3)/4095.0+adclo;//define AdcRegs.ADCRESULT0 ADCRESULTPHASE1 !!!!!!!!!
-	SRM.iFB[1]=((AdcRegs.RESULT2>>4)*3)/4095.0+adclo;
-	SRM.iFB[2]=((AdcRegs.RESULT4>>4)*3)/4095.0+adclo;
+	SRM.iFB[0]=(AdcRegs.RESULT0>>4) & 0x0fff;//define AdcRegs.ADCRESULT0 ADCRESULTPHASE1 !!!!!!!!!
+	SRM.iFB[1]=(AdcRegs.RESULT2>>4) & 0x0fff;
+	SRM.iFB[2]=(AdcRegs.RESULT4>>4) & 0x0fff;
 
 	currentController(&SRM); /* current loop algorithm *///ddcap
 	
@@ -666,11 +666,11 @@ void currentController(anSRM_struct *anSRM)
 		/*----------------------------------------------*/
 		if (anSRM->active[phase] > 0) 
 		{
-			if(anSRM->iFB[phase]>=5000)
+			if(anSRM->iFB[phase]>=355)
 			{
 				anSRM->dutyRatio[phase]=0;//compare to output LOW 
 			}
-			else if(anSRM->iFB[phase]<=5000)
+			else if(anSRM->iFB[phase]<=355)
 			{
 				anSRM->dutyRatio[phase]=0xffff;//compare to output HIGH 
 			}
