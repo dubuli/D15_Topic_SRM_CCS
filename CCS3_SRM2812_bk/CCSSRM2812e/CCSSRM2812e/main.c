@@ -15,10 +15,7 @@ int Toggle_LED;
 int Msmt_Update;
 anSRM_struct SRM;
 int LEDvalue;
-int Error1;//if there is a Position error or Current Sensor Error
-int PosError;//Position Error
-int SlowDownFlag;//ir Slow Down or NOT
-int BrakeFlag;//zhidong
+
 int iTest;
 int simu6pos[6]={0x2,0x3,0x1,0x5,0x4,0x6};//simulate the postion signal
 int simu6count;
