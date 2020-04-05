@@ -37,7 +37,7 @@
 
 #define INTEGRAL_LIMIT 2793472 /* integrator limit */
 #define KI 2 /* (Q13*1000): Ki = 0.366 */
-#define KP 2/5 /* Q1: Kp = 0.5 */
+#define KP 1/10 /* Q1: Kp = 0.5 */
 #define KI2 3 /* (Q13*1000): Ki = 0.366 *///////////////////////waiting for calculate!!!!!!!!!!!!!!!!
 #define KP2 1 /* Q1: Kp = 0.5 */
 #define KI3 3 /* (Q13*1000): Ki = 0.366 *///////////////////////waiting for calculate!!!!!!!!!!!!!!!!
@@ -86,7 +86,7 @@
 #define CMPRBASE 1500
 #define S1 GpioDataRegs.GPADAT.bit.GPIOA7
 
-#define CURRENT_1A 229
+#define CURRENT_1A 76.4
 
 #define	PAOCUP GpioDataRegs.GPFDAT.bit.GPIOF10
 #define PAOCDN GpioDataRegs.GPBDAT.bit.GPIOB12

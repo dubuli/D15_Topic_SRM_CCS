@@ -125,7 +125,7 @@ void main(void)
 	PhaseControlFlag=0;
 	Time_Update_PositionFlag=0;
 
-	SRM.wDes_10xrpm=7750;	//Desninate rpm
+	SRM.wDes_10xrpm=5000;	//Desninate rpm
 /*---------------------------------**
 ** 	attention                      **
 ** 	add the nop, to wait stable	   **
@@ -188,7 +188,7 @@ after the above lines, the ACK5=1; IFR=0x10;
 		}
 
 		//limit the current to 3A	//Set a Flag, break when Flag==5
-		else if(SRM.iFB[0]>CURRENT_1A*7 || SRM.iFB[1]>CURRENT_1A*7 || SRM.iFB[2]>CURRENT_1A*7)	{
+		else if(SRM.iFB[0]>CURRENT_1A*25 || SRM.iFB[1]>CURRENT_1A*25 || SRM.iFB[2]>CURRENT_1A*25)	{
 			EvbRegs.ACTRB.all = 0xfff;
 			StartFlag=0;
 
@@ -247,8 +247,8 @@ after the above lines, the ACK5=1; IFR=0x10;
 			}
 
 			iDes=speed_error*KP+(SRM.integral_speed_error>>16);	//KP=10KP注意速度已经是10倍速度 ,KI
-			if(iDes>CURRENT_1A*7)	{
-				iDes=CURRENT_1A*7;
+			if(iDes>CURRENT_1A*20)	{
+				iDes=CURRENT_1A*20;
 			}
 			else if(iDes<0)	{
 				iDes=0;
@@ -341,7 +341,7 @@ delete in 2812f4
 			GpioDataRegs.GPEDAT.bit.GPIOE1=0;
 
 			if((SciaTx_Ready() == 1) )//&& (SendFlag == 1))
-				SciaRegs.SCITXBUF=((int)(SRM.wEst_10xrpm-7750));// & 0xff);
+				SciaRegs.SCITXBUF=((SRM.wEst_10xrpm/50) );// & 0xff);
 		}
 
 	//	GpioDataRegs.GPEDAT.bit.GPIOE1=0;
@@ -1006,7 +1006,7 @@ void PhaseControl(anSRM_struct *anSRM)	//int the ADC interrupt
 			temp = 0x1 << phase;
 			anSRM->iDes[phase] = DESCURRENT;//Important!!
 		}
-		else if ((angle >= (PIBYSIX_16-910)) && (angle < FIVEPIBYSIX_16-3641))
+		else if ((angle >= (3640)) && (angle < FIVEPIBYSIX_16-3641))
 		{
 			anSRM->active[phase] = 1;
 			temp = 0x1 << phase;
@@ -1122,7 +1122,7 @@ void currentController(anSRM_struct *anSRM)
 		{
 
 
-			if(anSRM->iFB[phase] > (iDes + 10))		//184-800mA,92-400mA	//chopcurrent
+			if(anSRM->iFB[phase] > (iDes ))		//184-800mA,92-400mA	//chopcurrent
 			{
 				anSRM->dutyRatio[phase]=0;//compare to output LOW
 			}
