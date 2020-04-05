@@ -9,7 +9,8 @@
 /*-----------------------------------------------------------------*/
 /* Constants for the SRM control algorithms */
 /*+++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++*/
-
+#ifndef _CONSTANT_H_
+#define _CONSTANT_H_
 /*----------------------------------------------*/
 /* clock frequencies and time related constants */
 /*----------------------------------------------*/
@@ -81,4 +82,12 @@
 
 
 #define DESCURRENT 256//the current desired in the phase
+
+
+
+
+
+
+
+#endif
 

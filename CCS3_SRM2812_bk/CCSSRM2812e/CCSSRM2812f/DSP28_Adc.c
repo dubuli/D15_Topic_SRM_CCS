@@ -31,20 +31,20 @@ void InitAdc(void)
 	AdcRegs.ADCTRL1.bit.RESET=1;
 	NOP;
 	AdcRegs.ADCTRL1.bit.RESET=0;
-	AdcRegs.ADCTRL1.bit.SUSMOD=3;//P309 GuweiGang
-	AdcRegs.ADCTRL1.bit.ACQ_PS=0;//sample window,1 ADCLK
-	AdcRegs.ADCTRL1.bit.CPS=0;//clock
-	AdcRegs.ADCTRL1.bit.CONT_RUN=0;
-	AdcRegs.ADCTRL1.bit.SEQ_CASC=1;
+	AdcRegs.ADCTRL1.bit.SUSMOD=3;//P309 GuweiGang, simulate stop mode
+	AdcRegs.ADCTRL1.bit.ACQ_PS=7;//sample window,8 ADCLK
+	AdcRegs.ADCTRL1.bit.CPS=0;//clock,divide , link to the ADCCLKPS
+	AdcRegs.ADCTRL1.bit.CONT_RUN=0;// start-stop mode 
+	AdcRegs.ADCTRL1.bit.SEQ_CASC=1;//JiLian mode 
 	
 	AdcRegs.ADCTRL3.bit.ADCBGRFDN=3;
 	for(i=0;i<10000;i++)	NOP;
 	AdcRegs.ADCTRL3.bit.ADCPWDN=1;
 	for(i=0;i<5000;i++)	NOP;
 
-	AdcRegs.ADCTRL3.bit.ADCCLKPS=15;
+	AdcRegs.ADCTRL3.bit.ADCCLKPS=3;//clock,divide ,30M/(2*3)=5M;
 
-	AdcRegs.ADCTRL3.bit.SMODE_SEL=1;
+	AdcRegs.ADCTRL3.bit.SMODE_SEL=1;// BingFa sample , parrellal
 	
 	AdcRegs.MAX_CONV.bit.MAX_CONV=7;//15;
 	

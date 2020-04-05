@@ -810,8 +810,11 @@ interrupt void CAPINT4_ISR(void)   // EV-B
 
   // Next two lines for debug only - remove after inserting
   // ISR Code
-NOP;
-PieCtrl.PIEACK.all = 0x0010;
+//NOP;
+//PieCtrl.PIEACK.all = 0x0010;
+
+   asm ("      ESTOP0");
+   for(;;);
   // Uncomment this line after adding ISR Code 
   // return;
 }
@@ -825,8 +828,10 @@ interrupt void CAPINT5_ISR(void)   // EV-B
 
   // Next two lines for debug only - remove after inserting
   // ISR Code
-NOP;
-PieCtrl.PIEACK.all = 0x0010;
+//NOP;
+//PieCtrl.PIEACK.all = 0x0010;   
+	asm ("      ESTOP0");
+  	 for(;;);
   // Uncomment this line after adding ISR Code 
   // return;
 }
@@ -840,8 +845,10 @@ interrupt void CAPINT6_ISR(void)   // EV-B
 
   // Next two lines for debug only - remove after inserting
   // ISR Code
-NOP;
-PieCtrl.PIEACK.all = 0x0010;  
+//NOP;
+//PieCtrl.PIEACK.all = 0x0010;  
+   asm ("      ESTOP0");
+   for(;;);
   // Uncomment this line after adding ISR Code 
   // return;
 }
