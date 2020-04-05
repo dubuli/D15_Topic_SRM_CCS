@@ -647,7 +647,12 @@ void Msmt_Update_Velocity(anSRM_struct *anSRM, int mode)
 	/*----------------------------------------------- */
 
 	filt_velocity = (ALPHA * anSRM->wEst_10xrpm)+ (ONE_MINUS_ALPHA * inst_velocity);
+
 	anSRM->wEst_10xrpm = (int)(filt_velocity >> 3);
+
+
+// set to 0
+	anSRM->wEst_10xrpm=0;
 } /* end, velocity estimation */
 
 
@@ -709,7 +714,7 @@ void Time_Update_Position(anSRM_struct *anSRM)
 		dp = anSRM->wEst_10xrpm * K_POSITION_EST + anSRM->dp_remainder;
 		anSRM->dp_remainder = dp & 0xffff;/* delta-position in mechanical angle */
 		temp = (int)(dp >> 16);//to convert to Electrial Angle 
-		anSRM->position = anSRM->position + (temp * NR);
+//		anSRM->position = anSRM->position + (temp * NR);
 	}
 	else 
 	{
@@ -717,7 +722,7 @@ void Time_Update_Position(anSRM_struct *anSRM)
 		dp = speed * K_POSITION_EST + anSRM->dp_remainder;
 		anSRM->dp_remainder = dp & 0xffff;
 		temp = (int)(dp >> 16);
-		anSRM->position = anSRM->position -(temp * NR);
+//		anSRM->position = anSRM->position -(temp * NR);
 	}
 } /* end Time_Update_Position */
 
@@ -748,7 +753,7 @@ void Commutation_Algorithm(anSRM_struct *anSRM)	//int the ADC interrupt
 		/* phase current */
 		/*-----------------------------------------------------------*/			
 
-		if ((angle >= PIBYSIX_16) && (angle < FIVEPIBYSIX_16))
+		if ((angle > PIBYSIX_16) && (angle < FIVEPIBYSIX_16))
 		{
 			anSRM->active[phase] = 1;
 			temp = 0x1 << phase;
