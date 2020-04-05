@@ -111,10 +111,10 @@ void main(void)
 
 	SpeedPiFlag=0;
 	speed_error=0;
-	iDes=CURRENT_1A*0.8;	//gfl1i-n2
+	iDes=0;	//gfl1i-n2
 	StartFlag=0;
 
-	SRM.wDes_10xrpm=4000;	//Desninate rpm
+	SRM.wDes_10xrpm=4750;	//Desninate rpm
 /*---------------------------------**
 ** 	attention                      **
 ** 	add the nop, to wait stable	   **
@@ -210,21 +210,21 @@ after the above lines, the ACK5=1; IFR=0x10;
 		if(SpeedPiFlag==1 && StartFlag==1)	{
 
 			speed_error=SRM.wDes_10xrpm-SRM.wEst_10xrpm;
-			SRM.integral_speed_error=SRM.integral_speed_error+speed_error;	//KI=1/32768,32768=1<<15
-			if(SRM.integral_speed_error>(CURRENT_1A*10<<15))	{
-				SRM.integral_speed_error=CURRENT_1A*10<<15;
+			SRM.integral_speed_error=SRM.integral_speed_error+4*speed_error;	//KI=1/32768,32768=1<<15
+			if(SRM.integral_speed_error>(CURRENT_1A*2<<15))	{
+				SRM.integral_speed_error=CURRENT_1A*2<<15;
 			}
 			else if(SRM.integral_speed_error<-CURRENT_1A*10<<15)	{
 				SRM.integral_speed_error=-CURRENT_1A*10<<15;
 			}
 
-//			iDes=KP*speed_error+(SRM.integral_speed_error>>15);	//KP,KI
-//			if(iDes>CURRENT_1A*2)	{
-//				iDes=CURRENT_1A*2;
-//			}
-//			else if(iDes<0)	{
-//				iDes=0;
-//			}
+			iDes=KP*speed_error+(SRM.integral_speed_error>>15);	//KP,KI
+			if(iDes>CURRENT_1A*2)	{
+				iDes=CURRENT_1A*2;
+			}
+			else if(iDes<0)	{
+				iDes=0;
+			}
 
 
 			SpeedPiFlag=0;
