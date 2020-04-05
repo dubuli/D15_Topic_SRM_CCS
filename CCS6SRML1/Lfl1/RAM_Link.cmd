@@ -28,7 +28,7 @@ MEMORY
 
  PAGE 1:
    RAMM1    : origin = 0x000400, length = 0x000400
-   DRAMH0   : origin = 0x3F9000, length = 0x001000   
+   DRAMH0   : origin = 0x3F9000, length = 0x001000
  
    DEV_EMU     : origin = 0x000880, length = 0x000180     /* device emulation registers */
    PIE_VECT    : origin = 0x000D00, length = 0x000100     /* PIE Vector Table */

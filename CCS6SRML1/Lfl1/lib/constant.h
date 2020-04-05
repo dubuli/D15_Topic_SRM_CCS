@@ -17,7 +17,7 @@
 #define PWM_FREQ 20000 /* PWM frequency (Hz) */
 #define SYSCLK_FREQ 150000000 /* DSP clock frequency (Hz) *///initial is 20
 #define HSCLK 75000000
-#define T1FREQ 9600	//CPU_INT_FREQ 5000 /* timer ISR frequency (Hz) */
+#define T1FREQ 100000	//CPU_INT_FREQ 5000 /* timer ISR frequency (Hz) */
 #define ONE_HALF_SECOND (T1FREQ/2)	//ONE_HALF_SECOND (CPU_INT_FREQ/2)
 /*----------------------------------- */
 /* current loop algorithm constants */

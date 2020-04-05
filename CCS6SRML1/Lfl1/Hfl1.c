@@ -17,7 +17,7 @@
 
 float	adclo=0.0;
 
-int count=0;//5000Hz
+
 int slice=0;//1-5
 int count_old=0;//record count
 int UpdateVelocityFlag=0;//flag
@@ -35,6 +35,10 @@ long iDes;
 int StartFlag;
 
 int SCiRxData=0;
+
+DWORD count=0;//5000Hz
+DWORD x[1600];
+int count_sec=0;
 
 //extern Uint16 RamfuncsLoadStart;		//flash++
 //extern Uint16 RamfuncsRunStart;
@@ -403,8 +407,8 @@ void EvbCAP4ISR_INT(void)
 
 
 
-	EvbRegs.EVBIFRC.bit.CAP4INT = 1;//to clear the 清除捕获中断4的标志位
-	PieCtrlRegs.PIEACK.bit.ACK5 = 1; //origin: ACK.all=0x0010
+//	EvbRegs.EVBIFRC.bit.CAP4INT = 1;//to clear the 清除捕获中断4的标志位
+//	PieCtrlRegs.PIEACK.bit.ACK5 = 1; //origin: ACK.all=0x0010
 
 }
 
@@ -475,8 +479,8 @@ void EvbCAP5ISR_INT(void)
 	}
 
 
-	EvbRegs.EVBIFRC.bit.CAP5INT = 1;
-	PieCtrlRegs.PIEACK.bit.ACK5 = 1; //origin: ACK.all=0x0010
+//	EvbRegs.EVBIFRC.bit.CAP5INT = 1;
+	//PieCtrlRegs.PIEACK.bit.ACK5 = 1; //origin: ACK.all=0x0010
 }
 
 
@@ -549,8 +553,8 @@ void EvbCAP6ISR_INT(void)
 
 
 
-	EvbRegs.EVBIFRC.bit.CAP6INT = 1;
-	PieCtrlRegs.PIEACK.bit.ACK5 = 1; //origin: ACK.all=0x0010
+//	EvbRegs.EVBIFRC.bit.CAP6INT = 1;
+//	PieCtrlRegs.PIEACK.bit.ACK5 = 1; //origin: ACK.all=0x0010
 }
 
 

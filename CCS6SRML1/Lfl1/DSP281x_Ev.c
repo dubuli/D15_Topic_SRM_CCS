@@ -31,7 +31,7 @@ void InitEv(void)
 	WORD iperiod3;	
 			
 	iperiod1 = (HSCLK / T1FREQ) - 1;		//(HSCLK / CPU_INT_FREQ) - 1;//5kHz,T1,used to start ADC
-
+						//9600- 100 000
 /*------**
 ** Test attentio**
 **------*/	

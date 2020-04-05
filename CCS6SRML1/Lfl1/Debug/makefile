@@ -121,32 +121,32 @@ endif
 
 # Add inputs and outputs from these tool invocations to the build variables 
 EXE_OUTPUTS += \
-L2.out \
+Lram2b.out \
 
 EXE_OUTPUTS__QUOTED += \
-"L2.out" \
+"Lram2b.out" \
 
 BIN_OUTPUTS += \
-L2.hex \
+Lram2b.hex \
 
 BIN_OUTPUTS__QUOTED += \
-"L2.hex" \
+"Lram2b.hex" \
 
 
 # All Target
-all: L2.out
+all: Lram2b.out
 
 # Tool invocations
-L2.out: $(OBJS) $(CMD_SRCS) $(LIB_SRCS) $(GEN_CMDS)
+Lram2b.out: $(OBJS) $(CMD_SRCS) $(LIB_SRCS) $(GEN_CMDS)
 	@echo 'Building target: $@'
 	@echo 'Invoking: C2000 Linker'
-	"C:/ti2/ccsv6/tools/compiler/c2000_6.2.7/bin/cl2000" -v28 -ml -mt -g --diag_warning=225 --display_error_number --diag_wrap=off -z -m"L2.map" --stack_size=1000 --warn_sections -i"C:/ti2/ccsv6/tools/compiler/c2000_6.2.7/lib" -i"C:/ti2/ccsv6/tools/compiler/c2000_6.2.7/include" --reread_libs --display_error_number --diag_wrap=off --xml_link_info="L2_linkInfo.xml" --rom_model -o "L2.out" $(ORDERED_OBJS)
+	"C:/ti2/ccsv6/tools/compiler/c2000_6.2.7/bin/cl2000" -v28 -ml -mt -g --diag_warning=225 --display_error_number --diag_wrap=off -z -m"Lram2b.map" --stack_size=1000 --warn_sections -i"C:/ti2/ccsv6/tools/compiler/c2000_6.2.7/lib" -i"C:/ti2/ccsv6/tools/compiler/c2000_6.2.7/include" --reread_libs --display_error_number --diag_wrap=off --xml_link_info="Lram2b_linkInfo.xml" --rom_model -o "Lram2b.out" $(ORDERED_OBJS)
 	@echo 'Finished building target: $@'
 	@echo ' '
 
-L2.hex: $(EXE_OUTPUTS)
+Lram2b.hex: $(EXE_OUTPUTS)
 	@echo 'Invoking: C2000 Hex Utility'
-	"C:/ti2/ccsv6/tools/compiler/c2000_6.2.7/bin/hex2000"  -o "L2.hex" $(EXE_OUTPUTS__QUOTED)
+	"C:/ti2/ccsv6/tools/compiler/c2000_6.2.7/bin/hex2000"  -o "Lram2b.hex" $(EXE_OUTPUTS__QUOTED)
 	@echo 'Finished building: $@'
 	@echo ' '
 
