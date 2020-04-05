@@ -13,7 +13,10 @@
 //  0.57| 27 May 2002 | L.H. | No change
 //###########################################################################
 #include "DSP28_Device.h"
+
 extern void EvbCAPISR_INT(void);
+extern void AdcInt_ISR(void);
+
 //---------------------------------------------------------------------------
 // INT13, INT14, NMI, XINT1, XINT2 Default ISRs:
 //
@@ -316,8 +319,11 @@ interrupt void  ADCINT_ISR(void)     // ADC// FILE:	DSP28_DefaultIsr.c
   
   // Next two lines for debug only - remove after inserting
   // ISR Code
-   asm ("      ESTOP0");
-   for(;;);
+
+	//*IFR_REG = 0x0004; /* clear interrupt flags */
+	//*IFRB = 0xff;
+
+	void AdcInt_ISR(void);
 
   // Uncomment this line after adding ISR Code 
   // return;
