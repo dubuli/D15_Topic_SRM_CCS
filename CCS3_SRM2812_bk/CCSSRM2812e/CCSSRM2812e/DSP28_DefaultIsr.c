@@ -322,9 +322,14 @@ interrupt void  ADCINT_ISR(void)     // ADC// FILE:	DSP28_DefaultIsr.c
 
 	//*IFR_REG = 0x0004; /* clear interrupt flags */
 	//*IFRB = 0xff;
+	//*IFR_REG = 0x0004; /* clear interrupt flags */
+	//*IFRB = 0xff;
 
-	void AdcInt_ISR(void);
-
+	
+	PieCtrl.PIEACK.all = 0x0001;
+	AdcRegs.ADC_ST_FLAG.bit.INT_SEQ1_CLR = 1;
+	AdcRegs.ADCTRL2.bit.RST_SEQ1 = 1;
+	EINT;
   // Uncomment this line after adding ISR Code 
   // return;
 }
@@ -640,8 +645,9 @@ interrupt void CMP4INT_ISR(void)    // EV-B
 
   // Next two lines for debug only - remove after inserting
   // ISR Code
+	 asm ("      ESTOP0");
+  	 for(;;);
 
- EvbCAPISR_INT();
   // Uncomment this line after adding ISR Code 
   // return;
 }
@@ -656,7 +662,8 @@ interrupt void CMP5INT_ISR(void)    // EV-B
   // Next two lines for debug only - remove after inserting
   // ISR Code
 
- EvbCAPISR_INT();
+	 asm ("      ESTOP0");
+  	 for(;;);
   // Uncomment this line after adding ISR Code 
   // return;
 }
@@ -671,7 +678,8 @@ interrupt void CMP6INT_ISR(void)    // EV-B
   // Next two lines for debug only - remove after inserting
   // ISR Code
 
- EvbCAPISR_INT();
+	 asm ("      ESTOP0");
+  	 for(;;);
   // Uncomment this line after adding ISR Code 
   // return;
 }
@@ -813,8 +821,7 @@ interrupt void CAPINT4_ISR(void)   // EV-B
 
   // Next two lines for debug only - remove after inserting
   // ISR Code
-   asm ("      ESTOP0");
-   for(;;);
+ EvbCAPISR_INT();
 
   // Uncomment this line after adding ISR Code 
   // return;
@@ -829,8 +836,7 @@ interrupt void CAPINT5_ISR(void)   // EV-B
 
   // Next two lines for debug only - remove after inserting
   // ISR Code
-   asm ("      ESTOP0");
-   for(;;);
+ EvbCAPISR_INT();
 
   // Uncomment this line after adding ISR Code 
   // return;
@@ -844,9 +850,7 @@ interrupt void CAPINT6_ISR(void)   // EV-B
   // PieCtrl.PIEACK.all = PIEACK_GROUP5;
 
   // Next two lines for debug only - remove after inserting
-  // ISR Code
-   asm ("      ESTOP0");
-   for(;;);
+ EvbCAPISR_INT();
   
   // Uncomment this line after adding ISR Code 
   // return;

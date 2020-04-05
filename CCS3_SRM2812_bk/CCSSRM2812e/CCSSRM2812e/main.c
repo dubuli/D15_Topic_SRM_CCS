@@ -15,7 +15,10 @@ int Toggle_LED;
 int Msmt_Update;
 anSRM_struct SRM;
 int LEDvalue;
-
+int Error1;//if there is a Position error or Current Sensor Error
+int PosError;//Position Error
+int SlowDownFlag;//ir Slow Down or NOT
+int BrakeFlag;//zhidong
 int iTest;
 int simu6pos[6]={0x2,0x3,0x1,0x5,0x4,0x6};//simulate the postion signal
 int simu6count;
@@ -44,7 +47,7 @@ void enable_interrupts();
 void start_background();
 void check_for_stall();
 extern WORD read_fifo(int capture);
-extern void  ADCINT_ISR(void);
+
 
 /*-------------------------------------------------------*/
 /*MAIN PROGRAM */
@@ -52,14 +55,19 @@ extern void  ADCINT_ISR(void);
 void main() 
 {
 	InitSysCtrl();
-	
+	DINT;					//关中断 
+	IER = 0x0000;
+	IFR = 0x0000;
+
+	InitPieCtrl();			//初始化PIE控制寄存器
+	InitPieVectTable();		//初始化PIE参数表 
 
 	EALLOW;
 	GpioMuxRegs.GPADIR.bit.GPIOA10=1;//Test 设置D1对应的DSP引脚为输出
 	GpioMuxRegs.GPADIR.bit.GPIOA9=1;//Test
 	GpioMuxRegs.GPADIR.bit.GPIOA8=1;//Test,to be deleted
 	GpioMuxRegs.GPADIR.bit.GPIOA12=1;
-
+	EDIS;
 	GpioDataRegs.GPADAT.bit.GPIOA10=0;//D1对应输出电平
 	GpioDataRegs.GPADAT.bit.GPIOA9=1;//D1对应输出电平
 	GpioDataRegs.GPADAT.bit.GPIOA8=0;
@@ -67,6 +75,19 @@ void main()
 	EDIS;
 	initializeSRM(&SRM);
 	eventmgr_init();
+
+	EvbRegs.EVBIFRC.bit.CAP4INT = 1;
+	EvbRegs.EVBIFRC.bit.CAP5INT = 1;
+	EvbRegs.EVBIFRC.bit.CAP6INT = 1;
+	EvbRegs.EVBIMRC.bit.CAP4INT = 1;
+	EvbRegs.EVBIMRC.bit.CAP5INT = 1;
+	EvbRegs.EVBIMRC.bit.CAP6INT = 1;
+
+	PieCtrl.PIEIER5.bit.INTx5 = 1;
+	PieCtrl.PIEIER5.bit.INTx6 = 1;
+	PieCtrl.PIEIER5.bit.INTx7 = 1;
+
+//	IER |= M_INT5;  // 使能 CPU INT 5	    
 
 
 	initialize_counters_and_flags();
@@ -77,11 +98,26 @@ void main()
 	StartEn=0;
 	iTest=0;
 	simu6count=0;
-//	enable_interrupts();
+
+	PieCtrl.PIEACK.all = 0x0001;
 	EINT;
 	ERTM;
+	EvaRegs.T1CON.bit.TENABLE=1;
+	
 
-	start_background();
+
+
+	for(;;)		
+	{
+		if(iTest>10000)
+		{
+			GpioDataRegs.GPATOGGLE.bit.GPIOA12=1;
+			iTest=0;
+		}
+		iTest=iTest+1;
+	}
+
+
 }
 
 void start_background()
@@ -107,27 +143,13 @@ void start_background()
 	}/* infinite loop */
 }
 
-void AdcInt_ISR(void)		//2
-
+void AdcInt_ISR(void)
 {
-
-
-
-	//*IFR_REG = 0x0004; /* clear interrupt flags */
-	//*IFRB = 0xff;
-	
-	SRM.iFB[0]=AdcRegs.RESULT0 * 3.0/65520.0;//define AdcRegs.ADCRESULT0 ADCRESULTPHASE1 !!!!!!!!!
-	SRM.iFB[1]=AdcRegs.RESULT2 * 3.0/65520.0;
-	SRM.iFB[2]=AdcRegs.RESULT4 * 3.0/65520.0;
+//	SRM.iFB[0]=AdcRegs.RESULT0 * 3.0/65520.0;//define AdcRegs.ADCRESULT0 ADCRESULTPHASE1 !!!!!!!!!
+//	SRM.iFB[1]=AdcRegs.RESULT2 * 3.0/65520.0;
+//	SRM.iFB[2]=AdcRegs.RESULT4 * 3.0/65520.0;
 
 	
-
-	PieCtrl.PIEACK.all = 0x0001;
-	AdcRegs.ADC_ST_FLAG.bit.INT_SEQ1_CLR = 1;
-	AdcRegs.ADCTRL2.bit.RST_SEQ1 = 1;
-	EINT;
-
-
 
 }
 

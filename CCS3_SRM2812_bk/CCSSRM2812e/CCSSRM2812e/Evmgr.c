@@ -64,19 +64,6 @@ void eventmgr_init()
 /* 	PieVectTable.CAPINT3 = &EvbCAPISR_INT;                                                                    */
 /* 	EDIS;	                                                                                                  */
 
-	EvbRegs.EVBIFRC.bit.CAP4INT = 1;
-	EvbRegs.EVBIFRC.bit.CAP5INT = 1;
-	EvbRegs.EVBIFRC.bit.CAP6INT = 1;
-	EvbRegs.EVBIMRC.bit.CAP4INT = 1;
-	EvbRegs.EVBIMRC.bit.CAP5INT = 1;
-	EvbRegs.EVBIMRC.bit.CAP6INT = 1;
-
-	PieCtrl.PIEIER5.bit.INTx5 = 1;
-	PieCtrl.PIEIER5.bit.INTx6 = 1;
-	PieCtrl.PIEIER5.bit.INTx7 = 1;
-
-	IER |= M_INT5;  // Ê¹ÄÜ CPU INT 5	    
-
 
 	//ADC
 	EALLOW;
