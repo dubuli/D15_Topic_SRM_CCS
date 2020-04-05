@@ -45,8 +45,15 @@
 /* position & velocity estimation algorithm constants */
 /*----------------------------------------------------------*/
 #define K_POSITION_EST 1432 //Page 179,unchanged
+
+/*-----------**
+** attention **
+** 30MHz     **
+**-----------*/	 
 #define K1_VELOCITY_EST 421875000//281250000//Page 181
+
 #define K2_VELOCITY_EST 62500
+
 #define ALPHA 7 /* Q3: alpha = 0.875 */
 #define ONE_MINUS_ALPHA 1 /* Q3: 1-alpha = 0.125 */
 /*-------------------------------------------*/
@@ -69,18 +76,19 @@
 #define TWOPI_16 65535
 
 
+/*------------------**
+** attention        **
+** added some lines **
+**------------------*/				
 #define wCHANGE 4000 //设置高速低速CCC APC 转换值
 #define iRANGE 5 // The Current Range for ReferenceCurrent
-
 #define CMPRBASE 1500
-
-
 #define S1 GpioDataRegs.GPADAT.bit.GPIOA7
-#define A8 GpioDataRegs.GPADAT.bit.GPIOA8
-#define A9 GpioDataRegs.GPADAT.bit.GPIOA9
-#define A10 GpioDataRegs.GPADAT.bit.GPIOA10
 
-
+/*----------------------------------**
+** attention                        **
+** the current desired in the phase **
+**----------------------------------*/								
 #define DESCURRENT 256//the current desired in the phase
 
 
@@ -90,4 +98,5 @@
 
 
 #endif
+
 

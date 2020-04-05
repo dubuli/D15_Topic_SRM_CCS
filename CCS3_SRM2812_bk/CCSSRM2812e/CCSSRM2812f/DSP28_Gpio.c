@@ -42,10 +42,11 @@ void InitGpio(void)
 //     EDIS;
 
 	EALLOW;
-	GpioMuxRegs.GPAMUX.bit.CAP1Q1_GPIOA8=0;// IO
+	GpioMuxRegs.GPAMUX.bit.CAP1Q1_GPIOA8=0;// IO simulate the CAP input
 	GpioMuxRegs.GPAMUX.bit.CAP2Q2_GPIOA9=0;
 	GpioMuxRegs.GPAMUX.bit.CAP3QI1_GPIOA10=0 ;
-	GpioMuxRegs.GPAMUX.bit.TCLKINA_GPIOA12=0;
+
+	GpioMuxRegs.GPAMUX.bit.TCLKINA_GPIOA12=0;//LED output
 
 	GpioMuxRegs.GPADIR.bit.GPIOA10=1;//Test 设置D1对应的DSP引脚为输出
 	GpioMuxRegs.GPADIR.bit.GPIOA9=1;//Test
@@ -75,6 +76,13 @@ attention!
 	GpioMuxRegs.GPBMUX.bit.T4PWM_GPIOB7=1;
 
 
+/*----------------**
+** 	oppo input    **
+** 	initializeSRM **
+** 	attention	  **
+**----------------*/
+			 
+	
 
 	EDIS;
 }	

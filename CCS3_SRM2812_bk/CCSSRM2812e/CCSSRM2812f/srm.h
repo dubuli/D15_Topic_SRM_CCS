@@ -42,8 +42,15 @@ typedef struct
 	WORD position_initial_guess[7];
 	long dp_remainder;
 	int last_capture;
-	int cmprstep;
-	int anglestep;
+
+/*-------------------------**
+** 	attention              **
+** 	to be check if used	   **
+**-------------------------*/				   
+/* 	int cmprstep;     */
+/* 	int anglestep;	  */
+
+
 } anSRM_struct;
 
 /*-----------------------------------------------------------------*/

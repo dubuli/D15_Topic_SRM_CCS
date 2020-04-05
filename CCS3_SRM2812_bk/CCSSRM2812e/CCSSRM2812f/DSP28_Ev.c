@@ -108,7 +108,7 @@ t3cmpr    **
 	EvbRegs.COMCONB.bit.CLD=2;//instant
 
 
-	EvbRegs.ACTRB.all = 0x0aaa;    //设置输出特性??//High effective
+	EvbRegs.ACTRB.all = 0x0;    //设置输出特性??//High effective// intial is low
 
 //CAP  -----------------------------------------------------------------------
 	EvbRegs.CAPCONB.all = 0x30fc;//??//enable; capture the two sides
