@@ -122,7 +122,7 @@ void main(void)
 
 	SpeedPiFlag=0;
 	speed_error=0;
-	iDes=CURRENT_1A*1.5;	//gfl1i-n2
+	iDes=0;	//gfl1i-n2
 	StartFlag=0;
 	watchdogcount=0;
 	WatchdogFlag=0;
@@ -130,7 +130,7 @@ void main(void)
 	PhaseControlFlag=0;
 	Time_Update_PositionFlag=0;
 
-	SRM.wDes_10xrpm=5000;	//Desninate rpm
+	SRM.wDes_10xrpm=4000;	//Desninate rpm
 /*---------------------------------**
 ** 	attention                      **
 ** 	add the nop, to wait stable	   **
@@ -196,7 +196,7 @@ after the above lines, the ACK5=1; IFR=0x10;
 		}
 
 		//limit the current to 3A	//Set a Flag, break when Flag==5
-		else if(SRM.iFB[0]>CURRENT_1A*25 || SRM.iFB[1]>CURRENT_1A*25 || SRM.iFB[2]>CURRENT_1A*25)	{
+		else if(SRM.iFB[0]>CURRENT_1A*20 || SRM.iFB[1]>CURRENT_1A*20 || SRM.iFB[2]>CURRENT_1A*20)	{
 			//OvercurrentNum=OvercurrentNum+1;
 				EvbRegs.ACTRB.all = 0xfff;
 		//	StartFlag=0;
@@ -217,14 +217,14 @@ after the above lines, the ACK5=1; IFR=0x10;
 										//there is some question about it, should recosider!!!
 			PhaseControlFlag=0;
 		}
-		if(SRM.position_state==1 && EvbRegs.ACTRB.bit.CMP8ACT==3 && StartFlag) {
+/*		if(SRM.position_state==1 && EvbRegs.ACTRB.bit.CMP8ACT==3 && StartFlag) {
 		//	OvercurrentNum=(EvbRegs.ACTRB.all & 0xfff) + (OvercurrentNum & 0xf000) + 0x1000;
 			PhaseControl(&SRM);
-		}
-		if(SRM.position_state==2 && EvbRegs.ACTRB.bit.CMP10ACT==3 && StartFlag) {
+		}*/
+/*		if(SRM.position_state==2 && EvbRegs.ACTRB.bit.CMP10ACT==3 && StartFlag) {
 			OvercurrentNum=(EvbRegs.ACTRB.all & 0xfff) + (OvercurrentNum & 0xf000) + 0x1000;
 			PhaseControl(&SRM);
-		}
+		}*/
 		if(CurrentControllerFlag && StartFlag)	{
 			currentController(&SRM); /* current loop algorithm *///ddcap
 			CurrentControllerFlag=0;
@@ -254,7 +254,7 @@ after the above lines, the ACK5=1; IFR=0x10;
 		//speedpiFlag is 480Hz;
 		if(SpeedPiFlag==1 && StartFlag==1)	{
 
-/*			speed_error=SRM.wDes_10xrpm-SRM.wEst_10xrpm;
+			speed_error=SRM.wDes_10xrpm-SRM.wEst_10xrpm;
 			SRM.integral_speed_error=SRM.integral_speed_error+speed_error*14*KI;	//136*480=65536  //KI=1/32768*1000=1/32,32768=1<<15
 			if(SRM.integral_speed_error>((long)CURRENT_1A<<3<<16))	{		//>>3,8A
 				SRM.integral_speed_error=(long)CURRENT_1A<<3<<16;
@@ -263,15 +263,14 @@ after the above lines, the ACK5=1; IFR=0x10;
 				SRM.integral_speed_error=-(long)CURRENT_1A<<3<<16;
 			}
 
-			iDes=speed_error*KP+(SRM.integral_speed_error>>16);	//KP=10KP注意速度已经是10倍速度 ,KI
-
-			if(iDes>CURRENT_1A*20)	{
-				iDes=CURRENT_1A*20;
+		//	iDes=speed_error*KP;//+(SRM.integral_speed_error>>16);	//KP=10KP注意速度已经是10倍速度 ,KI
+			iDes=CURRENT_1A*6;
+			if(iDes>CURRENT_1A*10)	{
+				iDes=CURRENT_1A*10;
 			}
 			else if(iDes<0)	{
 				iDes=0;
 			}
-			iDes=CURRENT_1A*2;*/
 
 
 			SpeedPiFlag=0;
@@ -1126,47 +1125,18 @@ void PhaseControl(anSRM_struct *anSRM)	//int the ADC interrupt
 		/* phase current */
 		/*-----------------------------------------------------------*/
 
-		if ( (angle >= (182*20)) && (angle < 182*40))
+/*		if ((anSRM->wEst_10xrpm<3000) && (angle >= (PIBYSIX_16/8)) && (angle < FIVEPIBYSIX_16))
 		{
 			anSRM->active[phase] = 1;
 			temp = 0x1 << phase;
 			anSRM->iDes[phase] = iDes;//Important!!
-			iDes=CURRENT_1A*1.7;
-		}
-
-		else if ((angle >= (182*40)) && (angle < 182*60))
+		}*/
+		if ((angle >= (182*25)) && (angle < 182*135))
 		{
 			anSRM->active[phase] = 1;
 			temp = 0x1 << phase;
 			anSRM->iDes[phase] = iDes;//Important!!
-			iDes=CURRENT_1A*1;
-
 		}
-		else if ((angle >= (182*60)) && (angle < 182*80))
-		{
-			anSRM->active[phase] = 1;
-			temp = 0x1 << phase;
-			anSRM->iDes[phase] = iDes;//Important!!
-			iDes=CURRENT_1A*1.7;
-
-		}
-		else if ((angle >= (182*80)) && (angle < 182*100))
-		{
-			anSRM->active[phase] = 1;
-			temp = 0x1 << phase;
-			anSRM->iDes[phase] = iDes;//Important!!
-			iDes=CURRENT_1A*1;
-
-		}
-		else if ((angle >= (182*100)) && (angle < 182*140))
-		{
-			anSRM->active[phase] = 1;
-			temp = 0x1 << phase;
-			anSRM->iDes[phase] = iDes;//Important!!
-			iDes=CURRENT_1A*1.5;
-
-		}
-
 		else
 		{
 			anSRM->active[phase] = 0;
