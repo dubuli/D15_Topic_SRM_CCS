@@ -935,7 +935,7 @@ void PhaseControl(anSRM_struct *anSRM)	//int the ADC interrupt
 			temp = 0x1 << phase;
 			anSRM->iDes[phase] = DESCURRENT;//Important!!
 		}
-		else if ((angle >= (PIBYSIX_16/2)) && (angle < FIVEPIBYSIX_16-PIBYSIX_16))
+		else if ((angle >= (PIBYSIX_16-910)) && (angle < FIVEPIBYSIX_16-3641))
 		{
 			anSRM->active[phase] = 1;
 			temp = 0x1 << phase;
