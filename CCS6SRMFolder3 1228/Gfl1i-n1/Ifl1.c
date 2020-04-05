@@ -125,7 +125,7 @@ void main(void)
 	PhaseControlFlag=0;
 	Time_Update_PositionFlag=0;
 
-	SRM.wDes_10xrpm=2750;	//Desninate rpm
+	SRM.wDes_10xrpm=7750;	//Desninate rpm
 /*---------------------------------**
 ** 	attention                      **
 ** 	add the nop, to wait stable	   **
@@ -337,11 +337,11 @@ delete in 2812f4
 	}
 
 	//	485,transfer the wEst,OUTPUT the wEst
-		if(!(count%480))		{				//changeto 9600Hz 480-20Hz			//%250 20Hz		//5Hz// 5000/100=50 Hz
+		if(!(count%1920))		{				//changeto 9600Hz 480-20Hz			//%250 20Hz		//5Hz// 5000/100=50 Hz
 			GpioDataRegs.GPEDAT.bit.GPIOE1=0;
 
 			if((SciaTx_Ready() == 1) )//&& (SendFlag == 1))
-				SciaRegs.SCITXBUF=(SRM.wEst_10xrpm/50);
+				SciaRegs.SCITXBUF=((SRM.wEst_10xrpm/50));// & 0xff);
 		}
 
 	//	GpioDataRegs.GPEDAT.bit.GPIOE1=0;
@@ -935,7 +935,7 @@ void PhaseControl(anSRM_struct *anSRM)	//int the ADC interrupt
 			temp = 0x1 << phase;
 			anSRM->iDes[phase] = DESCURRENT;//Important!!
 		}
-		else if ((angle >= (PIBYSIX_16)) && (angle < FIVEPIBYSIX_16))
+		else if ((angle >= (PIBYSIX_16)) && (angle < (FIVEPIBYSIX_16)))
 		{
 			anSRM->active[phase] = 1;
 			temp = 0x1 << phase;
