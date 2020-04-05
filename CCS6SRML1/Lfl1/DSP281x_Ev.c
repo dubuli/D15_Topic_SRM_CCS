@@ -27,8 +27,8 @@
 //
 void InitEv(void)
 {
-	DWORD iperiod1;
-	DWORD iperiod3;
+	WORD iperiod1;
+	WORD iperiod3;	
 			
 	iperiod1 = (HSCLK / T1FREQ) - 1;		//(HSCLK / CPU_INT_FREQ) - 1;//5kHz,T1,used to start ADC
 

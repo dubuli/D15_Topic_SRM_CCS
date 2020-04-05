@@ -54,9 +54,6 @@ extern void InitXIntrupt(void);
 
 extern void KickDog(void);
 
-
-extern void QuickSort(unsigned long *a, int numsize);
-
 int SciaRx_Ready(void);
 
 #ifdef __cplusplus

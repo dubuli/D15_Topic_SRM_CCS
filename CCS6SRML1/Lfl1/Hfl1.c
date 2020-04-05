@@ -17,16 +17,8 @@
 
 float	adclo=0.0;
 
-//int count=0;//5000Hz
-
-DWORD count=0;//5000Hz
-WORD x[1600];
-int count_sec=0;
-int count485=0;
-
-int watchdogcount;
-int WatchdogFlag;
-
+int count=0;//5000Hz
+int slice=0;//1-5
 int count_old=0;//record count
 int UpdateVelocityFlag=0;//flag
 //int Toggle_LED=0;//flag
@@ -44,15 +36,9 @@ int StartFlag;
 
 int SCiRxData=0;
 
-int CurrentControllerFlag;
-int PhaseControlFlag;
-int Time_Update_PositionFlag;
-
-int countsopen=200;
-
-extern Uint16 RamfuncsLoadStart;		//flash++
-extern Uint16 RamfuncsRunStart;
-extern Uint16 RamfuncsLoadEnd;
+//extern Uint16 RamfuncsLoadStart;		//flash++
+//extern Uint16 RamfuncsRunStart;
+//extern Uint16 RamfuncsLoadEnd;
 
 anSRM_struct SRM;
 
@@ -79,7 +65,7 @@ interrupt void EvbCAP6ISR_INT(void);
 void currentController(anSRM_struct *anSRM);
 void UpdateVelocity(anSRM_struct *anSRM, int mode);
 void Time_Update_Position(anSRM_struct *anSRM);
-void PhaseControl(anSRM_struct *anSRM);
+void Commutation_Algorithm(anSRM_struct *anSRM);
 void switch_lowside(int phaseactive);
 void InitFlash(void);
 void MemCopy(Uint16 *SourceAddr, Uint16* SourceEndAddr, Uint16* DestAddr);
@@ -98,7 +84,7 @@ void main(void)
 	InitPieCtrl();			//初始化PIE控制寄存器
 	InitPieVectTable();		//初始化PIE参数表
 
-	MemCopy(&RamfuncsLoadStart, &RamfuncsLoadEnd, &RamfuncsRunStart);	//flash++
+//	MemCopy(&RamfuncsLoadStart, &RamfuncsLoadEnd, &RamfuncsRunStart);	//flash++
 	InitFlash();//初始化Flash
 
 
@@ -126,13 +112,8 @@ void main(void)
 	speed_error=0;
 	iDes=0;	//gfl1i-n2
 	StartFlag=0;
-	watchdogcount=0;
-	WatchdogFlag=0;
-	CurrentControllerFlag=0;
-	PhaseControlFlag=0;
-	Time_Update_PositionFlag=0;
 
-	SRM.wDes_10xrpm=7750;	//Desninate rpm
+	SRM.wDes_10xrpm=4750;	//Desninate rpm
 /*---------------------------------**
 ** 	attention                      **
 ** 	add the nop, to wait stable	   **
@@ -188,52 +169,22 @@ after the above lines, the ACK5=1; IFR=0x10;
 	{
 		KickDog();
 
-		if(SWITCH1==1 || PAOCUP==1 ||PAOCDN==1 || PBOCUP==1 || PBOCDN==1 || PCOCUP==1 ||PCOCDN==1 || WatchdogFlag==0)	{
+		if(SWITCH1==1 || PAOCUP==1 ||PAOCDN==1 || PBOCUP==1 || PBOCDN==1 || PCOCUP==1 ||PCOCDN==1)	{
 			EvbRegs.ACTRB.all = 0xfff;
 			//EvbRegs.ACTRB.bit.CMP7-12ACT=3; //forecd high, PWM is forbiddend
 			StartFlag=0;
-			count_sec=0;//put to 0
 		}
 
 		//limit the current to 3A	//Set a Flag, break when Flag==5
-		else if(SRM.iFB[0]>CURRENT_1A*13 || SRM.iFB[1]>CURRENT_1A*13 || SRM.iFB[2]>CURRENT_1A*13)	{
+		else if(SRM.iFB[0]>CURRENT_1A*3 || SRM.iFB[1]>CURRENT_1A*3 || SRM.iFB[2]>CURRENT_1A*3)	{
 			EvbRegs.ACTRB.all = 0xfff;
 			StartFlag=0;
-			count_sec=0;
 
 		}
 		else
 			StartFlag=1;
 
-
-
-		if(Time_Update_PositionFlag)	{
-//			Time_Update_Position(&SRM); /* using algorithm */
-			Time_Update_PositionFlag=0;
-		}
-
-
-		if(PhaseControlFlag && StartFlag)	{
-//			PhaseControl(&SRM); /* do commutation in the 1st */
-										//there is some question about it, should recosider!!!
-			PhaseControlFlag=0;
-
-			if (count_sec==9 && count<countsopen)		{
-				EvbRegs.ACTRB.bit.CMP7ACT = 0;//low effective
-				EvbRegs.ACTRB.bit.CMP8ACT = 0;
-				if(count<1600)
-					x[count]=SRM.iFB[0];
-			}
-			else	{
-				EvbRegs.ACTRB.all = 0xfff;
-			}
-
-
-		}
-		if(CurrentControllerFlag && StartFlag)	{
-//			currentController(&SRM); /* current loop algorithm *///ddcap
-//			CurrentControllerFlag=0;
-		}
+//		while(SWITCH1==1 || PAOCUP==1 ||PAOCDN==1 || PBOCUP==1 || PBOCDN==1 || PCOCUP==1 ||PCOCDN==1)
 
 		/*----------------------*/
 		/* Velocity update task */
@@ -244,20 +195,18 @@ after the above lines, the ACK5=1; IFR=0x10;
 			{
 				 /* use capture data */
 				/* as time base */
-//				UpdateVelocity(&SRM, 1);
+				UpdateVelocity(&SRM, 1);
 			}
 			else
 			{
 
-//				UpdateVelocity(&SRM, 2);
+				UpdateVelocity(&SRM, 2);
 			}
 			UpdateVelocityFlag = 0;
 		}
 
-
-
-		//speedpiFlag is 480Hz;
-		if(SpeedPiFlag==3 && StartFlag==1)	{
+		//speedpiFlag is 1KHz;
+		if(SpeedPiFlag==1 && StartFlag==1)	{
 
 			speed_error=SRM.wDes_10xrpm-SRM.wEst_10xrpm;
 			SRM.integral_speed_error=SRM.integral_speed_error+speed_error*14*KI;	//136*480=65536  //KI=1/32768*1000=1/32,32768=1<<15
@@ -269,8 +218,8 @@ after the above lines, the ACK5=1; IFR=0x10;
 			}
 
 			iDes=speed_error*KP+(SRM.integral_speed_error>>16);	//KP=10KP注意速度已经是10倍速度 ,KI
-			if(iDes>CURRENT_1A*4)	{
-				iDes=CURRENT_1A*4;
+			if(iDes>CURRENT_1A*2)	{
+				iDes=CURRENT_1A*2;
 			}
 			else if(iDes<0)	{
 				iDes=0;
@@ -278,14 +227,6 @@ after the above lines, the ACK5=1; IFR=0x10;
 
 
 			SpeedPiFlag=0;
-
-				//changeto 9600Hz 480-20Hz			//%250 20Hz		//5Hz// 5000/100=50 Hz
-//				GpioDataRegs.GPEDAT.bit.GPIOE1=0;
-//
-//				if((SciaTx_Ready() == 1) )//&& (SendFlag == 1))
-//					SciaRegs.SCITXBUF=(SRM.wEst_10xrpm/50);
-
-
 		}
 
 
@@ -315,30 +256,23 @@ delete in 2812f4
 	SRM.iFB[1]=(AdcRegs.ADCRESULT2>>4) & 0x0fff;
 	SRM.iFB[2]=(AdcRegs.ADCRESULT4>>4) & 0x0fff;
 
-	CurrentControllerFlag=1;
-	PhaseControlFlag=1;
-	Time_Update_PositionFlag=1;
+	currentController(&SRM); /* current loop algorithm *///ddcap
 
+
+	Time_Update_Position(&SRM); /* using algorithm */
 
 //	check_for_stall();
 
 
 	count++;	// = count + 1; /* increment count */
 //	slice++; 	//= slice + 1; /* increment slicer */
-	watchdogcount++;//1-5
-	if(watchdogcount==1600 || watchdogcount==1610)	//  T1FREQ/6
-		WatchdogFlag=1;
-
 	if (count >= T1FREQ)
 	{
 		count = 0;
-		count_sec++;
-		if(count_sec>20)
-			count_sec=0;
 	}
 
-
-
+	Commutation_Algorithm(&SRM); /* do commutation in the 1st */
+								//there is some question about it, should recosider!!!
 
 	if (  !( count % (T1FREQ/480) )  )	{		//9600/20=480Hz PI
 		SpeedPiFlag=1;
@@ -354,36 +288,16 @@ delete in 2812f4
 		else
 			SpeedFlag=1;			//High speed,use CapFIFO
 
-//		GpioDataRegs.GPEDAT.bit.GPIOE1=0;
-//
-//		if((SciaTx_Ready() == 1) )//&& (SendFlag == 1))
-//			SciaRegs.SCITXBUF=(SpeedFlag);
-
 		CapCount=0;
 	}
 
 	//	485,transfer the wEst,OUTPUT the wEst
+		if(!(count%480))		{				//changeto 9600Hz 480-20Hz			//%250 20Hz		//5Hz// 5000/100=50 Hz
+			GpioDataRegs.GPEDAT.bit.GPIOE1=0;
 
-	if (count_sec>=10 && count485<countsopen)	{
-		GpioDataRegs.GPEDAT.bit.GPIOE1=0;
-		if(!(count%200))	{
-			SciaRegs.SCITXBUF=(x[count485]>>8) & 0xff;
+			if((SciaTx_Ready() == 1) )//&& (SendFlag == 1))
+				SciaRegs.SCITXBUF=(SRM.wEst_10xrpm/50);
 		}
-		else if (!((count+100)%200))	{
-			SciaRegs.SCITXBUF=(x[count485]) & 0xff;
-			x[count485]=0;
-			count485++;
-		}
-	}
-	else if(count_sec==0)
-		count485=0;
-
-//	if(!(count%480))		{				//changeto 9600Hz 480-20Hz			//%250 20Hz		//5Hz// 5000/100=50 Hz
-//			GpioDataRegs.GPEDAT.bit.GPIOE1=0;
-//			SciaRegs.SCITXBUF=x[count485];
-//			if((SciaTx_Ready() == 1) )//&& (SendFlag == 1))
-//				SciaRegs.SCITXBUF=((int)(SRM.wEst_10xrpm-7750));// & 0xff);
-//		}
 
 	//	GpioDataRegs.GPEDAT.bit.GPIOE1=0;
 
@@ -395,7 +309,7 @@ delete in 2812f4
 ** 	test the cap module,A8-10	 **
 **-------------------------------*/
 /* Use GPADAT to give a simulate signal to the sensor*/		//simu6pos
-		if(count%48==0)	{				//%480 20HzCap = 25rpm  //%600 16Hz CAP = 20rpm;					// 0.5s per circle
+		if(count%480==0)	{				//%480 20HzCap = 25rpm  //%600 16Hz CAP = 20rpm;					// 0.5s per circle
 			GpioDataRegs.GPADAT.bit.GPIOA8=simu6pos[simu6count] & 1;
 			GpioDataRegs.GPADAT.bit.GPIOA9=(simu6pos[simu6count]>>1) & 1;
 			GpioDataRegs.GPADAT.bit.GPIOA10=(simu6pos[simu6count]>>2) & 1;
@@ -430,7 +344,6 @@ void EvbCAP4ISR_INT(void)
 {
 	int delta_count;
 	WORD edge_time1;
-//	int FlagFifo=0;
 	//	WORD edge_time2;
 
 	// modified in 2812f5
@@ -440,32 +353,14 @@ void EvbCAP4ISR_INT(void)
 	CapCount++;
 
 	//need to change
-
-	SRM.capture_delta[0][3] = SRM.capture_delta[0][2];
-	SRM.capture_delta[0][2] = SRM.capture_delta[0][1];
 	SRM.capture_delta[0][1] = SRM.capture_delta[0][0];
 	SRM.capture_delta[0][0] = edge_time1 - SRM.capture_edge[0];//edgetime=return fifo_data = EvbRegs.CAP4FIFO
 	SRM.capture_edge[0] = edge_time1;
 
-
-//	if(	SRM.capture_delta[0][0]>30000)
-//		FlagFifo |=0x01;
-//	else if(SRM.capture_delta[0][0]<2929)
-//		FlagFifo |=0x10;
-//
-//	GpioDataRegs.GPEDAT.bit.GPIOE1=0;
-//	if((SciaTx_Ready() == 1) )//&& (SendFlag == 1))
-//		SciaRegs.SCITXBUF=FlagFifo;// & 0xff);
-
 	SRM.last_capture = 1; /* save capture data *///capture=1 2 3//use to update the position//ddcap
 
 /** 	added in 2812f5 **** 	attention	    **/
-//	SRM.position_state = (GpioDataRegs.GPFDAT.all>>11) & 0x7;//get the state use the sensor signal
-
-	SRM.position_state = SRM.trans_lut[SRM.position_state][1].state;
-	if(SRM.position_state==0)
-		SRM.position_state = (GpioDataRegs.GPFDAT.all>>11) & 0x7;//get
-
+	SRM.position_state = (GpioDataRegs.GPFDAT.all>>11) & 0x7;//get the state use the sensor signal
 	SRM.position = SRM.trans_lut[SRM.position_state][1].position;//0 to PI //there is a time delay,not accurate
 	SRM.shaft_direction_old=SRM.shaft_direction;
 	SRM.shaft_direction = SRM.trans_lut[SRM.position_state][1].direction;//1 -1//attentionmodify
@@ -507,13 +402,9 @@ void EvbCAP4ISR_INT(void)
 	}
 
 
-//	GpioDataRegs.GPEDAT.bit.GPIOE1=0;
-//
-//	if((SciaTx_Ready() == 1) )//&& (SendFlag == 1))
-//		SciaRegs.SCITXBUF=(SRM.position_state);
 
-//	EvbRegs.EVBIFRC.bit.CAP4INT = 1;//to clear the 清除捕获中断4的标志位
-//	PieCtrlRegs.PIEACK.bit.ACK5 = 1; //origin: ACK.all=0x0010
+	EvbRegs.EVBIFRC.bit.CAP4INT = 1;//to clear the 清除捕获中断4的标志位
+	PieCtrlRegs.PIEACK.bit.ACK5 = 1; //origin: ACK.all=0x0010
 
 }
 
@@ -534,8 +425,6 @@ void EvbCAP5ISR_INT(void)
 	//	edge_time2 = EvbRegs.CAP5FIFO; /* read value */
 
 	//need to change
-	SRM.capture_delta[1][3] = SRM.capture_delta[1][2];
-	SRM.capture_delta[1][2] = SRM.capture_delta[1][1];
 	SRM.capture_delta[1][1] = SRM.capture_delta[1][0];
 	SRM.capture_delta[1][0] = edge_time1 - SRM.capture_edge[1];//edgetime=return fifo_data = EvbRegs.CAP5FIFO
 	SRM.capture_edge[1] = edge_time1;
@@ -547,11 +436,7 @@ void EvbCAP5ISR_INT(void)
 	** 	added in 2812f5 **
 	** 	attention	    **
 	**------------------*/
-//	SRM.position_state = (GpioDataRegs.GPFDAT.all>>11) & 0x7;//attentiondelete ,need to delete
-	SRM.position_state = SRM.trans_lut[SRM.position_state][2].state;
-	if(SRM.position_state==0)
-		SRM.position_state = (GpioDataRegs.GPFDAT.all>>11) & 0x7;//get
-
+	SRM.position_state = (GpioDataRegs.GPFDAT.all>>11) & 0x7;//attentiondelete ,need to delete
 	SRM.position = SRM.trans_lut[SRM.position_state][2].position;//0 to PI //there is a time delay,not accurate
 	SRM.shaft_direction_old=SRM.shaft_direction;
 	SRM.shaft_direction = SRM.trans_lut[SRM.position_state][2].direction;//1 -1//attentionmodify
@@ -589,13 +474,9 @@ void EvbCAP5ISR_INT(void)
 		UpdateVelocityFlag = 2;
 	}
 
-//	GpioDataRegs.GPEDAT.bit.GPIOE1=0;
-//
-//	if((SciaTx_Ready() == 1) )//&& (SendFlag == 1))
-//		SciaRegs.SCITXBUF=(SRM.position_state);
 
-//	EvbRegs.EVBIFRC.bit.CAP5INT = 1;
-//	PieCtrlRegs.PIEACK.bit.ACK5 = 1; //origin: ACK.all=0x0010
+	EvbRegs.EVBIFRC.bit.CAP5INT = 1;
+	PieCtrlRegs.PIEACK.bit.ACK5 = 1; //origin: ACK.all=0x0010
 }
 
 
@@ -616,8 +497,6 @@ void EvbCAP6ISR_INT(void)
 //	edge_time2 = EvbRegs.CAP6FIFO; /* read value */
 
 	//need to change
-	SRM.capture_delta[2][3] = SRM.capture_delta[2][2];
-	SRM.capture_delta[2][2] = SRM.capture_delta[2][1];
 	SRM.capture_delta[2][1] = SRM.capture_delta[2][0];
 	SRM.capture_delta[2][0] = edge_time1 - SRM.capture_edge[2];//edgetime=return fifo_data = EvbRegs.CAP6FIFO
 	SRM.capture_edge[2] = edge_time1;
@@ -628,11 +507,7 @@ void EvbCAP6ISR_INT(void)
 	** 	added in 2812f5 **
 	** 	attention	    **
 	**------------------*/
-//	SRM.position_state = (GpioDataRegs.GPFDAT.all>>11) & 0x7;//attentiondelete ,need to delete
-	SRM.position_state = SRM.trans_lut[SRM.position_state][3].state;
-	if(SRM.position_state==0)
-		SRM.position_state = (GpioDataRegs.GPFDAT.all>>11) & 0x7;//get
-
+	SRM.position_state = (GpioDataRegs.GPFDAT.all>>11) & 0x7;//attentiondelete ,need to delete
 	SRM.position = SRM.trans_lut[SRM.position_state][3].position;//0 to PI //there is a time delay,not accurate
 	SRM.shaft_direction_old=SRM.shaft_direction;
 	SRM.shaft_direction = SRM.trans_lut[SRM.position_state][3].direction;//1 -1//attentionmodify
@@ -671,14 +546,11 @@ void EvbCAP6ISR_INT(void)
 	}
 
 
-//	GpioDataRegs.GPEDAT.bit.GPIOE1=0;
-//
-//	if((SciaTx_Ready() == 1) )//&& (SendFlag == 1))
-//		SciaRegs.SCITXBUF=(SRM.position_state);
 
 
-//	EvbRegs.EVBIFRC.bit.CAP6INT = 1;
-	//PieCtrlRegs.PIEACK.bit.ACK5 = 1; //origin: ACK.all=0x0010
+
+	EvbRegs.EVBIFRC.bit.CAP6INT = 1;
+	PieCtrlRegs.PIEACK.bit.ACK5 = 1; //origin: ACK.all=0x0010
 }
 
 
@@ -831,8 +703,6 @@ change to F11 12 13  origin.old:8 A9 A10
 		anSRM->iFB[i] = 0;
 		anSRM->capture_delta[i][0] = 65535;
 		anSRM->capture_delta[i][1] = 65535;
-		anSRM->capture_delta[i][2] = 65535;
-		anSRM->capture_delta[i][3] = 65535;
 	}
 	anSRM->wEst_10xrpm = 0;
 	anSRM->shaft_direction = 0;
@@ -848,12 +718,10 @@ change to F11 12 13  origin.old:8 A9 A10
 
 void UpdateVelocity(anSRM_struct *anSRM, int mode)
 {
-	DWORD a[12];
+	DWORD a1, a2, a3, a4, a5, a6;
 	long sum_cnt;
 	long inst_velocity;
 	long filt_velocity;
-//	int FlagSum=0;
-//	int i;
 	/*----------------------------------------------- */
 	/* Obtain instantaneous velocity estimate */
 	/*----------------------------------------------- */
@@ -863,62 +731,13 @@ void UpdateVelocity(anSRM_struct *anSRM, int mode)
 		/*------------------------------------------------------------*/
 		/* FIR filter for removing once per electrical cycle effects */
 		/*------------------------------------------------------------*/
-
-		a[0] = (DWORD)anSRM->capture_delta[0][0];
-		a[1] = (DWORD)anSRM->capture_delta[0][1];
-		a[2] = (DWORD)anSRM->capture_delta[0][2];
-		a[3] = (DWORD)anSRM->capture_delta[0][3];
-		a[4] = (DWORD)anSRM->capture_delta[1][0];
-		a[5] = (DWORD)anSRM->capture_delta[1][1];
-		a[6] = (DWORD)anSRM->capture_delta[1][2];
-		a[7] = (DWORD)anSRM->capture_delta[1][3];
-		a[8] = (DWORD)anSRM->capture_delta[2][0];
-		a[9] = (DWORD)anSRM->capture_delta[2][1];
-		a[10] = (DWORD)anSRM->capture_delta[2][2];
-		a[11] = (DWORD)anSRM->capture_delta[2][3];
-//		for(i=0;i<12;i++)
-//			a[i]=12-i;
-
-
-
-		QuickSort(&a[0],12);
-//		if(a1>30000)
-//			FlagSum |=0x01;
-//		else if(a1<2929)
-//			FlagSum |=0x10;
-//
-//		if(a2>30000)
-//			FlagSum |=0x02;
-//		else if(a2<2929)
-//			FlagSum |=0x20;
-//
-//		if(a3>30000)
-//			FlagSum |=0x04;
-//		else if(a3<2929)
-//			FlagSum |=0x40;
-//
-//		if(a4>30000)
-//			FlagSum |=0x08;
-//		else if(a4<2929)
-//			FlagSum |=0x80;
-
-//		if(a1>30000)
-//			FlagSum |=0x01;
-//		else if(a1<2929)
-//			FlagSum |=0x10;
-//
-//		if(a1>30000)
-//			FlagSum |=0x01;
-//		else if(a1<2929)
-//			FlagSum |=0x10;
-
-
-
-//		GpioDataRegs.GPEDAT.bit.GPIOE1=0;
-//		if((SciaTx_Ready() == 1) )//&& (SendFlag == 1))
-//			SciaRegs.SCITXBUF=FlagSum;// & 0xff);
-
-		sum_cnt = a[3] + a[4] + a[5] + a[6] + a[7] + a[8];
+		a1 = (DWORD)anSRM->capture_delta[0][0];
+		a2 = (DWORD)anSRM->capture_delta[0][1];
+		a3 = (DWORD)anSRM->capture_delta[1][0];
+		a4 = (DWORD)anSRM->capture_delta[1][1];
+		a5 = (DWORD)anSRM->capture_delta[2][0];
+		a6 = (DWORD)anSRM->capture_delta[2][1];
+		sum_cnt = a1 + a2 + a3 + a4 + a5 + a6;
 		/*---------------------------------------------------*/
 		/* apply velocity = delta_theta/delta_time algorithm */
 		/*---------------------------------------------------*/
@@ -945,16 +764,55 @@ void UpdateVelocity(anSRM_struct *anSRM, int mode)
 		anSRM->wEst_10xrpm = filt_velocity >> 3;
 	}
 
-//	GpioDataRegs.GPEDAT.bit.GPIOE1=0;
-//
-//	if((SciaTx_Ready() == 1) )//&& (SendFlag == 1))
-//		SciaRegs.SCITXBUF=(anSRM->shaft_direction);
-
 // set to 0
 //	anSRM->wEst_10xrpm=0;
 } /* end, velocity estimation */
 
 
+
+
+void currentController(anSRM_struct *anSRM)
+{
+	int phase;
+//	int ierr;
+
+
+	for (phase = 0; phase < NUMBER_OF_PHASES; phase++)
+	{
+		/*----------------------------------------------*/
+		/* for each active phase do ... */
+		/*----------------------------------------------*/
+		if (anSRM->active[phase] > 0)
+		{
+
+
+			if(anSRM->iFB[phase] > (iDes + 10))		//184-800mA,92-400mA	//chopcurrent
+			{
+				anSRM->dutyRatio[phase]=0;//compare to output LOW
+			}
+			else if(anSRM->iFB[phase] < (iDes))	//172-750mA,86-375mA
+			{
+				anSRM->dutyRatio[phase]=0xffff;//compare to output HIGH
+			}
+		}
+		/*----------------------------------------------*/
+		/* else, phase is not active */
+		/*----------------------------------------------*/
+		else
+		{
+			anSRM->iDes[phase] = 0;
+			anSRM->dutyRatio[phase] = 0;
+		}
+	} /* end for loop */
+	/*---------------------------------------*/
+	/* output PWM signals to high-side FET’s */
+	///*---------------------------------------*/
+	EvbRegs.CMPR4 = anSRM->dutyRatio[0];//设置比较寄存器
+	EvbRegs.CMPR5 = anSRM->dutyRatio[1];
+	EvbRegs.CMPR6 = anSRM->dutyRatio[2];
+	/* end currentController */
+
+}
 
 
 
@@ -1017,7 +875,7 @@ void Time_Update_Position(anSRM_struct *anSRM)
 
 
 
-void PhaseControl(anSRM_struct *anSRM)	//int the ADC interrupt
+void Commutation_Algorithm(anSRM_struct *anSRM)	//int the ADC interrupt
 {
 	int phase;
 	WORD electricalAngle;//update in position update
@@ -1047,7 +905,7 @@ void PhaseControl(anSRM_struct *anSRM)	//int the ADC interrupt
 			temp = 0x1 << phase;
 			anSRM->iDes[phase] = DESCURRENT;//Important!!
 		}
-		else if ((angle >= (PIBYSIX_16-910)) && (angle < FIVEPIBYSIX_16-3641))
+		else if ((angle >= (PIBYSIX_16)) && (angle < FIVEPIBYSIX_16))
 		{
 			anSRM->active[phase] = 1;
 			temp = 0x1 << phase;
@@ -1065,8 +923,12 @@ void PhaseControl(anSRM_struct *anSRM)	//int the ADC interrupt
 	/*------------------------------------*/
 	/* switch low-side FETs, as required */
 	/*------------------------------------*/
+	if(!StartFlag)	{
+		EvbRegs.ACTRB.all = 0xfff;
+	}
+	else	{
 		switch_lowside(whats_active);
-
+	}
 
 }
 
@@ -1144,127 +1006,3 @@ void switch_lowside(int phaseactive)
 	}
 
 }
-
-
-
-
-void currentController(anSRM_struct *anSRM)
-{
-	int phase;
-//	int ierr;
-
-
-	for (phase = 0; phase < NUMBER_OF_PHASES; phase++)
-	{
-		/*----------------------------------------------*/
-		/* for each active phase do ... */
-		/*----------------------------------------------*/
-		if (anSRM->active[phase] > 0)
-		{
-
-
-			if(anSRM->iFB[phase] > (iDes + 10))		//184-800mA,92-400mA	//chopcurrent
-			{
-				anSRM->dutyRatio[phase]=0;//compare to output LOW
-			}
-			else if(anSRM->iFB[phase] < (iDes))	//172-750mA,86-375mA
-			{
-				anSRM->dutyRatio[phase]=0xffff;//compare to output HIGH
-			}
-		}
-		/*----------------------------------------------*/
-		/* else, phase is not active */
-		/*----------------------------------------------*/
-		else
-		{
-			anSRM->iDes[phase] = 0;
-			anSRM->dutyRatio[phase] = 0;
-		}
-	} /* end for loop */
-	/*---------------------------------------*/
-	/* output PWM signals to high-side FET’s */
-	///*---------------------------------------*/
-	EvbRegs.CMPR4 = anSRM->dutyRatio[0];//设置比较寄存器
-	EvbRegs.CMPR5 = anSRM->dutyRatio[1];
-	EvbRegs.CMPR6 = anSRM->dutyRatio[2];
-	/* end currentController */
-
-}
-
-//void　QuickSort(DWORD　&a,int　numsize)/*a是整形数组，numsize是元素个数*/
-//{
-//　	 int　i=0;
-//　	 int j=numsize-1;
-//　	 DWORD　val=a[0];/*指定参考值val大小*/
-//　	 if(numsize>1)/*确保数组长度至少为2，否则无需排序*/　	 {
-//
-//　		 while(i<j)/*循环结束条件*/		 {
-//　		 /*从后向前搜索比val小的元素，找到后填到a[i]中并跳出循环*/
-//　			 for(;j>i;j--)
-//　				 if(a[j]<val)	 {
-//　					 a[i++]=a[j];
-//　					 break;
-//　				 }
-//　				 /*从前往后搜索比val大的元素，找到后填到a[j]中并跳出循环*/
-//　			 for(;i<j;i++)
-//　				 if(a[i]>val)	 {
-//　					 a[j--]=a[i];
-//　					 break;
-//　				 }
-//　		 }
-//　		 a[i]=val;/*将保存在val中的数放到a[i]中*/
-//　		 QuickSort(a,i);/*递归，对前i个数排序*/
-//　		 QuickSort(a+i+1,numsize-i-1);/*对i+2到numsize这numsize-1-i个数排序*/
-//　	 }
-//}
-
-
-void QuickSort(unsigned long *a, int numsize)	//QuickSort(int a, int　numsize)/*a是整形数组，numsize是元素个数*/
-{
-	int i=0;
-	int j=numsize-1;
-	DWORD val=a[0];
-	if(numsize>1)	{
-		while(i<j)	{
-			for(; j>i;j--)
-				if(a[j]<val)	{
-					a[i++]=a[j];
-					break;
-				}
-			for(;i<j;i++)
-				if(a[i]>val)	{
-					a[j--]=a[i];
-					break;
-				}
-		}
-		a[i]=val;
-		QuickSort(&a[0],i);
-		QuickSort(&a[i+1],numsize-i-1);
-
-	}
-}
-
-//　	 int　i=0;
-//　	 int j=numsize-1;
-//　	 DWORD　val=a[0];/*指定参考值val大小*/
-//　	 if(numsize>1)/*确保数组长度至少为2，否则无需排序*/　	 {
-//
-//　		 while(i<j)/*循环结束条件*/		 {
-//　		 /*从后向前搜索比val小的元素，找到后填到a[i]中并跳出循环*/
-//　			 for(;j>i;j--)
-//　				 if(a[j]<val)	 {
-//　					 a[i++]=a[j];
-//　					 break;
-//　				 }
-//　				 /*从前往后搜索比val大的元素，找到后填到a[j]中并跳出循环*/
-//　			 for(;i<j;i++)
-//　				 if(a[i]>val)	 {
-//　					 a[j--]=a[i];
-//　					 break;
-//　				 }
-//　		 }
-//　		 a[i]=val;/*将保存在val中的数放到a[i]中*/
-//　		 QuickSort(a,i);/*递归，对前i个数排序*/
-//　		 QuickSort(a+i+1,numsize-i-1);/*对i+2到numsize这numsize-1-i个数排序*/
-//　	 }
-

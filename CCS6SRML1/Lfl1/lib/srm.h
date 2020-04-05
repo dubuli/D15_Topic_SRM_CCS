@@ -28,7 +28,7 @@ typedef struct
 	long integral_speed_error;
 	WORD iDes[NUMBER_OF_PHASES];
 	WORD capture_edge[NUMBER_OF_PHASES];
-	WORD capture_delta[NUMBER_OF_PHASES][4];
+	WORD capture_delta[NUMBER_OF_PHASES][2];
 	WORD delta_count;
 	long wEst_10xrpm;//edit in 2812f5
 	long wDes_10xrpm;//edit in 2812f5

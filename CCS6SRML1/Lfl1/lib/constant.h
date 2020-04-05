@@ -17,7 +17,7 @@
 #define PWM_FREQ 20000 /* PWM frequency (Hz) */
 #define SYSCLK_FREQ 150000000 /* DSP clock frequency (Hz) *///initial is 20
 #define HSCLK 75000000
-#define T1FREQ 50000  // 2000 //9600	//CPU_INT_FREQ 5000 /* timer ISR frequency (Hz) */
+#define T1FREQ 9600	//CPU_INT_FREQ 5000 /* timer ISR frequency (Hz) */
 #define ONE_HALF_SECOND (T1FREQ/2)	//ONE_HALF_SECOND (CPU_INT_FREQ/2)
 /*----------------------------------- */
 /* current loop algorithm constants */
@@ -37,7 +37,7 @@
 
 #define INTEGRAL_LIMIT 2793472 /* integrator limit */
 #define KI 2 /* (Q13*1000): Ki = 0.366 */
-#define KP 2/5 /* Q1: Kp = 0.5 */
+#define KP 1 /* Q1: Kp = 0.5 */
 #define KI2 3 /* (Q13*1000): Ki = 0.366 *///////////////////////waiting for calculate!!!!!!!!!!!!!!!!
 #define KP2 1 /* Q1: Kp = 0.5 */
 #define KI3 3 /* (Q13*1000): Ki = 0.366 *///////////////////////waiting for calculate!!!!!!!!!!!!!!!!
