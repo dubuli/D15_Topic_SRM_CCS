@@ -51,9 +51,9 @@
 ** attention **
 ** 30MHz     **
 **-----------*/	 
-#define K1_VELOCITY_EST 263671875	//421875000//281250000//Page 181
+#define K1_VELOCITY_EST 263671875	//使用75Mhz/64的时钟频率来计算的。    //421875000//281250000//Page 181
 
-#define K2_VELOCITY_EST 62500
+#define K2_VELOCITY_EST 62500		//使用 5000Hz 的count 来计算的
 
 #define ALPHA 7 /* Q3: alpha = 0.875 */
 #define ONE_MINUS_ALPHA 1 /* Q3: 1-alpha = 0.125 */
