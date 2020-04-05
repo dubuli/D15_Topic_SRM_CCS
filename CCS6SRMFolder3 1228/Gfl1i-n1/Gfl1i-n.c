@@ -111,7 +111,7 @@ void main(void)
 
 	SpeedPiFlag=0;
 	speed_error=0;
-	iDes=CURRENT_1A*0.6;	//gfl1i-n2
+	iDes=CURRENT_1A*0.8;	//gfl1i-n2
 	StartFlag=0;
 
 	SRM.wDes_10xrpm=4000;	//Desninate rpm
@@ -175,6 +175,8 @@ after the above lines, the ACK5=1; IFR=0x10;
 			//EvbRegs.ACTRB.bit.CMP7-12ACT=3; //forecd high, PWM is forbiddend
 			StartFlag=0;
 		}
+
+		//limit the current to 3A	//Set a Flag, break when Flag==5
 		else if(SRM.iFB[0]>CURRENT_1A*3 || SRM.iFB[1]>CURRENT_1A*3 || SRM.iFB[2]>CURRENT_1A*3)	{
 			EvbRegs.ACTRB.all = 0xfff;
 
@@ -329,7 +331,7 @@ delete in 2812f4
 
 
 	//	485,transfer the wEst
-		if(!(count%250))		{									//5Hz// 5000/100=50 Hz
+		if(!(count%250))		{							//%250 20Hz		//5Hz// 5000/100=50 Hz
 			GpioDataRegs.GPEDAT.bit.GPIOE1=0;
 			if((SciaTx_Ready() == 1) )//&& (SendFlag == 1))
 				//SciaRegs.SCITXBUF = SRM.wEst_10xrpm;
@@ -349,7 +351,7 @@ delete in 2812f4
 ** 	test the cap module,A8-10	 **
 **-------------------------------*/
 /* Use GPADAT to give a simulate signal to the sensor*/		//simu6pos
-		if(count%417==0)	{						//417 12Hz Intrrupt, equal to 15r/min			// 0.5s per circle
+		if(count%417==0)	{									// 0.5s per circle
 			GpioDataRegs.GPADAT.bit.GPIOA8=simu6pos[simu6count] & 1;
 			GpioDataRegs.GPADAT.bit.GPIOA9=(simu6pos[simu6count]>>1) & 1;
 			GpioDataRegs.GPADAT.bit.GPIOA10=(simu6pos[simu6count]>>2) & 1;
@@ -925,7 +927,13 @@ void Commutation_Algorithm(anSRM_struct *anSRM)	//int the ADC interrupt
 		/* phase current */
 		/*-----------------------------------------------------------*/
 
-		if ((angle >= PIBYSIX_16) && (angle < FIVEPIBYSIX_16))
+		if ((anSRM->wEst_10xrpm<3000) && (angle >= (PIBYSIX_16/8)) && (angle < FIVEPIBYSIX_16))
+		{
+			anSRM->active[phase] = 1;
+			temp = 0x1 << phase;
+			anSRM->iDes[phase] = DESCURRENT;//Important!!
+		}
+		else if ((angle >= (PIBYSIX_16)) && (angle < FIVEPIBYSIX_16))
 		{
 			anSRM->active[phase] = 1;
 			temp = 0x1 << phase;
