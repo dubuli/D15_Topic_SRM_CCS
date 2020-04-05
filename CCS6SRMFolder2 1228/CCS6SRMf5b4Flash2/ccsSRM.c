@@ -1,3 +1,5 @@
+//增量pi调节
+
 //AD实验，采样全为0，未加外部信号。
 #include "DSP281x_Device.h"
 #include "srm.h"
@@ -28,6 +30,7 @@ int CapCount;
 int SpeedPiFlag;
 
 long speed_error;
+long speed_error_old;
 long iDes;
 int StartFlag;
 
@@ -99,6 +102,7 @@ void main(void)
 
 	SpeedPiFlag=0;
 	speed_error=0;
+	speed_error_old=0;
 	iDes=0;
 	StartFlag=0;
 
@@ -146,6 +150,7 @@ after the above lines, the ACK5=1; IFR=0x10;
 	EvbRegs.T3CON.bit.TENABLE=1;
 	EvbRegs.T4CON.bit.TENABLE=1;
 
+
 	for(;;)
 	{
 //		KickDog();
@@ -154,6 +159,10 @@ after the above lines, the ACK5=1; IFR=0x10;
 			EvbRegs.ACTRB.all = 0xfff;
 			//EvbRegs.ACTRB.bit.CMP7-12ACT=3; //forecd high, PWM is forbiddend
 			StartFlag=0;
+		}
+		else if(SRM.iFB[0]>Current_1A*3 || SRM.iFB[1]>Current_1A*3 || SRM.iFB[2]>Current_1A*3)	{
+			EvbRegs.ACTRB.all = 0xfff;
+
 		}
 		else
 			StartFlag=1;
@@ -203,6 +212,7 @@ after the above lines, the ACK5=1; IFR=0x10;
 
 			SpeedPiFlag=0;
 		}
+
 
 
 
@@ -308,6 +318,14 @@ delete in 2812f4
 	}
 
 
+	if(!(count%10))		{										//		need to modify!@!!!!
+		GpioDataRegs.GPETOGGLE.bit.GPIOE1=1;
+		if((SciaTx_Ready() == 1) )//&& (SendFlag == 1))
+			//SciaRegs.SCITXBUF = SRM.wEst_10xrpm;
+			SciaRegs.SCITXBUF=0xf0;
+		//GpioDataRegs.GPATOGGLE.bit.GPIOA12=1;//output led
+	}
+
 
 /*-------------------------------**
 ** 	attention                    **
@@ -370,7 +388,7 @@ void EvbCAP4ISR_INT(void)
 
 	//Added in f5a,if state is illegal (maybe because missing cap interrupt),
 	//use guess position,and old direction
-	if(SRM.position==0 || SRM.shaft_direction==0)	{
+	if(SRM.shaft_direction==0)	{
 		SRM.position = SRM.position_initial_guess[SRM.position_state];
 		SRM.shaft_direction=SRM.shaft_direction_old;
 	}
@@ -442,7 +460,7 @@ void EvbCAP5ISR_INT(void)
 	SRM.shaft_direction_old=SRM.shaft_direction;
 	SRM.shaft_direction = SRM.trans_lut[SRM.position_state][2].direction;//1 -1//attentionmodify
 
-	if(SRM.position==0 || SRM.shaft_direction==0)	{
+	if(SRM.shaft_direction==0)	{
 		SRM.position = SRM.position_initial_guess[SRM.position_state];
 		SRM.shaft_direction=SRM.shaft_direction_old;
 	}
@@ -509,7 +527,7 @@ void EvbCAP6ISR_INT(void)
 	SRM.shaft_direction_old=SRM.shaft_direction;
 	SRM.shaft_direction = SRM.trans_lut[SRM.position_state][3].direction;//1 -1//attentionmodify
 
-	if(SRM.position==0 || SRM.shaft_direction==0)	{
+	if(SRM.shaft_direction==0)	{
 		SRM.position = SRM.position_initial_guess[SRM.position_state];
 		SRM.shaft_direction=SRM.shaft_direction_old;
 	}
@@ -626,30 +644,51 @@ void initializeSRM(anSRM_struct *anSRM)
 	/*--------------------------------------*/
 	/* ’shaft position’ definitions */
 	/*--------------------------------------*/
-	anSRM->trans_lut[1][2].position = TWOPIBYTHREE_16;
-	anSRM->trans_lut[1][3].position = PI_16;
-	anSRM->trans_lut[2][1].position = PIBYTHREE_16;
-	anSRM->trans_lut[2][3].position = 0;
-	anSRM->trans_lut[3][1].position = PIBYTHREE_16;
-	anSRM->trans_lut[3][2].position = TWOPIBYTHREE_16;
-	anSRM->trans_lut[4][1].position = FOURPIBYTHREE_16;
-	anSRM->trans_lut[4][2].position = FIVEPIBYTHREE_16;
-	anSRM->trans_lut[5][1].position = FOURPIBYTHREE_16;
-	anSRM->trans_lut[5][3].position = PI_16;
-	anSRM->trans_lut[6][2].position = FIVEPIBYTHREE_16;
-	anSRM->trans_lut[6][3].position = 0;
+	//	anSRM->trans_lut[1][2].position = TWOPIBYTHREE_16;
+	//	anSRM->trans_lut[1][3].position = PI_16;
+	//	anSRM->trans_lut[2][1].position = PIBYTHREE_16;
+	//	anSRM->trans_lut[2][3].position = 0;
+	//	anSRM->trans_lut[3][1].position = PIBYTHREE_16;
+	//	anSRM->trans_lut[3][2].position = TWOPIBYTHREE_16;
+	//	anSRM->trans_lut[4][1].position = FOURPIBYTHREE_16;
+	//	anSRM->trans_lut[4][2].position = FIVEPIBYTHREE_16;
+	//	anSRM->trans_lut[5][1].position = FOURPIBYTHREE_16;
+	//	anSRM->trans_lut[5][3].position = PI_16;
+	//	anSRM->trans_lut[6][2].position = FIVEPIBYTHREE_16;
+	//	anSRM->trans_lut[6][3].position = 0;
+
+		anSRM->trans_lut[1][2].position = PIBYTHREE_16;
+		anSRM->trans_lut[1][3].position = TWOPIBYTHREE_16;
+		anSRM->trans_lut[2][1].position = 0;
+		anSRM->trans_lut[2][3].position = FIVEPIBYTHREE_16;
+		anSRM->trans_lut[3][1].position = 0;
+		anSRM->trans_lut[3][2].position = PIBYTHREE_16;
+		anSRM->trans_lut[4][1].position = PI_16;
+		anSRM->trans_lut[4][2].position = FOURPIBYTHREE_16;
+		anSRM->trans_lut[5][1].position = PI_16;
+		anSRM->trans_lut[5][3].position = TWOPIBYTHREE_16;
+		anSRM->trans_lut[6][2].position = FOURPIBYTHREE_16;
+		anSRM->trans_lut[6][3].position = FIVEPIBYTHREE_16;
 
 	/*--------------------------------------------------------------------- */
 	/* define initial guesses for each state. The initial position */
 	/* is assumed at the midpoint of each state */
 	/*--------------------------------------------------------------------- */
 	//guessed by the state, MIDPOINT
-	anSRM->position_initial_guess[1] = TWOPIBYTHREE_16 + PIBYSIX_16;
-	anSRM->position_initial_guess[2] = PIBYSIX_16;
-	anSRM->position_initial_guess[3] = PIBYTHREE_16 + PIBYSIX_16;
-	anSRM->position_initial_guess[4] = FOURPIBYTHREE_16 + PIBYSIX_16;
-	anSRM->position_initial_guess[5] = PI_16 + PIBYSIX_16;
-	anSRM->position_initial_guess[6] = FIVEPIBYTHREE_16 + PIBYSIX_16;
+//	anSRM->position_initial_guess[1] = TWOPIBYTHREE_16 + PIBYSIX_16;
+//	anSRM->position_initial_guess[2] = PIBYSIX_16;
+//	anSRM->position_initial_guess[3] = PIBYTHREE_16 + PIBYSIX_16;
+//	anSRM->position_initial_guess[4] = FOURPIBYTHREE_16 + PIBYSIX_16;
+//	anSRM->position_initial_guess[5] = PI_16 + PIBYSIX_16;
+//	anSRM->position_initial_guess[6] = FIVEPIBYTHREE_16 + PIBYSIX_16;
+
+
+	anSRM->position_initial_guess[5] = TWOPIBYTHREE_16 + PIBYSIX_16;
+	anSRM->position_initial_guess[3] = PIBYSIX_16;
+	anSRM->position_initial_guess[1] = PIBYTHREE_16 + PIBYSIX_16;
+	anSRM->position_initial_guess[6] = FOURPIBYTHREE_16 + PIBYSIX_16;
+	anSRM->position_initial_guess[4] = PI_16 + PIBYSIX_16;
+	anSRM->position_initial_guess[2] = FIVEPIBYTHREE_16 + PIBYSIX_16;
 
 	/*------------------------------------------------------*/
 	/* read opto-couplers and get initial position estimate */
@@ -757,7 +796,7 @@ void currentController(anSRM_struct *anSRM)
 		{
 
 
-			if(anSRM->iFB[phase] > (iDes + 30))		//184-800mA,92-400mA	//chopcurrent
+			if(anSRM->iFB[phase] > (iDes + 10))		//184-800mA,92-400mA	//chopcurrent
 			{
 				anSRM->dutyRatio[phase]=0;//compare to output LOW
 			}

@@ -84,6 +84,11 @@ attention!
 	GpioMuxRegs.GPADIR.bit.GPIOA8=1;
 	GpioMuxRegs.GPADIR.bit.GPIOA9=1;
 	GpioMuxRegs.GPADIR.bit.GPIOA10=1;
+
+	//485
+	GpioMuxRegs.GPEMUX.bit.XINT2_ADCSOC_GPIOE1=0;
+	GpioMuxRegs.GPEDIR.bit.GPIOE1=1;
+
 	EDIS;
 }	
 	
