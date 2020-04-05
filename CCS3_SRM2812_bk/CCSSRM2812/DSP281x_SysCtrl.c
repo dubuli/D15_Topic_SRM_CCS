@@ -22,8 +22,9 @@
 /*------------------------------------------*/ 
 void InitSysCtrl(void)
 {
-   DisableDog();//禁止看门狗
-   InitPll(0x8);//设置系统时钟=XCLKIN*8/2
+   DisableDog();//禁止看门狗,Attetion2!!To be set after!!!
+   InitPll(0x2);//设置系统时钟=XCLKIN*8/2!!Attetion2!
+   //外部时钟是什么？？频率是多少？？
    InitPeripheralClocks();	//设置外设时钟
    DINT;           		 	// 关闭总中断
    IER = 0x0000;   			// 关闭外设中断
@@ -84,7 +85,7 @@ void InitPeripheralClocks(void)
 {
    EALLOW;
 
-   SysCtrlRegs.HISPCP.all = 0x0001;//设置高速时钟 2分频
+   SysCtrlRegs.HISPCP.all = 0x0000;//设置高速时钟 n分频
    SysCtrlRegs.LOSPCP.all = 0x0002;//设置低速时钟 4分频
 
    //使能外围模块时钟

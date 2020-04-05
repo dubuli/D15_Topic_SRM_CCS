@@ -1,203 +1,28 @@
 ------------------------------  PWM.pjt - Debug  ------------------------------
-[DSP281x_CodeStartBranch.asm] "C:\CCStudio_v3.3\C2000\cgtools\bin\cl2000" -g -pdr -fr"C:/sSRM2812/Debug" -d"_DEBUG" -d"LARGE_MODEL" -ml -mt -v28 -@"Debug.lkf" "DSP281x_CodeStartBranch.asm"
+[DSP281x_CodeStartBranch.asm] "C:\CCStudio_v3.3\C2000\cgtools\bin\cl2000" -g -pdr -fr"C:/sSRM2812a/Debug" -d"_DEBUG" -d"LARGE_MODEL" -ml -mt -v28 -@"Debug.lkf" "DSP281x_CodeStartBranch.asm"
 
-[DSP281x_DefaultIsr.c] "C:\CCStudio_v3.3\C2000\cgtools\bin\cl2000" -g -pdr -fr"C:/sSRM2812/Debug" -d"_DEBUG" -d"LARGE_MODEL" -ml -mt -v28 -@"Debug.lkf" "DSP281x_DefaultIsr.c"
+[DSP281x_DefaultIsr.c] "C:\CCStudio_v3.3\C2000\cgtools\bin\cl2000" -g -pdr -fr"C:/sSRM2812a/Debug" -d"_DEBUG" -d"LARGE_MODEL" -ml -mt -v28 -@"Debug.lkf" "DSP281x_DefaultIsr.c"
 
-[DSP281x_GlobalVariableDefs.c] "C:\CCStudio_v3.3\C2000\cgtools\bin\cl2000" -g -pdr -fr"C:/sSRM2812/Debug" -d"_DEBUG" -d"LARGE_MODEL" -ml -mt -v28 -@"Debug.lkf" "DSP281x_GlobalVariableDefs.c"
+[DSP281x_GlobalVariableDefs.c] "C:\CCStudio_v3.3\C2000\cgtools\bin\cl2000" -g -pdr -fr"C:/sSRM2812a/Debug" -d"_DEBUG" -d"LARGE_MODEL" -ml -mt -v28 -@"Debug.lkf" "DSP281x_GlobalVariableDefs.c"
 
-[DSP281x_MemCopy.c] "C:\CCStudio_v3.3\C2000\cgtools\bin\cl2000" -g -pdr -fr"C:/sSRM2812/Debug" -d"_DEBUG" -d"LARGE_MODEL" -ml -mt -v28 -@"Debug.lkf" "DSP281x_MemCopy.c"
+[DSP281x_MemCopy.c] "C:\CCStudio_v3.3\C2000\cgtools\bin\cl2000" -g -pdr -fr"C:/sSRM2812a/Debug" -d"_DEBUG" -d"LARGE_MODEL" -ml -mt -v28 -@"Debug.lkf" "DSP281x_MemCopy.c"
 
-[DSP281x_PieCtrl.c] "C:\CCStudio_v3.3\C2000\cgtools\bin\cl2000" -g -pdr -fr"C:/sSRM2812/Debug" -d"_DEBUG" -d"LARGE_MODEL" -ml -mt -v28 -@"Debug.lkf" "DSP281x_PieCtrl.c"
+[DSP281x_PieCtrl.c] "C:\CCStudio_v3.3\C2000\cgtools\bin\cl2000" -g -pdr -fr"C:/sSRM2812a/Debug" -d"_DEBUG" -d"LARGE_MODEL" -ml -mt -v28 -@"Debug.lkf" "DSP281x_PieCtrl.c"
 
-[DSP281x_PieVect.c] "C:\CCStudio_v3.3\C2000\cgtools\bin\cl2000" -g -pdr -fr"C:/sSRM2812/Debug" -d"_DEBUG" -d"LARGE_MODEL" -ml -mt -v28 -@"Debug.lkf" "DSP281x_PieVect.c"
+[DSP281x_PieVect.c] "C:\CCStudio_v3.3\C2000\cgtools\bin\cl2000" -g -pdr -fr"C:/sSRM2812a/Debug" -d"_DEBUG" -d"LARGE_MODEL" -ml -mt -v28 -@"Debug.lkf" "DSP281x_PieVect.c"
 
-[DSP281x_SysCtrl.c] "C:\CCStudio_v3.3\C2000\cgtools\bin\cl2000" -g -pdr -fr"C:/sSRM2812/Debug" -d"_DEBUG" -d"LARGE_MODEL" -ml -mt -v28 -@"Debug.lkf" "DSP281x_SysCtrl.c"
+[DSP281x_SysCtrl.c] "C:\CCStudio_v3.3\C2000\cgtools\bin\cl2000" -g -pdr -fr"C:/sSRM2812a/Debug" -d"_DEBUG" -d"LARGE_MODEL" -ml -mt -v28 -@"Debug.lkf" "DSP281x_SysCtrl.c"
 
-[Evmgr.c] "C:\CCStudio_v3.3\C2000\cgtools\bin\cl2000" -g -pdr -fr"C:/sSRM2812/Debug" -d"_DEBUG" -d"LARGE_MODEL" -ml -mt -v28 -@"Debug.lkf" "Evmgr.c"
-"Evmgr.c", line 9: warning: nested comment is not allowed
-"srm.h", line 48: warning: nested comment is not allowed
-"srm.h", line 49: warning: nested comment is not allowed
-"srm.h", line 50: warning: nested comment is not allowed
-"srm.h", line 51: warning: nested comment is not allowed
-"srm.h", line 52: warning: nested comment is not allowed
-"srm.h", line 53: warning: nested comment is not allowed
-"srm.h", line 54: warning: nested comment is not allowed
-"srm.h", line 55: warning: nested comment is not allowed
-"srm.h", line 56: warning: nested comment is not allowed
-"srm.h", line 57: warning: nested comment is not allowed
-"srm.h", line 58: warning: nested comment is not allowed
-"srm.h", line 59: warning: nested comment is not allowed
-"srm.h", line 60: warning: nested comment is not allowed
-"srm.h", line 61: warning: nested comment is not allowed
-"Evmgr.c", line 355: warning: nested comment is not allowed
-"Evmgr.c", line 356: warning: nested comment is not allowed
-"Evmgr.c", line 357: warning: nested comment is not allowed
-"Evmgr.c", line 358: warning: nested comment is not allowed
-"Evmgr.c", line 359: warning: nested comment is not allowed
-"Evmgr.c", line 360: warning: nested comment is not allowed
-"Evmgr.c", line 361: warning: nested comment is not allowed
-"Evmgr.c", line 362: warning: nested comment is not allowed
-"Evmgr.c", line 363: warning: nested comment is not allowed
-"Evmgr.c", line 364: warning: nested comment is not allowed
-"Evmgr.c", line 365: warning: nested comment is not allowed
-"Evmgr.c", line 366: remark: parameter "adc1" was never referenced
-"Evmgr.c", line 366: remark: parameter "adc2" was never referenced
-"Evmgr.c", line 379: warning: nested comment is not allowed
-"Evmgr.c", line 380: warning: nested comment is not allowed
-"Evmgr.c", line 381: warning: nested comment is not allowed
-"Evmgr.c", line 382: warning: nested comment is not allowed
-"Evmgr.c", line 383: warning: nested comment is not allowed
-"Evmgr.c", line 384: warning: nested comment is not allowed
-"Evmgr.c", line 385: warning: nested comment is not allowed
-"Evmgr.c", line 386: warning: nested comment is not allowed
-"Evmgr.c", line 387: warning: nested comment is not allowed
-"Evmgr.c", line 388: warning: nested comment is not allowed
-"Evmgr.c", line 389: warning: nested comment is not allowed
-"Evmgr.c", line 408: warning: nested comment is not allowed
-"Evmgr.c", line 409: warning: nested comment is not allowed
-"Evmgr.c", line 410: warning: nested comment is not allowed
-"Evmgr.c", line 411: warning: nested comment is not allowed
-"Evmgr.c", line 412: warning: nested comment is not allowed
-"Evmgr.c", line 413: warning: nested comment is not allowed
-"Evmgr.c", line 414: warning: nested comment is not allowed
-"Evmgr.c", line 415: warning: nested comment is not allowed
-"Evmgr.c", line 416: warning: nested comment is not allowed
-"Evmgr.c", line 417: warning: nested comment is not allowed
-"Evmgr.c", line 418: warning: nested comment is not allowed
-"Evmgr.c", line 419: warning: nested comment is not allowed
-"Evmgr.c", line 420: warning: nested comment is not allowed
-"Evmgr.c", line 421: warning: nested comment is not allowed
-"Evmgr.c", line 422: warning: nested comment is not allowed
-"Evmgr.c", line 425: warning: variable "action" was declared but never referenced
-"Evmgr.c", line 477: warning: nested comment is not allowed
-"Evmgr.c", line 478: warning: nested comment is not allowed
-"Evmgr.c", line 479: warning: nested comment is not allowed
-"Evmgr.c", line 480: warning: nested comment is not allowed
-"Evmgr.c", line 481: warning: nested comment is not allowed
-"Evmgr.c", line 482: warning: nested comment is not allowed
-"Evmgr.c", line 483: warning: nested comment is not allowed
-"Evmgr.c", line 484: warning: nested comment is not allowed
-"Evmgr.c", line 515: warning: last line of file ends without a newline
+[Evmgr.c] "C:\CCStudio_v3.3\C2000\cgtools\bin\cl2000" -g -pdr -fr"C:/sSRM2812a/Debug" -d"_DEBUG" -d"LARGE_MODEL" -ml -mt -v28 -@"Debug.lkf" "Evmgr.c"
+"Evmgr.c", line 142: remark: parameter "adc1" was never referenced
+"Evmgr.c", line 142: remark: parameter "adc2" was never referenced
 
-[main.c] "C:\CCStudio_v3.3\C2000\cgtools\bin\cl2000" -g -pdr -fr"C:/sSRM2812/Debug" -d"_DEBUG" -d"LARGE_MODEL" -ml -mt -v28 -@"Debug.lkf" "main.c"
-"main.c", line 2: warning: nested comment is not allowed
-"main.c", line 3: warning: nested comment is not allowed
-"main.c", line 4: warning: nested comment is not allowed
-"main.c", line 5: warning: nested comment is not allowed
-"main.c", line 6: warning: nested comment is not allowed
-"main.c", line 7: warning: nested comment is not allowed
-"main.c", line 8: warning: nested comment is not allowed
-"main.c", line 9: warning: nested comment is not allowed
-"main.c", line 10: warning: nested comment is not allowed
-"main.c", line 11: warning: nested comment is not allowed
-"main.c", line 12: warning: nested comment is not allowed
-"srm.h", line 48: warning: nested comment is not allowed
-"srm.h", line 49: warning: nested comment is not allowed
-"srm.h", line 50: warning: nested comment is not allowed
-"srm.h", line 51: warning: nested comment is not allowed
-"srm.h", line 52: warning: nested comment is not allowed
-"srm.h", line 53: warning: nested comment is not allowed
-"srm.h", line 54: warning: nested comment is not allowed
-"srm.h", line 55: warning: nested comment is not allowed
-"srm.h", line 56: warning: nested comment is not allowed
-"srm.h", line 57: warning: nested comment is not allowed
-"srm.h", line 58: warning: nested comment is not allowed
-"srm.h", line 59: warning: nested comment is not allowed
-"srm.h", line 60: warning: nested comment is not allowed
-"srm.h", line 61: warning: nested comment is not allowed
-"main.c", line 70: warning: nested comment is not allowed
-"main.c", line 71: warning: nested comment is not allowed
-"main.c", line 72: warning: nested comment is not allowed
-"main.c", line 73: warning: nested comment is not allowed
-"main.c", line 74: warning: nested comment is not allowed
-"main.c", line 75: warning: nested comment is not allowed
-"main.c", line 76: warning: nested comment is not allowed
-"main.c", line 77: warning: nested comment is not allowed
-"main.c", line 78: warning: nested comment is not allowed
-"main.c", line 79: warning: nested comment is not allowed
-"main.c", line 80: warning: nested comment is not allowed
-"main.c", line 81: warning: nested comment is not allowed
-"main.c", line 82: warning: nested comment is not allowed
-"main.c", line 83: warning: nested comment is not allowed
-"main.c", line 84: warning: nested comment is not allowed
-"main.c", line 85: warning: nested comment is not allowed
-"main.c", line 86: warning: nested comment is not allowed
-"main.c", line 89: remark: controlling expression is constant
-"main.c", line 102: warning: nested comment is not allowed
-"main.c", line 103: warning: nested comment is not allowed
-"main.c", line 104: warning: nested comment is not allowed
-"main.c", line 143: warning: nested comment is not allowed
-"main.c", line 144: warning: nested comment is not allowed
-"main.c", line 145: warning: nested comment is not allowed
-"main.c", line 146: warning: nested comment is not allowed
-"main.c", line 147: warning: nested comment is not allowed
-"main.c", line 148: warning: nested comment is not allowed
-"main.c", line 149: warning: nested comment is not allowed
-"main.c", line 150: warning: nested comment is not allowed
-"main.c", line 151: warning: nested comment is not allowed
-"main.c", line 152: warning: nested comment is not allowed
-"main.c", line 153: warning: nested comment is not allowed
-"main.c", line 154: warning: nested comment is not allowed
-"main.c", line 155: warning: nested comment is not allowed
-"main.c", line 156: warning: nested comment is not allowed
-"main.c", line 157: warning: nested comment is not allowed
-"main.c", line 158: warning: nested comment is not allowed
-"main.c", line 159: warning: nested comment is not allowed
-"main.c", line 160: warning: nested comment is not allowed
-"main.c", line 161: warning: nested comment is not allowed
-"main.c", line 162: warning: nested comment is not allowed
-"main.c", line 163: warning: nested comment is not allowed
-"main.c", line 164: warning: nested comment is not allowed
-"main.c", line 165: warning: nested comment is not allowed
-"main.c", line 166: warning: nested comment is not allowed
-"main.c", line 167: warning: nested comment is not allowed
-"main.c", line 168: warning: nested comment is not allowed
-"main.c", line 169: warning: nested comment is not allowed
-"main.c", line 219: warning: nested comment is not allowed
-"main.c", line 220: warning: nested comment is not allowed
-"main.c", line 221: warning: nested comment is not allowed
-"main.c", line 222: warning: nested comment is not allowed
-"main.c", line 223: warning: nested comment is not allowed
-"main.c", line 224: warning: nested comment is not allowed
-"main.c", line 225: warning: nested comment is not allowed
-"main.c", line 226: warning: nested comment is not allowed
-"main.c", line 227: warning: nested comment is not allowed
-"main.c", line 228: warning: nested comment is not allowed
-"main.c", line 229: warning: nested comment is not allowed
-"main.c", line 230: warning: nested comment is not allowed
-"main.c", line 231: warning: nested comment is not allowed
-"main.c", line 232: warning: nested comment is not allowed
-"main.c", line 233: warning: nested comment is not allowed
-"main.c", line 234: warning: nested comment is not allowed
-"main.c", line 235: warning: nested comment is not allowed
-"main.c", line 236: warning: nested comment is not allowed
-"main.c", line 237: warning: nested comment is not allowed
-"main.c", line 238: warning: nested comment is not allowed
-"main.c", line 260: remark: function declared implicitly
-"main.c", line 267: remark: function declared implicitly
-"main.c", line 273: remark: function declared implicitly
+[main.c] "C:\CCStudio_v3.3\C2000\cgtools\bin\cl2000" -g -pdr -fr"C:/sSRM2812a/Debug" -d"_DEBUG" -d"LARGE_MODEL" -ml -mt -v28 -@"Debug.lkf" "main.c"
 
-[srm.c] "C:\CCStudio_v3.3\C2000\cgtools\bin\cl2000" -g -pdr -fr"C:/sSRM2812/Debug" -d"_DEBUG" -d"LARGE_MODEL" -ml -mt -v28 -@"Debug.lkf" "srm.c"
-"srm.h", line 48: warning: nested comment is not allowed
-"srm.h", line 49: warning: nested comment is not allowed
-"srm.h", line 50: warning: nested comment is not allowed
-"srm.h", line 51: warning: nested comment is not allowed
-"srm.h", line 52: warning: nested comment is not allowed
-"srm.h", line 53: warning: nested comment is not allowed
-"srm.h", line 54: warning: nested comment is not allowed
-"srm.h", line 55: warning: nested comment is not allowed
-"srm.h", line 56: warning: nested comment is not allowed
-"srm.h", line 57: warning: nested comment is not allowed
-"srm.h", line 58: warning: nested comment is not allowed
-"srm.h", line 59: warning: nested comment is not allowed
-"srm.h", line 60: warning: nested comment is not allowed
-"srm.h", line 61: warning: nested comment is not allowed
-"srm.c", line 237: remark: function declared implicitly
-"srm.c", line 252: remark: function declared implicitly
-"srm.c", line 303: remark: function declared implicitly
+[srm.c] "C:\CCStudio_v3.3\C2000\cgtools\bin\cl2000" -g -pdr -fr"C:/sSRM2812a/Debug" -d"_DEBUG" -d"LARGE_MODEL" -ml -mt -v28 -@"Debug.lkf" "srm.c"
 
 [Linking...] "C:\CCStudio_v3.3\C2000\cgtools\bin\cl2000" -@"Debug.lkf"
 <Linking>
 
 Build Complete,
-  0 Errors, 168 Warnings, 9 Remarks.
+  0 Errors, 0 Warnings, 2 Remarks.

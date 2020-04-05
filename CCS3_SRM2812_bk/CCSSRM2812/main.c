@@ -1,22 +1,9 @@
-/*+++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++
-/*
-/*File: MAIN.C
-/*Target Processor: TMS320F240
-/*Compiler Version: 6.6
-/*Assembler Version: 6.6
-/*Created: 10/31/97
-/*
-/*+++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++
-/* This file is the main program for the control of an SRM drive with a
-/*position sensor
-/*++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++*/
-/*------------------------------------------------------------------*/
-/*INCLUDE FILES */
-/*------------------------------------------------------------------*/
-#include "c240.h"
+/*File: MAIN.C---------------------*/
+//#include "c240.h"
 #include "srm.h"
 #include "DSP281x_Device.h"
 #include "System.h"
+#include "typedefs.h"
 /*---------------------------------------------------------*/
 /*GLOBAL VARIABLE DECLARATIONS */
 /*---------------------------------------------------------*/
@@ -28,8 +15,15 @@ int Toggle_LED;
 int Msmt_Update;
 anSRM_struct SRM;
 int LEDvalue;
+
+
+int Error1;
+int PosError;
+
+
+
 interrupt void AdcInt_ISR(void);
-interrupt void EvbCAPISR_INT(void);
+void EvbCAPISR_INT(void);
 void eventmgr_init();
 void initializeSRM(anSRM_struct *anSRM);
 void Commutation_Algorithm(anSRM_struct *anSRM);
@@ -47,7 +41,7 @@ void initialize_counters_and_flags();
 void enable_interrupts();
 void start_background();
 void check_for_stall();
-
+extern WORD read_fifo(int capture);
 
 /*-------------------------------------------------------*/
 /*MAIN PROGRAM */
@@ -56,41 +50,57 @@ void main()
 {
 	InitSysCtrl();
 	
+
+	EALLOW;
+	GpioMuxRegs.GPADIR.bit.GPIOA15=1;//设置D1对应的DSP引脚为输出
+	GpioMuxRegs.GPADIR.bit.GPIOA14=1;
+	EDIS;
+	GpioDataRegs.GPADAT.bit.GPIOA14=0;//D1对应输出电平
+	GpioDataRegs.GPADAT.bit.GPIOA15=0;//D1对应输出电平
 	initializeSRM(&SRM);
 	eventmgr_init();
+
 	initialize_counters_and_flags();
+	Error1=1;
+	PosError=0;
 	enable_interrupts();
 	start_background();
 }
 
-/*+++++++++++++++++++++++++++++++++++++++++++++++++++++++++ */
-/*BACKGROUND TASKS */
-/*--------------------------------------------------------- */
-/*Upon completion of the required initialization, the main
-/*program starts the background task. The background is
-/*simply an infinite loop. Time critical motor control
-/*processing is done via interrupt service routines and lower
-/*priority processing is done in the background, when they
-/*are needed. Two background operations are defined:
-/*
-/*1) Update_Velocity - when a capture interrupt occurs,
-/* the ISR stores the capture data and then intiates
-/* this task. The velocity update is done in
-/* background, because it is doing a floating point
-/* division.
-/*2) Toggle_LED - this task toggles an LED on the EVM to
-/* provide visual feedback to the user that the code
-/* is running. This task is initiated at a fixed
-/* rate set by the ONE_HALF_SECOND value.
-/*
-/*+++++++++++++++++++++++++++++++++++++++++++++++++++++++++ */
 void start_background()
 {
-	while (1)
+	while (Error1==1)
+	{
+		SRM.position_state = GpioDataRegs.GPADAT.all & 0x7;
+		if(SRM.position_state == 0 || SRM.position_state==7)
+		{
+			PosError+=1;
+		}
+		else
+		{
+			PosError-=1;
+
+		}
+		
+		if(PosError > 5)
+		{
+			Error1=1;
+			PosError=0;
+		}
+		else if(PosError < -5)
+		{
+			Error1=0;
+			PosError=0;
+		}
+
+	}
+	
+	while (Error1==0)
 	{
 		/*----------------------*/
 		/* Velocity update task */
 		/*----------------------*/
+
 		if (Update_Velocity) 
 		{
 			if (Update_Velocity == 1) 
@@ -98,10 +108,8 @@ void start_background()
 				/* as time base */
 				Msmt_Update_Velocity(&SRM, 1);
 			}
-			else { /* else shaft is rotating too slowly, capture
-				   /* data may be in error by overflow.
-				   /* use count of timer ISR’s between captures
-				   /* as time base. */
+			else { 
+
 				Msmt_Update_Velocity(&SRM, 2);
 			}
 			Update_Velocity = 0;
@@ -115,15 +123,9 @@ void start_background()
 
 		if (Toggle_LED) 
 		{
-			LEDvalue = -LEDvalue;
-			if (LEDvalue == 1) 
-			{
-			//	asm(" OUT 1, 000ch");
-			}
-			else 
-			{
-			//	asm(" OUT 0, 000ch");
-			}
+
+			GpioDataRegs.GPATOGGLE.bit.GPIOA14=1;
+
 			Toggle_LED = 0;
 
 
@@ -135,39 +137,6 @@ void start_background()
 		}
 	} /* infinite loop */
 }
-
-/*+++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++*/
-/*TIMER ISR */
-/*-----------------------------------------------------------------*/
-/*
-/*This interrupt service routine is executed at each
-/*occurence of the maskable CPU interrupt INT3. This CPU
-/*interrupt corresponds to the event manager group B interrupts,
-/*of which we enable only the timer #3 period interrupt, TPINT3.
-/*The frequency, F, at which this routine is executed is specified
-/*using the CPU_INT_FREQ parameter.
-/*
-/*The SRM control algorithms which are implemented during the
-/*timer ISR are:
-/*
-/* 1. Current control (frequency = F)
-/* 2. Rotor position estimation (frequency = F)
-/* 3. Commutation (frequency = F/5)
-/* 4. Velocity control (frequency = F/5)
-/*
-/*Additionally, time can be measured (coarsely) by counting
-/*the number of executions of this ISR, which runs at a
-/*known fixed rate. This measure of time is used for several
-/*reasons, including:
-/*
-/*- For precaution against over-current, a simple
-/*test is made to determine if the rotor has stalled.
-/*
-/*- Also, the visual feedback task is initiated if the correct
-/*amount of time has elapsed.
-/*
-/*+++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++*/
-//void c_int3()
 interrupt void AdcInt_ISR(void)		//2
 
 {
@@ -212,32 +181,8 @@ interrupt void AdcInt_ISR(void)		//2
 	AdcRegs.ADCTRL2.bit.RST_SEQ1 = 0;
 	EINT;
 }
-/*+++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++ */
-/*CAPTURE ISR */
-/*----------------------------------------------------------------- */
-/*
-/*This interrupt service routine is executed at each
-/*occurence of the maskable CPU interrupt INT4. This CPU
-/*interrupt corresponds to the event manager group C interrupts,
-/*of which we enable the three capture event interrupts,
-/*CAPINT1-3. This ISR executes asynchronously and the
-/*frequency of execution is dependent on the shaft speed
-/*of the SRM.
-/*
-/*The ISR performs the following processing:
-/*
-/* clear interrupt flags;
-/* determine which capture has occured;
-/* read the appropriate capture FIFO register;
-/* store capture data;
-/* set flag for position update using measurement;
-/* set flag for initiating velocity estimate
-/* update in background;
-/* return;
-/*
-/*+++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++*/
-//void c_int4()
-interrupt void EvbCAPISR_INT(void)		//2
+
+void EvbCAPISR_INT(void)		//2
 {
 	int groupc_flags;
 	int capture;
@@ -245,10 +190,7 @@ interrupt void EvbCAPISR_INT(void)		//2
 	int delta_count;
 	WORD edge_time;
 	//*IFR_REG = 0x0008; /* clear CPU interrupt flag */
-	///*--------------------------------------------------------*/
-	///* determine which capture interrupt occured and read */
-	///* the appropriate FIFO */
-	///*--------------------------------------------------------*/
+
 	//groupc_flags = *IFRC; /* read event manger interrupt */  //读取是哪个中断
 	/* flag register */
 	groupc_flags = EvbRegs.EVBIFRC.all; /* read event manger interrupt */
@@ -277,19 +219,8 @@ interrupt void EvbCAPISR_INT(void)		//2
 		EvbRegs.EVBIFRC.all = 0xff;//2
 		capture = 0;
 	}
-	/*---------------------------------------------------------------*/
-	/* if a valid capture occured, store capture data and set flags */
-	/* foor position and velocity estimate updates. The most */
-	/* recent two time intervals between edges is saved */
-	/* to allow for some filtering of the velocity estimate. */
-	/* The number of timer ISR’s which occur between capture */
-	/* interrupts is also checked. When this time exceeds a */
-	/* certain value, then the capture data could be in error */
-	/* by an overflow, so the lower resolution delta-time */
-	/* associated with the ISR count is used in the velocity */
-	/* estimate calculation. */
 
-	/*--------------------------------------------------------------- */
+
 	if (capture > 0) 
 	{
 		SRM.last_capture = capture; /* save capture data */
@@ -319,44 +250,9 @@ interrupt void EvbCAPISR_INT(void)		//2
 			Update_Velocity = 1;
 		}
 	}
+	PieCtrlRegs.PIEACK.all = 0x0010;
 }
-/*+++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++ */
-/*UTILITY SUBROUTINES */
-/*+++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++ */
-/*******************************************************************
-void disable_interrupts()
-{
-	asm(" SETC INTM");
-}
-*****************************************************************/
 
-
-//void dsp_setup() 
-//{
-//	int temp;
-//	/*------------------------*/
-//	/* Disable watchdog timer */
-//	/*------------------------*/
-//	temp = *WDCR;
-//	temp = temp | 0x68;
-//	*WDCR = temp;
-//
-//
-//
-//
-//	/*--------------------------------------*/
-//	/* initialize PLL module (10 MHz XTAL1) */
-//	/*--------------------------------------*/
-//	*CKCR1 = 0xb1; /* 20MHz CPUCLK = 10MHz crystal */
-//	/* and 2x PLL mult ratio */
-//	*CKCR0 = 0xc3; /* low-power mode 0, */
-//	/* ACLK enabled, */
-//	/* PLL enabled, */
-//	/* SYSCLK=CPUCLK/2 */
-//	*SYSCR = 0x40c0;
-//}
-
-/************************************************************************/
 void initialize_counters_and_flags() {
 	count = 0; /* current timer ISR count */
 	slice = 0; /* ISR slice count */
@@ -370,41 +266,22 @@ void initialize_counters_and_flags() {
 	Msmt_Update = 0; /* flag for mode of position */
 	/* estimate update */
 }
-/************************************************************************/
+
+
 void enable_interrupts() 
 {
 	EINT;
 	ERTM;
 
-
-
-
-	//*IFR_REG = 0xffff; /* Clear pending interrupts */
-	//*IFRA = 0xffff;
-	//*IFRB = 0xffff;
-	//*IFRC = 0xffff;
-	//*IMR_REG = 0x000c; /* Enable CPU Interrupts: */
-	///* INT4 & INT3 */
-	//*IMRA = 0x0000; /* Disable all event manager */
-	///* Group A interrupts */
-	//*IMRB = 0x0010; /* Enable timer 3 period */
-	///* interrupt */
-	//*IMRC = 0x0007; /* Enable CAP1-CAP3 interrupts*/
-	//asm(" CLRC INTM"); /* Global interrupt enable */
 }
 /************************************************************************/
 void check_for_stall()
 {
 	int delta_count;
-	/*---------------------------------------------------------------*/
-	/* The SRM is assumed to have stalled if the number of timer */
-	/* ISR’s which are executed exceeds 1000. At F = 5 kHz */
-	/* this corresponds to roughly 6 rpm. If this condition */
-	/* is detected, the opto-coupler levels are read and the */
-	/* rotor position is re-initialized */
-	/*---------------------------------------------------------------*/
+
 	delta_count = count - old_count;
-	if (delta_count < 0) delta_count = delta_count + ONE_HALF_SECOND;
+	if (delta_count < 0) 
+	delta_count = delta_count + ONE_HALF_SECOND;
 	if (delta_count > 1000) 
 	{
 		SRM.wEst_10xrpm = 0;

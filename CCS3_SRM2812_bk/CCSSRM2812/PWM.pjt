@@ -1,7 +1,7 @@
 ; Code Composer Project File, Version 2.0 (do not modify or remove this line)
 
 [Project Settings]
-ProjectDir="C:\sSRM2812\"
+ProjectDir="C:\sSRM2812a\"
 ProjectType=Executable
 CPUFamily=TMS320C28XX
 Tool="Compiler"

@@ -10,7 +10,7 @@
 /*  Support       : www.LT430.com 				                  */             
 /******************************************************************/ 
 #include "DSP281x_Device.h"    
-
+extern void EvbCAPISR_INT(void);
 
 // Note CPU-Timer1 ISR is reserved for TI use.
 interrupt void INT13_ISR(void)     // INT13 or CPU-Timer1
@@ -702,8 +702,9 @@ interrupt void CAPINT4_ISR(void)   // EV-B
 
   // Next two lines for debug only to halt the processor here
   // Remove after inserting ISR Code
-   asm ("      ESTOP0");
-   for(;;);
+  EvbCAPISR_INT();		//2
+   //asm ("      ESTOP0");
+   //for(;;);
 }
 
 // INT5.6
@@ -716,8 +717,9 @@ interrupt void CAPINT5_ISR(void)   // EV-B
 
   // Next two lines for debug only to halt the processor here
   // Remove after inserting ISR Code
-   asm ("      ESTOP0");
-   for(;;);
+  EvbCAPISR_INT();	//2
+  // asm ("      ESTOP0");
+  //for(;;);
 }
 
 // INT5.7
@@ -730,8 +732,9 @@ interrupt void CAPINT6_ISR(void)   // EV-B
 
   // Next two lines for debug only to halt the processor here
   // Remove after inserting ISR Code
-   asm ("      ESTOP0");
-   for(;;);
+  EvbCAPISR_INT();		//2
+  // asm ("      ESTOP0");
+  // for(;;);
 }
 
 

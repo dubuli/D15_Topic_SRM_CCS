@@ -1,61 +1,33 @@
-/*+++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++ */
-/* File: SRM.C */
-/*Target Processor: TMS320F240 */
-/*Compiler Version: 6.6 */
-/*Assembler Version: 6.6 */
-/*Created: 10/31/97 */
-/*----------------------------------------------------------------- */
-/* This file contains the algorithms for control of anSRM using */
-/*a position sensor. The position sensor consists of a slotted */
-/*disk and opto-couplers. */
-/*+++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++ */
-/*----------------------------------------------------------------- */
-/*INCLUDE FILES */
-/*---------------------------------------------------------------- */
-#include "srm.h"
-#include "c240.h"
 
+/* File: SRM.C */
+
+#include "srm.h"
+//#include "c240.h"
+#include "typedefs.h"
 
 #include "DSP281x_Device.h"
 #include "System.h"
-interrupt void AdcInt_ISR(void);
-interrupt void EvbCAPISR_INT(void);
-/*+++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++ */
-/*TIME UPDATE OF THE ROTOR POSITION ESTIMATE */
-/*---------------------------------------------------------------- */
-/* Between the capture events, which provide a shaft position */
-/*measurement, position is estimated according to the equation */
-/* */
-/* theta(k) = theta(k-1) + w * delta_t; */
-/* */
-/*where theta = the position measurement (electrical angle) */
-/* w = the current shaft velocity estimate */
-/* delta_t = the execution frequency of the algorithm */
-/* */
-/*The arithmetic is performed using double precision. */
-/* */
-/*input: old position (where 2^16 = 2*pi radians) */
-/* w (units of rpm * 10) */
-/* K (constant incorporate delta_t and units) */
-/* */
-/*output: new position (where 2^16 = 2*pi radians) */
-/* */
-/*pseudo-code: dp = w * K; */
-/* position = position + (dp * NR) */
-/* */
-/*+++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++ */
+//interrupt void AdcInt_ISR(void);
+//interrupt void EvbCAPISR_INT(void);
+extern void switch_lowside(int phaseactive);
+extern WORD read_a2d(int a2d_chan);
+extern void switch_mux(int adc1, int adc2);
+
+
 void Time_Update_Position(anSRM_struct *anSRM)
 {
 	long dp; /* delta-position in mechanical angle */
 	int speed;
 	int temp;
-	if (anSRM->wEst_10xrpm > 0) {
+	if (anSRM->wEst_10xrpm > 0) 
+	{
 		dp = anSRM->wEst_10xrpm * K_POSITION_EST + anSRM->dp_remainder;
 		anSRM->dp_remainder = dp & 0xffff;
 		temp = (int)(dp >> 16);
 		anSRM->position = anSRM->position + (temp * NR);
 	}
-	else {
+	else 
+	{
 		speed = -anSRM->wEst_10xrpm;
 		dp = speed * K_POSITION_EST + anSRM->dp_remainder;
 		anSRM->dp_remainder = dp & 0xffff;
@@ -64,24 +36,6 @@ void Time_Update_Position(anSRM_struct *anSRM)
 	}
 } /* end Time_Update_Position */
 
-/*+++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++ */
-/*MEASUREMENT UPDATE OF THE ROTOR POSITION ESTIMATE */
-/*----------------------------------------------------------------- */
-/* At a capture interrupt, the rotor is at 1 of 6 positions. */
-/* In between interrupts, the pickoff will be at 1 of six states, */
-/* defined by the opto-couplers. The states are defined by [zyx] */
-/* where: z = output of opto-coupler #3 */
-/* y = output of opto-coupler #2 */
-/* x = output of opto-coupler #1 */
-/* */
-/*State 2: 010 */
-/*State 3: 011 */
-/*State 1: 001 */
-/*State 5: 101 */
-/*State 4: 100 */
-/*State 6: 110 */
-/* */
-/*+++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++ */
 void Msmt_Update_Position(anSRM_struct *anSRM)
 {
 	int old_state, new_state;
@@ -96,45 +50,21 @@ void Msmt_Update_Position(anSRM_struct *anSRM)
 	/*----------------------------------------------------*/
 	/* If transition is valid, update position and state */
 	/*----------------------------------------------------*/
-	if (new_state != 0) { /* valid transition, update data */
+	if (new_state != 0) 
+	{ /* valid transition, update data */
 		anSRM->position = anSRM->trans_lut[old_state][cap].position;
 		anSRM->shaft_direction = anSRM->trans_lut[old_state][cap].direction;
 		anSRM->position_state = new_state;
 	}
-	else { /* else, not a valid transition, use opto-coupler */
+	else 
+	{ /* else, not a valid transition, use opto-coupler */
 		/* level & re-initialize position estimate */
 		//anSRM->position_state = *PBDATDIR & 0x7;
 		anSRM->position_state = GpioDataRegs.GPADAT.all & 0x7;
 	}
 }
-/*++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++ */
-/*VELOCITY ESTIMATION ALGORITHM */
-/*----------------------------------------------------------------- */
-/* This algorithm estimates the SRM shaft velocity. It is executed */
-/*after each capture interrupt is received. If the shaft is */
-/*moving fast enough, this routine is called with mode = 1 and */
-/*the capture data is used. Otherwise, the # of timer ISRs */
-/*which are executed between capture events is used in the */
-/*velocity calculation. */
-/* */
-/*Velocity is calculated according to the equation: */
-/* */
-/* w = delta_theta / delta_t */
-/* */
-/*where delta_theta is known: */
-/* (7.5 mech deg between each capture) */
-/* (22.5 mech deg between the same capture) */
-/*and delta_t is the measured number of clock cycles. */
-/* */
-/*The algorithm is implemented in double precision and is of */
-/*the form: */
-/* w = Kx_VELOCITY_EST/count */
-/* */
-/*where the constant Kx_VELOCITY_ESTIMATE (x=1,2) incorporates */
-/*delta_theta and other units so that */
-/*w has units of (rpm * 10). */
-/* */
-/*+++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++ */
+
+
 void Msmt_Update_Velocity(anSRM_struct *anSRM, int mode)
 {
 	DWORD a1, a2, a3, a4, a5, a6;
@@ -161,7 +91,8 @@ void Msmt_Update_Velocity(anSRM_struct *anSRM, int mode)
 		sum_cnt = K1_VELOCITY_EST / sum_cnt;
 		inst_velocity = ((int)sum_cnt) * anSRM->shaft_direction;
 	}
-	else { /* else, use timer ISR count as time base */
+	else 
+	{ /* else, use timer ISR count as time base */
 		/*---------------------------------------------------*/
 		/* apply velocity = delta_theta/delta_time algorithm */
 		/*---------------------------------------------------*/
@@ -172,27 +103,19 @@ void Msmt_Update_Velocity(anSRM_struct *anSRM, int mode)
 	/* IIR filter for smoothing velocity estimate */
 	/*----------------------------------------------- */
 
-	filt_velocity = (ALPHA * anSRM->wEst_10xrpm)
-		+ (ONE_MINUS_ALPHA * inst_velocity);
+	filt_velocity = (ALPHA * anSRM->wEst_10xrpm)+ (ONE_MINUS_ALPHA * inst_velocity);
 	anSRM->wEst_10xrpm = (int)(filt_velocity >> 3);
 } /* end, velocity estimation */
 
 
 
-/*++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++ */
-/*COMMUTATION ALGORITHM */
-/*------------------------------------------------------------------------ */
-/* A four quadrant commutation algorithm, using a fixed-dwell angle */
-/* of 120 electrical degrees and a variable turn on angle. With */
-/*a fixed dwell of 120 electrical degrees, only a single phase */
-/*is active at any one time. The advance angle is calculated as */
-/*a function of speed and desired current. */
-/*++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++ */
 void Commutation_Algorithm(anSRM_struct *anSRM)
 {
 	int phase;
 	WORD electricalAngle;
 	WORD angle;
+	WORD anglem2pi;
+	WORD anglep2pi;
 	int channel;
 	long advance;
 	int whats_active;
@@ -229,7 +152,7 @@ void Commutation_Algorithm(anSRM_struct *anSRM)
 		/* the mux on the A/D to measure the desired */
 		/* phase current */
 		/*-----------------------------------------------------------*/
-		if ((angle >= (PIBYSIX_16)) && (angle < (FIVEPIBYSIX_16))) 
+		if (((angle >= (PIBYSIX_16)) && (angle < (FIVEPIBYSIX_16))) || ((anglem2pi >= (PIBYSIX_16)) && (anglem2pi < (FIVEPIBYSIX_16))) || ((anglep2pi >= (PIBYSIX_16)) && (anglep2pi < (FIVEPIBYSIX_16)))) 
 		{
 			anSRM->active[phase] = 1;
 			temp = 0x1 << phase;
@@ -289,18 +212,30 @@ void velocityController(anSRM_struct *anSRM)
 /********************************************************** */
 /*CURRENT CONTROL LOOP ALGORITHM */
 /*+++++++++++++++++++++++++++++++++++++++++++++++++++++++++ */
-void currentController(anSRM_struct *anSRM) {
+void currentController(anSRM_struct *anSRM) 
+{
 	int phase;
 	int ierr;
-	for (phase = 0; phase < NUMBER_OF_PHASES; phase++) {
+
+	anSRM->iFB[0]=AdcRegs.ADCRESULT0 * 3.0/65520.0;//define AdcRegs.ADCRESULT0 ADCRESULTPHASE1 !!!!!!!!!
+	anSRM->iFB[1]=AdcRegs.ADCRESULT2 * 3.0/65520.0;
+	anSRM->iFB[2]=AdcRegs.ADCRESULT4 * 3.0/65520.0;
+
+	for (phase = 0; phase < NUMBER_OF_PHASES; phase++) 
+	{
 		/*----------------------------------------------*/
 		/* for each active phase do ... */
 		/*----------------------------------------------*/
-		if (anSRM->active[phase] > 0) {
+		if (anSRM->active[phase] > 0) 
+		{
 			/*--------------------*/
 			/* read A/D converter */
 			/*--------------------*/
-			anSRM->iFB[phase] = read_a2d(1);
+
+			//anSRM->iFB[phase] = read_a2d(1);
+			
+
+
 			/*---------------------------*/
 			/* calculate error signal */
 			/*---------------------------*/
@@ -323,7 +258,8 @@ void currentController(anSRM_struct *anSRM) {
 		/*----------------------------------------------*/
 		/* else, phase is not active */
 		/*----------------------------------------------*/
-		else {
+		else 
+		{
 			anSRM->iFB[phase] = 0;
 			anSRM->dutyRatio[phase] = 0;
 		}
@@ -366,20 +302,10 @@ void initializeSRM(anSRM_struct *anSRM)
 	anSRM->a2d_chan[0] = 1; /* phase A current on pin ADCIN1 */
 	anSRM->a2d_chan[1] = 2; /* phase B current on pin ADCIN2 */
 	anSRM->a2d_chan[2] = 3; /* phase C current on pin ADCIN3 */
-	/*-------------------------------------------------------------- */
-	/* Define position estimation state machine. */
-	/* */
-	/* Given current state, i, and capture event, j, with */
-	/* every transition (capture event), 3 parameters are defined: */
-	/* 1. trans_lut[i][j].state = the new state */
-	/* 2. trans_lut[i][j].position = the shaft position */
-	/* 3. trans_lut[i][j].direction = the shaft direction */
-	/*-------------------------------------------------------------- */
-	/*---------------------------------------------------*/
-	/* fill table with zeros. zeros will define illegal */
-	/* transitions */
-	/*---------------------------------------------------*/
-	for (i = 0; i<7; i++) {
+
+
+	for (i = 0; i<7; i++) 
+	{
 		for (j = 0; j<4; j++) {
 			anSRM->trans_lut[i][j].state = 0;
 			anSRM->trans_lut[i][j].position = 0;
@@ -388,6 +314,7 @@ void initializeSRM(anSRM_struct *anSRM)
 	}
 	/*------------------------------*/
 	/* ’new-state’ definitions */
+	//用来更新state
 	/*------------------------------*/
 	anSRM->trans_lut[1][2].state = 3;
 	anSRM->trans_lut[1][3].state = 5;
@@ -435,12 +362,14 @@ void initializeSRM(anSRM_struct *anSRM)
 	/* define initial guesses for each state. The initial position */
 	/* is assumed at the midpoint of each state */
 	/*--------------------------------------------------------------------- */
+	//guessed by the state, MIDPOINT
 	anSRM->position_initial_guess[1] = TWOPIBYTHREE_16 + PIBYSIX_16;
 	anSRM->position_initial_guess[2] = PIBYSIX_16;
 	anSRM->position_initial_guess[3] = PIBYTHREE_16 + PIBYSIX_16;
 	anSRM->position_initial_guess[4] = FOURPIBYTHREE_16 + PIBYSIX_16;
 	anSRM->position_initial_guess[5] = PI_16 + PIBYSIX_16;
 	anSRM->position_initial_guess[6] = FIVEPIBYTHREE_16 + PIBYSIX_16;
+	
 	/*------------------------------------------------------*/
 	/* read opto-couplers and get initial position estimate */
 	/*------------------------------------------------------*/
@@ -450,7 +379,8 @@ void initializeSRM(anSRM_struct *anSRM)
 	/*-------------------------*/
 	/* set initial conditions */
 	/*-------------------------*/
-	for (i = 0; i < NUMBER_OF_PHASES; i++) {
+	for (i = 0; i < NUMBER_OF_PHASES; i++) 
+	{
 		anSRM->iDes[i] = 0;
 		anSRM->active[i] = 0;
 		anSRM->iFB[i] = 0;
