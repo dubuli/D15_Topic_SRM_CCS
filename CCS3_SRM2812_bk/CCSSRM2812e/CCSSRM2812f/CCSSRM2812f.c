@@ -28,9 +28,9 @@ anSRM_struct SRM;
 ** simulate the postion signal **
 ** attention                   **
 **-----------------------------*/		 
-int iTest=0;
-int simu6pos[6]={0x3,0x1,0x5,0x4,0x6,0x2};//simulate the postion signal
-int simu6count=0;
+//int iTest=0;
+//int simu6pos[6]={0x3,0x1,0x5,0x4,0x6,0x2};//simulate the postion signal
+//int simu6count=0;
 
 unsigned int i;//for key input 
 
@@ -46,7 +46,6 @@ interrupt void EvbCAP6ISR_INT(void);
 
 void currentController(anSRM_struct *anSRM);
 void Msmt_Update_Velocity(anSRM_struct *anSRM, int mode);
-void Msmt_Update_Position(anSRM_struct *anSRM);
 void Time_Update_Position(anSRM_struct *anSRM);
 void Commutation_Algorithm(anSRM_struct *anSRM);
 
@@ -65,7 +64,7 @@ void main(void)
 
 	EALLOW;	
 	PieVectTable.ADCINT=&ad;
-	PieVectTable.CAPINT4=&EvbCAP4ISR_INT;
+	PieVectTable.CAPINT4=&EvbCAP4ISR_INT;	//use this to change the default ISR service. DefaultIsr.c
 	PieVectTable.CAPINT5=&EvbCAP5ISR_INT;
 	PieVectTable.CAPINT6=&EvbCAP6ISR_INT;
 	EDIS;   
@@ -148,37 +147,11 @@ after the above lines, the ACK5=1; IFR=0x10;
 			Update_Velocity = 0;
 		}
 
-		/*-----------------------*/
-		/* Visual feedback task */
-		/*-----------------------*/
 
 
+		if(count==3000)		{
 
-		if(count==3000)
-		{
-/*-----------------------------**
-** 			test the LEDoutput 
-attention  **
-**-----------------------------*/
 			GpioDataRegs.GPATOGGLE.bit.GPIOA12=1;//output led
-
-/*------------------------------**
-** 			test the CAP module 
-attention**
-**------------------------------*/
-/* 			GpioDataRegs.GPATOGGLE.bit.GPIOA8=1;//test the CAP 4     */
-/* 			GpioDataRegs.GPATOGGLE.bit.GPIOA9=1;//test the CAP 5     */
-/* 			GpioDataRegs.GPATOGGLE.bit.GPIOA10=1;//test the CAP 6	 */
-
-
-			
-/*------------------------------**
-** 			test the EVB PWM Compare module 
-attention**
-**------------------------------*/
-/* 			EvbRegs.CMPR4 = EvbRegs.CMPR4 ^ 750;//设置比较寄存器                  */
-/* 			EvbRegs.CMPR5 = 1499;                                                 */
-/* 			EvbRegs.CMPR6 = EvbRegs.CMPR6 ^ 375;//test the PWM1-6 output,failed?? */
 		}
 	}
 } 	
@@ -202,12 +175,11 @@ delete in 2812f4
 	SRM.iFB[0]=((AdcRegs.RESULT0>>4)*3)/4095.0+adclo;//define AdcRegs.ADCRESULT0 ADCRESULTPHASE1 !!!!!!!!!
 	SRM.iFB[1]=((AdcRegs.RESULT2>>4)*3)/4095.0+adclo;
 	SRM.iFB[2]=((AdcRegs.RESULT4>>4)*3)/4095.0+adclo;
-		
+
 	currentController(&SRM); /* current loop algorithm *///ddcap
 	
 	if (Msmt_Update) 
 	{ /* position estimation */
-		Msmt_Update_Position(&SRM); /* if recent capture edge */
 		Msmt_Update = 0; /* use this information */
 	}
 	else 
@@ -265,24 +237,20 @@ delete in 2812f4
 /*-------------------------------**
 ** 	attention                    **
 ** 	test the cap module,A8-10	 **
-**-------------------------------*/							 
-		if(count%10==0)
-	{
+**-------------------------------*/	
+/* Use GPADAT to give a simulate signal to the sensor*/ 						 
+//		if(count%10==0)	{
+//		GpioDataRegs.GPADAT.bit.GPIOA8=simu6pos[simu6count] & 1;
+//		GpioDataRegs.GPADAT.bit.GPIOA9=(simu6pos[simu6count]>>1) & 1;
+//		GpioDataRegs.GPADAT.bit.GPIOA10=(simu6pos[simu6count]>>2) & 1;
+//
+//		simu6count=simu6count+1;
 
-		//GpioDataRegs.GPADAT.all=GpioDataRegs.GPADAT.all & 0x8f;
-		//GpioDataRegs.GPADAT.all=(GpioDataRegs.GPADAT.all | simu6pos[simu6count]);
-		GpioDataRegs.GPADAT.bit.GPIOA8=simu6pos[simu6count] & 1;
-		GpioDataRegs.GPADAT.bit.GPIOA9=(simu6pos[simu6count]>>1) & 1;
-		GpioDataRegs.GPADAT.bit.GPIOA10=(simu6pos[simu6count]>>2) & 1;
-
-		simu6count=simu6count+1;
-
-		if(simu6count>=6)//ddcap
-		{
-			simu6count=0;
-		} 
-		
-	}
+//		if(simu6count>=6)//ddcap
+//		{
+//			simu6count=0;
+//		} 		
+//	}
 
 
 
@@ -304,56 +272,33 @@ delete in 2812f4
 
 void EvbCAP4ISR_INT(void)
 {
-
-//	int capdata1;
-//	capdata1 = EvbRegs.CAP4FIFO;
-
 	int delta_count;
 	WORD edge_time1;
-//	WORD edge_time2;
+	//	WORD edge_time2;
 
-
-	//*IFR_REG = 0x0008; /* clear CPU interrupt flag */
-
-	//groupc_flags = *IFRC; /* read event manger interrupt */  //读取是哪个中断
-	/* flag register */
-
-
-
-//attentionmodify
-//	do 
-//	{
-		//fifo_data = *FIFO1; /* read value */
-//		edge_time = EvbRegs.CAP6FIFO; /* read value */
-
-		//fifo_status = *CAPFIFO & 0x0300; /* read status register, mask bits */
-		//fifo_status = EvbRegs.CAPFIFOB.bit.CAP4FIFO; /* read status register, mask bits */
-
-//	} while (EvbRegs.CAPFIFOB.bit.CAP6FIFO != 0);
-
-// modified in 2812f5
+	// modified in 2812f5
 	edge_time1 = EvbRegs.CAP4FIFO; /* read value */
-//	edge_time2 = EvbRegs.CAP4FIFO; /* read value */
-
+	//	edge_time2 = EvbRegs.CAP4FIFO; /* read value */
 
 	//need to change
 	SRM.capture_delta[0][1] = SRM.capture_delta[0][0];
-	SRM.capture_delta[0][0] = edge_time1 - SRM.capture_edge[0];//edgetime=return fifo_data = EvbRegs.CAP6FIFO
+	SRM.capture_delta[0][0] = edge_time1 - SRM.capture_edge[0];//edgetime=return fifo_data = EvbRegs.CAP4FIFO
 	SRM.capture_edge[0] = edge_time1;
-	
-
 
 	SRM.last_capture = 1; /* save capture data *///capture=1 2 3//use to update the position//ddcap
 
-
-/*------------------**
-** 	added in 2812f5 **
-** 	attention	    **
-**------------------*/			 
-	SRM.position_state = (GpioDataRegs.GPADAT.all>>8) & 0x7;//attentiondelete ,need to delete
+/** 	added in 2812f5 **** 	attention	    **/			 
+	SRM.position_state = (GpioDataRegs.GPFDAT.all>>11) & 0x7;//get the state use the sensor signal
 	SRM.position = SRM.trans_lut[SRM.position_state][1].position;//0 to PI //there is a time delay,not accurate
+	SRM.shaft_direction_old=SRM.shaft_direction;
 	SRM.shaft_direction = SRM.trans_lut[SRM.position_state][1].direction;//1 -1//attentionmodify
 
+	//Added in f5a,if state is illegal (maybe because missing cap interrupt),
+	//use guess position,and old direction
+	if(SRM.position==0 || SRM.shaft_direction==0)	{
+		SRM.position = SRM.position_initial_guess[SRM.position_state];
+		SRM.shaft_direction=SRM.shaft_direction_old;
+	}
 
 
 	Msmt_Update = 1; /* position update flag */
@@ -365,27 +310,26 @@ void EvbCAP4ISR_INT(void)
 	old_count = count;
 
 	if (delta_count < 0) 
-		delta_count = delta_count + ONE_HALF_SECOND;
+		delta_count = delta_count + ONE_HALF_SECOND;//in the ad "if (count == ONE_HALF_SECOND)"
 
-	if (delta_count > 50) 
-	{ /* low shaft speed use */
-		/* ISR counter */
-		SRM.delta_count = delta_count;
+	SRM.delta_count = delta_count;
+
+	if (delta_count > 50) 	{ 
+		//the frequency of count is 5K, so it's 50/5000 second per 7.5degree here  .MYWORK
+		//750 mechinal degree/s,about 2 n/s
+
+		/* low shaft speed use *** ISR counter */
 		Update_Velocity = 2;
 	}
-	else 
-	{ /* else, shaft speed ok */
+	else 	{ 
+		/* else, shaft speed ok */
 		/* use 1.25MHz clk */
-		SRM.delta_count = delta_count;
 		Update_Velocity = 1;
 	}
-
-
 	 
-	EvbRegs.EVBIFRC.bit.CAP4INT = 1;//to clear the 
+	EvbRegs.EVBIFRC.bit.CAP4INT = 1;//to clear the 清除捕获中断4的标志位
+	PieCtrl.PIEACK.bit.ACK5 = 1; //origin: ACK.all=0x0010
 
-	PieCtrl.PIEACK.all = 0x0010;
-//need to add some commands to cleare IFRs
 }
 
 
@@ -396,48 +340,33 @@ void EvbCAP5ISR_INT(void)
 
 	int delta_count;
 	WORD edge_time1;
-//	WORD edge_time2;
+	//	WORD edge_time2;
 
-
-	//*IFR_REG = 0x0008; /* clear CPU interrupt flag */
-
-	//groupc_flags = *IFRC; /* read event manger interrupt */  //读取是哪个中断
-	/* flag register */
-
-//attentionmodify
-//	do 
-//	{
-		//fifo_data = *FIFO1; /* read value */
-//		edge_time = EvbRegs.CAP6FIFO; /* read value */
-
-		//fifo_status = *CAPFIFO & 0x0300; /* read status register, mask bits */
-		//fifo_status = EvbRegs.CAPFIFOB.bit.CAP4FIFO; /* read status register, mask bits */
-
-//	} while (EvbRegs.CAPFIFOB.bit.CAP6FIFO != 0);
-
-// modified in 2812f5
+	// modified in 2812f5
 	edge_time1 = EvbRegs.CAP5FIFO; /* read value */
-//	edge_time2 = EvbRegs.CAP5FIFO; /* read value */
-
+	//	edge_time2 = EvbRegs.CAP5FIFO; /* read value */
 
 	//need to change
 	SRM.capture_delta[1][1] = SRM.capture_delta[1][0];
-	SRM.capture_delta[1][0] = edge_time1 - SRM.capture_edge[1];//edgetime=return fifo_data = EvbRegs.CAP6FIFO
+	SRM.capture_delta[1][0] = edge_time1 - SRM.capture_edge[1];//edgetime=return fifo_data = EvbRegs.CAP5FIFO
 	SRM.capture_edge[1] = edge_time1;
 
 
 	SRM.last_capture = 2; /* save capture data *///capture=1 2 3//use to update the position//ddcap
 
-/*------------------**
-** 	added in 2812f5 **
-** 	attention	    **
-**------------------*/			 
-	SRM.position_state = (GpioDataRegs.GPADAT.all>>8) & 0x7;//attentiondelete ,need to delete
+	/*------------------**
+	** 	added in 2812f5 **
+	** 	attention	    **
+	**------------------*/			 
+	SRM.position_state = (GpioDataRegs.GPFDAT.all>>11) & 0x7;//attentiondelete ,need to delete
 	SRM.position = SRM.trans_lut[SRM.position_state][2].position;//0 to PI //there is a time delay,not accurate
+	SRM.shaft_direction_old=SRM.shaft_direction;
 	SRM.shaft_direction = SRM.trans_lut[SRM.position_state][2].direction;//1 -1//attentionmodify
 
-
-
+	if(SRM.position==0 || SRM.shaft_direction==0)	{
+		SRM.position = SRM.position_initial_guess[SRM.position_state];
+		SRM.shaft_direction=SRM.shaft_direction_old;
+	}
 
 	Msmt_Update = 1; /* position update flag */
 
@@ -463,13 +392,8 @@ void EvbCAP5ISR_INT(void)
 		Update_Velocity = 1;
 	}
 
-
-
 	EvbRegs.EVBIFRC.bit.CAP5INT = 1;
-
-
-	PieCtrl.PIEACK.all = 0x0010;
-//need to add some commands to cleare IFRs
+	PieCtrl.PIEACK.bit.ACK5 = 1; //origin: ACK.all=0x0010
 }
 
 
@@ -481,48 +405,32 @@ void EvbCAP6ISR_INT(void)
 
 	int delta_count;
 	WORD edge_time1;
-//	WORD edge_time2;
+	//	WORD edge_time2;
 
-
-	//*IFR_REG = 0x0008; /* clear CPU interrupt flag */
-
-	//groupc_flags = *IFRC; /* read event manger interrupt */  //读取是哪个中断
-	/* flag register */
-
-
-//attentionmodify
-//	do 
-//	{
-		//fifo_data = *FIFO1; /* read value */
-//		edge_time = EvbRegs.CAP6FIFO; /* read value */
-
-		//fifo_status = *CAPFIFO & 0x0300; /* read status register, mask bits */
-		//fifo_status = EvbRegs.CAPFIFOB.bit.CAP4FIFO; /* read status register, mask bits */
-
-//	} while (EvbRegs.CAPFIFOB.bit.CAP6FIFO != 0);
-
-// modified in 2812f5
+	// modified in 2812f5
 	edge_time1 = EvbRegs.CAP6FIFO; /* read value */
 //	edge_time2 = EvbRegs.CAP6FIFO; /* read value */
-
 
 	//need to change
 	SRM.capture_delta[2][1] = SRM.capture_delta[2][0];
 	SRM.capture_delta[2][0] = edge_time1 - SRM.capture_edge[2];//edgetime=return fifo_data = EvbRegs.CAP6FIFO
 	SRM.capture_edge[2] = edge_time1;
 
-
 	SRM.last_capture = 3; /* save capture data *///capture=1 2 3//use to update the position//ddcap
 
-/*------------------**
-** 	added in 2812f5 **
-** 	attention	    **
-**------------------*/			 
-	SRM.position_state = (GpioDataRegs.GPADAT.all>>8) & 0x7;//attentiondelete ,need to delete
+	/*------------------**
+	** 	added in 2812f5 **
+	** 	attention	    **
+	**------------------*/			 
+	SRM.position_state = (GpioDataRegs.GPFDAT.all>>11) & 0x7;//attentiondelete ,need to delete
 	SRM.position = SRM.trans_lut[SRM.position_state][3].position;//0 to PI //there is a time delay,not accurate
+	SRM.shaft_direction_old=SRM.shaft_direction;
 	SRM.shaft_direction = SRM.trans_lut[SRM.position_state][3].direction;//1 -1//attentionmodify
 
-
+	if(SRM.position==0 || SRM.shaft_direction==0)	{
+		SRM.position = SRM.position_initial_guess[SRM.position_state];
+		SRM.shaft_direction=SRM.shaft_direction_old;
+	}
 
 
 	Msmt_Update = 1; /* position update flag */
@@ -551,9 +459,7 @@ void EvbCAP6ISR_INT(void)
 	 
 
 	EvbRegs.EVBIFRC.bit.CAP6INT = 1;
-
-	PieCtrl.PIEACK.all = 0x0010;
-//need to add some commands to cleare IFRs
+	PieCtrl.PIEACK.bit.ACK5 = 1; //origin: ACK.all=0x0010
 }
 
 
@@ -564,30 +470,12 @@ void initializeSRM(anSRM_struct *anSRM)
 {
 	int i, j;
 
-/*------------**
-** what for   **
-** attention? **
-**------------*/		  
-/* 	EALLOW;                                 */
-/* 	GpioMuxRegs.GPAMUX.bit.PWM1_GPIOA0 = 0; */
-/* 	GpioMuxRegs.GPAMUX.bit.PWM2_GPIOA1 = 0; */
-/* 	GpioMuxRegs.GPAMUX.bit.PWM3_GPIOA2 = 0; */
-/*                                          */
-/* 	GpioMuxRegs.GPADIR.bit.GPIOA0 = 0;      */
-/* 	GpioMuxRegs.GPADIR.bit.GPIOA1 = 0;      */
-/* 	GpioMuxRegs.GPADIR.bit.GPIOA2 = 0;      */
-/*                                          */
-/* 	EDIS;	                                */
-
-	
-
 	/*---------------------------------------------------------*/
 	/* define mux positions for current feedback of each phase */
 	/*---------------------------------------------------------*/
 	anSRM->a2d_chan[0] = 1; /* phase A current on pin ADCIN1 */
 	anSRM->a2d_chan[1] = 2; /* phase B current on pin ADCIN2 */
 	anSRM->a2d_chan[2] = 3; /* phase C current on pin ADCIN3 */
-
 
 	for (i = 0; i<7; i++) 
 	{
@@ -598,24 +486,9 @@ void initializeSRM(anSRM_struct *anSRM)
 		}
 	}
 	
-	/*------------------------------*/
-	/* ’new-state’ definitions */
-	//用来更新state
-	/*------------------------------*/
-/* 	anSRM->trans_lut[1][2].state = 3;    */
-/* 	anSRM->trans_lut[1][3].state = 5;    */
-/* 	anSRM->trans_lut[2][1].state = 3;    */
-/* 	anSRM->trans_lut[2][3].state = 6;    */
-/* 	anSRM->trans_lut[3][1].state = 2;    */
-/* 	anSRM->trans_lut[3][2].state = 1;    */
-/* 	anSRM->trans_lut[4][1].state = 5;    */
-/* 	anSRM->trans_lut[4][2].state = 6;    */
-/* 	anSRM->trans_lut[5][1].state = 4;    */
-/* 	anSRM->trans_lut[5][3].state = 1;    */
-/* 	anSRM->trans_lut[6][2].state = 4;    */
-/* 	anSRM->trans_lut[6][3].state = 2;	 */
+
 	/*--------------------------------------*/
-	/* ’shaft direction’ definitions */
+	/* ’shaft direction’ definitions (OLD)(ORIGIN)*/
 	/*--------------------------------------*/
 /* 	anSRM->trans_lut[1][2].direction = -1;   */
 /* 	anSRM->trans_lut[1][3].direction = 1;    */
@@ -629,21 +502,6 @@ void initializeSRM(anSRM_struct *anSRM)
 /* 	anSRM->trans_lut[5][3].direction = -1;   */
 /* 	anSRM->trans_lut[6][2].direction = -1;   */
 /* 	anSRM->trans_lut[6][3].direction = 1;	 */
-	/*--------------------------------------*/
-	/* ’shaft position’ definitions */
-	/*--------------------------------------*/
-/* 	anSRM->trans_lut[1][2].position = TWOPIBYTHREE_16;  */
-/* 	anSRM->trans_lut[1][3].position = PI_16;            */
-/* 	anSRM->trans_lut[2][1].position = PIBYTHREE_16;     */
-/* 	anSRM->trans_lut[2][3].position = 0;                */
-/* 	anSRM->trans_lut[3][1].position = PIBYTHREE_16;     */
-/* 	anSRM->trans_lut[3][2].position = TWOPIBYTHREE_16;  */
-/* 	anSRM->trans_lut[4][1].position = FOURPIBYTHREE_16; */
-/* 	anSRM->trans_lut[4][2].position = FIVEPIBYTHREE_16; */
-/* 	anSRM->trans_lut[5][1].position = FOURPIBYTHREE_16; */
-/* 	anSRM->trans_lut[5][3].position = PI_16;            */
-/* 	anSRM->trans_lut[6][2].position = FIVEPIBYTHREE_16; */
-/* 	anSRM->trans_lut[6][3].position = 0;                */
 
 
 
@@ -651,7 +509,7 @@ void initializeSRM(anSRM_struct *anSRM)
 	/* ’new-state’ definitions */
 	//用来更新state
 /* 	attention            */
-/* 	changed in 2812f5	 */
+/* 	changed in 2812f5	.MYWORK	 */
 	/*------------------------------*/
 	anSRM->trans_lut[1][2].state = 3;
 	anSRM->trans_lut[1][3].state = 5;
@@ -696,9 +554,6 @@ void initializeSRM(anSRM_struct *anSRM)
 	anSRM->trans_lut[6][2].position = FIVEPIBYTHREE_16;
 	anSRM->trans_lut[6][3].position = 0;
 
-
-
-
 	/*--------------------------------------------------------------------- */
 	/* define initial guesses for each state. The initial position */
 	/* is assumed at the midpoint of each state */
@@ -719,9 +574,9 @@ void initializeSRM(anSRM_struct *anSRM)
 /*-------------------------------------**
 ** 	attention                          **
 ** 	the oppo is set to GPADAT & 0x7	   **
-change to A8 A9 A10
+change to F11 12 13  origin.old:8 A9 A10
 **-------------------------------------*/								   
-	anSRM->position_state = (GpioDataRegs.GPADAT.all>>8) & 0x7;
+	anSRM->position_state = (GpioDataRegs.GPFDAT.all>>11) & 0x7;
 //	anSRM->position_state>>=8;
 	anSRM->position = anSRM->position_initial_guess[anSRM->position_state];
 
@@ -809,13 +664,13 @@ void currentController(anSRM_struct *anSRM)
 		/*----------------------------------------------*/
 		if (anSRM->active[phase] > 0) 
 		{
-			if(anSRM->iFB[phase]>=anSRM->iDes[phase] + iRANGE)
+			if(anSRM->iFB[phase]>=0.34)
 			{
-				anSRM->dutyRatio[phase]=0xffff;//compare to output LOW 
+				anSRM->dutyRatio[phase]=0;//compare to output LOW 
 			}
-			else if(anSRM->iFB[phase]<=anSRM->iDes[phase] - iRANGE)
+			else if(anSRM->iFB[phase]<=0.3)
 			{
-				anSRM->dutyRatio[phase]=0;//compare to output HIGH 
+				anSRM->dutyRatio[phase]=0xffff;//compare to output HIGH 
 			}
 		}
 		/*----------------------------------------------*/
@@ -840,44 +695,6 @@ void currentController(anSRM_struct *anSRM)
 
 
 
-void Msmt_Update_Position(anSRM_struct *anSRM)
-{
-	int old_state, new_state;
-	int cap;
-	/*-------------------------------------------------------------- */
-	/* Based on capture and current state, get new state from the */
-	/* state-machine look-up table */
-	/*-------------------------------------------------------------- */
-	cap = anSRM->last_capture;//123
-	old_state = anSRM->position_state;//123456
-	new_state = anSRM->trans_lut[old_state][cap].state;//123456
-	/*----------------------------------------------------*/
-	/* If transition is valid, update position and state */
-	/*----------------------------------------------------*/
-	if (new_state != 0) 
-	{ /* valid transition, update data */
-//		anSRM->position = anSRM->trans_lut[old_state][cap].position;//0 to PI //there is a time delay,not accurate
-//		anSRM->shaft_direction = anSRM->trans_lut[old_state][cap].direction;//1 -1
-//		anSRM->position_state = new_state;
-	}
-	else 
-	{ 
-		/* else, not a valid transition, use opto-coupler */
-		/* level & re-initialize position estimate */
-		//anSRM->position_state = *PBDATDIR & 0x7;
-		//anSRM->position_state = GpioDataRegs.GPADAT.all & 0x7;//same to 2812f4
-
-/*-------------------------------------**
-** 	attention                          **
-** 	the oppo is set to GPADAT & 0x7	   **
-change to A8 A9 A10
-changed in 2812f5
-**-------------------------------------*/								   
-		anSRM->position_state = (GpioDataRegs.GPADAT.all>>8) & 0x7;
-
-		anSRM->position = anSRM->position_initial_guess[anSRM->position_state];
-	}
-}
 
 
 void Time_Update_Position(anSRM_struct *anSRM)
@@ -927,9 +744,7 @@ void Commutation_Algorithm(anSRM_struct *anSRM)	//int the ADC interrupt
 		/* turn phase on, if between desired angles and switch */
 		/* the mux on the A/D to measure the desired */
 		/* phase current */
-		/*-----------------------------------------------------------*/
-
-			
+		/*-----------------------------------------------------------*/			
 
 		if ((angle >= PIBYSIX_16) && (angle < FIVEPIBYSIX_16))
 		{

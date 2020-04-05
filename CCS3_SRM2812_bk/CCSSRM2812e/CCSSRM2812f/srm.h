@@ -38,6 +38,7 @@ typedef struct
 	WORD position;
 	int position_state;
 	int shaft_direction;
+	int shaft_direction_old;
 	state_machine trans_lut[7][4];
 	WORD position_initial_guess[7];
 	long dp_remainder;

@@ -27,14 +27,10 @@
 //
 void InitEv(void)
 {
-
 	WORD iperiod1;
-	WORD iperiod3;
-
+	WORD iperiod3;	
 			
 	iperiod1 = (SYSCLK_FREQ / CPU_INT_FREQ) - 1;//5kHz
-
-
 
 /*------**
 ** Test attentio**
@@ -56,17 +52,10 @@ test the EVA pwm
 /* 	EvaRegs.T1CON.bit.TECMPR=1;       */
 /* 	EvaRegs.T1CMPR=3000;              */
 
-
-
-
-
-
 ////EVB ------------------------------------------------
 	iperiod3 = (SYSCLK_FREQ / PWM_FREQ) - 1;
 	EvbRegs.T3PR = iperiod3;
 	EvbRegs.T3CNT = 0;
-
-
 
 	EvbRegs.T3CON.bit.TMODE = 2;//TPS=0,enable=0;
 	EvbRegs.T3CON.bit.TPS=0;
@@ -87,14 +76,9 @@ t3cmpr    **
 //	EvbRegs.GPTCONB.all = 0x0859;				
 	EvbRegs.T3CMPR = 1300;
 
-
 	EvbRegs.T4PR = 0xffff;
 	EvbRegs.T4CNT = 0;
-
-	EvbRegs.T4CON.all = 0x1400;//Tps=5,enable=0;GuweiGang P245
-
-
-					 
+	EvbRegs.T4CON.all = 0x1400;//Tps=5,enable=0;GuweiGang P245					 
 
 	EvbRegs.CMPR4 = 0;//设置比较寄存器,compare to T3
 	EvbRegs.CMPR5 = 0;
@@ -115,15 +99,6 @@ t3cmpr    **
 	EvbRegs.CAPCONB.all = 0x30fc;//??//enable; capture the two sides
 
 	EvbRegs.CAPFIFOB.all = 0;
-
-/* 	EALLOW;                                                                                                   */
-/* 	PieVectTable.CAPINT1 = &EvbCAPISR_INT;//用CAP中断函数入口更新PIE向量表	//2    ！！！要把这个加到main中去 */
-/*                                                                                                            */
-/*                                                                                                            */
-/* 	PieVectTable.CAPINT2 = &EvbCAPISR_INT;                                                                    */
-/* 	PieVectTable.CAPINT3 = &EvbCAPISR_INT;                                                                    */
-/* 	EDIS;	                                                                                                  */
-
 }	
 	
 //===========================================================================
