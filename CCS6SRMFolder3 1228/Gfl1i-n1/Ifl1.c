@@ -1,6 +1,9 @@
 // Use Flash
 
 
+//Jfl3PiTwoPhaseStart1 更改485为两个字节
+
+
 //AD实验，采样全为0，未加外部信号。
 #include "DSP281x_Device.h"
 #include "srm.h"
@@ -37,6 +40,7 @@ long speed_error;
 long iDes;
 int StartFlag;
 
+int SciTemp=0;
 int SCiRxData=0;
 
 int CurrentControllerFlag;
@@ -336,12 +340,24 @@ delete in 2812f4
 		CapCount=0;
 	}
 
+	//delete
+	//SRM.wEst_10xrpm=count;
 	//	485,transfer the wEst,OUTPUT the wEst
-		if(!(count%480))		{				//changeto 9600Hz 480-20Hz			//%250 20Hz		//5Hz// 5000/100=50 Hz
+		if(!((count+10)%480))		{				//changeto 9600Hz 480-20Hz			//%250 20Hz		//5Hz// 5000/100=50 Hz
 			GpioDataRegs.GPEDAT.bit.GPIOE1=0;
 
+
 			if((SciaTx_Ready() == 1) )//&& (SendFlag == 1))
-				SciaRegs.SCITXBUF=((SRM.wEst_10xrpm/50) );// & 0xff);
+				SciTemp=(int)SRM.wEst_10xrpm;
+				SciaRegs.SCITXBUF=((SRM.wEst_10xrpm)>>8 ) & 0xff;// & 0xff);
+		}
+		if(!((count)%480))		{				//changeto 9600Hz 480-20Hz			//%250 20Hz		//5Hz// 5000/100=50 Hz
+			GpioDataRegs.GPEDAT.bit.GPIOE1=0;
+
+
+			if((SciaTx_Ready() == 1) )//&& (SendFlag == 1))
+				//SciTemp=SRM.wEst_10xrpm;
+				SciaRegs.SCITXBUF=((SciTemp) & 0xff );// & 0xff);
 		}
 
 	//	GpioDataRegs.GPEDAT.bit.GPIOE1=0;
