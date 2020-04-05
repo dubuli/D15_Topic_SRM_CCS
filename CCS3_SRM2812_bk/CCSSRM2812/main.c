@@ -17,12 +17,18 @@ anSRM_struct SRM;
 int LEDvalue;
 
 
-int Error1;
-int PosError;
+int Error1;//if there is a Position error or Current Sensor Error
+int PosError;//Position Error
+int SlowDownFlag;//ir Slow Down or NOT
+int BrakeFlag;//zhidong
+int OprMode;//1:CCC 2:APC
+int LastOprMode;
 
+unsigned int i;//for key input 
 
+int StartEn;
 
-interrupt void AdcInt_ISR(void);
+interrupt void AdcInt_ISR(void);//ADC interrupt
 void EvbCAPISR_INT(void);
 void eventmgr_init();
 void initializeSRM(anSRM_struct *anSRM);
@@ -34,7 +40,7 @@ void computePositionAndVelocity(anSRM_struct *anSRM);
 void Msmt_Update_Velocity(anSRM_struct *anSRM, int mode);
 void Msmt_Update_Position(anSRM_struct *anSRM);
 void switch_lowside(int phaseactive);
-void switch_mux(int adc1, int adc2);
+//void switch_mux(int adc1, int adc2);
 void disable_interrupts();
 void dsp_setup();
 void initialize_counters_and_flags();
@@ -54,89 +60,162 @@ void main()
 	EALLOW;
 	GpioMuxRegs.GPADIR.bit.GPIOA15=1;//设置D1对应的DSP引脚为输出
 	GpioMuxRegs.GPADIR.bit.GPIOA14=1;
+	GpioMuxRegs.GPADIR.bit.GPIOA13=1;
 	EDIS;
 	GpioDataRegs.GPADAT.bit.GPIOA14=0;//D1对应输出电平
 	GpioDataRegs.GPADAT.bit.GPIOA15=0;//D1对应输出电平
+	GpioDataRegs.GPADAT.bit.GPIOA13=0;
 	initializeSRM(&SRM);
 	eventmgr_init();
 
 	initialize_counters_and_flags();
 	Error1=1;
 	PosError=0;
+	SlowDownFlag=0;
+	BrakeFlag=0;
+	OprMode=1;
+	LastOprMode=1;
+	StartEn=0;
 	enable_interrupts();
 	start_background();
 }
 
 void start_background()
 {
-	while (Error1==1)
+	while(1)
 	{
-		SRM.position_state = GpioDataRegs.GPADAT.all & 0x7;
-		if(SRM.position_state == 0 || SRM.position_state==7)
+		if((S1==0)|(S2==0)|(S3==0)|(S4==0))//扫描是否按键按下
 		{
-			PosError+=1;
-		}
-		else
-		{
-			PosError-=1;
+				
+			for(i=0;i<10000;i++);    //键盘消抖动
+			if(S1==0)
+			{
+				BrakeFlag ^= 1;
+			}
+			
+			else if(S2==0)
+			{
+				StartEn ^= 1;
+			}
+				
+			else if(S3==0)
+			{
+				SRM.wDes_10xrpm+=5;
+			}
+				
+			else if(S4==0)
+			{
+				SRM.wDes_10xrpm-=5;
+			}
+			
+			while((S1==0)|(S2==0)|(S3==0)|(S4==0));		
+		}//if((S1==0)|(S2==0)|(S3==0)|(S4==0))//扫描是否按键按下
 
-		}
+		while (Error1==1)	//detect if there is a position error 
+		{
+			
+			SRM.position_state = GpioDataRegs.GPADAT.all & 0x7;
+			if(SRM.position_state == 0 || SRM.position_state==7)
+			{
+				PosError+=1;
+			}
+			else
+			{
+				PosError-=1;
+
+			}
+			
+			if(PosError > 5)
+			{
+				Error1=1;
+				PosError=0;
+			}
+			else if(PosError < -5)
+			{
+				Error1=0;
+				PosError=0;
+			}
+
+		}//while (Error1==1)
 		
-		if(PosError > 5)
+		if (StartEn==1)
 		{
-			Error1=1;
-			PosError=0;
-		}
-		else if(PosError < -5)
-		{
-			Error1=0;
-			PosError=0;
-		}
+			if (Error1==0)
+			{
+				/*----------------------*/
+				/* Velocity update task */
+				/*----------------------*/
 
-	}
-	
-	while (Error1==0)
-	{
-		/*----------------------*/
-		/* Velocity update task */
-		/*----------------------*/
+				if (Update_Velocity) 
+				{
+					if (Update_Velocity == 1) 
+					{ /* use capture data */
+						/* as time base */
+						Msmt_Update_Velocity(&SRM, 1);
+					}
+					else { 
 
-		if (Update_Velocity) 
-		{
-			if (Update_Velocity == 1) 
-			{ /* use capture data */
-				/* as time base */
-				Msmt_Update_Velocity(&SRM, 1);
-			}
-			else { 
+						Msmt_Update_Velocity(&SRM, 2);
+					}
+					Update_Velocity = 0;
+				}
 
-				Msmt_Update_Velocity(&SRM, 2);
-			}
-			Update_Velocity = 0;
-		}
+				if(SRM.wEst_10xrpm < wCHANGE && SRM.wEst_10xrpm > -wCHANGE)	//WRONG,need to rewrite
+				{
+					LastOprMode=OprMode;
+					OprMode = 1;
+				}
+				else
+				{
+					LastOprMode=OprMode;
+					OprMode = 2;
+				}
 
-		/*-----------------------*/
-		/* Visual feedback task */
-		/*-----------------------*/
+				if(LastOprMode!=OprMode)
+				{
+					if(OprMode==1)
+					{
+					//	SRM.integral_speed_error=0;
+					}
+					else if(OprMode==2)
+					{
+						SRM.cmprstep = 500;//设置比较寄存器
+					
+					}
+				}
 
-		//下面语句没看懂。/////////////////////////////////////////////？？？？？
-
-		if (Toggle_LED) 
-		{
-
-			GpioDataRegs.GPATOGGLE.bit.GPIOA14=1;
-
-			Toggle_LED = 0;
 
 
+				if(SRM.wEst_10xrpm==0)
+				{
+					BrakeFlag=0;
+				}
 
-			SRM.wDes_10xrpm = 6000; /* motor speed command units = (rpm x 10) */
-			/* just hard-coded here, but setup */
-			/* another background task to allow */
-			/* command from an external input */
-		}
-	} /* infinite loop */
+				/*-----------------------*/
+				/* Visual feedback task */
+				/*-----------------------*/
+
+				//下面语句没看懂。/////////////////////////////////////////////？？？？？
+
+				if (Toggle_LED) 
+				{
+
+					GpioDataRegs.GPATOGGLE.bit.GPIOA14=1;
+
+					Toggle_LED = 0;
+
+
+
+					SRM.wDes_10xrpm = 6000; /* motor speed command units = (rpm x 10) */
+					/* just hard-coded here, but setup */
+					/* another background task to allow */
+					/* command from an external input */
+				}
+			} //if (Error1==0)
+		}//if (StartEn==1)
+	}/* infinite loop */
 }
+
 interrupt void AdcInt_ISR(void)		//2
 
 {
@@ -145,7 +224,18 @@ interrupt void AdcInt_ISR(void)		//2
 
 	//*IFR_REG = 0x0004; /* clear interrupt flags */
 	//*IFRB = 0xff;
+	
+	SRM.iFB[0]=AdcRegs.ADCRESULT0 * 3.0/65520.0;//define AdcRegs.ADCRESULT0 ADCRESULTPHASE1 !!!!!!!!!
+	SRM.iFB[1]=AdcRegs.ADCRESULT2 * 3.0/65520.0;
+	SRM.iFB[2]=AdcRegs.ADCRESULT4 * 3.0/65520.0;
+
+	
 	currentController(&SRM); /* current loop algorithm */
+	
+	
+		//????????????????????????????????????????????????????????????????????????????????????????????????????????????????????????????????????????????????
+	
+
 	if (Msmt_Update) 
 	{ /* position estimation */
 		Msmt_Update_Position(&SRM); /* if recent capture edge */
@@ -155,16 +245,61 @@ interrupt void AdcInt_ISR(void)		//2
 	{ /* else, propagate pos est */
 		Time_Update_Position(&SRM); /* using algorithm */
 	}
+
 	check_for_stall();
+
 	count = count + 1; /* increment count */
 	slice = slice + 1; /* increment slicer */
 	if (slice == 1) 
 	{
+	
+		
 		Commutation_Algorithm(&SRM); /* do commutation in the 1st */
+		
+
 	} /* slice. */
-	else if (slice == 2) 
+	else if (slice == 2)
 	{ /* velocity loop algorithm in */
+		if(BrakeFlag==0)//Slow down OR not
+		{
+			if(SRM.wEst_10xrpm>0)
+			{
+				if(SRM.wDes_10xrpm < SRM.wEst_10xrpm)
+				{
+					SlowDownFlag=1;
+				}
+				else
+				{
+					SlowDownFlag=0;
+				}
+			}
+			else if(SRM.wEst_10xrpm<0)
+			{
+				if(SRM.wDes_10xrpm > SRM.wEst_10xrpm)
+				{
+					SlowDownFlag=1;
+				}
+				else
+				{
+					SlowDownFlag=0;
+				}
+			}
+			else
+			{
+				SlowDownFlag=0;
+			}
+		}
+		else
+		{
+			SlowDownFlag=0;
+		}
+
 		velocityController(&SRM); /* the 2nd */
+
+		
+
+
+
 	}
 	else if (slice == 5) 
 	{
@@ -212,7 +347,7 @@ void EvbCAPISR_INT(void)		//2
 		//*IFRC = 0xfc;								//1100
 		EvbRegs.EVBIFRC.bit.CAP6INT = 1;	//2
 		capture = 3;
-		edge_time = read_fifo(capture);
+		edge_time = read_fifo(capture);//return fifo_data = EvbRegs.CAP6FIFO
 	}
 	else { /* not a valid capture */
 		//*IFRC = 0xff;
@@ -223,10 +358,10 @@ void EvbCAPISR_INT(void)		//2
 
 	if (capture > 0) 
 	{
-		SRM.last_capture = capture; /* save capture data */
+		SRM.last_capture = capture; /* save capture data *///capture=1 2 3
 		n = capture-1;
 		SRM.capture_delta[n][1] = SRM.capture_delta[n][0];
-		SRM.capture_delta[n][0] = edge_time - SRM.capture_edge[n];
+		SRM.capture_delta[n][0] = edge_time - SRM.capture_edge[n];//edgetime=return fifo_data = EvbRegs.CAP6FIFO
 		SRM.capture_edge[n] = edge_time;
 		Msmt_Update = 1; /* position update flag */
 		/*-----------------------------------------------------------*/

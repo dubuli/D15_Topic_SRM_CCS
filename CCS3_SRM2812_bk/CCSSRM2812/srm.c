@@ -7,11 +7,13 @@
 
 #include "DSP281x_Device.h"
 #include "System.h"
+
+extern int OprMode;//1:CCC 2:APC
 //interrupt void AdcInt_ISR(void);
 //interrupt void EvbCAPISR_INT(void);
 extern void switch_lowside(int phaseactive);
 extern WORD read_a2d(int a2d_chan);
-extern void switch_mux(int adc1, int adc2);
+//extern void switch_mux(int adc1, int adc2);
 
 
 void Time_Update_Position(anSRM_struct *anSRM)
@@ -74,7 +76,8 @@ void Msmt_Update_Velocity(anSRM_struct *anSRM, int mode)
 	/*----------------------------------------------- */
 	/* Obtain instantaneous velocity estimate */
 	/*----------------------------------------------- */
-	if (mode == 1) { /* use timer #2 as time base */
+	if (mode == 1) 
+	{ /* use timer #2 as time base */
 		/*------------------------------------------------------------*/
 		/* FIR filter for removing once per electrical cycle effects */
 		/*------------------------------------------------------------*/
@@ -116,7 +119,7 @@ void Commutation_Algorithm(anSRM_struct *anSRM)
 	WORD angle;
 	WORD anglem2pi;
 	WORD anglep2pi;
-	int channel;
+	//int channel;
 	long advance;
 	int whats_active;
 	int desiredCurrent;
@@ -134,41 +137,93 @@ void Commutation_Algorithm(anSRM_struct *anSRM)
 		electricalAngle = anSRM->position + (int)advance;
 		desiredCurrent = anSRM->desiredTorque;
 	}
-	else {
+	else 
+	{
 		electricalAngle = anSRM->position + PI_16 -(int) advance;
 		desiredCurrent = -anSRM->desiredTorque;
 	}
+
+	anglem2pi=electricalAngle - 2 * PI_16;
+
+	anglep2pi=electricalAngle + 2 * PI_16;
+
 	/*-------------------------------- */
 	/* for each phase do ... */
 	/*-------------------------------- */
 	whats_active = 0x0;
-	for (phase = 0; phase< NUMBER_OF_PHASES; phase++) {
-		/*------------------------------*/
-		/* 120 degree offsets for phase */
-		/*------------------------------*/
-		angle = electricalAngle - phase * TWOPIBYTHREE_16;
-		/*-----------------------------------------------------------*/
-		/* turn phase on, if between desired angles and switch */
-		/* the mux on the A/D to measure the desired */
-		/* phase current */
-		/*-----------------------------------------------------------*/
-		if (((angle >= (PIBYSIX_16)) && (angle < (FIVEPIBYSIX_16))) || ((anglem2pi >= (PIBYSIX_16)) && (anglem2pi < (FIVEPIBYSIX_16))) || ((anglep2pi >= (PIBYSIX_16)) && (anglep2pi < (FIVEPIBYSIX_16)))) 
+
+	if(OprMode==1)
+	{
+		for (phase = 0; phase< NUMBER_OF_PHASES; phase++) 
 		{
-			anSRM->active[phase] = 1;
-			temp = 0x1 << phase;
-			channel = anSRM->a2d_chan[phase];
-			switch_mux(channel, channel + 8);
-			anSRM->iDes[phase] = desiredCurrent;
-			if (anSRM->iDes[phase] > ILIMIT) anSRM->iDes[phase] = ILIMIT;
+			/*------------------------------*/
+			/* 120 degree offsets for phase */
+			/*------------------------------*/
+			angle = electricalAngle - phase * TWOPIBYTHREE_16;
+			/*-----------------------------------------------------------*/
+			/* turn phase on, if between desired angles and switch */
+			/* the mux on the A/D to measure the desired */
+			/* phase current */
+			/*-----------------------------------------------------------*/
+
+			
+
+			if (((angle >= (PIBYSIX_16)) && (angle < (FIVEPIBYSIX_16))) || ((anglem2pi >= (PIBYSIX_16)) && (anglem2pi < (FIVEPIBYSIX_16))) || ((anglep2pi >= (PIBYSIX_16)) && (anglep2pi < (FIVEPIBYSIX_16)))) 
+			{
+				anSRM->active[phase] = 1;
+				temp = 0x1 << phase;
+				//channel = anSRM->a2d_chan[phase];
+				//switch_mux(channel, channel + 8);
+				anSRM->iDes[phase] = desiredCurrent;
+				if (anSRM->iDes[phase] > ILIMIT) anSRM->iDes[phase] = ILIMIT;
+			}
+			else 
+			{
+				anSRM->active[phase] = 0;
+				temp = 0;
+				anSRM->iDes[phase] = 0;
+			}
+			whats_active = whats_active | temp;
 		}
-		else 
-		{
-			anSRM->active[phase] = 0;
-			temp = 0;
-			anSRM->iDes[phase] = 0;
-		}
-		whats_active = whats_active | temp;
 	}
+	
+	else if(OprMode==2)
+	{
+		for (phase = 0; phase< NUMBER_OF_PHASES; phase++) 
+		{
+			/*------------------------------*/
+			/* 120 degree offsets for phase */
+			/*------------------------------*/
+			angle = electricalAngle - phase * TWOPIBYTHREE_16;
+			/*-----------------------------------------------------------*/
+			/* turn phase on, if between desired angles and switch */
+			/* the mux on the A/D to measure the desired */
+			/* phase current */
+			/*-----------------------------------------------------------*/
+
+			
+
+			if (((angle >= (PIBYSIX_16)-anSRM->anglestep) && (angle < (FIVEPIBYSIX_16))) || ((anglem2pi >= (PIBYSIX_16)-anSRM->anglestep) && (anglem2pi < (FIVEPIBYSIX_16))) || ((anglep2pi >= (PIBYSIX_16)-anSRM->anglestep) && (anglep2pi < (FIVEPIBYSIX_16)))) 
+			{
+				anSRM->active[phase] = 1;
+				temp = 0x1 << phase;
+				//channel = anSRM->a2d_chan[phase];
+				//switch_mux(channel, channel + 8);
+				anSRM->iDes[phase] = desiredCurrent;
+				if (anSRM->iDes[phase] > ILIMIT) anSRM->iDes[phase] = ILIMIT;
+			}
+			else 
+			{
+				anSRM->active[phase] = 0;
+				temp = 0;
+				anSRM->iDes[phase] = 0;
+			}
+			whats_active = whats_active | temp;
+		}
+
+	}
+
+
 	/*------------------------------------*/
 	/* switch low-side FETs, as required */
 	/*------------------------------------*/
@@ -197,17 +252,52 @@ void velocityController(anSRM_struct *anSRM)
 	/*------------------------------*/
 	/* apply integrator limit */
 	/*------------------------------*/
-	if (anSRM->integral_speed_error > INTEGRAL_LIMIT) {
+
+	if (anSRM->integral_speed_error > INTEGRAL_LIMIT) 
+	{
 		anSRM->integral_speed_error = INTEGRAL_LIMIT;
 	}
-	if (anSRM->integral_speed_error < -INTEGRAL_LIMIT) {
+	if (anSRM->integral_speed_error < -INTEGRAL_LIMIT) 
+	{
 		anSRM->integral_speed_error = -INTEGRAL_LIMIT;
 	}
-	/*------------------------------*/
-	/* PI filter */
-	/*------------------------------*/
+/*------------------------------*/
+/* PI filter */
+/*------------------------------*/
 	integral_error = (int)((KI*anSRM->integral_speed_error) >> 13);
 	anSRM->desiredTorque = ((KP*speed_error) >> 1) + integral_error;
+	
+
+	if(OprMode==2)
+	{
+		integral_error = (int)((KI2*anSRM->integral_speed_error) >> 13);
+		anSRM->cmprstep=((KP2*speed_error) >> 1) + integral_error;
+		if (anSRM->cmprstep > CMPRSTEPLIMIT) 
+		{
+			anSRM->cmprstep = CMPRSTEPLIMIT;
+		}
+		if (anSRM->cmprstep < -CMPRSTEPLIMIT) 
+		{
+			anSRM->cmprstep = -CMPRSTEPLIMIT;
+		}
+
+
+		integral_error = (int)((KI3*anSRM->integral_speed_error) >> 13);
+		anSRM->anglestep=((KP3*speed_error) >> 1) + integral_error;
+
+		if (anSRM->anglestep > ANGLESTEPLIMIT) 
+		{
+			anSRM->anglestep = ANGLESTEPLIMIT;
+		}
+		if (anSRM->anglestep < -ANGLESTEPLIMIT) 
+		{
+			anSRM->anglestep = -ANGLESTEPLIMIT;
+		}	
+
+		
+	}
+
+
 } /* end velocityController */
 /********************************************************** */
 /*CURRENT CONTROL LOOP ALGORITHM */
@@ -215,66 +305,108 @@ void velocityController(anSRM_struct *anSRM)
 void currentController(anSRM_struct *anSRM) 
 {
 	int phase;
-	int ierr;
+//	int ierr;
 
-	anSRM->iFB[0]=AdcRegs.ADCRESULT0 * 3.0/65520.0;//define AdcRegs.ADCRESULT0 ADCRESULTPHASE1 !!!!!!!!!
-	anSRM->iFB[1]=AdcRegs.ADCRESULT2 * 3.0/65520.0;
-	anSRM->iFB[2]=AdcRegs.ADCRESULT4 * 3.0/65520.0;
-
-	for (phase = 0; phase < NUMBER_OF_PHASES; phase++) 
+	if(OprMode==1)
 	{
-		/*----------------------------------------------*/
-		/* for each active phase do ... */
-		/*----------------------------------------------*/
-		if (anSRM->active[phase] > 0) 
+		for (phase = 0; phase < NUMBER_OF_PHASES; phase++) 
 		{
-			/*--------------------*/
-			/* read A/D converter */
-			/*--------------------*/
+			/*----------------------------------------------*/
+			/* for each active phase do ... */
+			/*----------------------------------------------*/
+			if (anSRM->active[phase] > 0) 
+			{
+				if(anSRM->iFB[phase]>=anSRM->iDes[phase] + iRANGE)
+				{
+					anSRM->dutyRatio[phase]=0xffff;
+				}
+				else if(anSRM->iFB[phase]<=anSRM->iDes[phase] - iRANGE)
+				{
+					anSRM->dutyRatio[phase]=0;
+				}
 
-			//anSRM->iFB[phase] = read_a2d(1);
-			
+
+				
+				/*--------------------*/
+				/* read A/D converter */
+				/*--------------------*/
+
+				//anSRM->iFB[phase] = read_a2d(1);
+				
 
 
-			/*---------------------------*/
-			/* calculate error signal */
-			/*---------------------------*/
-			ierr = anSRM->iDes[phase] - anSRM->iFB[phase];
-			/*---------------------------*/
-			/* current loop compensation */
-			/*---------------------------*/
-			anSRM->dutyRatio[phase] = ILOOP_GAIN * ierr;
-			anSRM->dutyRatio[phase] = (anSRM->dutyRatio[phase] >> 3);
-			/*------------------*/
-			/* limit duty ratio */
-			/*------------------*/
-			if (anSRM->dutyRatio[phase] < 0) {
+				/*---------------------------*/
+				/* calculate error signal */
+				/*---------------------------*/
+			//	ierr = anSRM->iDes[phase] - anSRM->iFB[phase];
+				/*---------------------------*/
+				/* current loop compensation */
+				/*---------------------------*/
+			//	anSRM->dutyRatio[phase] = ILOOP_GAIN * ierr;
+			//	anSRM->dutyRatio[phase] = (anSRM->dutyRatio[phase] >> 3);
+				/*------------------*/
+				/* limit duty ratio */
+				/*------------------*/
+			//	if (anSRM->dutyRatio[phase] < 0) {
+			//		anSRM->dutyRatio[phase] = 0;
+			//	}
+			//	if (anSRM->dutyRatio[phase] > MAXIMUM_DUTYRATIO) {
+			//		anSRM->dutyRatio[phase] = MAXIMUM_DUTYRATIO;
+			//	}
+
+
+			}
+			/*----------------------------------------------*/
+			/* else, phase is not active */
+			/*----------------------------------------------*/
+			else 
+			{
+				anSRM->iFB[phase] = 0;
 				anSRM->dutyRatio[phase] = 0;
 			}
-			if (anSRM->dutyRatio[phase] > MAXIMUM_DUTYRATIO) {
-				anSRM->dutyRatio[phase] = MAXIMUM_DUTYRATIO;
-			}
-		}
-		/*----------------------------------------------*/
-		/* else, phase is not active */
-		/*----------------------------------------------*/
-		else 
-		{
-			anSRM->iFB[phase] = 0;
-			anSRM->dutyRatio[phase] = 0;
-		}
-	} /* end for loop */
-	/*---------------------------------------*/
-	/* output PWM signals to high-side FET’s */
-	///*---------------------------------------*/
-	//*CMPR1 = anSRM->dutyRatio[0];
-	//*CMPR2 = anSRM->dutyRatio[1];
-	//*CMPR3 = anSRM->dutyRatio[2];
+		} /* end for loop */
+		/*---------------------------------------*/
+		/* output PWM signals to high-side FET’s */
+		///*---------------------------------------*/
+		//*CMPR1 = anSRM->dutyRatio[0];
+		//*CMPR2 = anSRM->dutyRatio[1];
+		//*CMPR3 = anSRM->dutyRatio[2];
 
-	EvbRegs.CMPR4 = anSRM->dutyRatio[0];//设置比较寄存器
-	EvbRegs.CMPR5 = anSRM->dutyRatio[1];
-	EvbRegs.CMPR6 = anSRM->dutyRatio[2];
-} /* end currentController */
+		EvbRegs.CMPR4 = anSRM->dutyRatio[0];//设置比较寄存器
+		EvbRegs.CMPR5 = anSRM->dutyRatio[1];
+		EvbRegs.CMPR6 = anSRM->dutyRatio[2];
+	} /* end currentController */
+
+	else if(OprMode==2)
+	{
+		for (phase = 0; phase < NUMBER_OF_PHASES; phase++) 
+		{
+			/*----------------------------------------------*/
+			/* for each active phase do ... */
+			/*----------------------------------------------*/
+			if (anSRM->active[phase] > 0) 
+			
+				anSRM->dutyRatio[phase]=CMPRBASE + anSRM->cmprstep;
+			
+			else 
+			{
+				anSRM->iFB[phase] = 0;
+				anSRM->dutyRatio[phase] = 0;
+			}
+		} /* end for loop */
+		/*---------------------------------------*/
+		/* output PWM signals to high-side FET’s */
+		///*---------------------------------------*/
+		//*CMPR1 = anSRM->dutyRatio[0];
+		//*CMPR2 = anSRM->dutyRatio[1];
+		//*CMPR3 = anSRM->dutyRatio[2];
+
+		EvbRegs.CMPR4 += anSRM->dutyRatio[0];//设置比较寄存器
+		EvbRegs.CMPR5 += anSRM->dutyRatio[1];
+		EvbRegs.CMPR6 += anSRM->dutyRatio[2];
+
+	}
+}
 /****************************************************************** */
 /*SRM ALGORITHM INITIALIZATION */
 /*----------------------------------------------------------------- */

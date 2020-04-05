@@ -30,9 +30,16 @@
 /*-------------------------------------------*/
 /* velocity loop algorithm constants */
 /*-------------------------------------------*/
+#define CMPRSTEPLIMIT 27//sdfsdfdjfskjsldkjfl;sajdflksdjflksjdlfkjsdlkfjlsjdfljsdlkfjslkdjf????????
+#define ANGLESTEPLIMIT 27//sdfsdfdjfskjsldkjfl;sajdflksdjflksjdlfkjsdlkfjlsjdfljsdlkfjslkdjf????????
+
 #define INTEGRAL_LIMIT 2793472 /* integrator limit */
 #define KI 3 /* (Q13*1000): Ki = 0.366 */
 #define KP 1 /* Q1: Kp = 0.5 */
+#define KI2 3 /* (Q13*1000): Ki = 0.366 *///////////////////////waiting for calculate!!!!!!!!!!!!!!!!
+#define KP2 1 /* Q1: Kp = 0.5 */
+#define KI3 3 /* (Q13*1000): Ki = 0.366 *///////////////////////waiting for calculate!!!!!!!!!!!!!!!!
+#define KP3 1 /* Q1: Kp = 0.5 */
 /*----------------------------------------------------------*/
 /* position & velocity estimation algorithm constants */
 /*----------------------------------------------------------*/
@@ -59,3 +66,15 @@
 #define FOURPIBYTHREE_16 43690
 #define FIVEPIBYTHREE_16 54613
 #define TWOPI_16 65535
+
+
+#define wCHANGE 4000 //设置高速低速CCC APC 转换值
+#define iRANGE 5 // The Current Range for ReferenceCurrent
+
+#define CMPRBASE 1500
+
+
+#define S1 GpioDataRegs.GPADAT.bit.GPIOA7
+#define S2 GpioDataRegs.GPADAT.bit.GPIOA8
+#define S3 GpioDataRegs.GPADAT.bit.GPIOA9
+#define S4 GpioDataRegs.GPADAT.bit.GPIOA10

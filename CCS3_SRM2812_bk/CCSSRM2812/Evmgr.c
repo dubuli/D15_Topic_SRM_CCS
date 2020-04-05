@@ -11,6 +11,7 @@
 #include "typedefs.h"
 
 interrupt void AdcInt_ISR(void);
+extern int SlowDownFlag;
 //interrupt void EvbCAPISR_INT(void);
 
 void eventmgr_init() 
@@ -19,7 +20,7 @@ void eventmgr_init()
 	WORD iperiod2;
 	unsigned int i;
 
-	iperiod1 = (SYSCLK_FREQ / CPU_INT_FREQ) - 1;
+	iperiod1 = (SYSCLK_FREQ / CPU_INT_FREQ) - 1;//5kHz
 
 	EALLOW;
 	GpioMuxRegs.GPBMUX.all = 0x07FF; // EVA PWM 1-6,2PWM, CAP456
@@ -40,7 +41,7 @@ void eventmgr_init()
 	EvbRegs.T4PR = 0xffff;
 	EvbRegs.T4CNT = 0;
 
-	EvbRegs.T4CON.all = 0x1440;
+	EvbRegs.T4CON.all = 0x1540;//Tps=5,GuweiGang P245
 
 	EvbRegs.CMPR4 = 0;//ÉèÖÃ±È½Ï¼Ä´æÆ÷
 	EvbRegs.CMPR5 = 0;
@@ -139,15 +140,15 @@ void eventmgr_init()
 
 }
 
-void switch_mux(int adc1, int adc2)
-{
+//void switch_mux(int adc1, int adc2)
+//{
 //	WORD ctrl_word;
 //	ctrl_word = 0x2c00; /* mask channel select bits */
 //	ctrl_word = ctrl_word | (adc1 << 4); /* set ADC1 channel bits */
 //	ctrl_word = ctrl_word | ((adc2-8) << 1); /* set ADC2 channel bits */
 //	*ADCTRL1 = ctrl_word;
 //	*ADCTRL2 = 0x0403;
-}
+//}
 
 WORD read_a2d(int a2d_chan)
 {
@@ -173,10 +174,17 @@ void switch_lowside(int phaseactive)
 	{
 		//action = action | 0x000c;
 		EvbRegs.ACTRB.bit.CMP7ACT = 1;
+		if(SlowDownFlag==1)
+		{
+			EvbRegs.ACTRB.bit.CMP8ACT = 0;
+		}
+		else
+		EvbRegs.ACTRB.bit.CMP8ACT = 3;
 	}
 	else
 	{
 		EvbRegs.ACTRB.bit.CMP7ACT = 0;
+		EvbRegs.ACTRB.bit.CMP8ACT = 0;
 	}
 	/*---------------------------------------*/
 	/* Force hi PWM4 if phase1 (B) is active */
@@ -185,10 +193,17 @@ void switch_lowside(int phaseactive)
 	{
 		//action = action | 0x00c0;
 		EvbRegs.ACTRB.bit.CMP9ACT = 1;
+		if(SlowDownFlag==1)
+		{
+			EvbRegs.ACTRB.bit.CMP10ACT = 0;
+		}
+		else
+		EvbRegs.ACTRB.bit.CMP10ACT = 3;
 	}
 	else
 	{
 		EvbRegs.ACTRB.bit.CMP9ACT = 0;
+		EvbRegs.ACTRB.bit.CMP10ACT = 0;
 	}
 	/*---------------------------------------*/
 	/* Force hi PWM6 if phase2 (C) is active */
@@ -197,10 +212,17 @@ void switch_lowside(int phaseactive)
 	{
 		//action = action | 0x0c00;
 		EvbRegs.ACTRB.bit.CMP11ACT = 1;
+		if(SlowDownFlag==1)
+		{
+			EvbRegs.ACTRB.bit.CMP12ACT = 0;
+		}
+		else
+		EvbRegs.ACTRB.bit.CMP12ACT = 3;
 	}
 	else
 	{
 		EvbRegs.ACTRB.bit.CMP11ACT = 0;
+		EvbRegs.ACTRB.bit.CMP12ACT = 0;
 	}
 
 }
